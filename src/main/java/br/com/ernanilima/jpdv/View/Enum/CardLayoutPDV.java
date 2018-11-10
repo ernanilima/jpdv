@@ -7,37 +7,76 @@ package br.com.ernanilima.jpdv.View.Enum;
  */
 public enum CardLayoutPDV {
 
-    /** Seleciona "tela de login" */
+    /**
+     * Seleciona "tela de login"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDV(String)}
+     */
     CARD_PDV("cardPDV"),
 
-    /** Seleciona "tela de vendas" */
+    /**
+     * Seleciona "tela de vendas"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDV(String)}
+     */
     CARD_LOGIN("cardLogin"),
 
-    /** Seleciona "tela de venda" */
+    /**
+     * Seleciona "tela de venda"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDVVendas(String)}
+     */
     CARD_VENDA("cardPDVVenda"),
 
-    /** Seleciona "tela de troco" */
+    /**
+     * Seleciona "tela de troco"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDVVendas(String)}
+     */
     CARD_TROCO("cardPDVTroco"),
 
-    /** Seleciona "tela de itens vendidos" */
+    /**
+     * Seleciona "tela de itens vendidos"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDVVendas(String)}
+     */
     CARD_ITENS("cardPDVItens"),
 
-    /** Seleciona "tela de busca" */
+    /**
+     * Seleciona "tela de busca"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDVVendas(String)}
+     */
     CARD_BUSCAR("cardPDVBuscar"),
 
-    /** Seleciona "painel de valores dos produtos" */
+    /**
+     * Seleciona "painel de valores dos produtos"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDVValores(String)}
+     */
     CARD_VALOR_PRODUTO("cardValProduto"),
 
-    /** Seleciona "painel de valores do cupom" */
+    /**
+     * Seleciona "painel de valores do cupom"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDVValores(String)}
+     */
     CARD_VALOR_CUPOM("cardValCupom"),
 
-    /** Seleciona "painel de logo" */
+    /**
+     * Seleciona "painel de formas de pagamento"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDVLogo(String)}
+     */
+    CARD_FPAGAMENTO("cardFormasPagamento"),
+
+    /**
+     * Seleciona "painel de logo"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDVLogo(String)}
+     */
     CARD_LOGO("cardLogo"),
 
-    /** Seleciona "painel para aplicar desconto" */
+    /**
+     * Seleciona "painel para aplicar desconto"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDVLogo(String)}
+     */
     CARD_DESCONTO("cardDesconto"),
 
-    /** Seleciona "painel de botons touch" */
+    /**
+     * Seleciona "painel de botons touch"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setCardPDVLogo(String)}
+     */
     CARD_BOTONS_TOUCH("cardBtnTouch");
 
     private String nameCardLayout;

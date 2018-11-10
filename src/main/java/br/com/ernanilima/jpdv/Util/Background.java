@@ -24,7 +24,7 @@ public class Background {
      * @return JImagePanel - Imagem de background lado a lado
      */
     public static JImagePanel getBackgroundSideBySide(InputStream inputStream) {
-        return backgroundSideBySide(inputStream, SIDE_BY_SIDE);
+        return background(inputStream, SIDE_BY_SIDE);
     }
 
     /**
@@ -33,7 +33,7 @@ public class Background {
      * @return JImagePanel - Imagem de background centralizada
      */
     public static JImagePanel getBackgroundCenter(InputStream inputStream) {
-        return backgroundSideBySide(inputStream, CENTER);
+        return background(inputStream, CENTER);
     }
 
     /**
@@ -42,7 +42,7 @@ public class Background {
      * @return JImagePanel - Imagem de background redimensionada
      */
     public static JImagePanel getBackgroundResize(InputStream inputStream) {
-        return backgroundSideBySide(inputStream, RESIZE);
+        return background(inputStream, RESIZE);
     }
 
     /**
@@ -52,7 +52,7 @@ public class Background {
      * @param fillType JImagePanel.FillType - Redimensionamento da imagem que vai retornar
      * @return JImagePanel - Imagem de background
      */
-    private static JImagePanel backgroundSideBySide(InputStream inputStream, JImagePanel.FillType fillType) {
+    private static JImagePanel background(InputStream inputStream, JImagePanel.FillType fillType) {
         try {
             BufferedImage imgBuffer = ImageIO.read(inputStream);
             JImagePanel background = new JImagePanel(imgBuffer);

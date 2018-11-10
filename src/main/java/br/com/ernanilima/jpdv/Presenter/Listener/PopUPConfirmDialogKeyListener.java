@@ -30,10 +30,11 @@ public class PopUPConfirmDialogKeyListener {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == e.VK_ENTER) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 this.presenter.resultSelected = true;
                 this.presenter.closePopUP();
-            } else if (e.getKeyCode() == e.VK_UP | e.getKeyCode() == e.VK_RIGHT | e.getKeyCode() == e.VK_DOWN | e.getKeyCode() == e.VK_LEFT) {
+            } else if (e.getKeyCode() == KeyEvent.VK_UP | e.getKeyCode() == KeyEvent.VK_RIGHT |
+                    e.getKeyCode() == KeyEvent.VK_DOWN | e.getKeyCode() == KeyEvent.VK_LEFT) {
                 // Muda o foco ao precionar qualquer tecla direcional
                 this.presenter.focusBtnNo();
             }
@@ -58,10 +59,11 @@ public class PopUPConfirmDialogKeyListener {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == e.VK_ENTER) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 this.presenter.resultSelected = false;
                 this.presenter.closePopUP();
-            } else if (e.getKeyCode() == e.VK_UP | e.getKeyCode() == e.VK_RIGHT | e.getKeyCode() == e.VK_DOWN | e.getKeyCode() == e.VK_LEFT) {
+            } else if (e.getKeyCode() == KeyEvent.VK_UP | e.getKeyCode() == KeyEvent.VK_RIGHT |
+                    e.getKeyCode() == KeyEvent.VK_DOWN | e.getKeyCode() == KeyEvent.VK_LEFT) {
                 // Muda o foco ao precionar qualquer tecla direcional
                 this.presenter.focusBtnYes();
             }

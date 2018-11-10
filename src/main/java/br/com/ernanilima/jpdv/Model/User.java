@@ -24,7 +24,7 @@ public class User {
     }
 
     /**
-     * Atribui o ID de usuario na variavel "id"
+     * Atribui o ID de usuario na variavel "{@link #id}"
      * @param id int - ID do usuario
      */
     public void setId(int id) {
@@ -39,7 +39,7 @@ public class User {
     }
 
     /**
-     * Atribui o nome de usuario na variavel "name"
+     * Atribui o nome de usuario na variavel "{@link #name}"
      * @param name String - Nome do usuario
      */
     public void setName(String name) {
@@ -54,7 +54,7 @@ public class User {
     }
 
     /**
-     * Atribui o senha de usuario na variavel "pwd"
+     * Atribui o senha de usuario na variavel "{@link #pwd}"
      * @param pwd String - Senha do usuario
      */
     public void setPwd(String pwd) {
@@ -69,7 +69,7 @@ public class User {
     }
 
     /**
-     * Atribui o nivel do usuario na variavel "level"
+     * Atribui o nivel do usuario na variavel "{@link #level}"
      * @param level int - Nivel de acesso do usuario
      */
     public void setLevel(int level) {

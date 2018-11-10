@@ -18,8 +18,8 @@ import static br.com.ernanilima.jpdv.Connection.ConnectionSQLite.openConnectionP
 public class UserDao {
 
     /**
-     * Metodo para realizar login de usuario de PDV
-     * @param mUser User - Usuario para realizar login ou validacao de nivel
+     * Realizar validacao de login de usuario de PDV
+     * @param mUser {@link User} - Model de usuario
      * @return boolean - "true" se login realizado com sucesso
      */
     public boolean userLogin(User mUser) {

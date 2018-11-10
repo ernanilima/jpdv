@@ -1,16 +1,20 @@
 package br.com.ernanilima.jpdv.Presenter;
 
+import br.com.ernanilima.jpdv.Dao.ProductDao;
+import br.com.ernanilima.jpdv.Dao.ShortcutKeyDao;
+import br.com.ernanilima.jpdv.Model.*;
+import br.com.ernanilima.jpdv.Model.Enum.IndexShortcutKey;
 import br.com.ernanilima.jpdv.Util.Background;
 import br.com.ernanilima.jpdv.Dao.UserDao;
-import br.com.ernanilima.jpdv.Model.Backgrounds;
-import br.com.ernanilima.jpdv.Model.Support;
-import br.com.ernanilima.jpdv.Model.User;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVActionListener;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVKeyListener;
 import br.com.ernanilima.jpdv.Util.Encrypt;
+import br.com.ernanilima.jpdv.Util.FieldManager;
 import br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV;
 import br.com.ernanilima.jpdv.View.IViewPDV;
 import br.com.ernanilima.jpdv.View.ViewPDV;
+
+import static br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV.*;
 
 /**
  * Presenter da ViewPDV
@@ -40,6 +44,15 @@ public class PDVPresenter {
     // Dao do usuario
     private final UserDao dUser;
 
+    // Dao de produto
+    private final ProductDao dProduct;
+
+    // Model de produto
+    private final Product mProduct;
+
+    // Model teclas de atalho
+    private ShortcutKey mShortcutKey;
+
     private String id;
     private String password;
 
@@ -52,9 +65,21 @@ public class PDVPresenter {
         this.mSupport = new Support();
         this.mBg = new Backgrounds();
         this.dUser = new UserDao();
+        this.dProduct = new ProductDao();
+        this.mProduct = new Product();
+        this.mShortcutKey = new ShortcutKey();
         this.myListiners();
+        this.myFilters();
+        this.myShortcutKey();
         this.viewPDV.setBackgroundLogin(Background.getBackgroundCenter(mBg.getPathBgPDVLogin()));
         this.viewPDV.packAndShow();
+    }
+
+    // Gera lista de teclas de atalho
+    private void myShortcutKey() {
+        this.mShortcutKey = new ShortcutKey();
+        ShortcutKeyDao dShortcutKey = new ShortcutKeyDao();
+        this.mShortcutKey.setLsShortcutKeys(dShortcutKey.listShortcutKeys());
     }
 
     // Listiner de "Botons", "Campos" e outros.
@@ -63,6 +88,13 @@ public class PDVPresenter {
         this.viewPDV.setExitActionPerformed(new ViewPDVActionListener.ExitActionListener(this));
         this.viewPDV.setFieldIDKeyPressed(new ViewPDVKeyListener.FieldIDKeyListener(this));
         this.viewPDV.setFieldPasswordKeyPressed(new ViewPDVKeyListener.FieldPassqordKeyListener(this));
+        this.viewPDV.setFieldBarcodeKeyPressed(new ViewPDVKeyListener.FieldBarcodeKeyListener(this));
+    }
+
+    // Metodo que gerencia os campos do ViewPDV
+    private void myFilters() {
+        this.viewPDV.setFieldBarcodeDocument(new FieldManager.FieldFilterInt(14));
+        this.viewPDV.setFieldIDDocument(new FieldManager.FieldFilterInt(3));
     }
 
     /**
@@ -89,7 +121,7 @@ public class PDVPresenter {
 
             if (dUser.userLogin(mUser)) {
                 System.out.println("LOGIN REALIZADO!");
-                this.viewPDV.setCardPDV(CardLayoutPDV.CARD_PDV.getNameCardLayout());
+                this.cardsPDV(CARD_PDV);
                 this.focusFieldBarCode();
             } else {
                 System.out.println("Dados incorretos ou usuário não cadastrado!");
@@ -111,6 +143,85 @@ public class PDVPresenter {
     }
 
     /**
+     * Metodo que realiza a busca de produto pelo seu codigo de barras
+     */
+    public void searchProduct() {
+        if (!this.viewPDV.getBarcode().equals("")) {
+            // Realiza a busca se o campo de codigo de barras for diferente de vazio
+            this.mProduct.setBarcode(Long.parseLong(viewPDV.getBarcode()));
+            if (dProduct.searchProductByBarcode(mProduct)) {
+                System.out.println("Codigo de Barras: " + mProduct.getBarcode());
+                System.out.println("Nome: " + mProduct.getDescription());
+                System.out.println("Nome Cupom: " + mProduct.getDescriptionCoupon());
+                System.out.println("Codigo da unidade de medida: " + mProduct.getmUnits().getId());
+                System.out.println("Unidade de medida: " + mProduct.getmUnits().getDescription());
+                System.out.println("Preco de venda: " + mProduct.getSalePrice());
+                System.out.println("Preco promocao: " + mProduct.getPromotionalPrice());
+                this.viewPDV.cleanFieldBarcode();
+            } else {
+                // Exibe um alerta caso o produto nao seja encontrado
+                System.out.println("PRODUTO NAO ENCONTRADO");
+                this.pPopUPMessage.showAlert("ATENÇÃO!", "PRODUTO NÃO ENCONTRADO!");
+                this.viewPDV.cleanFieldBarcode();
+            }
+        } else {
+            // Exibe uma mensagem de alerta caso o campo de codigo de barras esteja vazio
+            System.out.println("INFORME O CODIGO DE BARRAS");
+            this.pPopUPMessage.showAlert("ATENÇÃO!", "INFORME O CÓDIGO DE BARRAS!");
+            this.viewPDV.cleanFieldBarcode();
+        }
+    }
+
+    /**
+     * Metodo que retorna o Model de tecla de atalho
+     * @param index {@link IndexShortcutKey} - index da tecla de atalho no lista
+     * @return int - KeyCode da tecla de atalho
+     */
+    public int getShortcutKey(IndexShortcutKey index) {
+        return this.mShortcutKey.getLsShortcutKeys().get(index.getId()).getKeyCode();
+    }
+
+    /**
+     * @param cardLayoutPDV {@link CardLayoutPDV} - CardLayout que sera exibido
+     */
+    public void cardsPDV(CardLayoutPDV cardLayoutPDV) {
+
+        if (cardLayoutPDV.getNameCardLayout().equals(CARD_PDV.getNameCardLayout())) {
+            System.out.println("TELA DO PDV");
+            this.viewPDV.setCardPDV(cardLayoutPDV.getNameCardLayout());
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_LOGIN.getNameCardLayout())) {
+            System.out.println("TELA DE LOGIN");
+            this.viewPDV.setCardPDV(cardLayoutPDV.getNameCardLayout());
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_VENDA.getNameCardLayout())) {
+            System.out.println("TELA DE VENDA");
+            this.viewPDV.setCardPDVVendas(cardLayoutPDV.getNameCardLayout());
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_TROCO.getNameCardLayout())) {
+            System.out.println("TELA DE TROCO");
+            this.viewPDV.setCardPDVVendas(cardLayoutPDV.getNameCardLayout());
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_ITENS.getNameCardLayout())) {
+            System.out.println("TELA DE ITENS VENDIDOS");
+            this.viewPDV.setCardPDVVendas(cardLayoutPDV.getNameCardLayout());
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_BUSCAR.getNameCardLayout())) {
+            System.out.println("TELA DE BUSCAR PRODUTOS");
+            this.viewPDV.setCardPDVVendas(cardLayoutPDV.getNameCardLayout());
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_VALOR_CUPOM.getNameCardLayout())) {
+            System.out.println("TELA DE FINALIZAR VENDA");
+            this.viewPDV.setCardPDVValores(cardLayoutPDV.getNameCardLayout());
+            this.viewPDV.setCardPDVLogo(CARD_FPAGAMENTO.getNameCardLayout());
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_VALOR_PRODUTO.getNameCardLayout())) {
+            System.out.println("TELA DE VALORES DOS PRODUTOS");
+            this.viewPDV.setCardPDVValores(cardLayoutPDV.getNameCardLayout());
+            this.viewPDV.setCardPDVLogo(CARD_LOGO.getNameCardLayout());
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_DESCONTO.getNameCardLayout())) {
+            System.out.println("TELA DE DESCONTO");
+            this.viewPDV.setCardPDVLogo(cardLayoutPDV.getNameCardLayout());
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_BOTONS_TOUCH.getNameCardLayout())) {
+            System.out.println("TELA DE BOTONS TOUCH");
+            this.viewPDV.setCardPDVLogo(cardLayoutPDV.getNameCardLayout());
+        }
+    }
+
+    /**
      * Metodo que define o foco no campo de senha do usuario
      */
     public void focusFieldPassword() {
@@ -128,6 +239,6 @@ public class PDVPresenter {
      * Metodo que define o foco no campo de codigo de barras
      */
     public void focusFieldBarCode() {
-        this.viewPDV.setFocusFieldBarCode();
+        this.viewPDV.setFocusFieldBarcode();
     }
 }

@@ -3,12 +3,14 @@ package br.com.ernanilima.jpdv.View;
 import com.towel.swing.img.JImagePanel;
 
 import javax.swing.*;
+import javax.swing.text.Document;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 
 /**
  * View do PDV
+ *
  * @author Ernani Lima
  */
 public class ViewPDV extends JFrame implements IViewPDV {
@@ -67,6 +69,9 @@ public class ViewPDV extends JFrame implements IViewPDV {
         painelCardLogo = new JPanel();
         painelLogo = new JPanel();
         imgLogo = new JLabel();
+        painelFormasPagamento = new JPanel();
+        jScrollPaneFPagamento = new JScrollPane();
+        tbFPagamento = new JTable();
         painelDesconto = new JPanel();
         campoLabelLocalDesconto = new JLabel();
         jLabelDescontoRS = new JLabel();
@@ -126,10 +131,10 @@ public class ViewPDV extends JFrame implements IViewPDV {
         campoNomeOperador = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setExtendedState(6);
-        setUndecorated(true);
+        //setExtendedState(6);
+        //setUndecorated(true);
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setResizable(false);
+        //setResizable(false);
 
         painelCardPDV.setLayout(new java.awt.CardLayout());
 
@@ -470,6 +475,21 @@ public class ViewPDV extends JFrame implements IViewPDV {
         );
 
         painelCardLogo.add(painelLogo, "cardLogo");
+
+        jScrollPaneFPagamento.setViewportView(tbFPagamento);
+
+        GroupLayout painelFormasPagamentoLayout = new GroupLayout(painelFormasPagamento);
+        painelFormasPagamento.setLayout(painelFormasPagamentoLayout);
+        painelFormasPagamentoLayout.setHorizontalGroup(
+                painelFormasPagamentoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPaneFPagamento, GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+        );
+        painelFormasPagamentoLayout.setVerticalGroup(
+                painelFormasPagamentoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPaneFPagamento, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+        );
+
+        painelCardLogo.add(painelFormasPagamento, "cardFormasPagamento");
 
         campoLabelLocalDesconto.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         campoLabelLocalDesconto.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1083,6 +1103,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JPanel jPanelCabecalhoItensPDV;
     private JPanel jPanelItensPDV;
     private JPanel jPanelLogin;
+    private JScrollPane jScrollPaneFPagamento;
     private JScrollPane jScrollPaneItensPDV;
     private JScrollPane jScrollPaneItensVendidosPDV;
     private JScrollPane jScrollPaneRecebimentos;
@@ -1100,6 +1121,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JPanel painelCardValores;
     private JPanel painelCardVendas;
     private JPanel painelDesconto;
+    private JPanel painelFormasPagamento;
     private JPanel painelInserirItens;
     private JPanel painelItensVendidos;
     private JPanel painelLogin;
@@ -1110,13 +1132,14 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JPanel painelValCupom;
     private JPanel painelValProduto;
     private JPanel painelVendas;
+    private JTable tbFPagamento;
     private JTable tbItensPDV;
     private JTable tbItensVendidosPDV;
     private JTable tbRecebimentos;
 
     @Override
     public String getIdUser() {
-        return campoCodUsuario.getText();
+        return this.campoCodUsuario.getText();
     }
 
     @Override
@@ -1126,7 +1149,12 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
     @Override
     public String getPassword() {
-        return new String(campoSenhaUsuario.getPassword());
+        return new String(this.campoSenhaUsuario.getPassword());
+    }
+
+    @Override
+    public String getBarcode() {
+        return this.campoCodBarras.getText();
     }
 
     @Override
@@ -1151,9 +1179,24 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setFieldBarcodeKeyPressed(KeyAdapter adapter) {
+        this.campoCodBarras.addKeyListener(adapter);
+    }
+
+    @Override
+    public void setFieldBarcodeDocument(Document document) {
+        this.campoCodBarras.setDocument(document);
+    }
+
+    @Override
+    public void setFieldIDDocument(Document document) {
+        this.campoCodUsuario.setDocument(document);
+    }
+
+    @Override
     public void setFocusFieldID() {
-        campoCodUsuario.requestFocus();
-        campoCodUsuario.selectAll();
+        this.campoCodUsuario.requestFocus();
+        this.campoCodUsuario.selectAll();
     }
 
     @Override
@@ -1163,9 +1206,14 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
-    public void setFocusFieldBarCode() {
+    public void setFocusFieldBarcode() {
         campoCodBarras.requestFocus();
         campoCodBarras.selectAll();
+    }
+
+    @Override
+    public void cleanFieldBarcode() {
+        campoCodBarras.setText("");
     }
 
     @Override
@@ -1176,17 +1224,20 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
     @Override
     public void setCardPDVVendas(String cardName) {
-        // Ainda pendente de implementacao
+        CardLayout cardLayout = (CardLayout) painelCardVendas.getLayout();
+        cardLayout.show(painelCardVendas, cardName);
     }
 
     @Override
     public void setCardPDVValores(String cardName) {
-        // Ainda pendente de implementacao
+        CardLayout cardLayout = (CardLayout) painelCardValores.getLayout();
+        cardLayout.show(painelCardValores, cardName);
     }
 
     @Override
     public void setCardPDVLogo(String cardName) {
-        // Ainda pendente de implementacao
+        CardLayout cardLayout = (CardLayout) painelCardLogo.getLayout();
+        cardLayout.show(painelCardLogo, cardName);
     }
 
     @Override
