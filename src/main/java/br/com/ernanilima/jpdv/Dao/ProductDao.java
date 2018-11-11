@@ -56,7 +56,7 @@ public class ProductDao {
         } catch (SQLException e) {
             System.out.println("ERRO AO REALIZAR BUSCA DE PRODUTO: " + e);
         } finally {
-            closeSQLite(conn);
+            closeSQLite(conn, pst, rs);
         }
         return false;
     }

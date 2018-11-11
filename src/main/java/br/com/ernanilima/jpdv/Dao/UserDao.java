@@ -47,7 +47,7 @@ public class UserDao {
         } catch (SQLException e) {
             System.out.println("ERRO AO REALIZAR LOGIN DE USUARIO: " + e);
         } finally {
-            closeSQLite(conn);
+            closeSQLite(conn, pst, rs);
         }
         return false;
     }

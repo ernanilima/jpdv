@@ -26,8 +26,8 @@ public class ShortcutKeyDao {
      */
     public List<ShortcutKey> listShortcutKeys() {
         Connection conn = null;
-        PreparedStatement pst;
-        ResultSet rs;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
         List<ShortcutKey> lsShortcutKeys = new ArrayList<>();
         String sql = "SELECT * FROM tclatalho";
 
@@ -48,7 +48,7 @@ public class ShortcutKeyDao {
         } catch (SQLException e) {
             System.out.println("ERRO AO GERAR A LISTA DE TECLAS DE TALHO: " + e);
         } finally {
-            closeSQLite(conn);
+            closeSQLite(conn, pst, rs);
         }
         return lsShortcutKeys;
     }
