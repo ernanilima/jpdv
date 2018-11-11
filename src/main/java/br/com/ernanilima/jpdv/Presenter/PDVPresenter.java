@@ -23,6 +23,10 @@ import static br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV.*;
  */
 public class PDVPresenter {
 
+    // Variaveis do PDV
+    private final double maxQty = 100; // Quantidade maxima do mesmo produto por linha
+    private final double minQty = 0.001; // Quantidade minima do mesmo produto por linha
+
     // Interface da ViewPDV
     private final IViewPDV viewPDV;
 
@@ -81,6 +85,7 @@ public class PDVPresenter {
         this.myFilters();
         this.myShortcutKey();
         this.viewPDV.setBackgroundLogin(Background.getBackgroundCenter(mBg.getPathBgPDVLogin()));
+        this.viewPDV.setQuantity(Format.formatQty.format(1));
         this.viewPDV.packAndShow();
     }
 
@@ -107,7 +112,7 @@ public class PDVPresenter {
 
     // Metodo que gerencia os campos do ViewPDV
     private void myFilters() {
-        this.viewPDV.setFieldBarcodeDocument(new FieldManager.FieldFilterInt(14));
+        this.viewPDV.setFieldBarcodeDocument(new FieldManager.FieldFilterDouble(14));
         this.viewPDV.setFieldIDDocument(new FieldManager.FieldFilterInt(3));
     }
 
@@ -163,17 +168,25 @@ public class PDVPresenter {
         if (!this.viewPDV.getBarcode().equals("")) {
             // Realiza a busca se o campo de codigo de barras for diferente de vazio
 
+            if (viewPDV.getBarcode().contains(".")) {
+                // Para a execucao do metodo se existir ponto(.) no campo de codigo de barras
+                this.pPopUPMessage.showAlert("ATENÇÃO!", "CÓDIGO DE BARRAS INVÁLIDO!");
+                this.viewPDV.cleanFieldBarcode();
+                return;
+            }
+
             mCoupon = new Coupon();
 
-            this.mProduct.setBarcode(Long.parseLong(viewPDV.getBarcode()));
+            this.mProduct.setBarcode(Filter.filterLong(viewPDV.getBarcode()));
             this.mCoupon.setmProduct(mProduct);
 
             if (dProduct.searchProductByBarcode(mCoupon)) {
-                this.mCoupon.setQuantity(1);
+                this.mCoupon.setQuantity(Filter.filterDouble(viewPDV.getQuantity()));
                 this.mCoupon.setProductRowIndex(viewPDV.getTableProduct().getRowCount()+1);
                 this.tmProduct.addRow(mCoupon);
                 viewPDV.getTableProduct().changeSelection(viewPDV.getTableProduct().getRowCount()-1, 0, false, false);
                 System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
+                this.viewPDV.setQuantity(Format.formatQty.format(1));
                 this.viewPDV.cleanFieldBarcode();
             } else {
                 // Exibe um alerta caso o produto nao seja encontrado
@@ -186,6 +199,30 @@ public class PDVPresenter {
             System.out.println("INFORME O CODIGO DE BARRAS");
             this.pPopUPMessage.showAlert("ATENÇÃO!", "INFORME O CÓDIGO DE BARRAS!");
             this.viewPDV.cleanFieldBarcode();
+        }
+    }
+
+    /**
+     * Inseri uma nova quantidade de venda
+     */
+    public void newQuantity() {
+        if (!viewPDV.getBarcode().equals("")) {
+            // Executa se o campo de codigo de barras nao estiver vazio
+            double qtyPDV = Double.parseDouble(viewPDV.getBarcode());
+            if ( qtyPDV >= minQty & qtyPDV <= maxQty ) {
+                // Executa se a quantidade informada estiver entre
+                // o minimo e maximo permitido nos parametros
+                this.viewPDV.setQuantity(Format.formatQty.format(qtyPDV));
+                this.viewPDV.cleanFieldBarcode();
+            } else {
+                this.pPopUPMessage.showAlert("ATENÇÃO!", "QUANTIDADE INVÁLIDA!");
+                this.viewPDV.cleanFieldBarcode();
+            }
+        } else if (viewPDV.getBarcode().equals("") & !viewPDV.getQuantity().equals("1,000")) {
+            // Executa se o campo de codigo de barras estiver vazio
+            // e se o campo de quantidade for diferente de 1,000.
+            // Restaura a quantidade padrao de venda para produtos
+            this.viewPDV.setQuantity(Format.formatQty.format(1));
         }
     }
 

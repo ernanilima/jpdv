@@ -3,8 +3,6 @@ package br.com.ernanilima.jpdv.View;
 import com.towel.swing.img.JImagePanel;
 
 import javax.swing.*;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 import javax.swing.text.Document;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
@@ -1160,6 +1158,16 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public String getBarcode() {
         return this.campoCodBarras.getText();
+    }
+
+    @Override
+    public String getQuantity() {
+        return campoQuantidade.getText();
+    }
+
+    @Override
+    public void setQuantity(String quantity) {
+        campoQuantidade.setText(quantity);
     }
 
     @Override

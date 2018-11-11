@@ -101,7 +101,7 @@ public class ViewPDVKeyListener {
                 System.out.println("REPETIR ULTIMO PRODUTO");
             } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.QUANTITY)) {
                 // Alterar a quantidade a ser vendida
-                System.out.println("QUANTIDADE");
+                this.presenter.newQuantity();
             }
         }
     }

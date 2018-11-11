@@ -3,8 +3,6 @@ package br.com.ernanilima.jpdv.View;
 import com.towel.swing.img.JImagePanel;
 
 import javax.swing.*;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 import javax.swing.text.Document;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -27,6 +25,12 @@ public interface IViewPDV {
 
     // Retorna o codigo de barras digitado
     public String getBarcode();
+
+    // Retorna a quantidade vendida
+    public String getQuantity();
+
+    // Seta quantidade a ser vendida
+    public void setQuantity(String quantity);
 
     // Seta escutas em componentes do PDV
     public void setLoginActionPerformed(ActionListener listener);
@@ -53,7 +57,7 @@ public interface IViewPDV {
     public void setCardPDVValores(String cardName);
     public void setCardPDVLogo(String cardName);
 
-    // Retorna a quantidade de linhas na jTable
+    // Retorna o componente JTable
     public JTable getTableProduct();
 
     // Seta a Imagem de background direto no jPanel

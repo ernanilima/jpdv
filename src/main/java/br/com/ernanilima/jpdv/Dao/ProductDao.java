@@ -42,6 +42,7 @@ public class ProductDao {
                 mProduct.setId(rs.getInt("cod_pro"));
                 mProduct.setDescription(rs.getString("desc_pro"));
                 mProduct.setDescriptionCoupon(rs.getString("desc_procp"));
+                mProduct.setBarcode(rs.getLong("cod_bar"));
                 mUnit.setId(rs.getInt("cod_un_medida"));
                 mUnit.setDescription(rs.getString("desc_un_medida"));
                 mProduct.setmUnits(mUnit);
