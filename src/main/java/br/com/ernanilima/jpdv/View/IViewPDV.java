@@ -73,7 +73,8 @@ public interface IViewPDV {
     public void setCardPDVLogo(String cardName);
 
     // Retorna o componente JTable
-    public JTable getTableProduct();
+    public JTable getTableProductFront();
+    public JTable getTableProductBack();
 
     // Seta a Imagem de background direto no jPanel
     public void setBackgroundLogin(JImagePanel imagePanel);

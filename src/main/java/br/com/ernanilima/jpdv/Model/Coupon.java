@@ -4,9 +4,6 @@ import br.com.ernanilima.jpdv.Util.Format;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 /**
  * Model de Cupom de PDV
@@ -24,8 +21,8 @@ public class Coupon {
     private Time hour;
     private boolean couponStatus;
     private double quantity;
-    private double totalProductValue;
-    private double totalCouponValue;
+    //private double totalProductValue;
+    //private double totalCouponValue;
     private int formOfPayment1;
     private double paymentAmount1;
     private int formOfPayment2;
@@ -165,32 +162,35 @@ public class Coupon {
     /**
      * @return double - Valor total do produto
      */
+    //public double getTotalProductValue() {
+    //    return totalProductValue;
+    //}
     public double getTotalProductValue() {
-        return totalProductValue;
+        return getQuantity() * mProduct.getSalePrice();
     }
 
     /**
      * Atribui o valor total do produto na variavel "{@link #totalProductValue}"
      * @param totalProductValue double - Valor total do produto
      */
-    public void setTotalProductValue(double totalProductValue) {
-        this.totalProductValue = totalProductValue;
-    }
+    //public void setTotalProductValue(double totalProductValue) {
+    //    this.totalProductValue = totalProductValue;
+    //}
 
     /**
      * @return double - Valor total do cupom
      */
-    public double getTotalCouponValue() {
-        return totalCouponValue;
-    }
+    //public double getTotalCouponValue() {
+    //    return totalCouponValue;
+    //}
 
     /**
      * Atribui o valor total do cupom na variavel "{@link #totalCouponValue}"
      * @param totalCouponValue double - Valor total do cupom
      */
-    public void setTotalCouponValue(double totalCouponValue) {
-        this.totalCouponValue = totalCouponValue;
-    }
+    //public void setTotalCouponValue(double totalCouponValue) {
+    //    this.totalCouponValue = totalCouponValue;
+    //}
 
     /**
      * @return int - Forma de pagamento 1
@@ -374,6 +374,6 @@ public class Coupon {
     public String getProductHTML() {
         return "<html>"
                 + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td width='45px'>"+ Format.formatProductRowIndex.format(getProductRowIndex())+"</td><td width='120px'>"+Format.formatBarcode.format(getmProduct().getBarcode())+"</td><td width='500px'>"+getmProduct().getDescriptionCoupon()+"</td></tr></table>"
-                + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td align='right'; width='60px'>"+Format.formatQty.format(getQuantity())+"</td><td align='center'; width='40px'>"+getmProduct().getmUnits().getDescription()+"</td><td align='center'; width='30px'>X</td><td width='100px'>"+Format.brCurrencyFormat.format(getmProduct().getSalePrice())+"</td><td width='90px'; color='#088A29'>"+Format.brCurrencyFormat.format(-getTotalProductDiscount())+"</td><td align='right'>"+Format.brCurrencyFormat.format(getQuantity() * getmProduct().getSalePrice())+"</td></tr></table></html>";
+                + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td align='right'; width='60px'>"+Format.formatQty.format(getQuantity())+"</td><td align='center'; width='40px'>"+getmProduct().getmUnits().getDescription()+"</td><td align='center'; width='30px'>X</td><td width='100px'>"+Format.brCurrencyFormat.format(getmProduct().getSalePrice())+"</td><td width='90px'; color='#088A29'>"+Format.brCurrencyFormat.format(-getTotalProductDiscount())+"</td><td align='right'>"+Format.brCurrencyFormat.format(getTotalProductValue())+"</td></tr></table></html>";
     }
 }

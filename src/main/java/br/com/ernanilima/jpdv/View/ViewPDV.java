@@ -492,6 +492,10 @@ public class ViewPDV extends JFrame implements IViewPDV {
         campoValTotalRecebido.setLayout(new BorderLayout());
         campoValTotalRecebido.add(jLabelRS7, BorderLayout.LINE_START);
 
+        tbRecebimentos.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        tbRecebimentos.setFocusable(false);
+        tbRecebimentos.setOpaque(false);
+        tbRecebimentos.setRowHeight(25);
         jScrollPaneRecebimentos.setViewportView(tbRecebimentos);
 
         GroupLayout painelValCupomLayout = new GroupLayout(painelValCupom);
@@ -565,6 +569,10 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelCardLogo.add(painelLogo, "cardLogo");
 
+        tbFPagamento.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        tbFPagamento.setFocusable(false);
+        tbFPagamento.setOpaque(false);
+        tbFPagamento.setRowHeight(25);
         jScrollPaneFPagamento.setViewportView(tbFPagamento);
 
         GroupLayout painelFormasPagamentoLayout = new GroupLayout(painelFormasPagamento);
@@ -968,6 +976,10 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelCardVendas.add(painelTroco, "cardPDVTroco");
 
+        tbItensVendidosPDV.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        tbItensVendidosPDV.setFocusable(false);
+        tbItensVendidosPDV.setOpaque(false);
+        tbItensVendidosPDV.setRowHeight(25);
         jScrollPaneItensVendidosPDV.setViewportView(tbItensVendidosPDV);
 
         GroupLayout painelItensVendidosLayout = new GroupLayout(painelItensVendidos);
@@ -1405,8 +1417,13 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
-    public JTable getTableProduct() {
+    public JTable getTableProductFront() {
         return tbItensPDV;
+    }
+
+    @Override
+    public JTable getTableProductBack() {
+        return tbItensVendidosPDV;
     }
 
     @Override

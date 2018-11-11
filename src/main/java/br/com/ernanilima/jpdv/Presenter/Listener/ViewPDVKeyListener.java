@@ -83,7 +83,7 @@ public class ViewPDVKeyListener {
                 this.presenter.cardsPDV(CardLayoutPDV.CARD_VALOR_CUPOM);
             } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.CANCEL_GENERIC_PRODUCT)) {
                 // Cancela produto generico
-                System.out.println("CANCELA PRODUTO GENERICO");
+                this.presenter.cardsPDV(CardLayoutPDV.CARD_ITENS);
             } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.CANCEL_LAST_PRODUCT)) {
                 // Cancela ultimo produto
                 System.out.println("CANCELA ULTIMO PRODUTO");

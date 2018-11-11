@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Table Model de produtos vendidos
+ * Table Model de produtos front (JTable principal)
  *
  * @author Ernani Lima
  */
-public class ProductTableModel extends AbstractTableModel {
+public class ProductFrontTableModel extends AbstractTableModel {
 
     // Lista de produtos do cupom
     private final List<Coupon> lsProducts = new ArrayList<>();
@@ -54,10 +54,10 @@ public class ProductTableModel extends AbstractTableModel {
      */
     public void addRow(Coupon mCoupon) {
         // Adiciona novo produto a tabela
-        this.lsProducts.add(mCoupon);
+        lsProducts.add(mCoupon);
 
         // Notifica que todos os dados da tabela podem ter sido alterados.
         // A JTable usa esta informacao para redesenhar todas as celulas, atualizando seu conteudo.
-        this.fireTableDataChanged();
+        fireTableDataChanged();
     }
 }
