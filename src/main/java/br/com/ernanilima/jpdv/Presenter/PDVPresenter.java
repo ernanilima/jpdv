@@ -1,15 +1,15 @@
 package br.com.ernanilima.jpdv.Presenter;
 
+import br.com.ernanilima.jpdv.Controller.ProductRenderer;
 import br.com.ernanilima.jpdv.Dao.ProductDao;
 import br.com.ernanilima.jpdv.Dao.ShortcutKeyDao;
 import br.com.ernanilima.jpdv.Model.*;
 import br.com.ernanilima.jpdv.Model.Enum.IndexShortcutKey;
-import br.com.ernanilima.jpdv.Util.Background;
+import br.com.ernanilima.jpdv.Model.TableModel.ProductTableModel;
+import br.com.ernanilima.jpdv.Util.*;
 import br.com.ernanilima.jpdv.Dao.UserDao;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVActionListener;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVKeyListener;
-import br.com.ernanilima.jpdv.Util.Encrypt;
-import br.com.ernanilima.jpdv.Util.FieldManager;
 import br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV;
 import br.com.ernanilima.jpdv.View.IViewPDV;
 import br.com.ernanilima.jpdv.View.ViewPDV;
@@ -50,8 +50,14 @@ public class PDVPresenter {
     // Model de produto
     private final Product mProduct;
 
+    // Model de cupom
+    private Coupon mCoupon;
+
     // Model teclas de atalho
-    private ShortcutKey mShortcutKey;
+    private final ShortcutKey mShortcutKey;
+
+    // Table Model de intens vendidos
+    private final ProductTableModel tmProduct;
 
     private String id;
     private String password;
@@ -67,7 +73,10 @@ public class PDVPresenter {
         this.dUser = new UserDao();
         this.dProduct = new ProductDao();
         this.mProduct = new Product();
+        this.mCoupon = new Coupon();
         this.mShortcutKey = new ShortcutKey();
+        this.tmProduct = new ProductTableModel();
+        this.myTables();
         this.myListiners();
         this.myFilters();
         this.myShortcutKey();
@@ -75,9 +84,14 @@ public class PDVPresenter {
         this.viewPDV.packAndShow();
     }
 
+    // Minhas JTables
+    private void myTables() {
+        this.viewPDV.getTableProduct().setModel(tmProduct);
+        this.viewPDV.getTableProduct().setDefaultRenderer(Object.class, new ProductRenderer());
+    }
+
     // Gera lista de teclas de atalho
     private void myShortcutKey() {
-        this.mShortcutKey = new ShortcutKey();
         ShortcutKeyDao dShortcutKey = new ShortcutKeyDao();
         this.mShortcutKey.setLsShortcutKeys(dShortcutKey.listShortcutKeys());
     }
@@ -148,15 +162,18 @@ public class PDVPresenter {
     public void searchProduct() {
         if (!this.viewPDV.getBarcode().equals("")) {
             // Realiza a busca se o campo de codigo de barras for diferente de vazio
+
+            mCoupon = new Coupon();
+
             this.mProduct.setBarcode(Long.parseLong(viewPDV.getBarcode()));
-            if (dProduct.searchProductByBarcode(mProduct)) {
-                System.out.println("Codigo de Barras: " + mProduct.getBarcode());
-                System.out.println("Nome: " + mProduct.getDescription());
-                System.out.println("Nome Cupom: " + mProduct.getDescriptionCoupon());
-                System.out.println("Codigo da unidade de medida: " + mProduct.getmUnits().getId());
-                System.out.println("Unidade de medida: " + mProduct.getmUnits().getDescription());
-                System.out.println("Preco de venda: " + mProduct.getSalePrice());
-                System.out.println("Preco promocao: " + mProduct.getPromotionalPrice());
+            this.mCoupon.setmProduct(mProduct);
+
+            if (dProduct.searchProductByBarcode(mCoupon)) {
+                this.mCoupon.setQuantity(1);
+                this.mCoupon.setProductRowIndex(viewPDV.getTableProduct().getRowCount()+1);
+                this.tmProduct.addRow(mCoupon);
+                viewPDV.getTableProduct().changeSelection(viewPDV.getTableProduct().getRowCount()-1, 0, false, false);
+                System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
                 this.viewPDV.cleanFieldBarcode();
             } else {
                 // Exibe um alerta caso o produto nao seja encontrado

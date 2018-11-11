@@ -2,6 +2,9 @@ package br.com.ernanilima.jpdv.View;
 
 import com.towel.swing.img.JImagePanel;
 
+import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import javax.swing.text.Document;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -49,6 +52,9 @@ public interface IViewPDV {
     public void setCardPDVVendas(String cardName);
     public void setCardPDVValores(String cardName);
     public void setCardPDVLogo(String cardName);
+
+    // Retorna a quantidade de linhas na jTable
+    public JTable getTableProduct();
 
     // Seta a Imagem de background direto no jPanel
     public void setBackgroundLogin(JImagePanel imagePanel);

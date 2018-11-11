@@ -1,6 +1,7 @@
 package br.com.ernanilima.jpdv.Dao;
 
 import br.com.ernanilima.jpdv.Connection.ConnectionSQLite;
+import br.com.ernanilima.jpdv.Model.Coupon;
 import br.com.ernanilima.jpdv.Model.Product;
 import br.com.ernanilima.jpdv.Model.Unit;
 
@@ -20,10 +21,10 @@ public class ProductDao {
 
     /**
      * Realiza busca de produto por codigo de barras, se localizar o produto, o Model eh atualizado
-     * @param mProduct {@link Product} - Model de produtos
+     * @param mCoupon {@link Coupon} - Model de cupom
      * @return boolean - "true" se produto encontrado
      */
-    public boolean searchProductByBarcode(Product mProduct) {
+    public boolean searchProductByBarcode(Coupon mCoupon) {
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -32,10 +33,11 @@ public class ProductDao {
         try {
             conn = ConnectionSQLite.openConnection();
             pst = conn.prepareStatement(sql);
-            pst.setLong(1, mProduct.getBarcode());
+            pst.setLong(1, mCoupon.getmProduct().getBarcode());
             rs = pst.executeQuery();
 
             if (rs.next()) {
+                Product mProduct = new Product();
                 Unit mUnit = new Unit();
                 mProduct.setId(rs.getInt("cod_pro"));
                 mProduct.setDescription(rs.getString("desc_pro"));
@@ -45,6 +47,7 @@ public class ProductDao {
                 mProduct.setmUnits(mUnit);
                 mProduct.setSalePrice(rs.getDouble("prec_vend"));
                 mProduct.setPromotionalPrice(rs.getDouble("prec_prom"));
+                mCoupon.setmProduct(mProduct);
                 return true;
             }
         } catch (ClassNotFoundException e) {

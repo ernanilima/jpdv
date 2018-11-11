@@ -3,6 +3,8 @@ package br.com.ernanilima.jpdv.View;
 import com.towel.swing.img.JImagePanel;
 
 import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import javax.swing.text.Document;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
@@ -288,7 +290,10 @@ public class ViewPDV extends JFrame implements IViewPDV {
                                 .addComponent(jLabelCupom))
         );
 
+        tbItensPDV.setFont(new java.awt.Font("Verdana", 0, 18));
         tbItensPDV.setFocusable(false);
+        tbItensPDV.setOpaque(false);
+        tbItensPDV.setRowHeight(60);
         jScrollPaneItensPDV.setViewportView(tbItensPDV);
 
         GroupLayout jPanelItensPDVLayout = new GroupLayout(jPanelItensPDV);
@@ -1238,6 +1243,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     public void setCardPDVLogo(String cardName) {
         CardLayout cardLayout = (CardLayout) painelCardLogo.getLayout();
         cardLayout.show(painelCardLogo, cardName);
+    }
+
+    @Override
+    public JTable getTableProduct() {
+        return tbItensPDV;
     }
 
     @Override

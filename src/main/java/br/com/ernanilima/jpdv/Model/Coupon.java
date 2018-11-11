@@ -1,7 +1,12 @@
 package br.com.ernanilima.jpdv.Model;
 
+import br.com.ernanilima.jpdv.Util.Format;
+
 import java.sql.Date;
 import java.sql.Time;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Model de Cupom de PDV
@@ -13,6 +18,7 @@ public class Coupon {
     // Variaveis do Cupom de PDV
     private int coupon;
     private boolean productCanceled;
+    private int productRowIndex;
     private boolean couponCanceled;
     private Date date;
     private Time hour;
@@ -64,6 +70,21 @@ public class Coupon {
      */
     public void setProductCanceled(boolean productCanceled) {
         this.productCanceled = productCanceled;
+    }
+
+    /**
+     * @return int - Numero da linha do produto de cupom
+     */
+    public int getProductRowIndex() {
+        return productRowIndex;
+    }
+
+    /**
+     * Atribui o numero da linha do produto de cupom na variavel {@link #productRowIndex}
+     * @param productRowIndex int - Numero da linha do produto de cupom
+     */
+    public void setProductRowIndex(int productRowIndex) {
+        this.productRowIndex = productRowIndex;
     }
 
     /**
@@ -348,5 +369,11 @@ public class Coupon {
      */
     public void setmUser(User mUser) {
         this.mUser = mUser;
+    }
+
+    public String getProductHTML() {
+        return "<html>"
+                + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td width='45px'>"+ Format.formatProductRowIndex.format(getProductRowIndex())+"</td><td width='120px'>"+Format.formatBarcode.format(getmProduct().getBarcode())+"</td><td width='500px'>"+getmProduct().getDescriptionCoupon()+"</td></tr></table>"
+                + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td align='right'; width='60px'>"+Format.formatQty.format(getQuantity())+"</td><td align='center'; width='40px'>"+getmProduct().getmUnits().getDescription()+"</td><td align='center'; width='30px'>X</td><td width='100px'>"+Format.brCurrencyFormat.format(getmProduct().getSalePrice())+"</td><td width='90px'; color='#088A29'>"+Format.brCurrencyFormat.format(-getTotalProductDiscount())+"</td><td align='right'>"+Format.brCurrencyFormat.format(getQuantity() * getmProduct().getSalePrice())+"</td></tr></table></html>";
     }
 }
