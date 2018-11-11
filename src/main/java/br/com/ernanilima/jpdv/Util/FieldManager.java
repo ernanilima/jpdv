@@ -87,4 +87,30 @@ public class FieldManager {
             super.replace(offs, length, str.replaceAll("[^0-9|^.|^,]", "").replace(",", "."), a);
         }
     }
+
+    /**
+     * Filtro para permitir apenas numeros, pontos(.) e virgula(,).
+     */
+    public static class FieldFilterMonetary extends PlainDocument {
+        /** Numero de caracteres permitidos */
+        private int numberOfCharacters = 9;
+
+        /**
+         * Faz com que campo de texto aceite apenas numeros, pontos(.) e virgula(,).
+         * Utilizado para campos com valores monetarios
+         */
+        public FieldFilterMonetary() {}
+
+        @Override
+        public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+            if ((getLength() + str.length()) <= numberOfCharacters) {
+                super.insertString(offs, str, a);
+            }
+        }
+
+        @Override
+        public void replace(int offs, int length, String str, AttributeSet a) throws BadLocationException {
+            super.replace(offs, length, str.replaceAll("[^0-9|^.|^,]", ""), a);
+        }
+    }
 }

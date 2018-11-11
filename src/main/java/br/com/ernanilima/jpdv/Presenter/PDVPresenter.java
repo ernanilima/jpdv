@@ -114,6 +114,12 @@ public class PDVPresenter {
     private void myFilters() {
         this.viewPDV.setFieldBarcodeDocument(new FieldManager.FieldFilterDouble(14));
         this.viewPDV.setFieldIDDocument(new FieldManager.FieldFilterInt(3));
+        this.viewPDV.setFieldSalePriceDocument(new FieldManager.FieldFilterMonetary());
+        this.viewPDV.setFieldTotalProductValueDocument(new FieldManager.FieldFilterMonetary());
+        this.viewPDV.setFieldTotalCouponValueDocument(new FieldManager.FieldFilterMonetary());
+        this.viewPDV.setFieldTotalDiscountDocument(new FieldManager.FieldFilterMonetary());
+        this.viewPDV.setFieldTotalOutstandingAmountDocument(new FieldManager.FieldFilterMonetary());
+        this.viewPDV.setFieldTotalValueReceivedDocument(new FieldManager.FieldFilterMonetary());
     }
 
     /**
@@ -181,10 +187,13 @@ public class PDVPresenter {
             this.mCoupon.setmProduct(mProduct);
 
             if (dProduct.searchProductByBarcode(mCoupon)) {
+                // Executa caso o produto seja encontrado
                 this.mCoupon.setQuantity(Filter.filterDouble(viewPDV.getQuantity()));
                 this.mCoupon.setProductRowIndex(viewPDV.getTableProduct().getRowCount()+1);
                 this.tmProduct.addRow(mCoupon);
                 viewPDV.getTableProduct().changeSelection(viewPDV.getTableProduct().getRowCount()-1, 0, false, false);
+                this.viewPDV.setSalePrice(Format.brCurrencyFormat.format(mCoupon.getmProduct().getSalePrice()));
+                this.viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(Filter.filterDouble(viewPDV.getQuantity()) * mCoupon.getmProduct().getSalePrice()));
                 System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
                 this.viewPDV.setQuantity(Format.formatQty.format(1));
                 this.viewPDV.cleanFieldBarcode();

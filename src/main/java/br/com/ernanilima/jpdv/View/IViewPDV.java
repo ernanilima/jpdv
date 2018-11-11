@@ -32,6 +32,15 @@ public interface IViewPDV {
     // Seta quantidade a ser vendida
     public void setQuantity(String quantity);
 
+    // Seta preco do produto
+    public void setSalePrice(String salePrice);
+
+    // Seta preco total do produto (quantidade * preco de venda)
+    public void setTotalProductValue(String totalProductValue);
+
+    // Seta o valor total do cupom
+    public void setTotalCouponValue(String totalCouponValue);
+
     // Seta escutas em componentes do PDV
     public void setLoginActionPerformed(ActionListener listener);
     public void setExitActionPerformed(ActionListener listener);
@@ -42,6 +51,12 @@ public interface IViewPDV {
     // Associa um campo de texto a um Document
     public void setFieldBarcodeDocument(Document document);
     public void setFieldIDDocument(Document document);
+    public void setFieldSalePriceDocument(Document document);
+    public void setFieldTotalProductValueDocument(Document document);
+    public void setFieldTotalCouponValueDocument(Document document);
+    public void setFieldTotalDiscountDocument(Document document);
+    public void setFieldTotalOutstandingAmountDocument(Document document);
+    public void setFieldTotalValueReceivedDocument(Document document);
 
     // Definir foco em determinado componente do PDV
     public void setFocusFieldID();
