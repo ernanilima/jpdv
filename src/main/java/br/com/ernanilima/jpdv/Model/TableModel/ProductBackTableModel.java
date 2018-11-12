@@ -29,7 +29,7 @@ public class ProductBackTableModel extends AbstractTableModel {
 
     // Lista de produtos do cupom
     private final List<Coupon> lsProducts = new ArrayList<>();
-    private final String[] columns = {"ITEM", "DESCRIÇÃO", "COD. BARRAS", "PREÇO UN", "QTD", "UNIDADE", "DESCONTO", "SUBTOTAL", "C"};
+    private final String[] columns = {"ITEM", "DESCRIÇÃO", "COD. BARRAS", "PREÇO UND", "QTD", "UND", "DESCONTO", "SUBTOTAL", "C"};
 
     /**
      * Determinha o nome de cada coluna da JTable
@@ -66,6 +66,7 @@ public class ProductBackTableModel extends AbstractTableModel {
      */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        System.out.println("LOOP BACK");
         switch (columnIndex) {
             case ITEM:
                 return Format.formatProductRowIndex.format(lsProducts.get(rowIndex).getProductRowIndex());

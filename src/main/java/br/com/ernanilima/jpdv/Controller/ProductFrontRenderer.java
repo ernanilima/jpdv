@@ -10,7 +10,7 @@ import java.awt.*;
  *
  * @author Ernani Lima
  */
-public class ProductRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
+public class ProductFrontRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -27,6 +27,9 @@ public class ProductRenderer extends DefaultTableCellRenderer implements TableCe
         if (isSelected) {
             setBackground(new Color(0,0,0,40));
         }
+
+        table.getTableHeader().setReorderingAllowed(false);
+        table.getColumnModel().getColumn(0).setResizable(false);
 
         return this;
     }

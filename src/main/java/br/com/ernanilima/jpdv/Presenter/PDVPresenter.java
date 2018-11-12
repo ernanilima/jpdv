@@ -1,6 +1,7 @@
 package br.com.ernanilima.jpdv.Presenter;
 
-import br.com.ernanilima.jpdv.Controller.ProductRenderer;
+import br.com.ernanilima.jpdv.Controller.ProductBackRenderer;
+import br.com.ernanilima.jpdv.Controller.ProductFrontRenderer;
 import br.com.ernanilima.jpdv.Dao.ProductDao;
 import br.com.ernanilima.jpdv.Dao.ShortcutKeyDao;
 import br.com.ernanilima.jpdv.Model.*;
@@ -97,8 +98,9 @@ public class PDVPresenter {
     // Minhas JTables
     private void myTables() {
         this.viewPDV.getTableProductFront().setModel(tmProductFront);
-        this.viewPDV.getTableProductFront().setDefaultRenderer(Object.class, new ProductRenderer());
+        this.viewPDV.getTableProductFront().setDefaultRenderer(Object.class, new ProductFrontRenderer());
         this.viewPDV.getTableProductBack().setModel(tmProductBack);
+        this.viewPDV.getTableProductBack().setDefaultRenderer(Object.class, new ProductBackRenderer());
     }
 
     // Gera lista de teclas de atalho
