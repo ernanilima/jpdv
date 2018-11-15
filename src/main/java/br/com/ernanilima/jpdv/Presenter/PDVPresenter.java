@@ -116,6 +116,10 @@ public class PDVPresenter {
         this.viewPDV.setFieldIDKeyPressed(new ViewPDVKeyListener.FieldIDKeyListener(this));
         this.viewPDV.setFieldPasswordKeyPressed(new ViewPDVKeyListener.FieldPassqordKeyListener(this));
         this.viewPDV.setFieldBarcodeKeyPressed(new ViewPDVKeyListener.FieldBarcodeKeyListener(this));
+        this.viewPDV.setProductTableBackKeyPressed(new ViewPDVKeyListener.ProductTableBackKeyListener(this));
+        this.viewPDV.setFieldTotalValueReceivedKeyPressed(new ViewPDVKeyListener.FieldTotalValueReceivedKeyListener(this));
+        this.viewPDV.setFieldDiscountValueKeyPressed(new ViewPDVKeyListener.FieldDiscountValueKeyListener(this));
+        this.viewPDV.setFieldDiscountPercentageKeyPressed(new ViewPDVKeyListener.FieldDiscountPercentageKeyListener(this));
     }
 
     // Metodo que gerencia os campos do ViewPDV
@@ -128,6 +132,8 @@ public class PDVPresenter {
         this.viewPDV.setFieldTotalDiscountDocument(new FieldManager.FieldFilterMonetary());
         this.viewPDV.setFieldTotalOutstandingAmountDocument(new FieldManager.FieldFilterMonetary());
         this.viewPDV.setFieldTotalValueReceivedDocument(new FieldManager.FieldFilterMonetary());
+        this.viewPDV.setFieldDiscountValueDocument(new FieldManager.FieldFilterMonetary());
+        //this.viewPDV.setFieldDiscountPercentageDocument( CRIAR UM DOCUMENTO DE %);
     }
 
     /**
@@ -154,7 +160,7 @@ public class PDVPresenter {
 
             if (dUser.userLogin(mUser)) {
                 System.out.println("LOGIN REALIZADO!");
-                this.cardsPDV(CARD_PDV);
+                this.selectStartCardL(CARD_PDV);
                 this.focusFieldBarCode();
             } else {
                 System.out.println("Dados incorretos ou usuário não cadastrado!");
@@ -255,42 +261,150 @@ public class PDVPresenter {
     }
 
     /**
-     * @param cardLayoutPDV {@link CardLayoutPDV} - CardLayout que sera exibido
+     * Exibe o cardLayout que informar no parametro
+     * {@link CardLayoutPDV#CARD_PDV} - Tela do PDV
+     * {@link CardLayoutPDV#CARD_LOGIN} - Tela de login do PDV
+     * @param cardLayoutPDV {@link CardLayoutPDV}
      */
-    public void cardsPDV(CardLayoutPDV cardLayoutPDV) {
-
+    public void selectStartCardL(CardLayoutPDV cardLayoutPDV) {
         if (cardLayoutPDV.getNameCardLayout().equals(CARD_PDV.getNameCardLayout())) {
-            System.out.println("TELA DO PDV");
-            this.viewPDV.setCardPDV(cardLayoutPDV.getNameCardLayout());
+            // TELA DO PDV
+            this.viewPDV.setStartCardL(cardLayoutPDV.getNameCardLayout());
+
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_LOGIN.getNameCardLayout())) {
-            System.out.println("TELA DE LOGIN");
-            this.viewPDV.setCardPDV(cardLayoutPDV.getNameCardLayout());
-        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_VENDA.getNameCardLayout())) {
-            System.out.println("TELA DE VENDA");
-            this.viewPDV.setCardPDVVendas(cardLayoutPDV.getNameCardLayout());
+            // TELA DE LOGIN
+            this.viewPDV.setStartCardL(cardLayoutPDV.getNameCardLayout());
+
+        }
+    }
+
+    /**
+     * Exibe o cardLayout que informar no parametro
+     * {@link CardLayoutPDV#CARD_VENDA} - Painel de venda
+     * {@link CardLayoutPDV#CARD_TROCO} - Painel de troco
+     * {@link CardLayoutPDV#CARD_ITENS} - Painel de itens vendidos
+     * {@link CardLayoutPDV#CARD_BUSCAR} - Painel de busca de produto
+     * @param cardLayoutPDV {@link CardLayoutPDV}
+     */
+    public void selectSaleCardL(CardLayoutPDV cardLayoutPDV) {
+        if (cardLayoutPDV.getNameCardLayout().equals(CARD_VENDA.getNameCardLayout())) {
+            // PAINEL DE VENDA
+            this.viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
+            this.viewPDV.setFocusFieldBarcode();
+
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_TROCO.getNameCardLayout())) {
-            System.out.println("TELA DE TROCO");
-            this.viewPDV.setCardPDVVendas(cardLayoutPDV.getNameCardLayout());
+            // PAINEL DE TROCO
+            this.viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
+
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_ITENS.getNameCardLayout())) {
-            System.out.println("TELA DE ITENS VENDIDOS");
-            this.viewPDV.setCardPDVVendas(cardLayoutPDV.getNameCardLayout());
+            // PAINEL DE PRODUTOS BACK
+            this.viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
+            this.viewPDV.setFocusProductTableBack();
+            viewPDV.getTableProductFront().changeSelection(viewPDV.getTableProductFront().getRowCount()-1, 0, false, false);
+            viewPDV.getTableProductBack().changeSelection(viewPDV.getTableProductBack().getRowCount()-1, 0, false, false);
+
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_BUSCAR.getNameCardLayout())) {
-            System.out.println("TELA DE BUSCAR PRODUTOS");
-            this.viewPDV.setCardPDVVendas(cardLayoutPDV.getNameCardLayout());
-        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_VALOR_CUPOM.getNameCardLayout())) {
-            System.out.println("TELA DE FINALIZAR VENDA");
-            this.viewPDV.setCardPDVValores(cardLayoutPDV.getNameCardLayout());
+            // PAINEL DE BUSCAR PRODUTOS
+            this.viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
+
+        }
+    }
+
+    /**
+     * Exibe o cardLayout que informar no parametro
+     * {@link CardLayoutPDV#CARD_VALOR_CUPOM} - Painel de valores do cupom
+     * {@link CardLayoutPDV#CARD_VALOR_PRODUTO} - Painel de valores do produto
+     * @param cardLayoutPDV {@link CardLayoutPDV}
+     */
+    public void selectValueCardL(CardLayoutPDV cardLayoutPDV) {
+        if (cardLayoutPDV.getNameCardLayout().equals(CARD_VALOR_CUPOM.getNameCardLayout())) {
+            // PAINEL DE VALORES DO CUPOM
+            this.viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
+
+            // PAINEL DE FORMAS DE PAGAMENTO
             this.viewPDV.setCardPDVLogo(CARD_FPAGAMENTO.getNameCardLayout());
+
+            this.viewPDV.setFocusableFieldTotalValueReceived(true);
+            this.viewPDV.setFocusFieldTotalValueReceived();
+
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_VALOR_PRODUTO.getNameCardLayout())) {
-            System.out.println("TELA DE VALORES DOS PRODUTOS");
-            this.viewPDV.setCardPDVValores(cardLayoutPDV.getNameCardLayout());
+            // PAINEL DE VALORES DO PRODUTO
+            this.viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
+
+            // PAINEL DE LOGOTIPO
             this.viewPDV.setCardPDVLogo(CARD_LOGO.getNameCardLayout());
+            this.viewPDV.setFocusableFieldBarcode(true);
+            this.viewPDV.setFocusFieldBarcode();
+
+        }
+    }
+
+    /**
+     * Exibe o cardLayout que informar no parametro
+     * {@link CardLayoutPDV#CARD_LOGO} - Painel de logotipo
+     * {@link CardLayoutPDV#CARD_FPAGAMENTO} - Painel de formas de pagamento
+     * {@link CardLayoutPDV#CARD_DESCONTO} - Painel de informar desconto
+     * {@link CardLayoutPDV#CARD_BOTONS_TOUCH} - Painel de botons touch
+     * @param cardLayoutPDV {@link CardLayoutPDV}
+     */
+    public void selectLogoCardL(CardLayoutPDV cardLayoutPDV) {
+        if (cardLayoutPDV.getNameCardLayout().equals(CARD_LOGO.getNameCardLayout())) {
+            // PAINEL DE LOGOTIPO
+            this.viewPDV.setCardPDVLogo(CARD_LOGO.getNameCardLayout());
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_FPAGAMENTO.getNameCardLayout())) {
+            // PAINEL DE FORMAS DE PAGAMENTO
+            this.viewPDV.setCardPDVLogo(CARD_FPAGAMENTO.getNameCardLayout());
+
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_DESCONTO.getNameCardLayout())) {
-            System.out.println("TELA DE DESCONTO");
+            // PAINEL DE DESCONTO
             this.viewPDV.setCardPDVLogo(cardLayoutPDV.getNameCardLayout());
+            this.viewPDV.setFocusFieldDiscountValue();
+            this.viewPDV.setFocusableFieldTotalValueReceived(false);
+            this.viewPDV.setFocusableFieldBarcode(false);
+
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_BOTONS_TOUCH.getNameCardLayout())) {
-            System.out.println("TELA DE BOTONS TOUCH");
+            // PAINEL DE BOTONS TOUCH
             this.viewPDV.setCardPDVLogo(cardLayoutPDV.getNameCardLayout());
+
+        }
+    }
+
+    /**
+     * Cancela produto selecionado na JTable back
+     */
+    public void cancelProduct() {
+        System.out.println("CANCELAR PRODUTO");
+        this.selectSaleCardL(CardLayoutPDV.CARD_VENDA);
+    }
+
+    /**
+     * Metodo que verifica o desconto informado para o produto ou para o cupom
+     * @param focus int - 1 Foco desconto valor / 2 Foco desconto percentual
+     */
+    public void validateDiscount(int focus) {
+
+        String discountValue = viewPDV.getDiscountValue();
+        String discountPercentage = viewPDV.getDiscountPercentage();
+
+        if (!discountValue.equals("") & discountPercentage.equals("")) {
+            System.out.println("TEM VALOR");
+            this.selectValueCardL(CardLayoutPDV.CARD_VALOR_CUPOM);
+        } else if (discountValue.equals("") & !discountPercentage.equals("")) {
+            System.out.println("TEM PERCENTUAL");
+            this.selectValueCardL(CardLayoutPDV.CARD_VALOR_CUPOM);
+        } else if (!discountValue.equals("") & !discountPercentage.equals("")) {
+            System.out.println("TEM VALOR E PERCENTUAL");
+            this.viewPDV.cleanDiscountValue();
+            this.viewPDV.cleanDiscountPercentage();
+            this.viewPDV.setFocusFieldDiscountValue();
+        } else if (discountValue.equals("") & discountPercentage.equals("") & focus == 1) {
+            System.out.println("NAO TEM NADA");
+            System.out.println("VAI PARA PERCENTUAL");
+            this.viewPDV.setFocusFieldDiscountPercentage();
+        } else if (discountValue.equals("") & discountPercentage.equals("") & focus == 2) {
+            System.out.println("NAO TEM NADA");
+            System.out.println("VAI PARA VALOR");
+            this.viewPDV.setFocusFieldDiscountValue();
         }
     }
 

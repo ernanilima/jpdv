@@ -977,7 +977,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
         painelCardVendas.add(painelTroco, "cardPDVTroco");
 
         tbItensVendidosPDV.setFont(new Font("Verdana", 0, 18)); // NOI18N
-        tbItensVendidosPDV.setFocusable(false);
+        //tbItensVendidosPDV.setFocusable(false);
         tbItensVendidosPDV.setOpaque(false);
         tbItensVendidosPDV.setRowHeight(25);
         jScrollPaneItensVendidosPDV.setViewportView(tbItensVendidosPDV);
@@ -1303,6 +1303,16 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public String getDiscountValue() {
+        return campoDescontoRS.getText();
+    }
+
+    @Override
+    public String getDiscountPercentage() {
+        return campoDescontoPer.getText();
+    }
+
+    @Override
     public void setLoginActionPerformed(ActionListener listener) {
         this.btnLoginEntrar.addActionListener(listener);
     }
@@ -1326,6 +1336,26 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public void setFieldBarcodeKeyPressed(KeyAdapter adapter) {
         this.campoCodBarras.addKeyListener(adapter);
+    }
+
+    @Override
+    public void setProductTableBackKeyPressed(KeyAdapter adapter) {
+        tbItensVendidosPDV.addKeyListener(adapter);
+    }
+
+    @Override
+    public void setFieldTotalValueReceivedKeyPressed(KeyAdapter adapter) {
+        campoValTotalRecebido.addKeyListener(adapter);
+    }
+
+    @Override
+    public void setFieldDiscountValueKeyPressed(KeyAdapter adapter) {
+        campoDescontoRS.addKeyListener(adapter);
+    }
+
+    @Override
+    public void setFieldDiscountPercentageKeyPressed(KeyAdapter adapter) {
+        campoDescontoPer.addKeyListener(adapter);
     }
 
     @Override
@@ -1370,6 +1400,16 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setFieldDiscountValueDocument(Document document) {
+        campoDescontoRS.setDocument(document);
+    }
+
+    @Override
+    public void setFieldDiscountPercentageDocument(Document document) {
+        campoDescontoPer.setDocument(document);
+    }
+
+    @Override
     public void setFocusFieldID() {
         this.campoCodUsuario.requestFocus();
         this.campoCodUsuario.selectAll();
@@ -1388,24 +1428,64 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setFocusProductTableBack() {
+        tbItensVendidosPDV.requestFocus();
+    }
+
+    @Override
+    public void setFocusFieldTotalValueReceived() {
+        campoValTotalRecebido.requestFocus();
+    }
+
+    @Override
+    public void setFocusFieldDiscountValue() {
+        campoDescontoRS.requestFocus();
+    }
+
+    @Override
+    public void setFocusFieldDiscountPercentage() {
+        campoDescontoPer.requestFocus();
+    }
+
+    @Override
+    public void setFocusableFieldBarcode(boolean focus) {
+        campoCodBarras.setFocusable(focus);
+    }
+
+    @Override
+    public void setFocusableFieldTotalValueReceived(boolean focus) {
+        campoValTotalRecebido.setFocusable(focus);
+    }
+
+    @Override
     public void cleanFieldBarcode() {
         campoCodBarras.setText("");
     }
 
     @Override
-    public void setCardPDV(String cardName) {
+    public void cleanDiscountValue() {
+        campoDescontoRS.setText("");
+    }
+
+    @Override
+    public void cleanDiscountPercentage() {
+        campoDescontoPer.setText("");
+    }
+
+    @Override
+    public void setStartCardL(String cardName) {
         CardLayout cardLayout = (CardLayout) painelCardPDV.getLayout();
         cardLayout.show(painelCardPDV, cardName);
     }
 
     @Override
-    public void setCardPDVVendas(String cardName) {
+    public void setSaleCardL(String cardName) {
         CardLayout cardLayout = (CardLayout) painelCardVendas.getLayout();
         cardLayout.show(painelCardVendas, cardName);
     }
 
     @Override
-    public void setCardPDVValores(String cardName) {
+    public void setValueCardL(String cardName) {
         CardLayout cardLayout = (CardLayout) painelCardValores.getLayout();
         cardLayout.show(painelCardValores, cardName);
     }

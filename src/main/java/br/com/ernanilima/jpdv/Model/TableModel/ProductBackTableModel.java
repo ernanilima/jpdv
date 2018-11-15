@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Table Model de produtos back.
- * A tabela de produtos back eh onde o usuario pode escolar
+ * A tabela de produtos back eh onde o usuario pode escolher
  * produtos ja vendidos para cancelar
  *
  * @author Ernani Lima

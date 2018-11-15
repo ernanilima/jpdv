@@ -41,12 +41,24 @@ public interface IViewPDV {
     // Seta o valor total do cupom
     public void setTotalCouponValue(String totalCouponValue);
 
+    // Retorna o valor de desconto informado
+    public String getDiscountValue();
+
+
+    // Retorna o percentual de desconto informado
+    public String getDiscountPercentage();
+
+
     // Seta escutas em componentes do PDV
     public void setLoginActionPerformed(ActionListener listener);
     public void setExitActionPerformed(ActionListener listener);
     public void setFieldIDKeyPressed(KeyAdapter adapter);
     public void setFieldPasswordKeyPressed(KeyAdapter adapter);
     public void setFieldBarcodeKeyPressed(KeyAdapter adapter);
+    public void setProductTableBackKeyPressed(KeyAdapter adapter);
+    public void setFieldTotalValueReceivedKeyPressed(KeyAdapter adapter);
+    public void setFieldDiscountValueKeyPressed(KeyAdapter adapter);
+    public void setFieldDiscountPercentageKeyPressed(KeyAdapter adapter);
 
     // Associa um campo de texto a um Document
     public void setFieldBarcodeDocument(Document document);
@@ -57,19 +69,31 @@ public interface IViewPDV {
     public void setFieldTotalDiscountDocument(Document document);
     public void setFieldTotalOutstandingAmountDocument(Document document);
     public void setFieldTotalValueReceivedDocument(Document document);
+    public void setFieldDiscountValueDocument(Document document);
+    public void setFieldDiscountPercentageDocument(Document document);
 
     // Definir foco em determinado componente do PDV
     public void setFocusFieldID();
     public void setFocusFieldPassword();
     public void setFocusFieldBarcode();
+    public void setFocusProductTableBack();
+    public void setFocusFieldTotalValueReceived();
+    public void setFocusFieldDiscountValue();
+    public void setFocusFieldDiscountPercentage();
+
+    // Habilitar ou desabilitar foco
+    public void setFocusableFieldBarcode(boolean focus);
+    public void setFocusableFieldTotalValueReceived(boolean focus);
 
     // Limpar campos
     public void cleanFieldBarcode();
+    public void cleanDiscountValue();
+    public void cleanDiscountPercentage();
 
     // Seta qual cardLayout deseja exibir
-    public void setCardPDV(String cardName);
-    public void setCardPDVVendas(String cardName);
-    public void setCardPDVValores(String cardName);
+    public void setStartCardL(String cardName);
+    public void setSaleCardL(String cardName);
+    public void setValueCardL(String cardName);
     public void setCardPDVLogo(String cardName);
 
     // Retorna o componente JTable

@@ -31,6 +31,8 @@ public class PopUPMessageDialogKeyListener {
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 this.presenter.closePopUP();
+            } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                this.presenter.closePopUP();
             }
         }
     }
