@@ -97,75 +97,75 @@ public class PDVPresenter {
 
     // Minhas JTables
     private void myTables() {
-        this.viewPDV.getTableProductFront().setModel(tmProductFront);
-        this.viewPDV.getTableProductFront().setDefaultRenderer(Object.class, new ProductFrontRenderer());
-        this.viewPDV.getTableProductBack().setModel(tmProductBack);
-        this.viewPDV.getTableProductBack().setDefaultRenderer(Object.class, new ProductBackRenderer());
+        viewPDV.getTableProductFront().setModel(tmProductFront);
+        viewPDV.getTableProductFront().setDefaultRenderer(Object.class, new ProductFrontRenderer());
+        viewPDV.getTableProductBack().setModel(tmProductBack);
+        viewPDV.getTableProductBack().setDefaultRenderer(Object.class, new ProductBackRenderer());
     }
 
     // Gera lista de teclas de atalho
     private void myShortcutKey() {
         ShortcutKeyDao dShortcutKey = new ShortcutKeyDao();
-        this.mShortcutKey.setLsShortcutKeys(dShortcutKey.listShortcutKeys());
+        mShortcutKey.setLsShortcutKeys(dShortcutKey.listShortcutKeys());
     }
 
     // Listiner de "Botons", "Campos" e outros.
     private void myListiners() {
-        this.viewPDV.setLoginActionPerformed(new ViewPDVActionListener.LoginUserActionListener(this));
-        this.viewPDV.setExitActionPerformed(new ViewPDVActionListener.ExitActionListener(this));
-        this.viewPDV.setFieldIDKeyPressed(new ViewPDVKeyListener.FieldIDKeyListener(this));
-        this.viewPDV.setFieldPasswordKeyPressed(new ViewPDVKeyListener.FieldPassqordKeyListener(this));
-        this.viewPDV.setFieldBarcodeKeyPressed(new ViewPDVKeyListener.FieldBarcodeKeyListener(this));
-        this.viewPDV.setProductTableBackKeyPressed(new ViewPDVKeyListener.ProductTableBackKeyListener(this));
-        this.viewPDV.setFieldTotalValueReceivedKeyPressed(new ViewPDVKeyListener.FieldTotalValueReceivedKeyListener(this));
-        this.viewPDV.setFieldDiscountValueKeyPressed(new ViewPDVKeyListener.FieldDiscountValueKeyListener(this));
-        this.viewPDV.setFieldDiscountPercentageKeyPressed(new ViewPDVKeyListener.FieldDiscountPercentageKeyListener(this));
+        viewPDV.setLoginActionPerformed(new ViewPDVActionListener.LoginUserActionListener(this));
+        viewPDV.setExitActionPerformed(new ViewPDVActionListener.ExitActionListener(this));
+        viewPDV.setFieldIDKeyPressed(new ViewPDVKeyListener.FieldIDKeyListener(this));
+        viewPDV.setFieldPasswordKeyPressed(new ViewPDVKeyListener.FieldPassqordKeyListener(this));
+        viewPDV.setFieldBarcodeKeyPressed(new ViewPDVKeyListener.FieldBarcodeKeyListener(this));
+        viewPDV.setProductTableBackKeyPressed(new ViewPDVKeyListener.ProductTableBackKeyListener(this));
+        viewPDV.setFieldTotalValueReceivedKeyPressed(new ViewPDVKeyListener.FieldTotalValueReceivedKeyListener(this));
+        viewPDV.setFieldDiscountValueKeyPressed(new ViewPDVKeyListener.FieldDiscountValueKeyListener(this));
+        viewPDV.setFieldDiscountPercentageKeyPressed(new ViewPDVKeyListener.FieldDiscountPercentageKeyListener(this));
     }
 
     // Metodo que gerencia os campos do ViewPDV
     private void myFilters() {
-        this.viewPDV.setFieldBarcodeDocument(new FieldManager.FieldFilterDouble(14));
-        this.viewPDV.setFieldIDDocument(new FieldManager.FieldFilterInt(3));
-        this.viewPDV.setFieldSalePriceDocument(new FieldManager.FieldFilterMonetary());
-        this.viewPDV.setFieldTotalProductValueDocument(new FieldManager.FieldFilterMonetary());
-        this.viewPDV.setFieldTotalCouponValueDocument(new FieldManager.FieldFilterMonetary());
-        this.viewPDV.setFieldTotalDiscountDocument(new FieldManager.FieldFilterMonetary());
-        this.viewPDV.setFieldTotalOutstandingAmountDocument(new FieldManager.FieldFilterMonetary());
-        this.viewPDV.setFieldTotalValueReceivedDocument(new FieldManager.FieldFilterMonetary());
-        this.viewPDV.setFieldDiscountValueDocument(new FieldManager.FieldFilterMonetary());
-        //this.viewPDV.setFieldDiscountPercentageDocument( CRIAR UM DOCUMENTO DE %);
+        viewPDV.setFieldBarcodeDocument(new FieldManager.FieldFilterDouble(14));
+        viewPDV.setFieldIDDocument(new FieldManager.FieldFilterInt(3));
+        viewPDV.setFieldSalePriceDocument(new FieldManager.FieldFilterMonetary());
+        viewPDV.setFieldTotalProductValueDocument(new FieldManager.FieldFilterMonetary());
+        viewPDV.setFieldTotalCouponValueDocument(new FieldManager.FieldFilterMonetary());
+        viewPDV.setFieldTotalDiscountDocument(new FieldManager.FieldFilterMonetary());
+        viewPDV.setFieldTotalOutstandingAmountDocument(new FieldManager.FieldFilterMonetary());
+        viewPDV.setFieldTotalValueReceivedDocument(new FieldManager.FieldFilterMonetary());
+        viewPDV.setFieldDiscountValueDocument(new FieldManager.FieldFilterMonetary());
+        //viewPDV.setFieldDiscountPercentageDocument( CRIAR UM DOCUMENTO DE %);
     }
 
     /**
      * Metodo que realiza a validacao de login do usuario ou do suporte tecnico
      */
     public void userLogin() {
-        this.id = viewPDV.getIdUser();
-        this.password = Encrypt.sha256(viewPDV.getPassword());
+        id = viewPDV.getIdUser();
+        password = Encrypt.sha256(viewPDV.getPassword());
 
         if (id.equals("")) {
             System.out.println("INFORME O CODIGO DO OPERADOR!");
-            this.pPopUPMessage.showAlert("Atenção", "Informe o código do usuário!");
-            this.focusFieldID();
+            pPopUPMessage.showAlert("Atenção", "Informe o código do usuário!");
+            focusFieldID();
         } else if (password.equals("")) {
             System.out.println("INFORME A SENHA DO OPERADOR!");
-            this.pPopUPMessage.showAlert("Atenção", "Informe a senha do usuário!");
-            this.focusFieldPassword();
+            pPopUPMessage.showAlert("Atenção", "Informe a senha do usuário!");
+            focusFieldPassword();
         } else if (Integer.parseInt(id) == (mSupport.getId()) & password.equals(mSupport.getPwd())) {
             System.out.println("LOGIN DO SUPORTE TECNICO!");
-            this.pPopUPMessage.showAlert("ALERTA", "Login do Suporte!");
+            pPopUPMessage.showAlert("ALERTA", "Login do Suporte!");
         } else {
-            this.mUser.setId(Integer.parseInt(id));
-            this.mUser.setPwd(password);
+            mUser.setId(Integer.parseInt(id));
+            mUser.setPwd(password);
 
             if (dUser.userLogin(mUser)) {
                 System.out.println("LOGIN REALIZADO!");
-                this.selectStartCardL(CARD_PDV);
-                this.focusFieldBarCode();
+                selectStartCardL(CARD_PDV);
+                focusFieldBarCode();
             } else {
                 System.out.println("Dados incorretos ou usuário não cadastrado!");
-                this.pPopUPMessage.showAlert("Atenção", "Dados incorretos ou usuário não cadastrado!");
-                this.focusFieldID();
+                pPopUPMessage.showAlert("Atenção", "Dados incorretos ou usuário não cadastrado!");
+                focusFieldID();
             }
         }
     }
@@ -175,8 +175,8 @@ public class PDVPresenter {
      * O metodo exibe um Dialog de confirmacao para fechar a tela do PDV.
      */
     public void exitPDV() {
-        this.pPopUPConfirm.showConfirmDialog("Atenção", "Deseja sair do sistema?");
-        if (this.pPopUPConfirm.questionResult()) {
+        pPopUPConfirm.showConfirmDialog("Atenção", "Deseja sair do sistema?");
+        if (pPopUPConfirm.questionResult()) {
             System.exit(0);
         }
     }
@@ -185,45 +185,45 @@ public class PDVPresenter {
      * Metodo que realiza a busca de produto pelo seu codigo de barras
      */
     public void searchProduct() {
-        if (!this.viewPDV.getBarcode().equals("")) {
+        if (!viewPDV.getBarcode().equals("")) {
             // Realiza a busca se o campo de codigo de barras for diferente de vazio
 
             if (viewPDV.getBarcode().contains(".")) {
                 // Para a execucao do metodo se existir ponto(.) no campo de codigo de barras
-                this.pPopUPMessage.showAlert("ATENÇÃO!", "CÓDIGO DE BARRAS INVÁLIDO!");
-                this.viewPDV.cleanFieldBarcode();
+                pPopUPMessage.showAlert("ATENÇÃO!", "CÓDIGO DE BARRAS INVÁLIDO!");
+                viewPDV.cleanFieldBarcode();
                 return;
             }
 
             mCoupon = new Coupon();
 
-            this.mProduct.setBarcode(Filter.filterLong(viewPDV.getBarcode()));
-            this.mCoupon.setmProduct(mProduct);
+            mProduct.setBarcode(Filter.filterLong(viewPDV.getBarcode()));
+            mCoupon.setmProduct(mProduct);
 
             if (dProduct.searchProductByBarcode(mCoupon)) {
                 // Executa caso o produto seja encontrado
-                this.mCoupon.setQuantity(Filter.filterDouble(viewPDV.getQuantity()));
-                this.mCoupon.setProductRowIndex(viewPDV.getTableProductFront().getRowCount()+1);
-                this.tmProductFront.addRow(mCoupon);
-                this.tmProductBack.addRow(mCoupon);
+                mCoupon.setQuantity(Filter.filterDouble(viewPDV.getQuantity()));
+                mCoupon.setProductRowIndex(viewPDV.getTableProductFront().getRowCount()+1);
+                tmProductFront.addRow(mCoupon);
+                tmProductBack.addRow(mCoupon);
                 viewPDV.getTableProductFront().changeSelection(viewPDV.getTableProductFront().getRowCount()-1, 0, false, false);
                 viewPDV.getTableProductBack().changeSelection(viewPDV.getTableProductBack().getRowCount()-1, 0, false, false);
-                this.viewPDV.setSalePrice(Format.brCurrencyFormat.format(mCoupon.getmProduct().getSalePrice()));
-                this.viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
+                viewPDV.setSalePrice(Format.brCurrencyFormat.format(mCoupon.getmProduct().getSalePrice()));
+                viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
                 System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
-                this.viewPDV.setQuantity(Format.formatQty.format(1));
-                this.viewPDV.cleanFieldBarcode();
+                viewPDV.setQuantity(Format.formatQty.format(1));
+                viewPDV.cleanFieldBarcode();
             } else {
                 // Exibe um alerta caso o produto nao seja encontrado
                 System.out.println("PRODUTO NAO ENCONTRADO");
-                this.pPopUPMessage.showAlert("ATENÇÃO!", "PRODUTO NÃO ENCONTRADO!");
-                this.viewPDV.cleanFieldBarcode();
+                pPopUPMessage.showAlert("ATENÇÃO!", "PRODUTO NÃO ENCONTRADO!");
+                viewPDV.cleanFieldBarcode();
             }
         } else {
             // Exibe uma mensagem de alerta caso o campo de codigo de barras esteja vazio
             System.out.println("INFORME O CODIGO DE BARRAS");
-            this.pPopUPMessage.showAlert("ATENÇÃO!", "INFORME O CÓDIGO DE BARRAS!");
-            this.viewPDV.cleanFieldBarcode();
+            pPopUPMessage.showAlert("ATENÇÃO!", "INFORME O CÓDIGO DE BARRAS!");
+            viewPDV.cleanFieldBarcode();
         }
     }
 
@@ -237,17 +237,17 @@ public class PDVPresenter {
             if ( qtyPDV >= minQty & qtyPDV <= maxQty ) {
                 // Executa se a quantidade informada estiver entre
                 // o minimo e maximo permitido nos parametros
-                this.viewPDV.setQuantity(Format.formatQty.format(qtyPDV));
-                this.viewPDV.cleanFieldBarcode();
+                viewPDV.setQuantity(Format.formatQty.format(qtyPDV));
+                viewPDV.cleanFieldBarcode();
             } else {
-                this.pPopUPMessage.showAlert("ATENÇÃO!", "QUANTIDADE INVÁLIDA!");
-                this.viewPDV.cleanFieldBarcode();
+                pPopUPMessage.showAlert("ATENÇÃO!", "QUANTIDADE INVÁLIDA!");
+                viewPDV.cleanFieldBarcode();
             }
         } else if (viewPDV.getBarcode().equals("") & !viewPDV.getQuantity().equals("1,000")) {
             // Executa se o campo de codigo de barras estiver vazio
             // e se o campo de quantidade for diferente de 1,000.
             // Restaura a quantidade padrao de venda para produtos
-            this.viewPDV.setQuantity(Format.formatQty.format(1));
+            viewPDV.setQuantity(Format.formatQty.format(1));
         }
     }
 
@@ -257,7 +257,7 @@ public class PDVPresenter {
      * @return int - KeyCode da tecla de atalho
      */
     public int getShortcutKey(IndexShortcutKey index) {
-        return this.mShortcutKey.getLsShortcutKeys().get(index.getId()).getKeyCode();
+        return mShortcutKey.getLsShortcutKeys().get(index.getId()).getKeyCode();
     }
 
     /**
@@ -269,11 +269,11 @@ public class PDVPresenter {
     public void selectStartCardL(CardLayoutPDV cardLayoutPDV) {
         if (cardLayoutPDV.getNameCardLayout().equals(CARD_PDV.getNameCardLayout())) {
             // TELA DO PDV
-            this.viewPDV.setStartCardL(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setStartCardL(cardLayoutPDV.getNameCardLayout());
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_LOGIN.getNameCardLayout())) {
             // TELA DE LOGIN
-            this.viewPDV.setStartCardL(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setStartCardL(cardLayoutPDV.getNameCardLayout());
 
         }
     }
@@ -289,23 +289,23 @@ public class PDVPresenter {
     public void selectSaleCardL(CardLayoutPDV cardLayoutPDV) {
         if (cardLayoutPDV.getNameCardLayout().equals(CARD_VENDA.getNameCardLayout())) {
             // PAINEL DE VENDA
-            this.viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
-            this.viewPDV.setFocusFieldBarcode();
+            viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setFocusFieldBarcode();
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_TROCO.getNameCardLayout())) {
             // PAINEL DE TROCO
-            this.viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_ITENS.getNameCardLayout())) {
             // PAINEL DE PRODUTOS BACK
-            this.viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
-            this.viewPDV.setFocusProductTableBack();
+            viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setFocusProductTableBack();
             viewPDV.getTableProductFront().changeSelection(viewPDV.getTableProductFront().getRowCount()-1, 0, false, false);
             viewPDV.getTableProductBack().changeSelection(viewPDV.getTableProductBack().getRowCount()-1, 0, false, false);
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_BUSCAR.getNameCardLayout())) {
             // PAINEL DE BUSCAR PRODUTOS
-            this.viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
 
         }
     }
@@ -319,22 +319,22 @@ public class PDVPresenter {
     public void selectValueCardL(CardLayoutPDV cardLayoutPDV) {
         if (cardLayoutPDV.getNameCardLayout().equals(CARD_VALOR_CUPOM.getNameCardLayout())) {
             // PAINEL DE VALORES DO CUPOM
-            this.viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
 
             // PAINEL DE FORMAS DE PAGAMENTO
-            this.viewPDV.setCardPDVLogo(CARD_FPAGAMENTO.getNameCardLayout());
+            viewPDV.setLogoCardL(CARD_FPAGAMENTO.getNameCardLayout());
 
-            this.viewPDV.setFocusableFieldTotalValueReceived(true);
-            this.viewPDV.setFocusFieldTotalValueReceived();
+            viewPDV.setFocusableFieldTotalValueReceived(true);
+            viewPDV.setFocusFieldTotalValueReceived();
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_VALOR_PRODUTO.getNameCardLayout())) {
             // PAINEL DE VALORES DO PRODUTO
-            this.viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
 
             // PAINEL DE LOGOTIPO
-            this.viewPDV.setCardPDVLogo(CARD_LOGO.getNameCardLayout());
-            this.viewPDV.setFocusableFieldBarcode(true);
-            this.viewPDV.setFocusFieldBarcode();
+            viewPDV.setLogoCardL(CARD_LOGO.getNameCardLayout());
+            viewPDV.setFocusableFieldBarcode(true);
+            viewPDV.setFocusFieldBarcode();
 
         }
     }
@@ -350,21 +350,21 @@ public class PDVPresenter {
     public void selectLogoCardL(CardLayoutPDV cardLayoutPDV) {
         if (cardLayoutPDV.getNameCardLayout().equals(CARD_LOGO.getNameCardLayout())) {
             // PAINEL DE LOGOTIPO
-            this.viewPDV.setCardPDVLogo(CARD_LOGO.getNameCardLayout());
+            viewPDV.setLogoCardL(CARD_LOGO.getNameCardLayout());
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_FPAGAMENTO.getNameCardLayout())) {
             // PAINEL DE FORMAS DE PAGAMENTO
-            this.viewPDV.setCardPDVLogo(CARD_FPAGAMENTO.getNameCardLayout());
+            viewPDV.setLogoCardL(CARD_FPAGAMENTO.getNameCardLayout());
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_DESCONTO.getNameCardLayout())) {
             // PAINEL DE DESCONTO
-            this.viewPDV.setCardPDVLogo(cardLayoutPDV.getNameCardLayout());
-            this.viewPDV.setFocusFieldDiscountValue();
-            this.viewPDV.setFocusableFieldTotalValueReceived(false);
-            this.viewPDV.setFocusableFieldBarcode(false);
+            viewPDV.setLogoCardL(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setFocusFieldDiscountValue();
+            viewPDV.setFocusableFieldTotalValueReceived(false);
+            viewPDV.setFocusableFieldBarcode(false);
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_BOTONS_TOUCH.getNameCardLayout())) {
             // PAINEL DE BOTONS TOUCH
-            this.viewPDV.setCardPDVLogo(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setLogoCardL(cardLayoutPDV.getNameCardLayout());
 
         }
     }
@@ -374,7 +374,7 @@ public class PDVPresenter {
      */
     public void cancelProduct() {
         System.out.println("CANCELAR PRODUTO");
-        this.selectSaleCardL(CardLayoutPDV.CARD_VENDA);
+        selectSaleCardL(CardLayoutPDV.CARD_VENDA);
     }
 
     /**
@@ -388,23 +388,23 @@ public class PDVPresenter {
 
         if (!discountValue.equals("") & discountPercentage.equals("")) {
             System.out.println("TEM VALOR");
-            this.selectValueCardL(CardLayoutPDV.CARD_VALOR_CUPOM);
+            selectValueCardL(CardLayoutPDV.CARD_VALOR_CUPOM);
         } else if (discountValue.equals("") & !discountPercentage.equals("")) {
             System.out.println("TEM PERCENTUAL");
-            this.selectValueCardL(CardLayoutPDV.CARD_VALOR_CUPOM);
+            selectValueCardL(CardLayoutPDV.CARD_VALOR_CUPOM);
         } else if (!discountValue.equals("") & !discountPercentage.equals("")) {
             System.out.println("TEM VALOR E PERCENTUAL");
-            this.viewPDV.cleanDiscountValue();
-            this.viewPDV.cleanDiscountPercentage();
-            this.viewPDV.setFocusFieldDiscountValue();
+            viewPDV.cleanDiscountValue();
+            viewPDV.cleanDiscountPercentage();
+            viewPDV.setFocusFieldDiscountValue();
         } else if (discountValue.equals("") & discountPercentage.equals("") & focus == 1) {
             System.out.println("NAO TEM NADA");
             System.out.println("VAI PARA PERCENTUAL");
-            this.viewPDV.setFocusFieldDiscountPercentage();
+            viewPDV.setFocusFieldDiscountPercentage();
         } else if (discountValue.equals("") & discountPercentage.equals("") & focus == 2) {
             System.out.println("NAO TEM NADA");
             System.out.println("VAI PARA VALOR");
-            this.viewPDV.setFocusFieldDiscountValue();
+            viewPDV.setFocusFieldDiscountValue();
         }
     }
 
@@ -412,20 +412,20 @@ public class PDVPresenter {
      * Metodo que define o foco no campo de senha do usuario
      */
     public void focusFieldPassword() {
-        this.viewPDV.setFocusFieldPassword();
+        viewPDV.setFocusFieldPassword();
     }
 
     /**
      * Metodo que define o foco no campo de ID do usuario
      */
     public void focusFieldID() {
-        this.viewPDV.setFocusFieldID();
+        viewPDV.setFocusFieldID();
     }
 
     /**
      * Metodo que define o foco no campo de codigo de barras
      */
     public void focusFieldBarCode() {
-        this.viewPDV.setFocusFieldBarcode();
+        viewPDV.setFocusFieldBarcode();
     }
 }

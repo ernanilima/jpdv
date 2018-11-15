@@ -30,8 +30,8 @@ public class PopUPConfirmDialogActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            this.presenter.resultSelected = true;
-            this.presenter.closePopUP();
+            presenter.resultSelected = true;
+            presenter.closePopUP();
         }
     }
 
@@ -53,8 +53,8 @@ public class PopUPConfirmDialogActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            this.presenter.resultSelected = false;
-            this.presenter.closePopUP();
+            presenter.resultSelected = false;
+            presenter.closePopUP();
         }
     }
 }

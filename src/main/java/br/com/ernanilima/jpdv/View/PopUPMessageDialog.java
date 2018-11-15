@@ -136,46 +136,46 @@ public class PopUPMessageDialog extends JDialog implements IPopUPMessageDialog {
 
     @Override
     public void setShowPopUP(String title, String message, ImageIcon icon) {
-        this.campoTitulo.setText(title);
-        this.icoOkErro.setIcon(icon);
-        this.campoConteudo.setText(message);
-        this.pack();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        campoTitulo.setText(title);
+        icoOkErro.setIcon(icon);
+        campoConteudo.setText(message);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     @Override
     public void setClosePopUP() {
-        this.setVisible(false);
+        setVisible(false);
     }
 
     @Override
     public void setOKKeyPressed(KeyAdapter adapter) {
-        this.btnOK.addKeyListener(adapter);
+        btnOK.addKeyListener(adapter);
     }
 
     @Override
     public void setOKActionPerformed(ActionListener listener) {
-        this.btnOK.addActionListener(listener);
+        btnOK.addActionListener(listener);
     }
 
     @Override
     public void setMouseMotion(int x, int y) {
-        this.setLocation(x, y);
+        setLocation(x, y);
     }
 
     @Override
     public void setBackground(JImagePanel imagePanel) {
-        this.getContentPane().add(imagePanel);
+        getContentPane().add(imagePanel);
     }
 
     @Override
     public void setTopBarMousePressed(MouseAdapter adapter) {
-        this.panelBarra.addMouseListener(adapter);
+        panelBarra.addMouseListener(adapter);
     }
 
     @Override
     public void setTopBarMouseDragged(MouseAdapter adapter) {
-        this.panelBarra.addMouseMotionListener(adapter);
+        panelBarra.addMouseMotionListener(adapter);
     }
 }

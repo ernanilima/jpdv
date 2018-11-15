@@ -29,7 +29,7 @@ public class ViewPDVActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            this.presenter.userLogin();
+            presenter.userLogin();
         }
     }
 
@@ -49,7 +49,7 @@ public class ViewPDVActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            this.presenter.exitPDV();
+            presenter.exitPDV();
         }
     }
 }

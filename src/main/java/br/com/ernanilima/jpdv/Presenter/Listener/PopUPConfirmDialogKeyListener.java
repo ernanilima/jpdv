@@ -31,15 +31,15 @@ public class PopUPConfirmDialogKeyListener {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                this.presenter.resultSelected = true;
-                this.presenter.closePopUP();
+                presenter.resultSelected = true;
+                presenter.closePopUP();
             } else if (e.getKeyCode() == KeyEvent.VK_UP | e.getKeyCode() == KeyEvent.VK_RIGHT |
                     e.getKeyCode() == KeyEvent.VK_DOWN | e.getKeyCode() == KeyEvent.VK_LEFT) {
                 // Muda o foco ao precionar qualquer tecla direcional
-                this.presenter.focusBtnNo();
+                presenter.focusBtnNo();
             } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                this.presenter.resultSelected = false;
-                this.presenter.closePopUP();
+                presenter.resultSelected = false;
+                presenter.closePopUP();
             }
         }
     }
@@ -63,12 +63,12 @@ public class PopUPConfirmDialogKeyListener {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER | e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                this.presenter.resultSelected = false;
-                this.presenter.closePopUP();
+                presenter.resultSelected = false;
+                presenter.closePopUP();
             } else if (e.getKeyCode() == KeyEvent.VK_UP | e.getKeyCode() == KeyEvent.VK_RIGHT |
                     e.getKeyCode() == KeyEvent.VK_DOWN | e.getKeyCode() == KeyEvent.VK_LEFT) {
                 // Muda o foco ao precionar qualquer tecla direcional
-                this.presenter.focusBtnYes();
+                presenter.focusBtnYes();
             }
         }
     }

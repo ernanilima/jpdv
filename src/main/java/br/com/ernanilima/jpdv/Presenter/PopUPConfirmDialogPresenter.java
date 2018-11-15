@@ -36,12 +36,12 @@ public class PopUPConfirmDialogPresenter {
 
     // Listiner de "Botons", "Campos" e outros.
     private void myListiners() {
-        this.viewPopUPConfirm.setYesKeyPressed(new PopUPConfirmDialogKeyListener.YesKeyListener(this));
-        this.viewPopUPConfirm.setNoKeyPressed(new PopUPConfirmDialogKeyListener.NoKeyListener(this));
-        this.viewPopUPConfirm.setYesActionPerformed(new PopUPConfirmDialogActionListener.YesActionListener(this));
-        this.viewPopUPConfirm.setNoActionPerformed(new PopUPConfirmDialogActionListener.NoActionListener(this));
-        this.viewPopUPConfirm.setTopBarMousePressed(new PopUPConfirmDialogMouseMotionListener.TopBarMouseListener());
-        this.viewPopUPConfirm.setTopBarMouseDragged(new PopUPConfirmDialogMouseMotionListener.TopBarMouseMotionListener(this));
+        viewPopUPConfirm.setYesKeyPressed(new PopUPConfirmDialogKeyListener.YesKeyListener(this));
+        viewPopUPConfirm.setNoKeyPressed(new PopUPConfirmDialogKeyListener.NoKeyListener(this));
+        viewPopUPConfirm.setYesActionPerformed(new PopUPConfirmDialogActionListener.YesActionListener(this));
+        viewPopUPConfirm.setNoActionPerformed(new PopUPConfirmDialogActionListener.NoActionListener(this));
+        viewPopUPConfirm.setTopBarMousePressed(new PopUPConfirmDialogMouseMotionListener.TopBarMouseListener());
+        viewPopUPConfirm.setTopBarMouseDragged(new PopUPConfirmDialogMouseMotionListener.TopBarMouseMotionListener(this));
     }
 
     /**
@@ -51,7 +51,7 @@ public class PopUPConfirmDialogPresenter {
      * @param message String - Mensagem para exibir no Dialog
      */
     public void showConfirmDialog(String title, String message) {
-        this.viewPopUPConfirm.setShowPopUP(title, message, mIcons.getIconQuestion());
+        viewPopUPConfirm.setShowPopUP(title, message, mIcons.getIconQuestion());
     }
 
     /**
@@ -76,7 +76,7 @@ public class PopUPConfirmDialogPresenter {
      * Fecha o Dialog com setVisible(false)
      */
     public void closePopUP() {
-        this.viewPopUPConfirm.setClosePopUP();
+        viewPopUPConfirm.setClosePopUP();
     }
 
     /**
@@ -85,20 +85,20 @@ public class PopUPConfirmDialogPresenter {
      * @param y int - Valor referente ao ponto do click na Tela
      */
     public void mouseMotionPopUP(int x, int y) {
-        this.viewPopUPConfirm.setMouseMotion(x, y);
+        viewPopUPConfirm.setMouseMotion(x, y);
     }
 
     /**
      * Metodo que define o foco no botao SIM do Dialog
      */
     public void focusBtnYes() {
-        this.viewPopUPConfirm.setFocusBtnYes();
+        viewPopUPConfirm.setFocusBtnYes();
     }
 
     /**
      * Metodo que define o foco no botao NAO do Dialog
      */
     public void focusBtnNo() {
-        this.viewPopUPConfirm.setFocusBtnNo();
+        viewPopUPConfirm.setFocusBtnNo();
     }
 }

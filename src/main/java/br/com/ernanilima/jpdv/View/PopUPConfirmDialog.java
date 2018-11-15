@@ -128,67 +128,67 @@ public class PopUPConfirmDialog extends JDialog implements IPopUPConfirmDialog {
 
     @Override
     public void setShowPopUP(String title, String message, ImageIcon icon) {
-        this.campoTitulo.setText(title);
-        this.btnNao.requestFocus();
-        this.icoSelecao.setIcon(icon);
-        this.campoConteudo.setText(message);
-        this.pack();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        campoTitulo.setText(title);
+        btnNao.requestFocus();
+        icoSelecao.setIcon(icon);
+        campoConteudo.setText(message);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     @Override
     public void setClosePopUP() {
-        this.setVisible(false);
+        setVisible(false);
     }
 
     @Override
     public void setYesKeyPressed(KeyAdapter adapter) {
-        this.btnSim.addKeyListener(adapter);
+        btnSim.addKeyListener(adapter);
     }
 
     @Override
     public void setYesActionPerformed(ActionListener listener) {
-        this.btnSim.addActionListener(listener);
+        btnSim.addActionListener(listener);
     }
 
     @Override
     public void setNoKeyPressed(KeyAdapter adapter) {
-        this.btnNao.addKeyListener(adapter);
+        btnNao.addKeyListener(adapter);
     }
 
     @Override
     public void setNoActionPerformed(ActionListener listener) {
-        this.btnNao.addActionListener(listener);
+        btnNao.addActionListener(listener);
     }
 
     @Override
     public void setTopBarMousePressed(MouseAdapter adapter) {
-        this.panelBarra.addMouseListener(adapter);
+        panelBarra.addMouseListener(adapter);
     }
 
     @Override
     public void setTopBarMouseDragged(MouseAdapter adapter) {
-        this.panelBarra.addMouseMotionListener(adapter);
+        panelBarra.addMouseMotionListener(adapter);
     }
 
     @Override
     public void setFocusBtnYes() {
-        this.btnSim.requestFocus();
+        btnSim.requestFocus();
     }
 
     @Override
     public void setFocusBtnNo() {
-        this.btnNao.requestFocus();
+        btnNao.requestFocus();
     }
 
     @Override
     public void setMouseMotion(int x, int y) {
-        this.setLocation(x, y);
+        setLocation(x, y);
     }
 
     @Override
     public void setBackground(JImagePanel imagePanel) {
-        this.getContentPane().add(imagePanel);
+        getContentPane().add(imagePanel);
     }
 }

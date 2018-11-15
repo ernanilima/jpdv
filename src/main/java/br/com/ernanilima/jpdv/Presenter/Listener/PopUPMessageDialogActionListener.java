@@ -28,7 +28,7 @@ public class PopUPMessageDialogActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            this.presenter.closePopUP();
+            presenter.closePopUP();
         }
     }
 }

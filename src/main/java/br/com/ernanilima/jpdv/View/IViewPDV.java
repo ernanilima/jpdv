@@ -94,7 +94,7 @@ public interface IViewPDV {
     public void setStartCardL(String cardName);
     public void setSaleCardL(String cardName);
     public void setValueCardL(String cardName);
-    public void setCardPDVLogo(String cardName);
+    public void setLogoCardL(String cardName);
 
     // Retorna o componente JTable
     public JTable getTableProductFront();

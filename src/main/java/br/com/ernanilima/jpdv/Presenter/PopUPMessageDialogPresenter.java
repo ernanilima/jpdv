@@ -36,10 +36,10 @@ public class PopUPMessageDialogPresenter {
 
     // Listiner de "Botons", "Campos" e outros.
     private void myListiners() {
-        this.viewPopUPMessage.setOKActionPerformed(new PopUPMessageDialogActionListener.OkActionListener(this));
-        this.viewPopUPMessage.setTopBarMousePressed(new PopUPMessageDialogMouseMotionListener.TopBarMouseListener());
-        this.viewPopUPMessage.setTopBarMouseDragged(new PopUPMessageDialogMouseMotionListener.TopBarMouseMotionListener(this));
-        this.viewPopUPMessage.setOKKeyPressed(new PopUPMessageDialogKeyListener.OkKeyListener(this));
+        viewPopUPMessage.setOKActionPerformed(new PopUPMessageDialogActionListener.OkActionListener(this));
+        viewPopUPMessage.setTopBarMousePressed(new PopUPMessageDialogMouseMotionListener.TopBarMouseListener());
+        viewPopUPMessage.setTopBarMouseDragged(new PopUPMessageDialogMouseMotionListener.TopBarMouseMotionListener(this));
+        viewPopUPMessage.setOKKeyPressed(new PopUPMessageDialogKeyListener.OkKeyListener(this));
     }
 
     /**
@@ -48,7 +48,7 @@ public class PopUPMessageDialogPresenter {
      * @param message String - Mensagem para exibir no Dialog
      */
     public void showAlert(String title, String message) {
-        this.viewPopUPMessage.setShowPopUP(title, message, mIcons.getIconAlert());
+        viewPopUPMessage.setShowPopUP(title, message, mIcons.getIconAlert());
     }
 
     /**
@@ -57,14 +57,14 @@ public class PopUPMessageDialogPresenter {
      * @param message String - Mensagem para exibir no Dialog
      */
     public void showOkay(String title, String message) {
-        this.viewPopUPMessage.setShowPopUP(title, message, mIcons.getIconOkay());
+        viewPopUPMessage.setShowPopUP(title, message, mIcons.getIconOkay());
     }
 
     /**
      * Fecha o Dialog com setVisible(false)
      */
     public void closePopUP() {
-        this.viewPopUPMessage.setClosePopUP();
+        viewPopUPMessage.setClosePopUP();
     }
 
     /**
@@ -73,6 +73,6 @@ public class PopUPMessageDialogPresenter {
      * @param y int - Valor referente ao ponto do click na Tela
      */
     public void mouseMotionPopUP(int x, int y) {
-        this.viewPopUPMessage.setMouseMotion(x, y);
+        viewPopUPMessage.setMouseMotion(x, y);
     }
 }

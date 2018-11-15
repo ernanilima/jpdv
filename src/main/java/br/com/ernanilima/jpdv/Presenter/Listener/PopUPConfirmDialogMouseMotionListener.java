@@ -32,8 +32,9 @@ public class PopUPConfirmDialogMouseMotionListener {
 
         @Override
         public void mouseDragged(MouseEvent e) {
-            this.x = e.getXOnScreen(); this.y = e.getYOnScreen();
-            this.presenter.mouseMotionPopUP(this.x - xMouse, this.y - yMouse);
+            x = e.getXOnScreen();
+            y = e.getYOnScreen();
+            presenter.mouseMotionPopUP(x - xMouse, y - yMouse);
         }
     }
 
@@ -49,7 +50,8 @@ public class PopUPConfirmDialogMouseMotionListener {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            xMouse = e.getX(); yMouse = e.getY();
+            xMouse = e.getX();
+            yMouse = e.getY();
         }
     }
 }

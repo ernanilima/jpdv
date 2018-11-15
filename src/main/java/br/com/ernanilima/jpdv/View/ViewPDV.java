@@ -1259,22 +1259,22 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
     @Override
     public String getIdUser() {
-        return this.campoCodUsuario.getText();
+        return campoCodUsuario.getText();
     }
 
     @Override
     public void setIdUser(String id) {
-        this.campoCodUsuario.setText(id);
+        campoCodUsuario.setText(id);
     }
 
     @Override
     public String getPassword() {
-        return new String(this.campoSenhaUsuario.getPassword());
+        return new String(campoSenhaUsuario.getPassword());
     }
 
     @Override
     public String getBarcode() {
-        return this.campoCodBarras.getText();
+        return campoCodBarras.getText();
     }
 
     @Override
@@ -1314,28 +1314,28 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
     @Override
     public void setLoginActionPerformed(ActionListener listener) {
-        this.btnLoginEntrar.addActionListener(listener);
+        btnLoginEntrar.addActionListener(listener);
     }
 
     @Override
     public void setExitActionPerformed(ActionListener listener) {
-        this.btnLoginSair.addActionListener(listener);
-        this.btnSairNumerico.addActionListener(listener);
+        btnLoginSair.addActionListener(listener);
+        btnSairNumerico.addActionListener(listener);
     }
 
     @Override
     public void setFieldIDKeyPressed(KeyAdapter adapter) {
-        this.campoCodUsuario.addKeyListener(adapter);
+        campoCodUsuario.addKeyListener(adapter);
     }
 
     @Override
     public void setFieldPasswordKeyPressed(KeyAdapter adapter) {
-        this.campoSenhaUsuario.addKeyListener(adapter);
+        campoSenhaUsuario.addKeyListener(adapter);
     }
 
     @Override
     public void setFieldBarcodeKeyPressed(KeyAdapter adapter) {
-        this.campoCodBarras.addKeyListener(adapter);
+        campoCodBarras.addKeyListener(adapter);
     }
 
     @Override
@@ -1360,12 +1360,12 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
     @Override
     public void setFieldBarcodeDocument(Document document) {
-        this.campoCodBarras.setDocument(document);
+        campoCodBarras.setDocument(document);
     }
 
     @Override
     public void setFieldIDDocument(Document document) {
-        this.campoCodUsuario.setDocument(document);
+        campoCodUsuario.setDocument(document);
     }
 
     @Override
@@ -1411,8 +1411,8 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
     @Override
     public void setFocusFieldID() {
-        this.campoCodUsuario.requestFocus();
-        this.campoCodUsuario.selectAll();
+        campoCodUsuario.requestFocus();
+        campoCodUsuario.selectAll();
     }
 
     @Override
@@ -1491,7 +1491,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
-    public void setCardPDVLogo(String cardName) {
+    public void setLogoCardL(String cardName) {
         CardLayout cardLayout = (CardLayout) painelCardLogo.getLayout();
         cardLayout.show(painelCardLogo, cardName);
     }
@@ -1508,12 +1508,12 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
     @Override
     public void setBackgroundLogin(JImagePanel imagePanel) {
-        this.painelLogin.add(imagePanel);
+        painelLogin.add(imagePanel);
     }
 
     @Override
     public void packAndShow() {
-        this.pack();
-        this.setVisible(true);
+        pack();
+        setVisible(true);
     }
 }
