@@ -51,7 +51,7 @@ public class ProductBackTableModel extends AbstractTableModel {
     }
 
     /**
-     * O valor retornado define a quantidade de colinas na JTable
+     * O valor retornado define a quantidade de colunas da JTable
      * @return int - Quantidade total de colunas
      */
     @Override
@@ -126,11 +126,11 @@ public class ProductBackTableModel extends AbstractTableModel {
     }
 
     /**
-     * Metodo que remove produto da JTable
+     * Remove linha da JTable
      * @param rowIndex int - Linha para remover
      */
     public void removeRow(int rowIndex) {
-        // Remove o produto da linha informada
+        // Remove a linha informada
         lsProducts.remove(rowIndex);
 
         //Notifica a JTable que determinada linha foi removida

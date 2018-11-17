@@ -26,7 +26,7 @@ public class ProductFrontTableModel extends AbstractTableModel {
     }
 
     /**
-     * A JTable eh criada com a quantidade retornada
+     * O valor retornado define a quantidade de colunas da JTable
      * @return int - Quantidade total de colunas
      */
     @Override

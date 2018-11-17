@@ -1,12 +1,15 @@
 package br.com.ernanilima.jpdv.Presenter;
 
+import br.com.ernanilima.jpdv.Controller.PaymentRenderer;
 import br.com.ernanilima.jpdv.Controller.ProductBackRenderer;
 import br.com.ernanilima.jpdv.Controller.ProductFrontRenderer;
 import br.com.ernanilima.jpdv.Controller.ProductSearchRenderer;
+import br.com.ernanilima.jpdv.Dao.PaymentDao;
 import br.com.ernanilima.jpdv.Dao.ProductDao;
 import br.com.ernanilima.jpdv.Dao.ShortcutKeyDao;
 import br.com.ernanilima.jpdv.Model.*;
 import br.com.ernanilima.jpdv.Model.Enum.IndexShortcutKey;
+import br.com.ernanilima.jpdv.Model.TableModel.PaymentTableModel;
 import br.com.ernanilima.jpdv.Model.TableModel.ProductBackTableModel;
 import br.com.ernanilima.jpdv.Model.TableModel.ProductFrontTableModel;
 import br.com.ernanilima.jpdv.Model.TableModel.ProductSearchTableModel;
@@ -64,14 +67,17 @@ public class PDVPresenter {
     // Model teclas de atalho
     private final ShortcutKey mShortcutKey;
 
-    // Table Model de itens vendidos
+    // TableModel de itens vendidos
     private final ProductFrontTableModel tmProductFront;
 
-    // Table Model de produtos back
+    // TableModel de produtos back
     private final ProductBackTableModel tmProductBack;
 
-    // Table Model de buscar produtos
+    // TableModel de buscar produtos
     private final ProductSearchTableModel tmProductSearch;
+
+    // TableModel de formas de pagamento
+    private final PaymentTableModel tmPayment;
 
     private String id;
     private String password;
@@ -92,8 +98,10 @@ public class PDVPresenter {
         this.tmProductFront = new ProductFrontTableModel();
         this.tmProductBack = new ProductBackTableModel();
         this.tmProductSearch = new ProductSearchTableModel();
+        this.tmPayment = new PaymentTableModel();
         this.myTables();
-        this.fillingProductSearchTable();
+        this.fillProductSearchTable();
+        this.fillPaymentMethodTable();
         this.myListiners();
         this.myFilters();
         this.myShortcutKey();
@@ -110,15 +118,27 @@ public class PDVPresenter {
         viewPDV.getProductTableBack().setDefaultRenderer(Object.class, new ProductBackRenderer());
         viewPDV.getProductSearchTable().setModel(tmProductSearch);
         viewPDV.getProductSearchTable().setDefaultRenderer(Object.class, new ProductSearchRenderer());
+        viewPDV.getPaymentMethodTable().setModel(tmPayment);
+        viewPDV.getPaymentMethodTable().setDefaultRenderer(Object.class, new PaymentRenderer());
     }
 
     // Preenche a tabela de buscar produtos
-    private void fillingProductSearchTable() {
+    private void fillProductSearchTable() {
         int rows = tmProductSearch.getRowCount();
         for (int i = rows - 1; i >= 0; i--) {
             tmProductSearch.removeRow(i);
         }
         dProduct.listProducts().forEach(tmProductSearch::addRow);
+    }
+
+    // Preenche a tabela de formas de pagamento
+    private  void fillPaymentMethodTable() {
+        PaymentDao dPayment = new PaymentDao();
+        int rows = tmPayment.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            tmPayment.removeRow(i);
+        }
+        dPayment.listPayments().forEach(tmPayment::addRow);
     }
 
     // Gera lista de teclas de atalho

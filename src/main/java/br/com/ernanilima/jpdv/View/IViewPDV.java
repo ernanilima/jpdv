@@ -102,6 +102,7 @@ public interface IViewPDV {
     public JTable getProductTableFront();
     public JTable getProductTableBack();
     public JTable getProductSearchTable();
+    public JTable getPaymentMethodTable();
 
     // Seta a Imagem de background direto no jPanel
     public void setBackgroundLogin(JImagePanel imagePanel);
