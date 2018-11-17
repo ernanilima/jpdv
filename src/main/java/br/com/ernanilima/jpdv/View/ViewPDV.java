@@ -126,6 +126,9 @@ public class ViewPDV extends JFrame implements IViewPDV {
         jScrollPaneItensVendidosPDV = new JScrollPane();
         tbItensVendidosPDV = new JTable();
         painelBuscarProduto = new JPanel();
+        painelBtnBuscarProdutos = new JPanel();
+        jScrollPaneBuscarProdutos = new JScrollPane();
+        tbBuscarProdutos = new JTable();
         painelRodapePDV = new JPanel();
         jLabelPDV = new JLabel();
         campoCodPDV = new JLabel();
@@ -505,7 +508,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
                         .addGroup(painelValCupomLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(painelValCupomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(painelValCupomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(painelValCupomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabelValTotalCupom, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(campoValTotalCupom, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabelValTotalDesconto, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
@@ -513,9 +516,9 @@ public class ViewPDV extends JFrame implements IViewPDV {
                                                 .addComponent(jLabelValTotalAReceber, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(campoValTotalAReceber, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jScrollPaneRecebimentos, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelValCupomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabelValTotalRecebido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(campoValTotalRecebido, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, painelValCupomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabelValTotalRecebido, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(campoValTotalRecebido, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap())
         );
         painelValCupomLayout.setVerticalGroup(
@@ -532,13 +535,13 @@ public class ViewPDV extends JFrame implements IViewPDV {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelValTotalAReceber)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoValTotalAReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(campoValTotalAReceber, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelValTotalRecebido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoValTotalRecebido, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPaneRecebimentos, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoValTotalRecebido, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPaneRecebimentos, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                                 .addContainerGap())
         );
 
@@ -995,15 +998,35 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelCardVendas.add(painelItensVendidos, "cardPDVItens");
 
+        GroupLayout painelBtnBuscarProdutosLayout = new GroupLayout(painelBtnBuscarProdutos);
+        painelBtnBuscarProdutos.setLayout(painelBtnBuscarProdutosLayout);
+        painelBtnBuscarProdutosLayout.setHorizontalGroup(
+                painelBtnBuscarProdutosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGap(0, 350, Short.MAX_VALUE)
+        );
+        painelBtnBuscarProdutosLayout.setVerticalGroup(
+                painelBtnBuscarProdutosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        tbBuscarProdutos.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        tbBuscarProdutos.setOpaque(false);
+        tbBuscarProdutos.setRowHeight(25);
+        jScrollPaneBuscarProdutos.setViewportView(tbBuscarProdutos);
+
         GroupLayout painelBuscarProdutoLayout = new GroupLayout(painelBuscarProduto);
         painelBuscarProduto.setLayout(painelBuscarProdutoLayout);
         painelBuscarProdutoLayout.setHorizontalGroup(
                 painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 1280, Short.MAX_VALUE)
+                        .addGroup(GroupLayout.Alignment.TRAILING, painelBuscarProdutoLayout.createSequentialGroup()
+                                .addComponent(jScrollPaneBuscarProdutos, GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(painelBtnBuscarProdutos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
         painelBuscarProdutoLayout.setVerticalGroup(
                 painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 576, Short.MAX_VALUE)
+                        .addComponent(painelBtnBuscarProdutos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPaneBuscarProdutos, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
         );
 
         painelCardVendas.add(painelBuscarProduto, "cardPDVBuscar");
@@ -1223,6 +1246,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JPanel jPanelCabecalhoItensPDV;
     private JPanel jPanelItensPDV;
     private JPanel jPanelLogin;
+    private JScrollPane jScrollPaneBuscarProdutos;
     private JScrollPane jScrollPaneFPagamento;
     private JScrollPane jScrollPaneItensPDV;
     private JScrollPane jScrollPaneItensVendidosPDV;
@@ -1233,6 +1257,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JLabel labelSenhaLogin;
     private JLabel labelUsuarioLogin;
     private JPanel painelBotonsNumericos;
+    private JPanel painelBtnBuscarProdutos;
     private JPanel painelBtnTouch;
     private JPanel painelBuscarProduto;
     private JPanel painelCabecalhoPDV;
@@ -1252,6 +1277,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JPanel painelValCupom;
     private JPanel painelValProduto;
     private JPanel painelVendas;
+    private JTable tbBuscarProdutos;
     private JTable tbFPagamento;
     private JTable tbItensPDV;
     private JTable tbItensVendidosPDV;
@@ -1344,6 +1370,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setProductSearchtableKeyPressed(KeyAdapter adapter) {
+        tbBuscarProdutos.addKeyListener(adapter);
+    }
+
+    @Override
     public void setFieldTotalValueReceivedKeyPressed(KeyAdapter adapter) {
         campoValTotalRecebido.addKeyListener(adapter);
     }
@@ -1433,6 +1464,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setFocusProductSearchTable() {
+        tbBuscarProdutos.requestFocus();
+    }
+
+    @Override
     public void setFocusFieldTotalValueReceived() {
         campoValTotalRecebido.requestFocus();
     }
@@ -1497,13 +1533,18 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
-    public JTable getTableProductFront() {
+    public JTable getProductTableFront() {
         return tbItensPDV;
     }
 
     @Override
-    public JTable getTableProductBack() {
+    public JTable getProductTableBack() {
         return tbItensVendidosPDV;
+    }
+
+    @Override
+    public JTable getProductSearchTable() {
+        return tbBuscarProdutos;
     }
 
     @Override

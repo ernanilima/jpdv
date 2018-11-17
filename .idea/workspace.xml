@@ -5,22 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c472712-a015-46df-908a-dcecff645212" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPConfirmDialogActionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPConfirmDialogActionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPConfirmDialogKeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPConfirmDialogKeyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPConfirmDialogMouseMotionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPConfirmDialogMouseMotionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPMessageDialogActionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPMessageDialogActionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPMessageDialogKeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPMessageDialogKeyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPMessageDialogMouseMotionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPMessageDialogMouseMotionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVActionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVActionListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductSearchRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/TableModel/ProductSearchTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductBackRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductBackRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/TableModel/ProductBackTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/TableModel/ProductBackTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PopUPConfirmDialogPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PopUPConfirmDialogPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PopUPMessageDialogPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PopUPMessageDialogPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/Enum/CardLayoutPDV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/Enum/CardLayoutPDV.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPConfirmDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPConfirmDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPMessageDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPMessageDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Dao/ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Dao/ProductDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Model/TableModel/ProductBackTableModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Model/TableModel/ProductBackTableModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldDiscountPercentageKeyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldDiscountPercentageKeyListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldDiscountValueKeyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldDiscountValueKeyListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldTotalValueReceivedKeyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldTotalValueReceivedKeyListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/PDVPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/PDVPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/View/IViewPDV.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/View/IViewPDV.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/View/ViewPDV.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/View/ViewPDV.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -42,32 +45,35 @@
     <session id="-272312746">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="16" />
+          <entry key="project.closed" value="19" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.18" value="4" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="2" />
+          <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.31" value="1" />
+          <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.34" value="2" />
           <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="17" />
+          <entry key="project.opened" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="54" />
-          <entry key="java" value="36197" />
+          <entry key="java" value="37671" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="36197" />
+          <entry key="JAVA" value="37671" />
           <entry key="PLAIN_TEXT" value="54" />
           <entry key="XML" value="1" />
         </counts>
@@ -76,7 +82,7 @@
         <counts>
           <entry key="class" value="1" />
           <entry key="form" value="1" />
-          <entry key="java" value="596" />
+          <entry key="java" value="630" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
@@ -84,7 +90,7 @@
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="GUI_DESIGNER_FORM" value="1" />
-          <entry key="JAVA" value="596" />
+          <entry key="JAVA" value="630" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
@@ -92,181 +98,58 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/Enum/CardLayoutPDV.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1694">
-              <caret line="77" column="76" selection-start-line="77" selection-start-column="76" selection-end-line="77" selection-end-column="76" />
-              <folding>
-                <element signature="e#2467#2468#0" expanded="true" />
-                <element signature="e#2519#2520#0" expanded="true" />
-                <element signature="e#2631#2632#0" expanded="true" />
-                <element signature="e#2668#2669#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IPopUPConfirmDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IPopUPMessageDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="96" column="28" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPConfirmDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="130" column="8" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPMessageDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="138" column="8" selection-start-line="138" selection-start-column="8" selection-end-line="138" selection-end-column="8" />
-              <folding>
-                <element signature="method#initComponents#0;class#PopUPMessageDialog#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2619">
-              <caret line="366" column="32" selection-start-line="366" selection-start-column="32" selection-end-line="366" selection-end-column="32" />
+            <state relative-caret-position="616">
+              <caret line="247" column="45" selection-start-line="247" selection-start-column="45" selection-end-line="247" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="docComment;method#selectValueCardL#0;class#PDVPresenter#0" />
-                <element signature="docComment;method#selectLogoCardL#0;class#PDVPresenter#0" />
-                <element signature="docComment;method#focusFieldPassword#0;class#PDVPresenter#0" />
-                <element signature="docComment;method#focusFieldID#0;class#PDVPresenter#0" />
-                <element signature="docComment;method#focusFieldBarCode#0;class#PDVPresenter#0" />
+                <element signature="e#19529#19530#0" expanded="true" />
+                <element signature="e#19576#19577#0" expanded="true" />
+                <element signature="e#19684#19685#0" expanded="true" />
+                <element signature="e#19725#19726#0" expanded="true" />
+                <element signature="e#19841#19842#0" expanded="true" />
+                <element signature="e#19887#19888#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/TableModel/ProductSearchTableModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="1258" lean-forward="true" selection-start-line="1258" selection-end-line="1258" />
+            <state relative-caret-position="-704">
+              <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#356#357#0" expanded="true" />
-                <element signature="e#388#389#0" expanded="true" />
-                <element signature="e#75854#75855#0" expanded="true" />
-                <element signature="e#75907#75908#0" expanded="true" />
-                <element signature="e#75961#75962#0" expanded="true" />
-                <element signature="e#76009#76010#0" expanded="true" />
-                <element signature="e#76058#76059#0" expanded="true" />
-                <element signature="e#76129#76130#0" expanded="true" />
-                <element signature="e#76177#76178#0" expanded="true" />
-                <element signature="e#76229#76230#0" expanded="true" />
-                <element signature="e#76278#76279#0" expanded="true" />
-                <element signature="e#76326#76327#0" expanded="true" />
-                <element signature="e#76388#76389#0" expanded="true" />
-                <element signature="e#76437#76438#0" expanded="true" />
-                <element signature="e#76501#76502#0" expanded="true" />
-                <element signature="e#76553#76554#0" expanded="true" />
-                <element signature="e#76633#76634#0" expanded="true" />
-                <element signature="e#76696#76697#0" expanded="true" />
-                <element signature="e#76774#76775#0" expanded="true" />
-                <element signature="e#76836#76837#0" expanded="true" />
-                <element signature="e#76890#76891#0" expanded="true" />
-                <element signature="e#76938#76939#0" expanded="true" />
-                <element signature="e#76997#76998#0" expanded="true" />
-                <element signature="e#77046#77047#0" expanded="true" />
-                <element signature="e#77128#77129#0" expanded="true" />
-                <element signature="e#77191#77192#0" expanded="true" />
-                <element signature="e#77465#77466#0" expanded="true" />
-                <element signature="e#77525#77526#0" expanded="true" />
-                <element signature="e#77605#77606#0" expanded="true" />
-                <element signature="e#77667#77668#0" expanded="true" />
-                <element signature="e#77746#77747#0" expanded="true" />
-                <element signature="e#77805#77806#0" expanded="true" />
-                <element signature="e#77888#77889#0" expanded="true" />
-                <element signature="e#77946#77947#0" expanded="true" />
-                <element signature="e#78182#78183#0" expanded="true" />
-                <element signature="e#78237#78238#0" expanded="true" />
-                <element signature="e#78327#78328#0" expanded="true" />
-                <element signature="e#78383#78384#0" expanded="true" />
-                <element signature="e#78459#78460#0" expanded="true" />
-                <element signature="e#78516#78517#0" expanded="true" />
-                <element signature="e#78587#78588#0" expanded="true" />
-                <element signature="e#78645#78646#0" expanded="true" />
-                <element signature="e#78723#78724#0" expanded="true" />
-                <element signature="e#78778#78779#0" expanded="true" />
-                <element signature="e#78864#78865#0" expanded="true" />
-                <element signature="e#78922#78923#0" expanded="true" />
-                <element signature="e#79198#79199#0" expanded="true" />
-                <element signature="e#79257#79258#0" expanded="true" />
-                <element signature="e#79494#79495#0" expanded="true" />
-                <element signature="e#79553#79554#0" expanded="true" />
-                <element signature="e#79635#79636#0" expanded="true" />
-                <element signature="e#79688#79689#0" expanded="true" />
-                <element signature="e#79775#79776#0" expanded="true" />
-                <element signature="e#79829#79830#0" expanded="true" />
-                <element signature="e#80314#80315#0" expanded="true" />
-                <element signature="e#80363#80364#0" expanded="true" />
-                <element signature="e#80430#80431#0" expanded="true" />
-                <element signature="e#80482#80483#0" expanded="true" />
-                <element signature="e#80544#80545#0" expanded="true" />
-                <element signature="e#80590#80591#0" expanded="true" />
-                <element signature="e#80657#80658#0" expanded="true" />
-                <element signature="e#80704#80705#0" expanded="true" />
-                <element signature="e#80777#80778#0" expanded="true" />
-                <element signature="e#80827#80828#0" expanded="true" />
-                <element signature="e#80911#80912#0" expanded="true" />
-                <element signature="e#80968#80969#0" expanded="true" />
-                <element signature="e#81021#81022#0" expanded="true" />
-                <element signature="e#81063#81064#0" expanded="true" />
-                <element signature="e#81117#81118#0" expanded="true" />
-                <element signature="e#81160#81161#0" expanded="true" />
-                <element signature="e#81219#81220#0" expanded="true" />
-                <element signature="e#81263#81264#0" expanded="true" />
+                <element signature="e#1125#1126#0" expanded="true" />
+                <element signature="e#1163#1164#0" expanded="true" />
+                <element signature="e#1349#1350#0" expanded="true" />
+                <element signature="e#1389#1390#0" expanded="true" />
+                <element signature="e#1569#1570#0" expanded="true" />
+                <element signature="e#1606#1607#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/jPDV.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+            <state relative-caret-position="616">
+              <caret line="171" column="35" selection-start-line="171" selection-start-column="35" selection-end-line="171" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#797#798#0" expanded="true" />
+                <element signature="e#847#848#0" expanded="true" />
+                <element signature="e#1631#1632#0" expanded="true" />
+                <element signature="e#1681#1682#0" expanded="true" />
+                <element signature="e#2364#2365#0" expanded="true" />
+                <element signature="e#2414#2415#0" expanded="true" />
+                <element signature="e#4929#4930#0" expanded="true" />
+                <element signature="e#4979#4980#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -285,8 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>popUPQuestion</find>
-      <find>empresa</find>
       <find>empresa/filial</find>
       <find>painelCardLogo</find>
       <find>javax.swing.</find>
@@ -312,6 +193,11 @@
       <find>barcod</find>
       <find>this</find>
       <find>this.</find>
+      <find>tb</find>
+      <find>java.</find>
+      <find>ProductTableBack</find>
+      <find>tbBuscarProdutos</find>
+      <find>produtos</find>
     </findStrings>
     <dirStrings>
       <dir>C:\jPDV\src\main\resources\Img</dir>
@@ -323,8 +209,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/Support.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Util/Encrypt.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IPopUPConfirmDialog.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IPopUPMessageDialog.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/Produto.java" />
@@ -347,7 +231,6 @@
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Util/Filter.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ShortcutKeyDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ProductDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Connection/ConnectionSQLite.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Util/FieldManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/Coupon.java" />
@@ -356,8 +239,6 @@
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Connection/CreateDatabaseSQLite.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductFrontRenderer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/TableModel/ProductBackTableModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductBackRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPConfirmDialogActionListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPConfirmDialogKeyListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPConfirmDialogMouseMotionListener.java" />
@@ -365,21 +246,26 @@
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPMessageDialogKeyListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPMessageDialogMouseMotionListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVActionListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PopUPConfirmDialogPresenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PopUPMessageDialogPresenter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/Enum/CardLayoutPDV.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPConfirmDialog.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPMessageDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/TableModel/ProductBackTableModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/TableModel/ProductSearchTableModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductBackRenderer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductSearchRenderer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ProductDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="762" />
-    <option name="width" value="1805" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="1294" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -552,7 +438,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541986186051" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542466494590" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jPDV-Offline-master" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -612,10 +498,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="762" y="0" width="1805" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15873925" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1363275" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -624,14 +510,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32968238" />
-      <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" />
       <window_info anchor="bottom" id="Terminal" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50039744" side_tool="true" weight="0.3253796" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.3274918" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.3264642" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -641,28 +527,17 @@
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info anchor="right" id="Coverage" order="8" side_tool="true" weight="0.3298887" />
-      <window_info active="true" anchor="right" id="Run" order="9" sideWeight="0.49960256" visible="true" weight="0.34212035" />
+      <window_info active="true" anchor="right" id="Run" order="9" sideWeight="0.49960256" visible="true" weight="0.20627981" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPErrorDialog.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/JTextField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="163" column="13" selection-start-line="163" selection-start-column="13" selection-end-line="163" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/awt/Graphics2D.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8426">
-          <caret line="406" column="22" selection-start-line="406" selection-start-column="22" selection-end-line="406" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libraries/towel-v1.2.2.zip!/com/towel/swing/img/JImagePanel.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -702,64 +577,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
           <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Connection/CreateDatabaseSQLite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="method#createTablesPARAME#0;class#CreateDatabaseSQLite#0" />
-            <element signature="method#cleanTablesPDV#0;class#CreateDatabaseSQLite#0" />
-            <element signature="method#cleanTablesPARAME#0;class#CreateDatabaseSQLite#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductBackRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="60" lean-forward="true" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductFrontRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ProductDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ShortcutKeyDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -777,12 +594,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-638">
           <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-          <folding>
-            <element signature="e#1572#1573#0" expanded="true" />
-            <element signature="e#1600#1601#0" expanded="true" />
-            <element signature="e#1718#1719#0" expanded="true" />
-            <element signature="e#1743#1744#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -796,24 +607,6 @@
             <element signature="e#665#666#0" expanded="true" />
             <element signature="e#832#833#0" expanded="true" />
             <element signature="e#856#857#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/TableModel/ProductBackTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1344#1345#0" expanded="true" />
-            <element signature="e#1382#1383#0" expanded="true" />
-            <element signature="e#1568#1569#0" expanded="true" />
-            <element signature="e#1608#1609#0" expanded="true" />
-            <element signature="e#1788#1789#0" expanded="true" />
-            <element signature="e#1825#1826#0" expanded="true" />
-            <element signature="e#5120#5121#0" expanded="true" />
-            <element signature="e#5167#5168#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -835,52 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
           <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="63" />
-          <folding>
-            <element signature="e#593#594#0" expanded="true" />
-            <element signature="e#618#619#0" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#803#804#0" expanded="true" />
-            <element signature="e#912#913#0" expanded="true" />
-            <element signature="e#946#947#0" expanded="true" />
-            <element signature="e#1165#1166#0" expanded="true" />
-            <element signature="e#1211#1212#0" expanded="true" />
-            <element signature="e#1322#1323#0" expanded="true" />
-            <element signature="e#1357#1358#0" expanded="true" />
-            <element signature="e#1582#1583#0" expanded="true" />
-            <element signature="e#1630#1631#0" expanded="true" />
-            <element signature="e#1718#1719#0" expanded="true" />
-            <element signature="e#1745#1746#0" expanded="true" />
-            <element signature="e#1914#1915#0" expanded="true" />
-            <element signature="e#1946#1947#0" expanded="true" />
-            <element signature="e#2056#2057#0" expanded="true" />
-            <element signature="e#2091#2092#0" expanded="true" />
-            <element signature="e#2320#2321#0" expanded="true" />
-            <element signature="e#2368#2369#0" expanded="true" />
-            <element signature="e#2470#2471#0" expanded="true" />
-            <element signature="e#2501#2502#0" expanded="true" />
-            <element signature="e#2700#2701#0" expanded="true" />
-            <element signature="e#2740#2741#0" expanded="true" />
-            <element signature="e#2843#2844#0" expanded="true" />
-            <element signature="e#2872#2873#0" expanded="true" />
-            <element signature="e#3075#3076#0" expanded="true" />
-            <element signature="e#3111#3112#0" expanded="true" />
-            <element signature="e#3209#3210#0" expanded="true" />
-            <element signature="e#3238#3239#0" expanded="true" />
-            <element signature="e#3425#3426#0" expanded="true" />
-            <element signature="e#3461#3462#0" expanded="true" />
-            <element signature="e#3581#3582#0" expanded="true" />
-            <element signature="e#3615#3616#0" expanded="true" />
-            <element signature="e#3856#3857#0" expanded="true" />
-            <element signature="e#3902#3903#0" expanded="true" />
-            <element signature="e#4000#4001#0" expanded="true" />
-            <element signature="e#4029#4030#0" expanded="true" />
-            <element signature="e#4216#4217#0" expanded="true" />
-            <element signature="e#4252#4253#0" expanded="true" />
-            <element signature="e#4367#4368#0" expanded="true" />
-            <element signature="e#4392#4393#0" expanded="true" />
-            <element signature="e#4605#4606#0" expanded="true" />
-            <element signature="e#4633#4634#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1058,16 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="24" column="66" lean-forward="true" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
-          <folding>
-            <element signature="e#345#346#0" expanded="true" />
-            <element signature="e#370#371#0" expanded="true" />
-            <element signature="e#533#534#0" expanded="true" />
-            <element signature="e#561#562#0" expanded="true" />
-            <element signature="e#670#671#0" expanded="true" />
-            <element signature="e#704#705#0" expanded="true" />
-            <element signature="e#923#924#0" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1086,13 +823,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="56" column="35" lean-forward="true" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#953#954#0" expanded="true" />
-            <element signature="e#1003#1004#0" expanded="true" />
-            <element signature="e#1791#1792#0" expanded="true" />
-            <element signature="e#1841#1842#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1100,13 +830,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="623">
           <caret line="70" column="16" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#938#939#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
-            <element signature="e#2310#2311#0" expanded="true" />
-            <element signature="e#2360#2361#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1114,11 +837,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
           <caret line="29" column="16" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
-            <element signature="e#987#988#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1126,13 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#902#903#0" expanded="true" />
-            <element signature="e#974#975#0" expanded="true" />
-            <element signature="e#1025#1026#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1140,11 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#847#848#0" expanded="true" />
-            <element signature="e#897#898#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1152,11 +858,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="770">
           <caret line="53" column="12" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
-            <element signature="e#987#988#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1174,30 +875,6 @@
             <element signature="e#1412#1413#0" expanded="true" />
             <element signature="e#1484#1485#0" expanded="true" />
             <element signature="e#1532#1533#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4398">
-          <caret line="235" column="16" selection-start-line="235" selection-start-column="16" selection-end-line="235" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#797#798#0" expanded="true" />
-            <element signature="e#847#848#0" expanded="true" />
-            <element signature="e#1641#1642#0" expanded="true" />
-            <element signature="e#1691#1692#0" expanded="true" />
-            <element signature="e#2384#2385#0" expanded="true" />
-            <element signature="e#2434#2435#0" expanded="true" />
-            <element signature="e#4964#4965#0" expanded="true" />
-            <element signature="e#5014#5015#0" expanded="true" />
-            <element signature="e#5868#5869#0" expanded="true" />
-            <element signature="e#5918#5919#0" expanded="true" />
-            <element signature="e#6991#6992#0" expanded="true" />
-            <element signature="e#7041#7042#0" expanded="true" />
-            <element signature="e#7908#7909#0" expanded="true" />
-            <element signature="e#7958#7959#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1244,13 +921,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
           <caret line="60" column="17" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#869#870#0" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
-            <element signature="e#2000#2001#0" expanded="true" />
-            <element signature="e#2068#2069#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1271,163 +941,266 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2619">
-          <caret line="366" column="32" selection-start-line="366" selection-start-column="32" selection-end-line="366" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#selectValueCardL#0;class#PDVPresenter#0" />
-            <element signature="docComment;method#selectLogoCardL#0;class#PDVPresenter#0" />
-            <element signature="docComment;method#focusFieldPassword#0;class#PDVPresenter#0" />
-            <element signature="docComment;method#focusFieldID#0;class#PDVPresenter#0" />
-            <element signature="docComment;method#focusFieldBarCode#0;class#PDVPresenter#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/Enum/CardLayoutPDV.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1694">
           <caret line="77" column="76" selection-start-line="77" selection-start-column="76" selection-end-line="77" selection-end-column="76" />
-          <folding>
-            <element signature="e#2467#2468#0" expanded="true" />
-            <element signature="e#2519#2520#0" expanded="true" />
-            <element signature="e#2631#2632#0" expanded="true" />
-            <element signature="e#2668#2669#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IPopUPConfirmDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
-          <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IPopUPMessageDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
-          <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="96" column="28" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPConfirmDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="2750">
           <caret line="130" column="8" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPMessageDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
+        <state relative-caret-position="594">
           <caret line="138" column="8" selection-start-line="138" selection-start-column="8" selection-end-line="138" selection-end-column="8" />
-          <folding>
-            <element signature="method#initComponents#0;class#PopUPMessageDialog#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="1258" lean-forward="true" selection-start-line="1258" selection-end-line="1258" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#356#357#0" expanded="true" />
-            <element signature="e#388#389#0" expanded="true" />
-            <element signature="e#75854#75855#0" expanded="true" />
-            <element signature="e#75907#75908#0" expanded="true" />
-            <element signature="e#75961#75962#0" expanded="true" />
-            <element signature="e#76009#76010#0" expanded="true" />
-            <element signature="e#76058#76059#0" expanded="true" />
-            <element signature="e#76129#76130#0" expanded="true" />
-            <element signature="e#76177#76178#0" expanded="true" />
-            <element signature="e#76229#76230#0" expanded="true" />
-            <element signature="e#76278#76279#0" expanded="true" />
-            <element signature="e#76326#76327#0" expanded="true" />
-            <element signature="e#76388#76389#0" expanded="true" />
-            <element signature="e#76437#76438#0" expanded="true" />
-            <element signature="e#76501#76502#0" expanded="true" />
-            <element signature="e#76553#76554#0" expanded="true" />
-            <element signature="e#76633#76634#0" expanded="true" />
-            <element signature="e#76696#76697#0" expanded="true" />
-            <element signature="e#76774#76775#0" expanded="true" />
-            <element signature="e#76836#76837#0" expanded="true" />
-            <element signature="e#76890#76891#0" expanded="true" />
-            <element signature="e#76938#76939#0" expanded="true" />
-            <element signature="e#76997#76998#0" expanded="true" />
-            <element signature="e#77046#77047#0" expanded="true" />
-            <element signature="e#77128#77129#0" expanded="true" />
-            <element signature="e#77191#77192#0" expanded="true" />
-            <element signature="e#77465#77466#0" expanded="true" />
-            <element signature="e#77525#77526#0" expanded="true" />
-            <element signature="e#77605#77606#0" expanded="true" />
-            <element signature="e#77667#77668#0" expanded="true" />
-            <element signature="e#77746#77747#0" expanded="true" />
-            <element signature="e#77805#77806#0" expanded="true" />
-            <element signature="e#77888#77889#0" expanded="true" />
-            <element signature="e#77946#77947#0" expanded="true" />
-            <element signature="e#78182#78183#0" expanded="true" />
-            <element signature="e#78237#78238#0" expanded="true" />
-            <element signature="e#78327#78328#0" expanded="true" />
-            <element signature="e#78383#78384#0" expanded="true" />
-            <element signature="e#78459#78460#0" expanded="true" />
-            <element signature="e#78516#78517#0" expanded="true" />
-            <element signature="e#78587#78588#0" expanded="true" />
-            <element signature="e#78645#78646#0" expanded="true" />
-            <element signature="e#78723#78724#0" expanded="true" />
-            <element signature="e#78778#78779#0" expanded="true" />
-            <element signature="e#78864#78865#0" expanded="true" />
-            <element signature="e#78922#78923#0" expanded="true" />
-            <element signature="e#79198#79199#0" expanded="true" />
-            <element signature="e#79257#79258#0" expanded="true" />
-            <element signature="e#79494#79495#0" expanded="true" />
-            <element signature="e#79553#79554#0" expanded="true" />
-            <element signature="e#79635#79636#0" expanded="true" />
-            <element signature="e#79688#79689#0" expanded="true" />
-            <element signature="e#79775#79776#0" expanded="true" />
-            <element signature="e#79829#79830#0" expanded="true" />
-            <element signature="e#80314#80315#0" expanded="true" />
-            <element signature="e#80363#80364#0" expanded="true" />
-            <element signature="e#80430#80431#0" expanded="true" />
-            <element signature="e#80482#80483#0" expanded="true" />
-            <element signature="e#80544#80545#0" expanded="true" />
-            <element signature="e#80590#80591#0" expanded="true" />
-            <element signature="e#80657#80658#0" expanded="true" />
-            <element signature="e#80704#80705#0" expanded="true" />
-            <element signature="e#80777#80778#0" expanded="true" />
-            <element signature="e#80827#80828#0" expanded="true" />
-            <element signature="e#80911#80912#0" expanded="true" />
-            <element signature="e#80968#80969#0" expanded="true" />
-            <element signature="e#81021#81022#0" expanded="true" />
-            <element signature="e#81063#81064#0" expanded="true" />
-            <element signature="e#81117#81118#0" expanded="true" />
-            <element signature="e#81160#81161#0" expanded="true" />
-            <element signature="e#81219#81220#0" expanded="true" />
-            <element signature="e#81263#81264#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/jPDV.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Connection/CreateDatabaseSQLite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="173" column="80" selection-start-line="173" selection-start-column="70" selection-end-line="173" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/function/Consumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="994" column="28" selection-start-line="994" selection-start-column="28" selection-end-line="994" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#356#357#0" expanded="true" />
+            <element signature="e#388#389#0" expanded="true" />
+            <element signature="e#77399#77400#0" expanded="true" />
+            <element signature="e#77447#77448#0" expanded="true" />
+            <element signature="e#77501#77502#0" expanded="true" />
+            <element signature="e#77544#77545#0" expanded="true" />
+            <element signature="e#77593#77594#0" expanded="true" />
+            <element signature="e#77659#77660#0" expanded="true" />
+            <element signature="e#77707#77708#0" expanded="true" />
+            <element signature="e#77754#77755#0" expanded="true" />
+            <element signature="e#77803#77804#0" expanded="true" />
+            <element signature="e#77851#77852#0" expanded="true" />
+            <element signature="e#77913#77914#0" expanded="true" />
+            <element signature="e#77962#77963#0" expanded="true" />
+            <element signature="e#78026#78027#0" expanded="true" />
+            <element signature="e#78078#78079#0" expanded="true" />
+            <element signature="e#78158#78159#0" expanded="true" />
+            <element signature="e#78221#78222#0" expanded="true" />
+            <element signature="e#78299#78300#0" expanded="true" />
+            <element signature="e#78361#78362#0" expanded="true" />
+            <element signature="e#78415#78416#0" expanded="true" />
+            <element signature="e#78463#78464#0" expanded="true" />
+            <element signature="e#78522#78523#0" expanded="true" />
+            <element signature="e#78571#78572#0" expanded="true" />
+            <element signature="e#78653#78654#0" expanded="true" />
+            <element signature="e#78711#78712#0" expanded="true" />
+            <element signature="e#78975#78976#0" expanded="true" />
+            <element signature="e#79030#79031#0" expanded="true" />
+            <element signature="e#79110#79111#0" expanded="true" />
+            <element signature="e#79167#79168#0" expanded="true" />
+            <element signature="e#79246#79247#0" expanded="true" />
+            <element signature="e#79300#79301#0" expanded="true" />
+            <element signature="e#79383#79384#0" expanded="true" />
+            <element signature="e#79441#79442#0" expanded="true" />
+            <element signature="e#79526#79527#0" expanded="true" />
+            <element signature="e#79582#79583#0" expanded="true" />
+            <element signature="e#79677#79678#0" expanded="true" />
+            <element signature="e#79732#79733#0" expanded="true" />
+            <element signature="e#79822#79823#0" expanded="true" />
+            <element signature="e#79878#79879#0" expanded="true" />
+            <element signature="e#79954#79955#0" expanded="true" />
+            <element signature="e#80006#80007#0" expanded="true" />
+            <element signature="e#80077#80078#0" expanded="true" />
+            <element signature="e#80130#80131#0" expanded="true" />
+            <element signature="e#80208#80209#0" expanded="true" />
+            <element signature="e#80263#80264#0" expanded="true" />
+            <element signature="e#80349#80350#0" expanded="true" />
+            <element signature="e#80407#80408#0" expanded="true" />
+            <element signature="e#80683#80684#0" expanded="true" />
+            <element signature="e#80742#80743#0" expanded="true" />
+            <element signature="e#80979#80980#0" expanded="true" />
+            <element signature="e#81038#81039#0" expanded="true" />
+            <element signature="e#81120#81121#0" expanded="true" />
+            <element signature="e#81173#81174#0" expanded="true" />
+            <element signature="e#81260#81261#0" expanded="true" />
+            <element signature="e#81314#81315#0" expanded="true" />
+            <element signature="e#81789#81790#0" expanded="true" />
+            <element signature="e#81838#81839#0" expanded="true" />
+            <element signature="e#82041#82042#0" expanded="true" />
+            <element signature="e#82088#82089#0" expanded="true" />
+            <element signature="e#81905#81906#0" expanded="true" />
+            <element signature="e#81957#81958#0" expanded="true" />
+            <element signature="e#82019#82020#0" expanded="true" />
+            <element signature="e#82065#82066#0" expanded="true" />
+            <element signature="e#82132#82133#0" expanded="true" />
+            <element signature="e#82179#82180#0" expanded="true" />
+            <element signature="e#82252#82253#0" expanded="true" />
+            <element signature="e#82302#82303#0" expanded="true" />
+            <element signature="e#82386#82387#0" expanded="true" />
+            <element signature="e#82443#82444#0" expanded="true" />
+            <element signature="e#82496#82497#0" expanded="true" />
+            <element signature="e#82538#82539#0" expanded="true" />
+            <element signature="e#82592#82593#0" expanded="true" />
+            <element signature="e#82635#82636#0" expanded="true" />
+            <element signature="e#82694#82695#0" expanded="true" />
+            <element signature="e#82738#82739#0" expanded="true" />
+            <element signature="e#83578#83579#0" expanded="true" />
+            <element signature="e#83611#83612#0" expanded="true" />
+            <element signature="e#83668#83669#0" expanded="true" />
+            <element signature="e#83709#83710#0" expanded="true" />
+            <element signature="e#83937#83938#0" expanded="true" />
+            <element signature="e#83964#83965#0" expanded="true" />
+            <element signature="e#83785#83786#0" expanded="true" />
+            <element signature="e#83828#83829#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductFrontRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2068">
+          <caret line="94" column="41" lean-forward="true" selection-start-line="94" selection-start-column="41" selection-end-line="94" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductBackRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="44" column="79" selection-start-line="44" selection-start-column="79" selection-end-line="44" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductSearchRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="654">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ProductDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1520">
+          <caret line="89" column="37" selection-start-line="89" selection-start-column="37" selection-end-line="89" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/TableModel/ProductBackTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2415">
+          <caret line="137" column="5" lean-forward="true" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ShortcutKeyDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/TableModel/ProductSearchTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-704">
+          <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1125#1126#0" expanded="true" />
+            <element signature="e#1163#1164#0" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+            <element signature="e#1389#1390#0" expanded="true" />
+            <element signature="e#1569#1570#0" expanded="true" />
+            <element signature="e#1606#1607#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="171" column="35" selection-start-line="171" selection-start-column="35" selection-end-line="171" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#797#798#0" expanded="true" />
+            <element signature="e#847#848#0" expanded="true" />
+            <element signature="e#1631#1632#0" expanded="true" />
+            <element signature="e#1681#1682#0" expanded="true" />
+            <element signature="e#2364#2365#0" expanded="true" />
+            <element signature="e#2414#2415#0" expanded="true" />
+            <element signature="e#4929#4930#0" expanded="true" />
+            <element signature="e#4979#4980#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="247" column="45" selection-start-line="247" selection-start-column="45" selection-end-line="247" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#19529#19530#0" expanded="true" />
+            <element signature="e#19576#19577#0" expanded="true" />
+            <element signature="e#19684#19685#0" expanded="true" />
+            <element signature="e#19725#19726#0" expanded="true" />
+            <element signature="e#19841#19842#0" expanded="true" />
+            <element signature="e#19887#19888#0" expanded="true" />
           </folding>
         </state>
       </provider>

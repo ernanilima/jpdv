@@ -152,6 +152,34 @@ public class ViewPDVKeyListener {
     }
 
     /**
+     * Escuta as teclas precionadas na "tabela de buscar produtos".
+     */
+    public static class ProductSearchTableKeyListener extends KeyAdapter {
+        private final PDVPresenter presenter;
+
+        /**
+         * Metodo construtor
+         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         */
+        public ProductSearchTableKeyListener(PDVPresenter presenter) {
+            this.presenter = presenter;
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                // ADICIONA O PRODUTO SELECIONADO NA VENDA
+                presenter.productFromSearchTable();
+
+            } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
+                // VOLTA PARA A TELA DE VENDA
+                presenter.selectSaleCardL(CardLayoutPDV.CARD_VENDA);
+
+            }
+        }
+    }
+
+    /**
      * Escuta as teclas precionadas no campo de "valor total recebido".
      */
     public static class FieldTotalValueReceivedKeyListener extends KeyAdapter {

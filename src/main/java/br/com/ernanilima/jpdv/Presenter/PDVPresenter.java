@@ -2,12 +2,14 @@ package br.com.ernanilima.jpdv.Presenter;
 
 import br.com.ernanilima.jpdv.Controller.ProductBackRenderer;
 import br.com.ernanilima.jpdv.Controller.ProductFrontRenderer;
+import br.com.ernanilima.jpdv.Controller.ProductSearchRenderer;
 import br.com.ernanilima.jpdv.Dao.ProductDao;
 import br.com.ernanilima.jpdv.Dao.ShortcutKeyDao;
 import br.com.ernanilima.jpdv.Model.*;
 import br.com.ernanilima.jpdv.Model.Enum.IndexShortcutKey;
 import br.com.ernanilima.jpdv.Model.TableModel.ProductBackTableModel;
 import br.com.ernanilima.jpdv.Model.TableModel.ProductFrontTableModel;
+import br.com.ernanilima.jpdv.Model.TableModel.ProductSearchTableModel;
 import br.com.ernanilima.jpdv.Util.*;
 import br.com.ernanilima.jpdv.Dao.UserDao;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVActionListener;
@@ -68,6 +70,9 @@ public class PDVPresenter {
     // Table Model de produtos back
     private final ProductBackTableModel tmProductBack;
 
+    // Table Model de buscar produtos
+    private final ProductSearchTableModel tmProductSearch;
+
     private String id;
     private String password;
 
@@ -86,7 +91,9 @@ public class PDVPresenter {
         this.mShortcutKey = new ShortcutKey();
         this.tmProductFront = new ProductFrontTableModel();
         this.tmProductBack = new ProductBackTableModel();
+        this.tmProductSearch = new ProductSearchTableModel();
         this.myTables();
+        this.fillingProductSearchTable();
         this.myListiners();
         this.myFilters();
         this.myShortcutKey();
@@ -97,10 +104,21 @@ public class PDVPresenter {
 
     // Minhas JTables
     private void myTables() {
-        viewPDV.getTableProductFront().setModel(tmProductFront);
-        viewPDV.getTableProductFront().setDefaultRenderer(Object.class, new ProductFrontRenderer());
-        viewPDV.getTableProductBack().setModel(tmProductBack);
-        viewPDV.getTableProductBack().setDefaultRenderer(Object.class, new ProductBackRenderer());
+        viewPDV.getProductTableFront().setModel(tmProductFront);
+        viewPDV.getProductTableFront().setDefaultRenderer(Object.class, new ProductFrontRenderer());
+        viewPDV.getProductTableBack().setModel(tmProductBack);
+        viewPDV.getProductTableBack().setDefaultRenderer(Object.class, new ProductBackRenderer());
+        viewPDV.getProductSearchTable().setModel(tmProductSearch);
+        viewPDV.getProductSearchTable().setDefaultRenderer(Object.class, new ProductSearchRenderer());
+    }
+
+    // Preenche a tabela de buscar produtos
+    private void fillingProductSearchTable() {
+        int rows = tmProductSearch.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            tmProductSearch.removeRow(i);
+        }
+        dProduct.listProducts().forEach(tmProductSearch::addRow);
     }
 
     // Gera lista de teclas de atalho
@@ -117,6 +135,7 @@ public class PDVPresenter {
         viewPDV.setFieldPasswordKeyPressed(new ViewPDVKeyListener.FieldPassqordKeyListener(this));
         viewPDV.setFieldBarcodeKeyPressed(new ViewPDVKeyListener.FieldBarcodeKeyListener(this));
         viewPDV.setProductTableBackKeyPressed(new ViewPDVKeyListener.ProductTableBackKeyListener(this));
+        viewPDV.setProductSearchtableKeyPressed(new ViewPDVKeyListener.ProductSearchTableKeyListener(this));
         viewPDV.setFieldTotalValueReceivedKeyPressed(new ViewPDVKeyListener.FieldTotalValueReceivedKeyListener(this));
         viewPDV.setFieldDiscountValueKeyPressed(new ViewPDVKeyListener.FieldDiscountValueKeyListener(this));
         viewPDV.setFieldDiscountPercentageKeyPressed(new ViewPDVKeyListener.FieldDiscountPercentageKeyListener(this));
@@ -182,10 +201,22 @@ public class PDVPresenter {
     }
 
     /**
+     * Adiciona na venda o produto selecionado na tabela de buscar produtos
+     */
+    public void productFromSearchTable() {
+        System.out.println("PRODUTO ADICIONADO DA TABELA DE BUSCA");
+        selectSaleCardL(CardLayoutPDV.CARD_VENDA);
+    }
+
+    /**
      * Metodo que realiza a busca de produto pelo seu codigo de barras
      */
     public void searchProduct() {
-        if (!viewPDV.getBarcode().equals("")) {
+        if (viewPDV.getBarcode().equals("")) {
+            // Exibe o painel de buscar produtos
+            selectSaleCardL(CARD_BUSCAR);
+
+        } else if (!viewPDV.getBarcode().equals("")) {
             // Realiza a busca se o campo de codigo de barras for diferente de vazio
 
             if (viewPDV.getBarcode().contains(".")) {
@@ -203,11 +234,11 @@ public class PDVPresenter {
             if (dProduct.searchProductByBarcode(mCoupon)) {
                 // Executa caso o produto seja encontrado
                 mCoupon.setQuantity(Filter.filterDouble(viewPDV.getQuantity()));
-                mCoupon.setProductRowIndex(viewPDV.getTableProductFront().getRowCount()+1);
+                mCoupon.setProductRowIndex(viewPDV.getProductTableFront().getRowCount()+1);
                 tmProductFront.addRow(mCoupon);
                 tmProductBack.addRow(mCoupon);
-                viewPDV.getTableProductFront().changeSelection(viewPDV.getTableProductFront().getRowCount()-1, 0, false, false);
-                viewPDV.getTableProductBack().changeSelection(viewPDV.getTableProductBack().getRowCount()-1, 0, false, false);
+                viewPDV.getProductTableFront().changeSelection(viewPDV.getProductTableFront().getRowCount()-1, 0, false, false);
+                viewPDV.getProductTableBack().changeSelection(viewPDV.getProductTableBack().getRowCount()-1, 0, false, false);
                 viewPDV.setSalePrice(Format.brCurrencyFormat.format(mCoupon.getmProduct().getSalePrice()));
                 viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
                 System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
@@ -300,12 +331,13 @@ public class PDVPresenter {
             // PAINEL DE PRODUTOS BACK
             viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
             viewPDV.setFocusProductTableBack();
-            viewPDV.getTableProductFront().changeSelection(viewPDV.getTableProductFront().getRowCount()-1, 0, false, false);
-            viewPDV.getTableProductBack().changeSelection(viewPDV.getTableProductBack().getRowCount()-1, 0, false, false);
+            viewPDV.getProductTableFront().changeSelection(viewPDV.getProductTableFront().getRowCount()-1, 0, false, false);
+            viewPDV.getProductTableBack().changeSelection(viewPDV.getProductTableBack().getRowCount()-1, 0, false, false);
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_BUSCAR.getNameCardLayout())) {
             // PAINEL DE BUSCAR PRODUTOS
             viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
+            viewPDV.setFocusProductSearchTable();
 
         }
     }

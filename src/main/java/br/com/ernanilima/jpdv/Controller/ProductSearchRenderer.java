@@ -6,13 +6,13 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
 /**
- * TableCellRenderer da JTable de produtos back.
- * A tabela de produtos back eh onde o usuario pode escolher
- * produtos ja vendidos para cancelar
+ * TableCellRenderer da JTable de produtos.
+ * A tabela de produtos eh onde o usuario pode escolher o
+ * produto para adicionar na venda
  *
  * @author Ernani Lima
  */
-public class ProductBackRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
+public class ProductSearchRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -36,18 +36,11 @@ public class ProductBackRenderer extends DefaultTableCellRenderer implements Tab
         table.getColumnModel().getColumn(2).setResizable(false);
         table.getColumnModel().getColumn(3).setResizable(false);
         table.getColumnModel().getColumn(4).setResizable(false);
-        table.getColumnModel().getColumn(5).setResizable(false);
-        table.getColumnModel().getColumn(6).setResizable(false);
-        table.getColumnModel().getColumn(7).setResizable(false);
-        table.getColumnModel().getColumn(0).setPreferredWidth(2); //ITEM
-        table.getColumnModel().getColumn(1).setPreferredWidth(400); //DESCRIÇÃO
-        table.getColumnModel().getColumn(2).setPreferredWidth(130); //COD. BARRAS
-        table.getColumnModel().getColumn(3).setPreferredWidth(110); //PREÇO UND
-        table.getColumnModel().getColumn(4).setPreferredWidth(50); //QUANTIDADE
-        table.getColumnModel().getColumn(5).setPreferredWidth(20); //UNIDADE
-        table.getColumnModel().getColumn(6).setPreferredWidth(110); //DESCONTO
-        table.getColumnModel().getColumn(7).setPreferredWidth(110); //SUBTOTAL
-        table.getColumnModel().getColumn(8).setPreferredWidth(2); //C
+        table.getColumnModel().getColumn(0).setPreferredWidth(2); //COD
+        table.getColumnModel().getColumn(1).setPreferredWidth(300); //DESCRIÇÃO
+        table.getColumnModel().getColumn(2).setPreferredWidth(100); //COD. BARRAS
+        table.getColumnModel().getColumn(3).setPreferredWidth(100); //PREÇO UND
+        table.getColumnModel().getColumn(4).setPreferredWidth(10); //UNIDADE
 
         return this;
     }

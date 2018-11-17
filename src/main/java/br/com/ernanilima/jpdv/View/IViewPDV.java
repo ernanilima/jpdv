@@ -56,6 +56,7 @@ public interface IViewPDV {
     public void setFieldPasswordKeyPressed(KeyAdapter adapter);
     public void setFieldBarcodeKeyPressed(KeyAdapter adapter);
     public void setProductTableBackKeyPressed(KeyAdapter adapter);
+    public void setProductSearchtableKeyPressed(KeyAdapter adapter);
     public void setFieldTotalValueReceivedKeyPressed(KeyAdapter adapter);
     public void setFieldDiscountValueKeyPressed(KeyAdapter adapter);
     public void setFieldDiscountPercentageKeyPressed(KeyAdapter adapter);
@@ -77,6 +78,7 @@ public interface IViewPDV {
     public void setFocusFieldPassword();
     public void setFocusFieldBarcode();
     public void setFocusProductTableBack();
+    public void setFocusProductSearchTable();
     public void setFocusFieldTotalValueReceived();
     public void setFocusFieldDiscountValue();
     public void setFocusFieldDiscountPercentage();
@@ -97,8 +99,9 @@ public interface IViewPDV {
     public void setLogoCardL(String cardName);
 
     // Retorna o componente JTable
-    public JTable getTableProductFront();
-    public JTable getTableProductBack();
+    public JTable getProductTableFront();
+    public JTable getProductTableBack();
+    public JTable getProductSearchTable();
 
     // Seta a Imagem de background direto no jPanel
     public void setBackgroundLogin(JImagePanel imagePanel);

@@ -20,7 +20,7 @@ public class ProductBackTableModel extends AbstractTableModel {
     private static final int ITEM = 0;
     private static final int DESCRICAO = 1;
     private static final int COD_BARRAS = 2;
-    private static final int PRECO_UN = 3;
+    private static final int PRECO_UND = 3;
     private static final int QUANTIDADE = 4;
     private static final int UNIDADE = 5;
     private static final int DESCONTO = 6;
@@ -74,7 +74,7 @@ public class ProductBackTableModel extends AbstractTableModel {
                 return lsProducts.get(rowIndex).getmProduct().getDescriptionCoupon();
             case COD_BARRAS:
                 return Format.formatBarcode.format(lsProducts.get(rowIndex).getmProduct().getBarcode());
-            case PRECO_UN:
+            case PRECO_UND:
                 return Format.brCurrencyFormat.format(lsProducts.get(rowIndex).getmProduct().getSalePrice());
             case QUANTIDADE:
                 return Format.formatQty.format(lsProducts.get(rowIndex).getQuantity());
