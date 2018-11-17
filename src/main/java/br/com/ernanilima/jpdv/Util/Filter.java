@@ -30,4 +30,15 @@ public class Filter {
         numberDouble = numberDouble.replace(",", ".");
         return Double.parseDouble(numberDouble);
     }
+
+    /**
+     * Filtra e converte uma String para float.
+     * Converte todas as virgulas(,) para pontos(.)
+     * @param numberFloat String - Conteudo a ser filtrado
+     * @return float - Conteudo filtrado e convertido para float
+     */
+    public static float filterFloat(String numberFloat) {
+        numberFloat = numberFloat.replaceAll("[^0-9|^,]", "").replace(",", ".");
+        return Float.parseFloat(numberFloat);
+    }
 }

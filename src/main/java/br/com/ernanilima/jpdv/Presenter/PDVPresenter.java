@@ -253,6 +253,7 @@ public class PDVPresenter {
             viewPDV.getProductTableBack().changeSelection(viewPDV.getProductTableBack().getRowCount()-1, 0, false, false);
             viewPDV.setSalePrice(Format.brCurrencyFormat.format(mCoupon.getmProduct().getSalePrice()));
             viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
+            viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
             System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
             viewPDV.setQuantity(Format.formatQty.format(1));
             viewPDV.cleanBarcodeField();
@@ -445,6 +446,21 @@ public class PDVPresenter {
             System.out.println("VAI PARA VALOR");
             viewPDV.setFocusFieldDiscountValue();
         }
+    }
+
+    /**
+     * Valor total de produtos vendidos
+     */
+    private float totalValueOfProducts() {
+        float sum = 0, subtotal;
+        int rows = viewPDV.getProductTableBack().getRowCount();
+        int columns = viewPDV.getProductTableBack().getColumnCount() - 2; // Coluna de subtotal de cada produto
+
+        for (int i = 0; i < rows; i++) {
+            subtotal = Filter.filterFloat((String) viewPDV.getProductTableBack().getValueAt(i, columns));
+            sum += subtotal;
+        }
+        return sum;
     }
 
     /**

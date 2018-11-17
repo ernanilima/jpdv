@@ -1325,7 +1325,8 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
     @Override
     public void setTotalCouponValue(String totalCouponValue) {
-        campoSubTotalProduto.setText(totalCouponValue);
+        campoValTotalProdutos.setText(totalCouponValue);
+        campoValTotalCupom.setText(totalCouponValue);
     }
 
     @Override
