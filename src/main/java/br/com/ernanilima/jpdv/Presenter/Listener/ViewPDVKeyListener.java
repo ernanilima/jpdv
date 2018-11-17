@@ -81,7 +81,7 @@ public class ViewPDVKeyListener {
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER){
                 // Executa o metodo que busca o produto por codigo de barras
-                presenter.searchProduct();
+                presenter.productFromBarcodeField();
 
             } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.TOTALIZE)){
                 // Tela para finalizar a venda

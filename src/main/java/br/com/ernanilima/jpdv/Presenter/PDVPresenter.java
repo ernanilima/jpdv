@@ -56,7 +56,7 @@ public class PDVPresenter {
     private final ProductDao dProduct;
 
     // Model de produto
-    private final Product mProduct;
+    private Product mProduct;
 
     // Model de cupom
     private Coupon mCoupon;
@@ -201,60 +201,67 @@ public class PDVPresenter {
     }
 
     /**
+     * Adiciona na venda o produto informado no campo de codigo de barras
+     */
+    public void productFromBarcodeField() {
+        String barcode = viewPDV.getBarcode();
+        if (barcode.equals("")) {
+            // Exibe o painel de buscar produtos
+            selectSaleCardL(CARD_BUSCAR);
+
+        } else if (barcode.contains(".")) {
+            // Para a execucao do metodo se existir ponto(.) no campo de codigo de barras
+            pPopUPMessage.showAlert("ATENÇÃO!", "CÓDIGO DE BARRAS INVÁLIDO!");
+            viewPDV.cleanBarcodeField();
+
+        } else {
+            // Envia codigo de barras informado para o metodo
+            // que realiza a busca e adiciona na venda
+            mProduct = new Product();
+            mProduct.setBarcode(Long.parseLong(barcode));
+            searchProduct(mProduct);
+        }
+    }
+
+    /**
      * Adiciona na venda o produto selecionado na tabela de buscar produtos
      */
     public void productFromSearchTable() {
-        System.out.println("PRODUTO ADICIONADO DA TABELA DE BUSCA");
-        selectSaleCardL(CardLayoutPDV.CARD_VENDA);
+        int selectedRow = viewPDV.getProductSearchTable().getSelectedRow();
+        if (selectedRow != -1) {
+            mProduct = tmProductSearch.getLs(selectedRow);
+            searchProduct(mProduct);
+            selectSaleCardL(CardLayoutPDV.CARD_VENDA);
+        } else {
+            pPopUPMessage.showAlert("ATENÇÃO!", "NENHUM PRODUTO SELECIONADO!");
+        }
     }
 
     /**
      * Metodo que realiza a busca de produto pelo seu codigo de barras
      */
-    public void searchProduct() {
-        if (viewPDV.getBarcode().equals("")) {
-            // Exibe o painel de buscar produtos
-            selectSaleCardL(CARD_BUSCAR);
-
-        } else if (!viewPDV.getBarcode().equals("")) {
-            // Realiza a busca se o campo de codigo de barras for diferente de vazio
-
-            if (viewPDV.getBarcode().contains(".")) {
-                // Para a execucao do metodo se existir ponto(.) no campo de codigo de barras
-                pPopUPMessage.showAlert("ATENÇÃO!", "CÓDIGO DE BARRAS INVÁLIDO!");
-                viewPDV.cleanFieldBarcode();
-                return;
-            }
-
+    private void searchProduct(Product mProduct) {
+        if (dProduct.searchProductByBarcode(mProduct)) {
+            // Executa caso o produto seja encontrado
             mCoupon = new Coupon();
-
-            mProduct.setBarcode(Filter.filterLong(viewPDV.getBarcode()));
             mCoupon.setmProduct(mProduct);
-
-            if (dProduct.searchProductByBarcode(mCoupon)) {
-                // Executa caso o produto seja encontrado
-                mCoupon.setQuantity(Filter.filterDouble(viewPDV.getQuantity()));
-                mCoupon.setProductRowIndex(viewPDV.getProductTableFront().getRowCount()+1);
-                tmProductFront.addRow(mCoupon);
-                tmProductBack.addRow(mCoupon);
-                viewPDV.getProductTableFront().changeSelection(viewPDV.getProductTableFront().getRowCount()-1, 0, false, false);
-                viewPDV.getProductTableBack().changeSelection(viewPDV.getProductTableBack().getRowCount()-1, 0, false, false);
-                viewPDV.setSalePrice(Format.brCurrencyFormat.format(mCoupon.getmProduct().getSalePrice()));
-                viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
-                System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
-                viewPDV.setQuantity(Format.formatQty.format(1));
-                viewPDV.cleanFieldBarcode();
-            } else {
-                // Exibe um alerta caso o produto nao seja encontrado
-                System.out.println("PRODUTO NAO ENCONTRADO");
-                pPopUPMessage.showAlert("ATENÇÃO!", "PRODUTO NÃO ENCONTRADO!");
-                viewPDV.cleanFieldBarcode();
-            }
+            mCoupon.setQuantity(Filter.filterDouble(viewPDV.getQuantity()));
+            mCoupon.setProductRowIndex(viewPDV.getProductTableFront().getRowCount()+1);
+            tmProductFront.addRow(mCoupon);
+            tmProductBack.addRow(mCoupon);
+            viewPDV.getProductTableFront().changeSelection(viewPDV.getProductTableFront().getRowCount()-1, 0, false, false);
+            viewPDV.getProductTableBack().changeSelection(viewPDV.getProductTableBack().getRowCount()-1, 0, false, false);
+            viewPDV.setSalePrice(Format.brCurrencyFormat.format(mCoupon.getmProduct().getSalePrice()));
+            viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
+            System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
+            viewPDV.setQuantity(Format.formatQty.format(1));
+            viewPDV.cleanBarcodeField();
         } else {
-            // Exibe uma mensagem de alerta caso o campo de codigo de barras esteja vazio
-            System.out.println("INFORME O CODIGO DE BARRAS");
-            pPopUPMessage.showAlert("ATENÇÃO!", "INFORME O CÓDIGO DE BARRAS!");
-            viewPDV.cleanFieldBarcode();
+            // Exibe um alerta caso o produto nao seja encontrado
+            System.out.println("PRODUTO NAO ENCONTRADO");
+            pPopUPMessage.showAlert("ATENÇÃO!", "PRODUTO NÃO ENCONTRADO!");
+            viewPDV.cleanBarcodeField();
+            viewPDV.getProductTableFront().changeSelection(viewPDV.getProductTableFront().getRowCount()-1, 0, false, false);
         }
     }
 
@@ -269,10 +276,10 @@ public class PDVPresenter {
                 // Executa se a quantidade informada estiver entre
                 // o minimo e maximo permitido nos parametros
                 viewPDV.setQuantity(Format.formatQty.format(qtyPDV));
-                viewPDV.cleanFieldBarcode();
+                viewPDV.cleanBarcodeField();
             } else {
                 pPopUPMessage.showAlert("ATENÇÃO!", "QUANTIDADE INVÁLIDA!");
-                viewPDV.cleanFieldBarcode();
+                viewPDV.cleanBarcodeField();
             }
         } else if (viewPDV.getBarcode().equals("") & !viewPDV.getQuantity().equals("1,000")) {
             // Executa se o campo de codigo de barras estiver vazio

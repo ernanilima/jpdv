@@ -138,7 +138,7 @@ public class ProductBackTableModel extends AbstractTableModel {
     }
 
     /**
-     * Metodo utilizado para obter valores nao exibidos na JTable
+     * Utilizado para obter conteudo nao exibido na JTable
      * @param rowIndex int - Linha que deseja obter o conteudo
      * @return {@link Coupon} - Model de cupom de acordo com o parametro informado
      */

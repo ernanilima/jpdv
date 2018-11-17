@@ -88,7 +88,7 @@ public interface IViewPDV {
     public void setFocusableFieldTotalValueReceived(boolean focus);
 
     // Limpar campos
-    public void cleanFieldBarcode();
+    public void cleanBarcodeField();
     public void cleanDiscountValue();
     public void cleanDiscountPercentage();
 

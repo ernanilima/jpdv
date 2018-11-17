@@ -102,4 +102,13 @@ public class ProductSearchTableModel extends AbstractTableModel {
         //Notifica a JTable que determinada linha foi removida
         fireTableRowsDeleted(rowIndex, rowIndex);
     }
+
+    /**
+     * Utilizado para obter conteudo nao exibido na JTable
+     * @param rowIndex int - Linha que deseja obter o conteudo
+     * @return {@link Product} - Model de produto de acordo com o parametro informado
+     */
+    public Product getLs(int rowIndex) {
+        return lsProducts.get(rowIndex);
+    }
 }

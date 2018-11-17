@@ -1494,7 +1494,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
-    public void cleanFieldBarcode() {
+    public void cleanBarcodeField() {
         campoCodBarras.setText("");
     }
 
