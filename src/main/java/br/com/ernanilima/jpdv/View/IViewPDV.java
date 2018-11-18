@@ -56,10 +56,10 @@ public interface IViewPDV {
     public void setFieldPasswordKeyPressed(KeyAdapter adapter);
     public void setFieldBarcodeKeyPressed(KeyAdapter adapter);
     public void setProductTableBackKeyPressed(KeyAdapter adapter);
-    public void setProductSearchtableKeyPressed(KeyAdapter adapter);
     public void setFieldTotalValueReceivedKeyPressed(KeyAdapter adapter);
     public void setFieldDiscountValueKeyPressed(KeyAdapter adapter);
     public void setFieldDiscountPercentageKeyPressed(KeyAdapter adapter);
+    public void setFieldSearchProductKeyPressed(KeyAdapter adapter);
 
     // Associa um campo de texto a um Document
     public void setFieldBarcodeDocument(Document document);
@@ -78,10 +78,10 @@ public interface IViewPDV {
     public void setFocusFieldPassword();
     public void setFocusFieldBarcode();
     public void setFocusProductTableBack();
-    public void setFocusProductSearchTable();
     public void setFocusFieldTotalValueReceived();
     public void setFocusFieldDiscountValue();
     public void setFocusFieldDiscountPercentage();
+    public void setFocusFieldSearchProduct();
 
     // Habilitar ou desabilitar foco
     public void setFocusableFieldBarcode(boolean focus);

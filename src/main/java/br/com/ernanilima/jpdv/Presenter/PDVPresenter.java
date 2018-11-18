@@ -155,7 +155,7 @@ public class PDVPresenter {
         viewPDV.setFieldPasswordKeyPressed(new ViewPDVKeyListener.FieldPassqordKeyListener(this));
         viewPDV.setFieldBarcodeKeyPressed(new ViewPDVKeyListener.FieldBarcodeKeyListener(this));
         viewPDV.setProductTableBackKeyPressed(new ViewPDVKeyListener.ProductTableBackKeyListener(this));
-        viewPDV.setProductSearchtableKeyPressed(new ViewPDVKeyListener.ProductSearchTableKeyListener(this));
+        viewPDV.setFieldSearchProductKeyPressed(new ViewPDVKeyListener.FieldSearchProductKeyListener(this));
         viewPDV.setFieldTotalValueReceivedKeyPressed(new ViewPDVKeyListener.FieldTotalValueReceivedKeyListener(this));
         viewPDV.setFieldDiscountValueKeyPressed(new ViewPDVKeyListener.FieldDiscountValueKeyListener(this));
         viewPDV.setFieldDiscountPercentageKeyPressed(new ViewPDVKeyListener.FieldDiscountPercentageKeyListener(this));
@@ -365,7 +365,7 @@ public class PDVPresenter {
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_BUSCAR.getNameCardLayout())) {
             // PAINEL DE BUSCAR PRODUTOS
             viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
-            viewPDV.setFocusProductSearchTable();
+            viewPDV.setFocusFieldSearchProduct();
 
         }
     }

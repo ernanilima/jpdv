@@ -152,16 +152,16 @@ public class ViewPDVKeyListener {
     }
 
     /**
-     * Escuta as teclas precionadas na "tabela de buscar produtos".
+     * Escuta as teclas precionadas no campo de "buscar produto".
      */
-    public static class ProductSearchTableKeyListener extends KeyAdapter {
+    public static class FieldSearchProductKeyListener extends KeyAdapter {
         private final PDVPresenter presenter;
 
         /**
          * Metodo construtor
          * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
          */
-        public ProductSearchTableKeyListener(PDVPresenter presenter) {
+        public FieldSearchProductKeyListener(PDVPresenter presenter) {
             this.presenter = presenter;
         }
 

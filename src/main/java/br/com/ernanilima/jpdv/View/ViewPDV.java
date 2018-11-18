@@ -127,6 +127,9 @@ public class ViewPDV extends JFrame implements IViewPDV {
         tbItensVendidosPDV = new JTable();
         painelBuscarProduto = new JPanel();
         painelBtnBuscarProdutos = new JPanel();
+        campoBuscaProduto = new JTextField();
+        btnBuscar = new JButton();
+        btnLimpar = new JButton();
         jScrollPaneBuscarProdutos = new JScrollPane();
         tbBuscarProdutos = new JTable();
         painelRodapePDV = new JPanel();
@@ -1009,7 +1012,18 @@ public class ViewPDV extends JFrame implements IViewPDV {
                         .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        campoBuscaProduto.setFont(new Font("Verdana", 0, 18)); // NOI18N
+
+        btnBuscar.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.setFocusable(false);
+
+        btnLimpar.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnLimpar.setText("LIMPAR");
+        btnLimpar.setFocusable(false);
+
         tbBuscarProdutos.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        tbBuscarProdutos.setFocusable(false);
         tbBuscarProdutos.setOpaque(false);
         tbBuscarProdutos.setRowHeight(25);
         jScrollPaneBuscarProdutos.setViewportView(tbBuscarProdutos);
@@ -1019,14 +1033,28 @@ public class ViewPDV extends JFrame implements IViewPDV {
         painelBuscarProdutoLayout.setHorizontalGroup(
                 painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(GroupLayout.Alignment.TRAILING, painelBuscarProdutoLayout.createSequentialGroup()
-                                .addComponent(jScrollPaneBuscarProdutos, GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
+                                .addGroup(painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addComponent(campoBuscaProduto, GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPaneBuscarProdutos, GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(painelBtnBuscarProdutos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(painelBtnBuscarProdutos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(GroupLayout.Alignment.TRAILING, painelBuscarProdutoLayout.createSequentialGroup()
+                                                .addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))))
         );
         painelBuscarProdutoLayout.setVerticalGroup(
                 painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(painelBtnBuscarProdutos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPaneBuscarProdutos, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                        .addGroup(GroupLayout.Alignment.TRAILING, painelBuscarProdutoLayout.createSequentialGroup()
+                                .addGroup(painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(btnLimpar, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(campoBuscaProduto, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnBuscar, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPaneBuscarProdutos, GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                                        .addComponent(painelBtnBuscarProdutos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         painelCardVendas.add(painelBuscarProduto, "cardPDVBuscar");
@@ -1183,17 +1211,20 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JButton btnAtalho8;
     private JButton btnAtalho9;
     private JButton btnBackspace;
+    private JButton btnBuscar;
     private JButton btnConfirmarDesconto;
     private JButton btnEnterNumerico;
     private JButton btnFPagCartaoCred;
     private JButton btnFPagCartaoDeb;
     private JButton btnFPagDinheiro;
+    private JButton btnLimpar;
     private JButton btnLoginEntrar;
     private JButton btnLoginSair;
     private JButton btnQuantidade;
     private JButton btnSairNumerico;
     private JButton btnTotalizar;
     private JButton btnVirgula;
+    private JTextField campoBuscaProduto;
     private JTextField campoCodBarras;
     private JLabel campoCodFilial;
     private JLabel campoCodOperador;
@@ -1371,11 +1402,6 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
-    public void setProductSearchtableKeyPressed(KeyAdapter adapter) {
-        tbBuscarProdutos.addKeyListener(adapter);
-    }
-
-    @Override
     public void setFieldTotalValueReceivedKeyPressed(KeyAdapter adapter) {
         campoValTotalRecebido.addKeyListener(adapter);
     }
@@ -1388,6 +1414,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public void setFieldDiscountPercentageKeyPressed(KeyAdapter adapter) {
         campoDescontoPer.addKeyListener(adapter);
+    }
+
+    @Override
+    public void setFieldSearchProductKeyPressed(KeyAdapter adapter) {
+        campoBuscaProduto.addKeyListener(adapter);
     }
 
     @Override
@@ -1465,11 +1496,6 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
-    public void setFocusProductSearchTable() {
-        tbBuscarProdutos.requestFocus();
-    }
-
-    @Override
     public void setFocusFieldTotalValueReceived() {
         campoValTotalRecebido.requestFocus();
     }
@@ -1482,6 +1508,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public void setFocusFieldDiscountPercentage() {
         campoDescontoPer.requestFocus();
+    }
+
+    @Override
+    public void setFocusFieldSearchProduct() {
+        campoBuscaProduto.requestFocus();
     }
 
     @Override
