@@ -378,15 +378,20 @@ public class PDVPresenter {
      */
     public void selectValueCardL(CardLayoutPDV cardLayoutPDV) {
         if (cardLayoutPDV.getNameCardLayout().equals(CARD_VALOR_CUPOM.getNameCardLayout())) {
-            // PAINEL DE VALORES DO CUPOM
-            viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
+            if (viewPDV.getProductTableBack().getRowCount() > 0) {
+                // EXECUTA APENAS SE JA EXISTIR ALGUM ITEM VENDIDO
+                // PAINEL DE VALORES DO CUPOM
+                viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
 
-            // PAINEL DE FORMAS DE PAGAMENTO
-            viewPDV.setLogoCardL(CARD_FPAGAMENTO.getNameCardLayout());
+                // PAINEL DE FORMAS DE PAGAMENTO
+                viewPDV.setLogoCardL(CARD_FPAGAMENTO.getNameCardLayout());
 
-            viewPDV.setFocusableFieldTotalValueReceived(true);
-            viewPDV.setFocusFieldTotalValueReceived();
+                viewPDV.setFocusableFieldTotalValueReceived(true);
+                viewPDV.setFocusFieldTotalValueReceived();
 
+            } else {
+                pPopUPMessage.showAlert("ATENÇÃO!", "SEM VENDA PARA FINALIZAR!");
+            }
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_VALOR_PRODUTO.getNameCardLayout())) {
             // PAINEL DE VALORES DO PRODUTO
             viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
