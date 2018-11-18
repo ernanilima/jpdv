@@ -268,7 +268,7 @@ public class PDVPresenter {
     /**
      * Filtro de busca de produto
      */
-    public void productSearch() {
+    public void productSearchFilter() {
         trsProductSearch.setRowFilter(RowFilter.regexFilter("(?i)" + viewPDV.getFieldSearchProduct()));
         viewPDV.getProductSearchTable().changeSelection(0, 0, false, false);
     }
@@ -495,10 +495,10 @@ public class PDVPresenter {
     private float totalValueOfProducts() {
         float sum = 0, subtotal;
         int rows = viewPDV.getProductTableBack().getRowCount();
-        int columns = viewPDV.getProductTableBack().getColumnCount() - 2; // Coluna de subtotal de cada produto
+        int column = viewPDV.getProductTableBack().getColumnCount() - 2; // Coluna de subtotal de cada produto
 
         for (int i = 0; i < rows; i++) {
-            subtotal = Filter.filterFloat((String) viewPDV.getProductTableBack().getValueAt(i, columns));
+            subtotal = Filter.filterFloat((String) viewPDV.getProductTableBack().getValueAt(i, column));
             sum += subtotal;
         }
         return sum;
@@ -523,5 +523,23 @@ public class PDVPresenter {
      */
     public void focusFieldBarCode() {
         viewPDV.setFocusFieldBarcode();
+    }
+
+    /**
+     * Movimenta a linha da tabela
+     * @param move int - 1=UP / 0=DOWN
+     */
+    public void moveTableRow(int move) {
+        int rows = viewPDV.getProductSearchTable().getRowCount();
+        int row = viewPDV.getProductSearchTable().getSelectedRow();
+
+        if (move == 1 & row > 0) {
+            // SELECIONA A LINHA SUPERIOR
+            viewPDV.getProductSearchTable().changeSelection(row - 1, 0, false, false);
+
+        } else if (move == 0 & (row + 1) < rows) {
+            // SELECIONA A LINHA INFERIOR
+            viewPDV.getProductSearchTable().changeSelection(row + 1, 0, false, false);
+        }
     }
 }

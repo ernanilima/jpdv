@@ -6,21 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="7c472712-a015-46df-908a-dcecff645212" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVActionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVActionListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVActionListener$ExitActionListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVActionListener$LoginUserActionListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Connection/CreateDatabaseSQLite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Connection/CreateDatabaseSQLite.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldDiscountPercentageKeyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldDiscountPercentageKeyListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldDiscountValueKeyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldDiscountValueKeyListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldSearchProductKeyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldSearchProductKeyListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldTotalValueReceivedKeyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/Listener/ViewPDVKeyListener$FieldTotalValueReceivedKeyListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/PDVPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/PDVPresenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/View/IViewPDV.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/View/IViewPDV.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/View/ViewPDV.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/View/ViewPDV.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -65,13 +58,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="54" />
-          <entry key="java" value="39993" />
+          <entry key="java" value="40578" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="39993" />
+          <entry key="JAVA" value="40578" />
           <entry key="PLAIN_TEXT" value="54" />
           <entry key="XML" value="1" />
         </counts>
@@ -80,7 +73,7 @@
         <counts>
           <entry key="class" value="1" />
           <entry key="form" value="1" />
-          <entry key="java" value="703" />
+          <entry key="java" value="705" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
@@ -88,7 +81,7 @@
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="GUI_DESIGNER_FORM" value="1" />
-          <entry key="JAVA" value="703" />
+          <entry key="JAVA" value="705" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
@@ -100,14 +93,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="268" column="33" selection-start-line="268" selection-start-column="33" selection-end-line="268" selection-end-column="33" />
+            <state relative-caret-position="403">
+              <caret line="529" column="38" lean-forward="true" selection-start-line="529" selection-start-column="38" selection-end-line="529" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="docComment;method#userLogin#0;class#PDVPresenter#0" />
-                <element signature="method#userLogin#0;class#PDVPresenter#0" />
-                <element signature="docComment;method#exitPDV#0;class#PDVPresenter#0" />
-                <element signature="method#exitPDV#0;class#PDVPresenter#0" />
                 <element signature="e#22426#22427#0" expanded="true" />
                 <element signature="e#22473#22474#0" expanded="true" />
                 <element signature="e#22581#22582#0" expanded="true" />
@@ -122,8 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="171" column="35" selection-start-line="171" selection-start-column="35" selection-end-line="171" selection-end-column="35" />
+            <state relative-caret-position="376">
+              <caret line="183" column="33" lean-forward="true" selection-start-line="183" selection-start-column="33" selection-end-line="183" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#797#798#0" expanded="true" />
@@ -136,8 +125,6 @@
                 <element signature="e#4989#4990#0" expanded="true" />
                 <element signature="e#5817#5818#0" expanded="true" />
                 <element signature="e#5867#5868#0" expanded="true" />
-                <element signature="e#6364#6365#0" expanded="true" />
-                <element signature="e#6396#6397#0" expanded="true" />
                 <element signature="e#6730#6731#0" expanded="true" />
                 <element signature="e#6780#6781#0" expanded="true" />
                 <element signature="e#7843#7844#0" expanded="true" />
@@ -152,8 +139,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="821">
-              <caret line="1374" column="42" selection-start-line="1374" selection-start-column="42" selection-end-line="1374" selection-end-column="42" />
+            <state relative-caret-position="389">
+              <caret line="1587" column="18" selection-start-line="1587" selection-start-column="18" selection-end-line="1587" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#356#357#0" expanded="true" />
@@ -268,8 +255,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="51" column="42" selection-start-line="51" selection-start-column="42" selection-end-line="51" selection-end-column="42" />
+            <state relative-caret-position="557">
+              <caret line="107" column="33" selection-start-line="107" selection-start-column="33" selection-end-line="107" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -290,7 +277,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>valueOf</find>
       <find>numberOfCharacters</find>
       <find>campoPrecoProduto</find>
       <find>java.awt.</find>
@@ -320,6 +306,7 @@
       <find>mCoupon</find>
       <find>mProduct</find>
       <find>javax.</find>
+      <find>getRowCount</find>
     </findStrings>
     <dirStrings>
       <dir>C:\jPDV\src\main\resources\Img</dir>
@@ -350,7 +337,6 @@
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Util/FieldManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/Coupon.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/jPDV.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Connection/CreateDatabaseSQLite.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/ProductFrontRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPConfirmDialogActionListener.java" />
@@ -380,6 +366,7 @@
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVActionListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Connection/CreateDatabaseSQLite.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java" />
       </list>
@@ -560,7 +547,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542570058789" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542583837084" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jPDV-Offline-master" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -639,7 +626,7 @@
       <window_info anchor="bottom" id="Terminal" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50039744" side_tool="true" weight="0.3253796" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.3264642" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.3263965" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1062,13 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Connection/CreateDatabaseSQLite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="200" column="71" selection-start-line="200" selection-start-column="52" selection-end-line="200" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ShortcutKeyDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -1174,10 +1154,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVActionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1056">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#774#775#0" expanded="true" />
+            <element signature="e#824#825#0" expanded="true" />
+            <element signature="e#896#897#0" expanded="true" />
+            <element signature="e#941#942#0" expanded="true" />
+            <element signature="e#1357#1358#0" expanded="true" />
+            <element signature="e#1407#1408#0" expanded="true" />
+            <element signature="e#1479#1480#0" expanded="true" />
+            <element signature="e#1522#1523#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/IViewPDV.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="51" column="42" selection-start-line="51" selection-start-column="42" selection-end-line="51" selection-end-column="42" />
+        <state relative-caret-position="557">
+          <caret line="107" column="33" selection-start-line="107" selection-start-column="33" selection-end-line="107" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1186,8 +1184,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/ViewPDV.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="821">
-          <caret line="1374" column="42" selection-start-line="1374" selection-start-column="42" selection-end-line="1374" selection-end-column="42" />
+        <state relative-caret-position="389">
+          <caret line="1587" column="18" selection-start-line="1587" selection-start-column="18" selection-end-line="1587" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#356#357#0" expanded="true" />
@@ -1278,28 +1276,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVActionListener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Connection/CreateDatabaseSQLite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#774#775#0" expanded="true" />
-            <element signature="e#824#825#0" expanded="true" />
-            <element signature="e#896#897#0" expanded="true" />
-            <element signature="e#941#942#0" expanded="true" />
-            <element signature="e#1357#1358#0" expanded="true" />
-            <element signature="e#1407#1408#0" expanded="true" />
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#1522#1523#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="345">
+          <caret line="175" column="12" selection-start-line="175" selection-start-column="12" selection-end-line="175" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewPDVKeyListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="171" column="35" selection-start-line="171" selection-start-column="35" selection-end-line="171" selection-end-column="35" />
+        <state relative-caret-position="376">
+          <caret line="183" column="33" lean-forward="true" selection-start-line="183" selection-start-column="33" selection-end-line="183" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#797#798#0" expanded="true" />
@@ -1312,8 +1299,6 @@
             <element signature="e#4989#4990#0" expanded="true" />
             <element signature="e#5817#5818#0" expanded="true" />
             <element signature="e#5867#5868#0" expanded="true" />
-            <element signature="e#6364#6365#0" expanded="true" />
-            <element signature="e#6396#6397#0" expanded="true" />
             <element signature="e#6730#6731#0" expanded="true" />
             <element signature="e#6780#6781#0" expanded="true" />
             <element signature="e#7843#7844#0" expanded="true" />
@@ -1326,14 +1311,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="268" column="33" selection-start-line="268" selection-start-column="33" selection-end-line="268" selection-end-column="33" />
+        <state relative-caret-position="403">
+          <caret line="529" column="38" lean-forward="true" selection-start-line="529" selection-start-column="38" selection-end-line="529" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;method#userLogin#0;class#PDVPresenter#0" />
-            <element signature="method#userLogin#0;class#PDVPresenter#0" />
-            <element signature="docComment;method#exitPDV#0;class#PDVPresenter#0" />
-            <element signature="method#exitPDV#0;class#PDVPresenter#0" />
             <element signature="e#22426#22427#0" expanded="true" />
             <element signature="e#22473#22474#0" expanded="true" />
             <element signature="e#22581#22582#0" expanded="true" />

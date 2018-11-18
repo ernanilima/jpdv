@@ -175,12 +175,22 @@ public class ViewPDVKeyListener {
                 // VOLTA PARA A TELA DE VENDA
                 presenter.selectSaleCardL(CardLayoutPDV.CARD_VENDA);
 
+            } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                // MOVE PARA A LINHA SUPERIOR NA TABELA DE BUSCA DE PRODUTO
+                presenter.moveTableRow(1);
+
+            } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                // MOVE PARA A LINHA INFERIOR NA TABELA DE BUSCA DE PRODUTO
+                presenter.moveTableRow(0);
+
             }
         }
 
         @Override
         public void keyReleased(KeyEvent e) {
-            presenter.productSearch();
+            if (e.getKeyCode() != KeyEvent.VK_UP & e.getKeyCode() != KeyEvent.VK_DOWN) {
+                presenter.productSearchFilter();
+            }
         }
     }
 
