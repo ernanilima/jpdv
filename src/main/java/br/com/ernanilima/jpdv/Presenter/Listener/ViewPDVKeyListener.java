@@ -177,6 +177,11 @@ public class ViewPDVKeyListener {
 
             }
         }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            presenter.productSearch();
+        }
     }
 
     /**

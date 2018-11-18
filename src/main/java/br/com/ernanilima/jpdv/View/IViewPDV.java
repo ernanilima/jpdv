@@ -48,10 +48,14 @@ public interface IViewPDV {
     // Retorna o percentual de desconto informado
     public String getDiscountPercentage();
 
+    // Retorna o conteudo digitado na busca de produto
+    public String getFieldSearchProduct();
+
 
     // Seta escutas em componentes do PDV
-    public void setLoginActionPerformed(ActionListener listener);
-    public void setExitActionPerformed(ActionListener listener);
+    public void setBtnLoginActionPerformed(ActionListener listener);
+    public void setBtnExitActionPerformed(ActionListener listener);
+    public void setBtnSearchProductActionPerformed(ActionListener listener);
     public void setFieldIDKeyPressed(KeyAdapter adapter);
     public void setFieldPasswordKeyPressed(KeyAdapter adapter);
     public void setFieldBarcodeKeyPressed(KeyAdapter adapter);

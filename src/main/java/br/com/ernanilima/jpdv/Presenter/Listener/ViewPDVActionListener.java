@@ -16,14 +16,14 @@ public class ViewPDVActionListener {
      * Executa o metodo "{@link PDVPresenter#userLogin()}" que realiza
      * a validacao de login do usuario ou do suporte tecnico.
      */
-    public static class LoginUserActionListener implements ActionListener {
+    public static class BtnLoginUserActionListener implements ActionListener {
         private final PDVPresenter presenter;
 
         /**
          * Metodo construtor
          * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
          */
-        public LoginUserActionListener(PDVPresenter presenter) {
+        public BtnLoginUserActionListener(PDVPresenter presenter) {
             this.presenter = presenter;
         }
 
@@ -36,14 +36,14 @@ public class ViewPDVActionListener {
     /**
      * Executa o metodo "{@link PDVPresenter#exitPDV()}" que fecha a tela do PDV.
      */
-    public static class ExitActionListener implements ActionListener {
+    public static class BtnExitActionListener implements ActionListener {
         private final PDVPresenter presenter;
 
         /**
          * Metodo construtor
          * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
          */
-        public ExitActionListener(PDVPresenter presenter) {
+        public BtnExitActionListener(PDVPresenter presenter) {
             this.presenter = presenter;
         }
 

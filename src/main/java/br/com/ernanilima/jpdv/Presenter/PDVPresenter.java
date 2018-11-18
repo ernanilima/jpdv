@@ -21,6 +21,9 @@ import br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV;
 import br.com.ernanilima.jpdv.View.IViewPDV;
 import br.com.ernanilima.jpdv.View.ViewPDV;
 
+import javax.swing.*;
+import javax.swing.table.TableRowSorter;
+
 import static br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV.*;
 
 /**
@@ -76,6 +79,9 @@ public class PDVPresenter {
     // TableModel de buscar produtos
     private final ProductSearchTableModel tmProductSearch;
 
+    // TableRowSorter de buscar produtos
+    private final TableRowSorter<ProductSearchTableModel> trsProductSearch;
+
     // TableModel de formas de pagamento
     private final PaymentTableModel tmPayment;
 
@@ -98,6 +104,7 @@ public class PDVPresenter {
         this.tmProductFront = new ProductFrontTableModel();
         this.tmProductBack = new ProductBackTableModel();
         this.tmProductSearch = new ProductSearchTableModel();
+        this.trsProductSearch = new TableRowSorter<>(tmProductSearch);
         this.tmPayment = new PaymentTableModel();
         this.myTables();
         this.fillProductSearchTable();
@@ -118,6 +125,7 @@ public class PDVPresenter {
         viewPDV.getProductTableBack().setDefaultRenderer(Object.class, new ProductBackRenderer());
         viewPDV.getProductSearchTable().setModel(tmProductSearch);
         viewPDV.getProductSearchTable().setDefaultRenderer(Object.class, new ProductSearchRenderer());
+        viewPDV.getProductSearchTable().setRowSorter(trsProductSearch);
         viewPDV.getPaymentMethodTable().setModel(tmPayment);
         viewPDV.getPaymentMethodTable().setDefaultRenderer(Object.class, new PaymentRenderer());
     }
@@ -149,8 +157,8 @@ public class PDVPresenter {
 
     // Listiner de "Botons", "Campos" e outros.
     private void myListiners() {
-        viewPDV.setLoginActionPerformed(new ViewPDVActionListener.LoginUserActionListener(this));
-        viewPDV.setExitActionPerformed(new ViewPDVActionListener.ExitActionListener(this));
+        viewPDV.setBtnLoginActionPerformed(new ViewPDVActionListener.BtnLoginUserActionListener(this));
+        viewPDV.setBtnExitActionPerformed(new ViewPDVActionListener.BtnExitActionListener(this));
         viewPDV.setFieldIDKeyPressed(new ViewPDVKeyListener.FieldIDKeyListener(this));
         viewPDV.setFieldPasswordKeyPressed(new ViewPDVKeyListener.FieldPassqordKeyListener(this));
         viewPDV.setFieldBarcodeKeyPressed(new ViewPDVKeyListener.FieldBarcodeKeyListener(this));
@@ -249,12 +257,20 @@ public class PDVPresenter {
     public void productFromSearchTable() {
         int selectedRow = viewPDV.getProductSearchTable().getSelectedRow();
         if (selectedRow != -1) {
-            mProduct = tmProductSearch.getLs(selectedRow);
+            mProduct = tmProductSearch.getLs(viewPDV.getProductSearchTable().convertRowIndexToModel(selectedRow));
             searchProduct(mProduct);
             selectSaleCardL(CardLayoutPDV.CARD_VENDA);
         } else {
             pPopUPMessage.showAlert("ATENÇÃO!", "NENHUM PRODUTO SELECIONADO!");
         }
+    }
+
+    /**
+     * Filtro de busca de produto
+     */
+    public void productSearch() {
+        trsProductSearch.setRowFilter(RowFilter.regexFilter("(?i)" + viewPDV.getFieldSearchProduct()));
+        viewPDV.getProductSearchTable().changeSelection(0, 0, false, false);
     }
 
     /**

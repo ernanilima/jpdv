@@ -1371,14 +1371,24 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
-    public void setLoginActionPerformed(ActionListener listener) {
+    public String getFieldSearchProduct() {
+        return campoBuscaProduto.getText();
+    }
+
+    @Override
+    public void setBtnLoginActionPerformed(ActionListener listener) {
         btnLoginEntrar.addActionListener(listener);
     }
 
     @Override
-    public void setExitActionPerformed(ActionListener listener) {
+    public void setBtnExitActionPerformed(ActionListener listener) {
         btnLoginSair.addActionListener(listener);
         btnSairNumerico.addActionListener(listener);
+    }
+
+    @Override
+    public void setBtnSearchProductActionPerformed(ActionListener listener) {
+        btnBuscar.addActionListener(listener);
     }
 
     @Override
