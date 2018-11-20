@@ -52,4 +52,24 @@ public class ViewPDVActionListener {
             presenter.exitPDV();
         }
     }
+
+    /**
+     * Executa o metodo "{@link PDVPresenter#cleanAllProductSearch()}" que limpa a busca de produto.
+     */
+    public static class BtnClearSearchActionListener implements ActionListener {
+        private final PDVPresenter presenter;
+
+        /**
+         * Metodo construtor
+         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         */
+        public BtnClearSearchActionListener(PDVPresenter presenter) {
+            this.presenter = presenter;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            presenter.cleanAllProductSearch();
+        }
+    }
 }

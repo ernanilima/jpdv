@@ -128,7 +128,6 @@ public class ViewPDV extends JFrame implements IViewPDV {
         painelBuscarProduto = new JPanel();
         painelBtnBuscarProdutos = new JPanel();
         campoBuscaProduto = new JTextField();
-        btnBuscar = new JButton();
         btnLimpar = new JButton();
         jScrollPaneBuscarProdutos = new JScrollPane();
         tbBuscarProdutos = new JTable();
@@ -1012,15 +1011,15 @@ public class ViewPDV extends JFrame implements IViewPDV {
                         .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        campoBuscaProduto.setFont(new Font("Verdana", 0, 18)); // NOI18N
-
-        btnBuscar.setFont(new Font("Verdana", 0, 18)); // NOI18N
-        btnBuscar.setText("BUSCAR");
-        btnBuscar.setFocusable(false);
-
-        btnLimpar.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnLimpar.setBackground(new Color(0, 0, 0));
+        btnLimpar.setFont(new Font("Verdana", 0, 14)); // NOI18N
+        btnLimpar.setForeground(new Color(255, 255, 255));
         btnLimpar.setText("LIMPAR");
+        btnLimpar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         btnLimpar.setFocusable(false);
+        campoBuscaProduto.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        campoBuscaProduto.setLayout(new BorderLayout());
+        campoBuscaProduto.add(btnLimpar,BorderLayout.LINE_END);
 
         tbBuscarProdutos.setFont(new Font("Verdana", 0, 18)); // NOI18N
         tbBuscarProdutos.setFocusable(false);
@@ -1032,25 +1031,16 @@ public class ViewPDV extends JFrame implements IViewPDV {
         painelBuscarProduto.setLayout(painelBuscarProdutoLayout);
         painelBuscarProdutoLayout.setHorizontalGroup(
                 painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(GroupLayout.Alignment.TRAILING, painelBuscarProdutoLayout.createSequentialGroup()
-                                .addGroup(painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(campoBuscaProduto, GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPaneBuscarProdutos, GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE))
+                        .addGroup(painelBuscarProdutoLayout.createSequentialGroup()
+                                .addComponent(jScrollPaneBuscarProdutos, GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(painelBtnBuscarProdutos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(GroupLayout.Alignment.TRAILING, painelBuscarProdutoLayout.createSequentialGroup()
-                                                .addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(painelBtnBuscarProdutos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoBuscaProduto)
         );
         painelBuscarProdutoLayout.setVerticalGroup(
                 painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(GroupLayout.Alignment.TRAILING, painelBuscarProdutoLayout.createSequentialGroup()
-                                .addGroup(painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(btnLimpar, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(campoBuscaProduto, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnBuscar, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(campoBuscaProduto, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(painelBuscarProdutoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(jScrollPaneBuscarProdutos, GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
@@ -1211,7 +1201,6 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JButton btnAtalho8;
     private JButton btnAtalho9;
     private JButton btnBackspace;
-    private JButton btnBuscar;
     private JButton btnConfirmarDesconto;
     private JButton btnEnterNumerico;
     private JButton btnFPagCartaoCred;
@@ -1387,11 +1376,6 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
-    public void setBtnSearchProductActionPerformed(ActionListener listener) {
-        btnBuscar.addActionListener(listener);
-    }
-
-    @Override
     public void setFieldIDKeyPressed(KeyAdapter adapter) {
         campoCodUsuario.addKeyListener(adapter);
     }
@@ -1429,6 +1413,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public void setFieldSearchProductKeyPressed(KeyAdapter adapter) {
         campoBuscaProduto.addKeyListener(adapter);
+    }
+
+    @Override
+    public void setBtnClearSearchActionPerformed(ActionListener listener) {
+        btnLimpar.addActionListener(listener);
     }
 
     @Override
@@ -1548,6 +1537,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public void cleanDiscountPercentage() {
         campoDescontoPer.setText("");
+    }
+
+    @Override
+    public void cleanProductSearch() {
+        campoBuscaProduto.setText("");
     }
 
     @Override

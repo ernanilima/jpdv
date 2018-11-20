@@ -164,6 +164,7 @@ public class PDVPresenter {
         viewPDV.setFieldBarcodeKeyPressed(new ViewPDVKeyListener.FieldBarcodeKeyListener(this));
         viewPDV.setProductTableBackKeyPressed(new ViewPDVKeyListener.ProductTableBackKeyListener(this));
         viewPDV.setFieldSearchProductKeyPressed(new ViewPDVKeyListener.FieldSearchProductKeyListener(this));
+        viewPDV.setBtnClearSearchActionPerformed(new ViewPDVActionListener.BtnClearSearchActionListener(this));
         viewPDV.setFieldTotalValueReceivedKeyPressed(new ViewPDVKeyListener.FieldTotalValueReceivedKeyListener(this));
         viewPDV.setFieldDiscountValueKeyPressed(new ViewPDVKeyListener.FieldDiscountValueKeyListener(this));
         viewPDV.setFieldDiscountPercentageKeyPressed(new ViewPDVKeyListener.FieldDiscountPercentageKeyListener(this));
@@ -523,6 +524,14 @@ public class PDVPresenter {
      */
     public void focusFieldBarCode() {
         viewPDV.setFocusFieldBarcode();
+    }
+
+    /**
+     * Limpa toda a busca de produto
+     */
+    public void cleanAllProductSearch() {
+        viewPDV.cleanProductSearch();
+        productSearchFilter();
     }
 
     /**

@@ -55,7 +55,6 @@ public interface IViewPDV {
     // Seta escutas em componentes do PDV
     public void setBtnLoginActionPerformed(ActionListener listener);
     public void setBtnExitActionPerformed(ActionListener listener);
-    public void setBtnSearchProductActionPerformed(ActionListener listener);
     public void setFieldIDKeyPressed(KeyAdapter adapter);
     public void setFieldPasswordKeyPressed(KeyAdapter adapter);
     public void setFieldBarcodeKeyPressed(KeyAdapter adapter);
@@ -64,6 +63,7 @@ public interface IViewPDV {
     public void setFieldDiscountValueKeyPressed(KeyAdapter adapter);
     public void setFieldDiscountPercentageKeyPressed(KeyAdapter adapter);
     public void setFieldSearchProductKeyPressed(KeyAdapter adapter);
+    public void setBtnClearSearchActionPerformed(ActionListener listener);
 
     // Associa um campo de texto a um Document
     public void setFieldBarcodeDocument(Document document);
@@ -95,6 +95,7 @@ public interface IViewPDV {
     public void cleanBarcodeField();
     public void cleanDiscountValue();
     public void cleanDiscountPercentage();
+    public void cleanProductSearch();
 
     // Seta qual cardLayout deseja exibir
     public void setStartCardL(String cardName);

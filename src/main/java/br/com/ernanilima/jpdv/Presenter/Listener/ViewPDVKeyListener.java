@@ -170,10 +170,12 @@ public class ViewPDVKeyListener {
             if (e.getKeyCode() == KeyEvent.VK_ENTER){
                 // ADICIONA O PRODUTO SELECIONADO NA VENDA
                 presenter.productFromSearchTable();
+                presenter.cleanAllProductSearch();
 
             } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
                 // VOLTA PARA A TELA DE VENDA
                 presenter.selectSaleCardL(CardLayoutPDV.CARD_VENDA);
+                presenter.cleanAllProductSearch();
 
             } else if (e.getKeyCode() == KeyEvent.VK_UP) {
                 // MOVE PARA A LINHA SUPERIOR NA TABELA DE BUSCA DE PRODUTO
@@ -188,7 +190,8 @@ public class ViewPDVKeyListener {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            if (e.getKeyCode() != KeyEvent.VK_UP & e.getKeyCode() != KeyEvent.VK_DOWN) {
+            if (e.getKeyCode() != KeyEvent.VK_UP & e.getKeyCode() != KeyEvent.VK_DOWN
+                & e.getKeyCode() != KeyEvent.VK_LEFT & e.getKeyCode() != KeyEvent.VK_RIGHT) {
                 presenter.productSearchFilter();
             }
         }
