@@ -1,7 +1,9 @@
 package br.com.ernanilima.jpdv.Util;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
@@ -30,5 +32,15 @@ public class Format {
      * Formata valores monetarios com o padrao do Brasil
      */
     public static final NumberFormat brCurrencyFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+
+    /**
+     * Formata a data para o padrao americano
+     */
+    public static final DateFormat DFDATE = new SimpleDateFormat("yyyy-MM-dd");
+
+    /**
+     * Formata a hora no padrao 24 horas
+     */
+    public static final DateFormat DFTIME = new SimpleDateFormat("HH:mm:ss");
 
 }

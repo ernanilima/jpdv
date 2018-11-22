@@ -100,7 +100,7 @@ public class ProductBackTableModel extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case DESCONTO:
-                lsProducts.get(rowIndex).setTotalProductDiscount((Double) aValue);
+                lsProducts.get(rowIndex).setTotalProductDiscount((Float) aValue);
                 break;
             case CANCELADO:
                 lsProducts.get(rowIndex).setProductCanceled((Boolean) aValue);

@@ -4,9 +4,7 @@ import br.com.ernanilima.jpdv.Controller.PaymentRenderer;
 import br.com.ernanilima.jpdv.Controller.ProductBackRenderer;
 import br.com.ernanilima.jpdv.Controller.ProductFrontRenderer;
 import br.com.ernanilima.jpdv.Controller.ProductSearchRenderer;
-import br.com.ernanilima.jpdv.Dao.PaymentDao;
-import br.com.ernanilima.jpdv.Dao.ProductDao;
-import br.com.ernanilima.jpdv.Dao.ShortcutKeyDao;
+import br.com.ernanilima.jpdv.Dao.*;
 import br.com.ernanilima.jpdv.Model.*;
 import br.com.ernanilima.jpdv.Model.Enum.IndexShortcutKey;
 import br.com.ernanilima.jpdv.Model.TableModel.PaymentTableModel;
@@ -14,7 +12,6 @@ import br.com.ernanilima.jpdv.Model.TableModel.ProductBackTableModel;
 import br.com.ernanilima.jpdv.Model.TableModel.ProductFrontTableModel;
 import br.com.ernanilima.jpdv.Model.TableModel.ProductSearchTableModel;
 import br.com.ernanilima.jpdv.Util.*;
-import br.com.ernanilima.jpdv.Dao.UserDao;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVActionListener;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVKeyListener;
 import br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV;
@@ -23,6 +20,9 @@ import br.com.ernanilima.jpdv.View.ViewPDV;
 
 import javax.swing.*;
 import javax.swing.table.TableRowSorter;
+
+import java.sql.Date;
+import java.sql.Time;
 
 import static br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV.*;
 
@@ -61,6 +61,9 @@ public class PDVPresenter {
     // Dao de produto
     private final ProductDao dProduct;
 
+    // Dao de cupom
+    private final CouponDao dCoupon;
+
     // Model de produto
     private Product mProduct;
 
@@ -98,6 +101,7 @@ public class PDVPresenter {
         this.mBg = new Backgrounds();
         this.dUser = new UserDao();
         this.dProduct = new ProductDao();
+        this.dCoupon = new CouponDao();
         this.mProduct = new Product();
         this.mCoupon = new Coupon();
         this.mShortcutKey = new ShortcutKey();
@@ -282,7 +286,7 @@ public class PDVPresenter {
             // Executa caso o produto seja encontrado
             mCoupon = new Coupon();
             mCoupon.setmProduct(mProduct);
-            mCoupon.setQuantity(Filter.filterDouble(viewPDV.getQuantity()));
+            mCoupon.setQuantity(Filter.filterFloat(viewPDV.getQuantity()));
             mCoupon.setProductRowIndex(viewPDV.getProductTableFront().getRowCount()+1);
             tmProductFront.addRow(mCoupon);
             tmProductBack.addRow(mCoupon);
@@ -291,6 +295,9 @@ public class PDVPresenter {
             viewPDV.setSalePrice(Format.brCurrencyFormat.format(mCoupon.getmProduct().getSalePrice()));
             viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
             viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
+
+            viewPDV.setTotalValueReceivable(Format.brCurrencyFormat.format(totalValueOfProducts()));
+
             System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
             viewPDV.setQuantity(Format.formatQty.format(1));
             viewPDV.cleanBarcodeField();
@@ -550,5 +557,81 @@ public class PDVPresenter {
             // SELECIONA A LINHA INFERIOR
             viewPDV.getProductSearchTable().changeSelection(row + 1, 0, false, false);
         }
+    }
+
+    /**
+     * Valida e finaliza a venda
+     */
+    public void finalizeSale() {
+        int moneyPaymentIndex = 0;
+        int paymentSelectedRow  = viewPDV.getPaymentMethodTable().getSelectedRow();
+        String fieldValueReceived = viewPDV.getFieldTotalValueReceived(); // VALOR RECEBIDO
+        String fieldValueReceivable = viewPDV.getFieldTotalValueReceivable(); // VALOR A RECEBER
+
+        if (paymentSelectedRow == -1) {
+            pPopUPMessage.showAlert("ATENCAO!", "ESCOLHA UMA FORMA DE PAGAMENTO!");
+            return;
+        }
+
+        if (fieldValueReceived.equals("")) {
+            // VALOR RECEBIDO EH IGUAL AO VALOR DO CUPOM
+            System.out.println("VALOR RECEBIDO IGUAL AO CUPOM");
+            saveSale();
+
+        } else {
+            float valueReceived = Filter.filterFloat(fieldValueReceived);
+            float valueReceivable = Filter.filterFloat(fieldValueReceivable);
+
+            if (valueReceived == valueReceivable) {
+                // VALOR RECEBIDO EH IGUAL AO VALOR A RECEBER
+                System.out.println("VALOR RECEBIDO IGUAL");
+                saveSale();
+
+            } else if (valueReceived < valueReceivable) {
+                // VALOR RECEBIDO EH MENOR QUE O VALOR A RECEBER
+                System.out.println("VALOR RECEBIDO MENOR");
+                saveSale();
+
+            } else if (valueReceived > valueReceivable & paymentSelectedRow == moneyPaymentIndex) {
+                // VALOR RECEBIDO EH MAIOR QUE O VALOR A RECEBER
+                // VALOR MAIOR PERMITIDO APENAS PARA PAGAMENTO EM DINHEIRO
+                System.out.println("VALOR RECEBIDO MAIOR");
+                saveSale();
+
+            } else {
+                System.out.println("TROCO APENAS PARA DINHEIRO");
+
+            }
+        }
+    }
+
+    // Salva a venda
+    private void saveSale() {
+        CompanyBR mCompanyBR = new CompanyBR();
+        //mUser = new User();
+        mProduct = new Product();
+        mCoupon = new Coupon();
+        //List<Coupon> lsCoupon = new ArrayList<>();
+
+        mCompanyBR.setId(1);
+        mCoupon.setmCompany(mCompanyBR);
+        //mCoupon.setPDV
+        mCoupon.setFormOfPayment1(1);
+        mCoupon.setPaymentAmount1(10);
+        mCoupon.setFormOfPayment2(0);
+        mCoupon.setPaymentAmount2(0);
+        mCoupon.setFormOfPayment3(0);
+        mCoupon.setPaymentAmount3(0);
+        mCoupon.setTotalCouponValue(10);
+        mCoupon.setTotalDiscount(0);
+        mCoupon.setmUser(mUser);
+        //mCoupon.setSupervisor
+        mCoupon.setCouponCanceled(false);
+        mCoupon.setDate(Date.valueOf(Format.DFDATE.format(System.currentTimeMillis())));
+        mCoupon.setHour(Time.valueOf(Format.DFTIME.format(System.currentTimeMillis())));
+        mCoupon.setCouponStatus(false);
+        mCoupon.setTable(0);
+
+        dCoupon.saveSaleCoupon(mCoupon);
     }
 }

@@ -20,17 +20,17 @@ public class Coupon {
     private Date date;
     private Time hour;
     private boolean couponStatus;
-    private double quantity;
-    //private double totalProductValue;
-    //private double totalCouponValue;
+    private float quantity;
+    //private float totalProductValue;
+    private float totalCouponValue;
     private int formOfPayment1;
-    private double paymentAmount1;
+    private float paymentAmount1;
     private int formOfPayment2;
-    private double paymentAmount2;
+    private float paymentAmount2;
     private int formOfPayment3;
-    private double paymentAmount3;
-    private double totalDiscount;
-    private double totalProductDiscount;
+    private float paymentAmount3;
+    private float totalDiscount;
+    private float totalProductDiscount;
     private int table;
     private Product mProduct;
     private CompanyBR mCompany;
@@ -145,52 +145,52 @@ public class Coupon {
     }
 
     /**
-     * @return double - Quantidade total do produto
+     * @return float - Quantidade total do produto
      */
-    public double getQuantity() {
+    public float getQuantity() {
         return quantity;
     }
 
     /**
      * Atribui a quantidade total do produto na variavel "{@link #quantity}"
-     * @param quantity double - Quantidade total do produto
+     * @param quantity float - Quantidade total do produto
      */
-    public void setQuantity(double quantity) {
+    public void setQuantity(float quantity) {
         this.quantity = quantity;
     }
 
     /**
-     * @return double - Valor total do produto
+     * @return float - Valor total do produto
      */
-    //public double getTotalProductValue() {
+    //public float getTotalProductValue() {
     //    return totalProductValue;
     //}
-    public double getTotalProductValue() {
+    public float getTotalProductValue() {
         return getQuantity() * mProduct.getSalePrice();
     }
 
     /**
      * Atribui o valor total do produto na variavel "{@link #totalProductValue}"
-     * @param totalProductValue double - Valor total do produto
+     * @param totalProductValue float - Valor total do produto
      */
-    //public void setTotalProductValue(double totalProductValue) {
+    //public void setTotalProductValue(float totalProductValue) {
     //    this.totalProductValue = totalProductValue;
     //}
 
     /**
-     * @return double - Valor total do cupom
+     * @return float - Valor total do cupom
      */
-    //public double getTotalCouponValue() {
-    //    return totalCouponValue;
-    //}
+    public float getTotalCouponValue() {
+        return totalCouponValue;
+    }
 
     /**
      * Atribui o valor total do cupom na variavel "{@link #totalCouponValue}"
-     * @param totalCouponValue double - Valor total do cupom
+     * @param totalCouponValue float - Valor total do cupom
      */
-    //public void setTotalCouponValue(double totalCouponValue) {
-    //    this.totalCouponValue = totalCouponValue;
-    //}
+    public void setTotalCouponValue(float totalCouponValue) {
+        this.totalCouponValue = totalCouponValue;
+    }
 
     /**
      * @return int - Forma de pagamento 1
@@ -208,17 +208,17 @@ public class Coupon {
     }
 
     /**
-     * @return double - Valor total do pagamento 1
+     * @return float - Valor total do pagamento 1
      */
-    public double getPaymentAmount1() {
+    public float getPaymentAmount1() {
         return paymentAmount1;
     }
 
     /**
      * Atribui o valor total do pagamento 1 na variavel "{@link #paymentAmount1}"
-     * @param paymentAmount1 double - Valor total do pagamento 1
+     * @param paymentAmount1 float - Valor total do pagamento 1
      */
-    public void setPaymentAmount1(double paymentAmount1) {
+    public void setPaymentAmount1(float paymentAmount1) {
         this.paymentAmount1 = paymentAmount1;
     }
 
@@ -237,17 +237,17 @@ public class Coupon {
     }
 
     /**
-     * @return double - Valor total do pagamento 2
+     * @return float - Valor total do pagamento 2
      */
-    public double getPaymentAmount2() {
+    public float getPaymentAmount2() {
         return paymentAmount2;
     }
 
     /**
      * Atribui o valor total do pagamento 2 na variavel "{@link #paymentAmount2}"
-     * @param paymentAmount2 double - Valor total do pagamento 2
+     * @param paymentAmount2 float - Valor total do pagamento 2
      */
-    public void setPaymentAmount2(double paymentAmount2) {
+    public void setPaymentAmount2(float paymentAmount2) {
         this.paymentAmount2 = paymentAmount2;
     }
 
@@ -267,47 +267,47 @@ public class Coupon {
     }
 
     /**
-     * @return double - Valor total do pagamento 3
+     * @return float - Valor total do pagamento 3
      */
-    public double getPaymentAmount3() {
+    public float getPaymentAmount3() {
         return paymentAmount3;
     }
 
     /**
      * Atribui o valor total do pagamento 3 na variavel "{@link #paymentAmount3}"
-     * @param paymentAmount3 double - Valor total do pagamento 3
+     * @param paymentAmount3 float - Valor total do pagamento 3
      */
-    public void setPaymentAmount3(double paymentAmount3) {
+    public void setPaymentAmount3(float paymentAmount3) {
         this.paymentAmount3 = paymentAmount3;
     }
 
     /**
-     * @return double - Valor total de desconto
+     * @return float - Valor total de desconto
      */
-    public double getTotalDiscount() {
+    public float getTotalDiscount() {
         return totalDiscount;
     }
 
     /**
      * Atribui na variavel "{@link #totalDiscount}" o valor total de desconto
-     * @param totalDiscount double - Valor total de desconto
+     * @param totalDiscount float - Valor total de desconto
      */
-    public void setTotalDiscount(double totalDiscount) {
+    public void setTotalDiscount(float totalDiscount) {
         this.totalDiscount = totalDiscount;
     }
 
     /**
-     * @return double - Valor total de desconto no produto
+     * @return float - Valor total de desconto no produto
      */
-    public double getTotalProductDiscount() {
+    public float getTotalProductDiscount() {
         return totalProductDiscount;
     }
 
     /**
      * Atribui na variavel "{@link #totalProductDiscount}" o valor total de desconto no produto
-     * @param totalProductDiscount double - Valor total de desconto no produto
+     * @param totalProductDiscount float - Valor total de desconto no produto
      */
-    public void setTotalProductDiscount(double totalProductDiscount) {
+    public void setTotalProductDiscount(float totalProductDiscount) {
         this.totalProductDiscount = totalProductDiscount;
     }
 
@@ -373,7 +373,33 @@ public class Coupon {
 
     public String getProductHTML() {
         return "<html>"
-                + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td width='45px'>"+ Format.formatProductRowIndex.format(getProductRowIndex())+"</td><td width='120px'>"+Format.formatBarcode.format(getmProduct().getBarcode())+"</td><td width='500px'>"+getmProduct().getDescriptionCoupon()+"</td></tr></table>"
-                + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td align='right'; width='60px'>"+Format.formatQty.format(getQuantity())+"</td><td align='center'; width='40px'>"+getmProduct().getmUnits().getDescription()+"</td><td align='center'; width='30px'>X</td><td width='100px'>"+Format.brCurrencyFormat.format(getmProduct().getSalePrice())+"</td><td width='90px'; color='#088A29'>"+Format.brCurrencyFormat.format(-getTotalProductDiscount())+"</td><td align='right'>"+Format.brCurrencyFormat.format(getTotalProductValue())+"</td></tr></table></html>";
+                + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td width='45px'>"+
+                    // LINHA DO ITEM
+                    Format.formatProductRowIndex.format(getProductRowIndex())
+                +"</td><td width='120px'>"+
+                    // CODIGO DE BARRAS
+                    Format.formatBarcode.format(getmProduct().getBarcode())
+                +"</td><td width='500px'>"+
+                    // DESCRICAO
+                    getmProduct().getDescriptionCoupon()
+                +"</td></tr></table>"
+
+                + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td align='right'; width='55px'>"+
+                    // QUANTIDADE
+                    Format.formatQty.format(getQuantity())
+                +"</td><td align='center'; width='35px'>"+
+                    // UNIDADE
+                    getmProduct().getmUnits().getDescription()
+                +"</td><td align='center'; width='25px'>X</td><td width='100px'>"+
+                    // PRECO DE VENDA
+                    Format.brCurrencyFormat.format(getmProduct().getSalePrice())
+                +"</td><td width='90px'; color='#088A29'>"+
+                    // DESCONTO
+                    (getTotalProductDiscount() != 0 ? Format.brCurrencyFormat.format(-getTotalProductDiscount()) : "")
+                +"</td><td align='right'>"+
+                    // VALOR TOTAL
+                    Format.brCurrencyFormat.format(getTotalProductValue())
+                +"</td></tr></table>"+
+                "</html>";
     }
 }

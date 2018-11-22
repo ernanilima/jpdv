@@ -454,6 +454,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         jLabelValTotalDesconto.setFont(new Font("Verdana", 0, 18)); // NOI18N
         jLabelValTotalDesconto.setText("DESCONTO");
+        jLabelValTotalDesconto.setVisible(false);
 
         jLabelRS5.setBackground(new Color(255, 255, 255));
         jLabelRS5.setFont(new Font("Verdana", 0, 36)); // NOI18N
@@ -467,6 +468,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
         campoValTotalDesconto.setFocusable(false);
         campoValTotalDesconto.setLayout(new BorderLayout());
         campoValTotalDesconto.add(jLabelRS5, BorderLayout.LINE_START);
+        campoValTotalDesconto.setVisible(false);
 
         jLabelValTotalAReceber.setFont(new Font("Verdana", 0, 18)); // NOI18N
         jLabelValTotalAReceber.setText("TOTAL A RECEBER");
@@ -1350,8 +1352,18 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setTotalValueReceivable(String totalValueReceivable) {
+        campoValTotalAReceber.setText(totalValueReceivable);
+    }
+
+    @Override
     public String getDiscountValue() {
         return campoDescontoRS.getText();
+    }
+
+    @Override
+    public String getFieldTotalValueReceivable() {
+        return campoValTotalAReceber.getText();
     }
 
     @Override
@@ -1362,6 +1374,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public String getFieldSearchProduct() {
         return campoBuscaProduto.getText();
+    }
+
+    @Override
+    public String getFieldTotalValueReceived() {
+        return campoValTotalRecebido.getText();
     }
 
     @Override

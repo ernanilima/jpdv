@@ -215,7 +215,7 @@ public class ViewPDVKeyListener {
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER){
                 // FINALIZA A VENDA
-                System.out.println("FINALIZA E SALVA A VENDA");
+                presenter.finalizeSale();
 
             } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
                 // VOLTA PARA A TELA DE VENDA

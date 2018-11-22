@@ -12,8 +12,8 @@ public class Product {
     private String description;
     private String descriptionCoupon;
     private long barcode;
-    private double salePrice;
-    private double promotionalPrice;
+    private float salePrice;
+    private float promotionalPrice;
     private Unit mUnit;
 
     // Construtor vazio
@@ -80,32 +80,32 @@ public class Product {
     }
 
     /**
-     * @return double - Preco de venda do produto
+     * @return float - Preco de venda do produto
      */
-    public double getSalePrice() {
+    public float getSalePrice() {
         return salePrice;
     }
 
     /**
      * Atribui o preco de venda do produto na variavel "{@link #salePrice}"
-     * @param salePrice double - Preco de venda do produto
+     * @param salePrice float - Preco de venda do produto
      */
-    public void setSalePrice(double salePrice) {
+    public void setSalePrice(float salePrice) {
         this.salePrice = salePrice;
     }
 
     /**
-     * @return double - Preco promocional do produto
+     * @return float - Preco promocional do produto
      */
-    public double getPromotionalPrice() {
+    public float getPromotionalPrice() {
         return promotionalPrice;
     }
 
     /**
      * Atribui o preco promocional do produto na variavel "{@link #promotionalPrice}"
-     * @param promotionalPrice double - Preco promocional do produto
+     * @param promotionalPrice float - Preco promocional do produto
      */
-    public void setPromotionalPrice(double promotionalPrice) {
+    public void setPromotionalPrice(float promotionalPrice) {
         this.promotionalPrice = promotionalPrice;
     }
 

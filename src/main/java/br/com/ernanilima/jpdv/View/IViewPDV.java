@@ -41,15 +41,23 @@ public interface IViewPDV {
     // Seta o valor total do cupom
     public void setTotalCouponValue(String totalCouponValue);
 
+    // Seta o valor total a receber
+    public void setTotalValueReceivable(String totalValueReceivable);
+
     // Retorna o valor de desconto informado
     public String getDiscountValue();
 
+    // Retorna o valor total a receber
+    public String getFieldTotalValueReceivable();
 
     // Retorna o percentual de desconto informado
     public String getDiscountPercentage();
 
     // Retorna o conteudo digitado na busca de produto
     public String getFieldSearchProduct();
+
+    // Retorna o valor total recebido
+    public String getFieldTotalValueReceived();
 
 
     // Seta escutas em componentes do PDV
