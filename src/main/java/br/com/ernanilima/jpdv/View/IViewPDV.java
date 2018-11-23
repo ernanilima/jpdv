@@ -104,6 +104,7 @@ public interface IViewPDV {
     public void cleanDiscountValue();
     public void cleanDiscountPercentage();
     public void cleanProductSearch();
+    public void cleanTotalValueReceived();
 
     // Seta qual cardLayout deseja exibir
     public void setStartCardL(String cardName);

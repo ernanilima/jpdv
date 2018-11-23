@@ -188,6 +188,34 @@ public class PDVPresenter {
         //viewPDV.setFieldDiscountPercentageDocument( CRIAR UM DOCUMENTO DE %);
     }
 
+    // Nova venda
+    private void newSale() {
+        selectSaleCardL(CARD_VENDA);
+        selectValueCardL(CARD_VALOR_PRODUTO);
+
+        // LIMPAR PRODUTOS VENDIDOS
+        int productRows = viewPDV.getProductTableFront().getRowCount();
+        if (productRows > 0) {
+            int rows = tmProductFront.getRowCount();
+            for (int i = rows - 1; i >= 0; i--) {
+                tmProductFront.removeRow(i);
+                tmProductBack.removeRow(i);
+            }
+        }
+
+        cleanBasicFields();
+    }
+
+    // Limpa os campos basicos
+    private void cleanBasicFields() {
+        viewPDV.cleanBarcodeField();
+        viewPDV.setSalePrice("");
+        viewPDV.setTotalProductValue("");
+        viewPDV.setTotalCouponValue("");
+        viewPDV.setTotalValueReceivable("");
+        viewPDV.cleanTotalValueReceived();
+    }
+
     /**
      * Metodo que realiza a validacao de login do usuario ou do suporte tecnico
      */
@@ -576,7 +604,9 @@ public class PDVPresenter {
         if (fieldValueReceived.equals("")) {
             // VALOR RECEBIDO EH IGUAL AO VALOR DO CUPOM
             System.out.println("VALOR RECEBIDO IGUAL AO CUPOM");
+            viewPDV.getPaymentMethodTable().clearSelection();
             saveSale();
+            newSale();
 
         } else {
             float valueReceived = Filter.filterFloat(fieldValueReceived);
@@ -585,18 +615,24 @@ public class PDVPresenter {
             if (valueReceived == valueReceivable) {
                 // VALOR RECEBIDO EH IGUAL AO VALOR A RECEBER
                 System.out.println("VALOR RECEBIDO IGUAL");
+                viewPDV.getPaymentMethodTable().clearSelection();
                 saveSale();
+                newSale();
 
             } else if (valueReceived < valueReceivable) {
                 // VALOR RECEBIDO EH MENOR QUE O VALOR A RECEBER
                 System.out.println("VALOR RECEBIDO MENOR");
+                viewPDV.getPaymentMethodTable().clearSelection();
                 saveSale();
+                newSale();
 
             } else if (valueReceived > valueReceivable & paymentSelectedRow == moneyPaymentIndex) {
                 // VALOR RECEBIDO EH MAIOR QUE O VALOR A RECEBER
                 // VALOR MAIOR PERMITIDO APENAS PARA PAGAMENTO EM DINHEIRO
                 System.out.println("VALOR RECEBIDO MAIOR");
+                viewPDV.getPaymentMethodTable().clearSelection();
                 saveSale();
+                newSale();
 
             } else {
                 System.out.println("TROCO APENAS PARA DINHEIRO");

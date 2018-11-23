@@ -14,12 +14,11 @@ import java.util.List;
 public class PaymentTableModel extends AbstractTableModel {
 
     // Constantes representando o indice das colunas
-    private static final int COD = 0;
-    private static final int DESCRICAO = 1;
+    private static final int DESCRICAO = 0;
 
     // Lista de formas de pagamento
     private final List<Payment> lsPayments = new ArrayList<>();
-    private final String[] columns = {"COD", "DESCRIÇÃO"};
+    private final String[] columns = {"FORMAS DE PAGAMENTO"};
 
     /**
      * Determinha o nome de cada coluna da JTable
@@ -58,8 +57,6 @@ public class PaymentTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         System.out.println("LOOP GET PAYMENT");
         switch (columnIndex) {
-            case COD:
-                return lsPayments.get(rowIndex).getId();
             case DESCRICAO:
                 return lsPayments.get(rowIndex).getDescription();
         }

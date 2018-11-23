@@ -30,9 +30,6 @@ public class PaymentRenderer extends DefaultTableCellRenderer implements TableCe
 
         table.getTableHeader().setReorderingAllowed(false);
         table.getColumnModel().getColumn(0).setResizable(false);
-        table.getColumnModel().getColumn(1).setResizable(false);
-        table.getColumnModel().getColumn(0).setPreferredWidth(10); //COD
-        table.getColumnModel().getColumn(1).setPreferredWidth(300); //DESCRIÇÃO
 
         return this;
     }

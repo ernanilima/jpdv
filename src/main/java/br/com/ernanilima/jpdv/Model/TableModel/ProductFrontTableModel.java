@@ -60,4 +60,16 @@ public class ProductFrontTableModel extends AbstractTableModel {
         // A JTable usa esta informacao para redesenhar todas as celulas, atualizando seu conteudo.
         fireTableDataChanged();
     }
+
+    /**
+     * Remove linha da JTable
+     * @param rowIndex int - Linha para remover
+     */
+    public void removeRow(int rowIndex) {
+        // Remove a linha informada
+        lsProducts.remove(rowIndex);
+
+        //Notifica a JTable que determinada linha foi removida
+        fireTableRowsDeleted(rowIndex, rowIndex);
+    }
 }

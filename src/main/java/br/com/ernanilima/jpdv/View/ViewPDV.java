@@ -1562,6 +1562,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void cleanTotalValueReceived() {
+        campoValTotalRecebido.setText("");
+    }
+
+    @Override
     public void setStartCardL(String cardName) {
         CardLayout cardLayout = (CardLayout) painelCardPDV.getLayout();
         cardLayout.show(painelCardPDV, cardName);
