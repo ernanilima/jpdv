@@ -46,8 +46,8 @@ public class ProductDao {
                 mUnit.setId(rs.getInt("cod_un_medida"));
                 mUnit.setDescription(rs.getString("desc_un_medida"));
                 mProduct.setmUnits(mUnit);
-                mProduct.setSalePrice(rs.getFloat("prec_vend"));
-                mProduct.setPromotionalPrice(rs.getFloat("prec_prom"));
+                mProduct.setSalePrice(rs.getDouble("prec_vend"));
+                mProduct.setPromotionalPrice(rs.getDouble("prec_prom"));
                 return true;
             }
         } catch (ClassNotFoundException e) {
@@ -85,8 +85,8 @@ public class ProductDao {
                 mUnit.setId(rs.getInt("cod_un_medida"));
                 mUnit.setDescription(rs.getString("desc_un_medida"));
                 mProduct.setmUnits(mUnit);
-                mProduct.setSalePrice(rs.getFloat("prec_vend"));
-                mProduct.setPromotionalPrice(rs.getFloat("prec_prom"));
+                mProduct.setSalePrice(rs.getDouble("prec_vend"));
+                mProduct.setPromotionalPrice(rs.getDouble("prec_prom"));
                 lsProducts.add(mProduct);
             }
         } catch (ClassNotFoundException e) {

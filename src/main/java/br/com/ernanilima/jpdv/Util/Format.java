@@ -14,9 +14,9 @@ import java.util.Locale;
 public class Format {
 
     /**
-     * Formata o numero da linha do produto inserido, 3 digitos
+     * Formata inteiro para 3 digitos
      */
-    public static final DecimalFormat formatProductRowIndex = new DecimalFormat("000");
+    public static final DecimalFormat formatThreeDigits = new DecimalFormat("000");
 
     /**
      * Formata o numero do codigo de barras do produto, 14 digitos

@@ -225,6 +225,18 @@ public class ViewPDVKeyListener {
                 // DESCONTO NA VENDA
                 presenter.selectLogoCardL(CardLayoutPDV.CARD_DESCONTO);
 
+            } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.PAYMENT_MONEY)) {
+                // PAGAMENTO EM DINHEIRO
+                presenter.selectPaymentMethod(0);
+
+            } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.PAYMENT_CREDIT_CARD)) {
+                // PAGAMENTO CARTAO DE CREDITO
+                presenter.selectPaymentMethod(1);
+
+            } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.PAYMENT_DEBIT_CARD)) {
+                // PAGAMENTO CARTAO DE DEBIDO
+                presenter.selectPaymentMethod(2);
+
             }
         }
     }

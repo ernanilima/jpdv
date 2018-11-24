@@ -69,7 +69,7 @@ public class ProductBackTableModel extends AbstractTableModel {
         System.out.println("LOOP BACK");
         switch (columnIndex) {
             case ITEM:
-                return Format.formatProductRowIndex.format(lsProducts.get(rowIndex).getProductRowIndex());
+                return Format.formatThreeDigits.format(lsProducts.get(rowIndex).getProductRowIndex());
             case DESCRICAO:
                 return lsProducts.get(rowIndex).getmProduct().getDescriptionCoupon();
             case COD_BARRAS:
@@ -100,7 +100,7 @@ public class ProductBackTableModel extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case DESCONTO:
-                lsProducts.get(rowIndex).setTotalProductDiscount((Float) aValue);
+                lsProducts.get(rowIndex).setTotalProductDiscount((double) aValue);
                 break;
             case CANCELADO:
                 lsProducts.get(rowIndex).setProductCanceled((Boolean) aValue);

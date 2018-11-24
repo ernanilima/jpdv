@@ -20,21 +20,22 @@ public class Coupon {
     private Date date;
     private Time hour;
     private boolean couponStatus;
-    private float quantity;
-    //private float totalProductValue;
-    private float totalCouponValue;
+    private double quantity;
+    //private double totalProductValue;
+    private double totalCouponValue;
     private int formOfPayment1;
-    private float paymentAmount1;
+    private double paymentAmount1;
     private int formOfPayment2;
-    private float paymentAmount2;
+    private double paymentAmount2;
     private int formOfPayment3;
-    private float paymentAmount3;
-    private float totalDiscount;
-    private float totalProductDiscount;
+    private double paymentAmount3;
+    private double totalDiscount;
+    private double totalProductDiscount;
     private int table;
     private Product mProduct;
     private CompanyBR mCompany;
     private User mUser;
+    private PDV mPDV;
 
     // Construtor vazio
     public Coupon() {}
@@ -145,50 +146,50 @@ public class Coupon {
     }
 
     /**
-     * @return float - Quantidade total do produto
+     * @return double - Quantidade total do produto
      */
-    public float getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
     /**
      * Atribui a quantidade total do produto na variavel "{@link #quantity}"
-     * @param quantity float - Quantidade total do produto
+     * @param quantity double - Quantidade total do produto
      */
-    public void setQuantity(float quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
     /**
-     * @return float - Valor total do produto
+     * @return double - Valor total do produto
      */
-    //public float getTotalProductValue() {
+    //public double getTotalProductValue() {
     //    return totalProductValue;
     //}
-    public float getTotalProductValue() {
+    public double getTotalProductValue() {
         return getQuantity() * mProduct.getSalePrice();
     }
 
     /**
      * Atribui o valor total do produto na variavel "{@link #totalProductValue}"
-     * @param totalProductValue float - Valor total do produto
+     * @param totalProductValue double - Valor total do produto
      */
-    //public void setTotalProductValue(float totalProductValue) {
+    //public void setTotalProductValue(double totalProductValue) {
     //    this.totalProductValue = totalProductValue;
     //}
 
     /**
-     * @return float - Valor total do cupom
+     * @return double - Valor total do cupom
      */
-    public float getTotalCouponValue() {
+    public double getTotalCouponValue() {
         return totalCouponValue;
     }
 
     /**
      * Atribui o valor total do cupom na variavel "{@link #totalCouponValue}"
-     * @param totalCouponValue float - Valor total do cupom
+     * @param totalCouponValue double - Valor total do cupom
      */
-    public void setTotalCouponValue(float totalCouponValue) {
+    public void setTotalCouponValue(double totalCouponValue) {
         this.totalCouponValue = totalCouponValue;
     }
 
@@ -208,17 +209,17 @@ public class Coupon {
     }
 
     /**
-     * @return float - Valor total do pagamento 1
+     * @return double - Valor total do pagamento 1
      */
-    public float getPaymentAmount1() {
+    public double getPaymentAmount1() {
         return paymentAmount1;
     }
 
     /**
      * Atribui o valor total do pagamento 1 na variavel "{@link #paymentAmount1}"
-     * @param paymentAmount1 float - Valor total do pagamento 1
+     * @param paymentAmount1 double - Valor total do pagamento 1
      */
-    public void setPaymentAmount1(float paymentAmount1) {
+    public void setPaymentAmount1(double paymentAmount1) {
         this.paymentAmount1 = paymentAmount1;
     }
 
@@ -237,17 +238,17 @@ public class Coupon {
     }
 
     /**
-     * @return float - Valor total do pagamento 2
+     * @return double - Valor total do pagamento 2
      */
-    public float getPaymentAmount2() {
+    public double getPaymentAmount2() {
         return paymentAmount2;
     }
 
     /**
      * Atribui o valor total do pagamento 2 na variavel "{@link #paymentAmount2}"
-     * @param paymentAmount2 float - Valor total do pagamento 2
+     * @param paymentAmount2 double - Valor total do pagamento 2
      */
-    public void setPaymentAmount2(float paymentAmount2) {
+    public void setPaymentAmount2(double paymentAmount2) {
         this.paymentAmount2 = paymentAmount2;
     }
 
@@ -267,47 +268,47 @@ public class Coupon {
     }
 
     /**
-     * @return float - Valor total do pagamento 3
+     * @return double - Valor total do pagamento 3
      */
-    public float getPaymentAmount3() {
+    public double getPaymentAmount3() {
         return paymentAmount3;
     }
 
     /**
      * Atribui o valor total do pagamento 3 na variavel "{@link #paymentAmount3}"
-     * @param paymentAmount3 float - Valor total do pagamento 3
+     * @param paymentAmount3 double - Valor total do pagamento 3
      */
-    public void setPaymentAmount3(float paymentAmount3) {
+    public void setPaymentAmount3(double paymentAmount3) {
         this.paymentAmount3 = paymentAmount3;
     }
 
     /**
-     * @return float - Valor total de desconto
+     * @return double - Valor total de desconto
      */
-    public float getTotalDiscount() {
+    public double getTotalDiscount() {
         return totalDiscount;
     }
 
     /**
      * Atribui na variavel "{@link #totalDiscount}" o valor total de desconto
-     * @param totalDiscount float - Valor total de desconto
+     * @param totalDiscount double - Valor total de desconto
      */
-    public void setTotalDiscount(float totalDiscount) {
+    public void setTotalDiscount(double totalDiscount) {
         this.totalDiscount = totalDiscount;
     }
 
     /**
-     * @return float - Valor total de desconto no produto
+     * @return double - Valor total de desconto no produto
      */
-    public float getTotalProductDiscount() {
+    public double getTotalProductDiscount() {
         return totalProductDiscount;
     }
 
     /**
      * Atribui na variavel "{@link #totalProductDiscount}" o valor total de desconto no produto
-     * @param totalProductDiscount float - Valor total de desconto no produto
+     * @param totalProductDiscount double - Valor total de desconto no produto
      */
-    public void setTotalProductDiscount(float totalProductDiscount) {
+    public void setTotalProductDiscount(double totalProductDiscount) {
         this.totalProductDiscount = totalProductDiscount;
     }
 
@@ -371,11 +372,26 @@ public class Coupon {
         this.mUser = mUser;
     }
 
+    /**
+     * @return PDV - Model do PDV
+     */
+    public PDV getmPDV() {
+        return mPDV;
+    }
+
+    /**
+     * @param mPDV - Model do PDV
+     */
+    public void setmPDV(PDV mPDV) {
+        this.mPDV = mPDV;
+    }
+
+
     public String getProductHTML() {
         return "<html>"
                 + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td width='45px'>"+
                     // LINHA DO ITEM
-                    Format.formatProductRowIndex.format(getProductRowIndex())
+                    Format.formatThreeDigits.format(getProductRowIndex())
                 +"</td><td width='120px'>"+
                     // CODIGO DE BARRAS
                     Format.formatBarcode.format(getmProduct().getBarcode())

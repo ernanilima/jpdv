@@ -27,7 +27,7 @@ public class Filter {
      * @return double - Conteudo filtrado e convertido para double
      */
     public static double filterDouble(String numberDouble) {
-        numberDouble = numberDouble.replace(",", ".");
+        numberDouble = numberDouble.replaceAll("[^0-9|^,]", "").replace(",", ".");
         return Double.parseDouble(numberDouble);
     }
 

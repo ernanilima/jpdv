@@ -117,7 +117,7 @@ public class FieldManager {
                     pattern = Pattern.compile("[0-9]");
                 } else {
                     // Executa se ainda nao for double
-                    pattern = Pattern.compile("[0-9|,|.]");
+                    pattern = Pattern.compile("[0-9|,]");
                 }
 
                 if (pattern.matcher(str).find() & !decimalMaximum) {

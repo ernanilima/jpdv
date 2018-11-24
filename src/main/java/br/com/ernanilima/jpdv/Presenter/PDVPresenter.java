@@ -64,6 +64,9 @@ public class PDVPresenter {
     // Model de cupom
     private Coupon mCoupon;
 
+    // Model do PDV
+    private PDV mPDV;
+
     // Model teclas de atalho
     private final ShortcutKey mShortcutKey;
 
@@ -87,6 +90,8 @@ public class PDVPresenter {
 
     private String id;
     private String password;
+    private int pdvID = 1;
+    private int companyID = 1;
 
     // Construtor
     public PDVPresenter() {
@@ -101,6 +106,7 @@ public class PDVPresenter {
         this.dCoupon = new CouponDao();
         this.mProduct = new Product();
         this.mCoupon = new Coupon();
+        this.mPDV = new PDV();
         this.mShortcutKey = new ShortcutKey();
         this.tmProductFront = new ProductFrontTableModel();
         this.tmProductBack = new ProductBackTableModel();
@@ -114,9 +120,22 @@ public class PDVPresenter {
         this.myListiners();
         this.myFilters();
         this.myShortcutKey();
+        this.viewPDV.setcurrentCouponID(couponID());
+        this.viewPDV.setPDVID(Format.formatThreeDigits.format(pdvID));
+        this.viewPDV.setCompanyID(Format.formatThreeDigits.format(companyID));
+        this.viewPDV.setVersion("0.1.10");
         this.viewPDV.setBackgroundLogin(Background.getBackgroundCenter(mBg.getPathBgPDVLogin()));
         this.viewPDV.setQuantity(Format.formatQty.format(1));
         this.viewPDV.packAndShow();
+    }
+
+    // Primeiro cupom
+    private String couponID() {
+        String id = dCoupon.nextCouponID();
+        if (id == null){
+            return id = "1";
+        }
+        return id;
     }
 
     // Minhas JTables
@@ -213,6 +232,7 @@ public class PDVPresenter {
             }
         }
 
+        viewPDV.setcurrentCouponID(dCoupon.nextCouponID());
         cleanBasicFields();
     }
 
@@ -230,7 +250,7 @@ public class PDVPresenter {
      * Metodo que realiza a validacao de login do usuario ou do suporte tecnico
      */
     public void userLogin() {
-        id = viewPDV.getIdUser();
+        id = viewPDV.getUserID();
         password = Encrypt.sha256(viewPDV.getPassword());
 
         if (id.equals("")) {
@@ -250,6 +270,8 @@ public class PDVPresenter {
 
             if (dUser.userLogin(mUser)) {
                 System.out.println("LOGIN REALIZADO!");
+                viewPDV.setUserID(String.valueOf(mUser.getId()));
+                viewPDV.setUsername(mUser.getName());
                 selectStartCardL(CARD_PDV);
                 focusFieldBarCode();
             } else {
@@ -324,7 +346,7 @@ public class PDVPresenter {
             // Executa caso o produto seja encontrado
             mCoupon = new Coupon();
             mCoupon.setmProduct(mProduct);
-            mCoupon.setQuantity(Filter.filterFloat(viewPDV.getQuantity()));
+            mCoupon.setQuantity(Filter.filterDouble(viewPDV.getQuantity()));
             mCoupon.setProductRowIndex(viewPDV.getProductTableFront().getRowCount()+1);
             tmProductFront.addRow(mCoupon);
             tmProductBack.addRow(mCoupon);
@@ -333,9 +355,6 @@ public class PDVPresenter {
             viewPDV.setSalePrice(Format.brCurrencyFormat.format(mCoupon.getmProduct().getSalePrice()));
             viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
             viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
-
-            viewPDV.setTotalValueReceivable(Format.brCurrencyFormat.format(totalValueReceivable()));
-
             System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
             viewPDV.setQuantity(Format.formatQty.format(1));
             viewPDV.cleanBarcodeField();
@@ -442,6 +461,10 @@ public class PDVPresenter {
         if (cardLayoutPDV.getNameCardLayout().equals(CARD_VALOR_CUPOM.getNameCardLayout())) {
             if (viewPDV.getProductTableBack().getRowCount() > 0) {
                 // EXECUTA APENAS SE JA EXISTIR ALGUM ITEM VENDIDO
+                viewPDV.cleanTotalValueReceived();
+                viewPDV.setTotalValueReceivable(Format.brCurrencyFormat.format(totalValueReceivable()));
+                viewPDV.getPaymentMethodTable().clearSelection();
+
                 // PAINEL DE VALORES DO CUPOM
                 viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
 
@@ -497,6 +520,13 @@ public class PDVPresenter {
     }
 
     /**
+     * @param rowIndex int - Linha que deseja selecionar na JTable
+     */
+    public void selectPaymentMethod(int rowIndex) {
+        viewPDV.getPaymentMethodTable().setRowSelectionInterval(rowIndex, rowIndex);
+    }
+
+    /**
      * Cancela produto selecionado na JTable back
      */
     public void cancelProduct() {
@@ -538,13 +568,13 @@ public class PDVPresenter {
     /**
      * Valor total de produtos vendidos
      */
-    private float totalValueOfProducts() {
-        float sum = 0, subtotal;
+    private double totalValueOfProducts() {
+        double sum = 0, subtotal;
         int rows = viewPDV.getProductTableBack().getRowCount();
         int column = viewPDV.getProductTableBack().getColumnCount() - 2; // Coluna de subtotal de cada produto
 
         for (int i = 0; i < rows; i++) {
-            subtotal = Filter.filterFloat((String) viewPDV.getProductTableBack().getValueAt(i, column));
+            subtotal = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(i, column));
             sum += subtotal;
         }
         return sum;
@@ -552,19 +582,19 @@ public class PDVPresenter {
 
     /**
      * Subtrai o valor recebido e outros valores ja recebidos (caso existam).
-     * @return float - Valor a receber
+     * @return double - Valor a receber
      */
-    private float totalValueReceivable() {
-        float totalAlreadyReceived;
-        float totalCouponValue = totalValueOfProducts();
+    private double totalValueReceivable() {
+        double totalAlreadyReceived;
+        double totalCouponValue = totalValueOfProducts();
         String fieldValueReceived = viewPDV.getFieldTotalValueReceived();
-        float valueReceived = !fieldValueReceived.equals("") ? Filter.filterFloat(fieldValueReceived) : 0;
+        double valueReceived = !fieldValueReceived.equals("") ? Filter.filterDouble(fieldValueReceived) : 0;
 
         int rows = viewPDV.getPaymentReceivedTable().getRowCount();
         int column = viewPDV.getPaymentReceivedTable().getColumnCount()-1; // Coluna de valore recebido
 
         for (int i = 0; i < rows; i++) {
-            totalAlreadyReceived = Filter.filterFloat((String) viewPDV.getPaymentReceivedTable().getValueAt(i, column));
+            totalAlreadyReceived = Filter.filterDouble((String) viewPDV.getPaymentReceivedTable().getValueAt(i, column));
             totalCouponValue -= totalAlreadyReceived;
         }
 
@@ -625,6 +655,7 @@ public class PDVPresenter {
      */
     public void finalizeSale() {
         int moneyPaymentIndex = 0;
+        int paymentMethodsMaximum = 2;
         int paymentSelectedRow  = viewPDV.getPaymentMethodTable().getSelectedRow();
         String fieldValueReceived = viewPDV.getFieldTotalValueReceived(); // VALOR RECEBIDO
         String fieldValueReceivable = viewPDV.getFieldTotalValueReceivable(); // VALOR A RECEBER
@@ -643,8 +674,8 @@ public class PDVPresenter {
             newSale();
 
         } else {
-            float valueReceived = Filter.filterFloat(fieldValueReceived); // VALOR RECEBIDO
-            float valueReceivable = Filter.filterFloat(fieldValueReceivable); // VALOR A RECEBER
+            double valueReceived = Filter.filterDouble(fieldValueReceived); // VALOR RECEBIDO
+            double valueReceivable = Filter.filterDouble(fieldValueReceivable); // VALOR A RECEBER
 
             if (valueReceived == valueReceivable) {
                 // VALOR RECEBIDO EH IGUAL AO VALOR A RECEBER
@@ -656,7 +687,7 @@ public class PDVPresenter {
 
             } else if (valueReceived < valueReceivable) {
                 // VALOR RECEBIDO EH MENOR QUE O VALOR A RECEBER
-                if (viewPDV.getPaymentReceivedTable().getRowCount() == 2 ) {
+                if (viewPDV.getPaymentReceivedTable().getRowCount() == paymentMethodsMaximum ) {
                     // VALIDACAO QUE PERMITE APENAS 3 FORMAS DE PAGAMENTO
                     pPopUPMessage.showAlert("ATENCAO, MÁXIMO DE 3 FORMAS DE PAGAMENTO!",
                             "INFORME UM VALOR ACIMA DE " + Format.brCurrencyFormat.format(valueReceivable));
@@ -680,6 +711,7 @@ public class PDVPresenter {
 
             } else {
                 System.out.println("TROCO APENAS PARA DINHEIRO");
+                pPopUPMessage.showAlert("ATENÇÃO!", "PERMITIDO TROCO APENAS PARA PAGAMENTO EM DINHEIRO!");
 
             }
         }
@@ -695,7 +727,7 @@ public class PDVPresenter {
         mPayment.setId(tmPayment.getLs(paymentRowSelected).getId());
         mPayment.setDescription(tmPayment.getLs(paymentRowSelected).getDescription());
         mPaymentReceived.setmPayment(mPayment);
-        mPaymentReceived.setValue(Filter.filterFloat(value));
+        mPaymentReceived.setValue(Filter.filterDouble(value));
 
         tmPaymentReceived.addRow(mPaymentReceived);
     }
@@ -703,21 +735,23 @@ public class PDVPresenter {
     // Salva a venda
     private void saveSale() {
         CompanyBR mCompanyBR = new CompanyBR();
-        //mUser = new User();
         mProduct = new Product();
         mCoupon = new Coupon();
-        //List<Coupon> lsCoupon = new ArrayList<>();
 
-        mCompanyBR.setId(1);
+        // QUANTIDADE DE FORMAS DE PAGAMENTO UTILIZADAS
+        int payments = viewPDV.getPaymentReceivedTable().getRowCount();
+
+        mCompanyBR.setId(companyID);
         mCoupon.setmCompany(mCompanyBR);
-        //mCoupon.setPDV
-        mCoupon.setFormOfPayment1(1);
-        mCoupon.setPaymentAmount1(10);
-        mCoupon.setFormOfPayment2(0);
-        mCoupon.setPaymentAmount2(0);
-        mCoupon.setFormOfPayment3(0);
-        mCoupon.setPaymentAmount3(0);
-        mCoupon.setTotalCouponValue(10);
+        mPDV.setId(pdvID);
+        mCoupon.setmPDV(mPDV);
+        mCoupon.setFormOfPayment1(tmPaymentReceived.getLs(0).getmPayment().getId());
+        mCoupon.setPaymentAmount1(tmPaymentReceived.getLs(0).getValue());
+        mCoupon.setFormOfPayment2((payments >= 2) ? tmPaymentReceived.getLs(1).getmPayment().getId() : 0);
+        mCoupon.setPaymentAmount2((payments >= 2) ? tmPaymentReceived.getLs(1).getValue() : 0);
+        mCoupon.setFormOfPayment3((payments == 3) ? tmPaymentReceived.getLs(2).getmPayment().getId() : 0);
+        mCoupon.setPaymentAmount3((payments == 3) ? tmPaymentReceived.getLs(2).getValue() : 0);
+        mCoupon.setTotalCouponValue(Filter.filterDouble(viewPDV.getTotal()));
         mCoupon.setTotalDiscount(0);
         mCoupon.setmUser(mUser);
         //mCoupon.setSupervisor
@@ -726,7 +760,7 @@ public class PDVPresenter {
         mCoupon.setHour(Time.valueOf(Format.DFTIME.format(System.currentTimeMillis())));
         mCoupon.setCouponStatus(false);
         mCoupon.setTable(0);
-
+        // SALVA A VENDA DO CUPOM
         dCoupon.saveSaleCoupon(mCoupon);
     }
 }

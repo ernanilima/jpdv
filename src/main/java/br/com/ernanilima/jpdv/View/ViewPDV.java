@@ -1177,7 +1177,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
                         .addComponent(painelCardPDV, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        //pack();
         setLocationRelativeTo(null);
     }
 
@@ -1306,13 +1306,18 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JTable tbRecebimentos;
 
     @Override
-    public String getIdUser() {
+    public String getUserID() {
         return campoCodUsuario.getText();
     }
 
     @Override
-    public void setIdUser(String id) {
-        campoCodUsuario.setText(id);
+    public void setUserID(String id) {
+        campoCodOperador.setText(id);
+    }
+
+    @Override
+    public void setUsername(String username) {
+        campoNomeOperador.setText(username);
     }
 
     @Override
@@ -1379,6 +1384,36 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public String getFieldTotalValueReceived() {
         return campoValTotalRecebido.getText();
+    }
+
+    @Override
+    public String getCurrentCouponID() {
+        return campoCupom.getText();
+    }
+
+    @Override
+    public void setcurrentCouponID(String couponID) {
+        campoCupom.setText(couponID);
+    }
+
+    @Override
+    public void setPDVID(String PDVID) {
+        campoCodPDV.setText(PDVID);
+    }
+
+    @Override
+    public void setCompanyID(String companyID) {
+        campoCodFilial.setText(companyID);
+    }
+
+    @Override
+    public void setVersion(String version) {
+        campoVersao.setText(version);
+    }
+
+    @Override
+    public String getTotal() {
+        return campoValTotalProdutos.getText();
     }
 
     @Override
@@ -1623,6 +1658,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public void packAndShow() {
         pack();
+        jScrollPaneItensPDV.setColumnHeader(null);
         setVisible(true);
     }
 }

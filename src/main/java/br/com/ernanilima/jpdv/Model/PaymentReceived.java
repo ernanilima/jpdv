@@ -8,24 +8,24 @@ package br.com.ernanilima.jpdv.Model;
 public class PaymentReceived {
 
     // Variaveis de pagamento recebido
-    private float value;
+    private double value;
     private Payment mPayment;
 
     // Construtor vazio
     public PaymentReceived() {}
 
     /**
-     * @return float - Valor pago
+     * @return double - Valor pago
      */
-    public float getValue() {
+    public double getValue() {
         return value;
     }
 
     /**
      * Atribui o valor pago na variavel {@link #value}
-     * @param value float - Valor pago
+     * @param value double - Valor pago
      */
-    public void setValue(float value) {
+    public void setValue(double value) {
         this.value = value;
     }
 

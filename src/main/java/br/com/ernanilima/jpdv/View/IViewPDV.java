@@ -15,10 +15,13 @@ import java.awt.event.KeyAdapter;
 public interface IViewPDV {
 
     // Retorna o ID do usuario
-    public String getIdUser();
+    public String getUserID();
 
     // Seta o ID do usuario
-    public void setIdUser(String id);
+    public void setUserID(String id);
+
+    // Seta o Nome do usuario
+    public void setUsername(String username);
 
     // Retorna a senha do usuario
     public String getPassword();
@@ -59,6 +62,21 @@ public interface IViewPDV {
     // Retorna o valor total recebido
     public String getFieldTotalValueReceived();
 
+    // Retorna o ID do cupom atual
+    public String getCurrentCouponID();
+
+    // Seta o ID do cupom atual
+    public void setcurrentCouponID(String couponID);
+
+    // Seta o ID do PDV
+    public void setPDVID(String PDVID);
+
+    // Seta o ID da Filial
+    public void setCompanyID(String companyID);
+
+    public void setVersion(String version);
+
+    public String getTotal();
 
     // Seta escutas em componentes do PDV
     public void setBtnLoginActionPerformed(ActionListener listener);

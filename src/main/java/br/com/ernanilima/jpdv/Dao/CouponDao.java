@@ -5,6 +5,7 @@ import br.com.ernanilima.jpdv.Model.Coupon;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static br.com.ernanilima.jpdv.Connection.ConnectionSQLite.closeSQLite;
@@ -35,13 +36,13 @@ public class CouponDao {
             pst.setInt(1, mCoupon.getmCompany().getId());
             pst.setInt(2, 1); // PENDENTE DE DEFINIR CODIGO DO PDV
             pst.setInt(3, mCoupon.getFormOfPayment1());
-            pst.setFloat(4,mCoupon.getPaymentAmount1());
+            pst.setDouble(4,mCoupon.getPaymentAmount1());
             pst.setInt(5, mCoupon.getFormOfPayment2());
-            pst.setFloat(6,mCoupon.getPaymentAmount2());
+            pst.setDouble(6,mCoupon.getPaymentAmount2());
             pst.setInt(7, mCoupon.getFormOfPayment3());
-            pst.setFloat(8,mCoupon.getPaymentAmount3());
-            pst.setFloat(9, mCoupon.getTotalCouponValue());
-            pst.setFloat(10, mCoupon.getTotalDiscount());
+            pst.setDouble(8,mCoupon.getPaymentAmount3());
+            pst.setDouble(9, mCoupon.getTotalCouponValue());
+            pst.setDouble(10, mCoupon.getTotalDiscount());
             pst.setInt(11, mCoupon.getmUser().getId());
             pst.setInt(12, 0); // PENDENTE DE DEFINIR CODIGO DO SUPERVISOR
             pst.setBoolean(13, mCoupon.isCouponCanceled());
@@ -67,5 +68,32 @@ public class CouponDao {
      */
     public void saveCouponProducts(Coupon mCoupon) {
         // PENDENTE DE CRIACAO
+    }
+
+    /**
+     * @return String - Proximo ID de cupom disponivel
+     */
+    public String nextCouponID() {
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String nextID;
+        String sql = "SELECT seq FROM sqlite_sequence WHERE name='vendpdv'";
+
+        try {
+            conn = ConnectionSQLite.openConnection();
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                return nextID = String.valueOf(rs.getInt("seq") + 1);
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("ERRO AO ABRIR CONEXAO COM DBJPDV: " + e);
+        } catch (SQLException e) {
+            System.out.println("ERRO AO BUSCAR ULTIMO ID DO CUPOM: " + e);
+        } finally {
+            closeSQLite(conn, pst, rs);
+        }
+        return null;
     }
 }
