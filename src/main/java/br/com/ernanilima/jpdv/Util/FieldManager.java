@@ -94,17 +94,35 @@ public class FieldManager {
     public static class FieldFilterMonetary extends PlainDocument {
         /** Numero de caracteres permitidos */
         private int numberOfCharacters = 9;
+        private int decimalPlaces = 2;
 
         /**
          * Faz com que campo de texto aceite apenas numeros, pontos(.) e virgula(,).
-         * Utilizado para campos com valores monetarios
+         * Utilizado para campos com valores monetarios.
+         * Permiti digitar apenas duas casas decimais.
          */
         public FieldFilterMonetary() {}
 
         @Override
         public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
             if ((getLength() + str.length()) <= numberOfCharacters) {
-                super.insertString(offs, str, a);
+                String currentString = getText(0, getLength());
+                Pattern pattern;
+                boolean currentDouble = currentString.contains(",");
+                int characterIndex = currentString.indexOf(",") + 1;
+                boolean decimalMaximum = (currentDouble && (getLength() + str.length()) > (characterIndex + decimalPlaces));
+
+                if (currentDouble) {
+                    // Executa se ja for double
+                    pattern = Pattern.compile("[0-9]");
+                } else {
+                    // Executa se ainda nao for double
+                    pattern = Pattern.compile("[0-9|,|.]");
+                }
+
+                if (pattern.matcher(str).find() & !decimalMaximum) {
+                    super.insertString(offs, str, a);
+                }
             }
         }
 

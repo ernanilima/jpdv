@@ -656,6 +656,13 @@ public class PDVPresenter {
 
             } else if (valueReceived < valueReceivable) {
                 // VALOR RECEBIDO EH MENOR QUE O VALOR A RECEBER
+                if (viewPDV.getPaymentReceivedTable().getRowCount() == 2 ) {
+                    // VALIDACAO QUE PERMITE APENAS 3 FORMAS DE PAGAMENTO
+                    pPopUPMessage.showAlert("ATENCAO, MÁXIMO DE 3 FORMAS DE PAGAMENTO!",
+                            "INFORME UM VALOR ACIMA DE " + Format.brCurrencyFormat.format(valueReceivable));
+                    return;
+                }
+
                 System.out.println("VALOR RECEBIDO MENOR");
                 viewPDV.setTotalValueReceivable(Format.brCurrencyFormat.format(totalValueReceivable()));
                 addPaymentReceived(fieldValueReceived);
