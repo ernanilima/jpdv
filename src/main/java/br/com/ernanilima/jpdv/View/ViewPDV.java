@@ -1611,6 +1611,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public JTable getPaymentReceivedTable() {
+        return tbRecebimentos;
+    }
+
+    @Override
     public void setBackgroundLogin(JImagePanel imagePanel) {
         painelLogin.add(imagePanel);
     }

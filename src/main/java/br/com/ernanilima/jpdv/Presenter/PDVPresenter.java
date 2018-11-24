@@ -1,16 +1,10 @@
 package br.com.ernanilima.jpdv.Presenter;
 
-import br.com.ernanilima.jpdv.Controller.PaymentRenderer;
-import br.com.ernanilima.jpdv.Controller.ProductBackRenderer;
-import br.com.ernanilima.jpdv.Controller.ProductFrontRenderer;
-import br.com.ernanilima.jpdv.Controller.ProductSearchRenderer;
+import br.com.ernanilima.jpdv.Controller.*;
 import br.com.ernanilima.jpdv.Dao.*;
 import br.com.ernanilima.jpdv.Model.*;
 import br.com.ernanilima.jpdv.Model.Enum.IndexShortcutKey;
-import br.com.ernanilima.jpdv.Model.TableModel.PaymentTableModel;
-import br.com.ernanilima.jpdv.Model.TableModel.ProductBackTableModel;
-import br.com.ernanilima.jpdv.Model.TableModel.ProductFrontTableModel;
-import br.com.ernanilima.jpdv.Model.TableModel.ProductSearchTableModel;
+import br.com.ernanilima.jpdv.Model.TableModel.*;
 import br.com.ernanilima.jpdv.Util.*;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVActionListener;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVKeyListener;
@@ -88,6 +82,9 @@ public class PDVPresenter {
     // TableModel de formas de pagamento
     private final PaymentTableModel tmPayment;
 
+    // TableModel de pagamento recebido
+    private final PaymentReceivedTableModel tmPaymentReceived;
+
     private String id;
     private String password;
 
@@ -110,6 +107,7 @@ public class PDVPresenter {
         this.tmProductSearch = new ProductSearchTableModel();
         this.trsProductSearch = new TableRowSorter<>(tmProductSearch);
         this.tmPayment = new PaymentTableModel();
+        this.tmPaymentReceived = new PaymentReceivedTableModel();
         this.myTables();
         this.fillProductSearchTable();
         this.fillPaymentMethodTable();
@@ -132,6 +130,9 @@ public class PDVPresenter {
         viewPDV.getProductSearchTable().setRowSorter(trsProductSearch);
         viewPDV.getPaymentMethodTable().setModel(tmPayment);
         viewPDV.getPaymentMethodTable().setDefaultRenderer(Object.class, new PaymentRenderer());
+        viewPDV.getPaymentReceivedTable().setModel(tmPaymentReceived);
+        viewPDV.getPaymentReceivedTable().setDefaultRenderer(Object.class, new PaymentReceivedRenderer());
+        viewPDV.getPaymentReceivedTable().setRowSelectionAllowed(false);
     }
 
     // Preenche a tabela de buscar produtos
@@ -200,6 +201,15 @@ public class PDVPresenter {
             for (int i = rows - 1; i >= 0; i--) {
                 tmProductFront.removeRow(i);
                 tmProductBack.removeRow(i);
+            }
+        }
+
+        // LIMPAR PAGAMENTO DEREBIDO
+        int receiptRows = viewPDV.getPaymentReceivedTable().getRowCount();
+        if (receiptRows > 0) {
+            int rows = tmPaymentReceived.getRowCount();
+            for (int i = rows - 1; i >= 0; i--) {
+                tmPaymentReceived.removeRow(i);
             }
         }
 
@@ -324,7 +334,7 @@ public class PDVPresenter {
             viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
             viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
 
-            viewPDV.setTotalValueReceivable(Format.brCurrencyFormat.format(totalValueOfProducts()));
+            viewPDV.setTotalValueReceivable(Format.brCurrencyFormat.format(totalValueReceivable()));
 
             System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
             viewPDV.setQuantity(Format.formatQty.format(1));
@@ -541,6 +551,29 @@ public class PDVPresenter {
     }
 
     /**
+     * Subtrai o valor recebido e outros valores ja recebidos (caso existam).
+     * @return float - Valor a receber
+     */
+    private float totalValueReceivable() {
+        float totalAlreadyReceived;
+        float totalCouponValue = totalValueOfProducts();
+        String fieldValueReceived = viewPDV.getFieldTotalValueReceived();
+        float valueReceived = !fieldValueReceived.equals("") ? Filter.filterFloat(fieldValueReceived) : 0;
+
+        int rows = viewPDV.getPaymentReceivedTable().getRowCount();
+        int column = viewPDV.getPaymentReceivedTable().getColumnCount()-1; // Coluna de valore recebido
+
+        for (int i = 0; i < rows; i++) {
+            totalAlreadyReceived = Filter.filterFloat((String) viewPDV.getPaymentReceivedTable().getValueAt(i, column));
+            totalCouponValue -= totalAlreadyReceived;
+        }
+
+        totalCouponValue -= valueReceived;
+
+        return totalCouponValue;
+    }
+
+    /**
      * Metodo que define o foco no campo de senha do usuario
      */
     public void focusFieldPassword() {
@@ -604,17 +637,19 @@ public class PDVPresenter {
         if (fieldValueReceived.equals("")) {
             // VALOR RECEBIDO EH IGUAL AO VALOR DO CUPOM
             System.out.println("VALOR RECEBIDO IGUAL AO CUPOM");
+            addPaymentReceived(fieldValueReceivable);
             viewPDV.getPaymentMethodTable().clearSelection();
             saveSale();
             newSale();
 
         } else {
-            float valueReceived = Filter.filterFloat(fieldValueReceived);
-            float valueReceivable = Filter.filterFloat(fieldValueReceivable);
+            float valueReceived = Filter.filterFloat(fieldValueReceived); // VALOR RECEBIDO
+            float valueReceivable = Filter.filterFloat(fieldValueReceivable); // VALOR A RECEBER
 
             if (valueReceived == valueReceivable) {
                 // VALOR RECEBIDO EH IGUAL AO VALOR A RECEBER
                 System.out.println("VALOR RECEBIDO IGUAL");
+                addPaymentReceived(fieldValueReceivable);
                 viewPDV.getPaymentMethodTable().clearSelection();
                 saveSale();
                 newSale();
@@ -622,14 +657,16 @@ public class PDVPresenter {
             } else if (valueReceived < valueReceivable) {
                 // VALOR RECEBIDO EH MENOR QUE O VALOR A RECEBER
                 System.out.println("VALOR RECEBIDO MENOR");
+                viewPDV.setTotalValueReceivable(Format.brCurrencyFormat.format(totalValueReceivable()));
+                addPaymentReceived(fieldValueReceived);
                 viewPDV.getPaymentMethodTable().clearSelection();
-                saveSale();
-                newSale();
+                viewPDV.cleanTotalValueReceived();
 
             } else if (valueReceived > valueReceivable & paymentSelectedRow == moneyPaymentIndex) {
                 // VALOR RECEBIDO EH MAIOR QUE O VALOR A RECEBER
                 // VALOR MAIOR PERMITIDO APENAS PARA PAGAMENTO EM DINHEIRO
                 System.out.println("VALOR RECEBIDO MAIOR");
+                addPaymentReceived(fieldValueReceivable);
                 viewPDV.getPaymentMethodTable().clearSelection();
                 saveSale();
                 newSale();
@@ -639,6 +676,21 @@ public class PDVPresenter {
 
             }
         }
+    }
+
+    // Adiciona recebimento na tabela
+    private void addPaymentReceived(String value) {
+        Payment mPayment = new Payment();
+        PaymentReceived mPaymentReceived = new PaymentReceived();
+
+        int paymentRowSelected = viewPDV.getPaymentMethodTable().getSelectedRow();
+
+        mPayment.setId(tmPayment.getLs(paymentRowSelected).getId());
+        mPayment.setDescription(tmPayment.getLs(paymentRowSelected).getDescription());
+        mPaymentReceived.setmPayment(mPayment);
+        mPaymentReceived.setValue(Filter.filterFloat(value));
+
+        tmPaymentReceived.addRow(mPaymentReceived);
     }
 
     // Salva a venda

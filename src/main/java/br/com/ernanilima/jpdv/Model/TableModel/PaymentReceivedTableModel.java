@@ -1,24 +1,26 @@
 package br.com.ernanilima.jpdv.Model.TableModel;
 
-import br.com.ernanilima.jpdv.Model.Payment;
+import br.com.ernanilima.jpdv.Model.PaymentReceived;
+import br.com.ernanilima.jpdv.Util.Format;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Table Model de formas de pagamento.
+ * Table Model de pagamento recebido.
  *
  * @author Ernani Lima
  */
-public class PaymentTableModel extends AbstractTableModel {
+public class PaymentReceivedTableModel extends AbstractTableModel {
 
     // Constantes representando o indice das colunas
     private static final int DESCRICAO = 0;
+    private static final int VALOR = 1;
 
-    // Lista de formas de pagamento
-    private final List<Payment> lsPayments = new ArrayList<>();
-    private final String[] columns = {"FORMAS DE PAGAMENTO"};
+    // Lista de pagamentos recebidos
+    private final List<PaymentReceived> lsPaymentsReceived = new ArrayList<>();
+    private final String[] columns = {"PAGAMENTO", "VALOR"};
 
     /**
      * Determinha o nome de cada coluna da JTable
@@ -36,7 +38,7 @@ public class PaymentTableModel extends AbstractTableModel {
      */
     @Override
     public int getRowCount() {
-        return lsPayments.size();
+        return lsPaymentsReceived.size();
     }
 
     /**
@@ -55,21 +57,23 @@ public class PaymentTableModel extends AbstractTableModel {
      */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        System.out.println("LOOP GET PAYMENT");
+        System.out.println("LOOP GET PAYMENT RECEIVED");
         switch (columnIndex) {
             case DESCRICAO:
-                return lsPayments.get(rowIndex).getDescription();
+                return lsPaymentsReceived.get(rowIndex).getmPayment().getDescription();
+            case VALOR:
+                return Format.brCurrencyFormat.format(lsPaymentsReceived.get(rowIndex).getValue());
         }
         return null;
     }
 
     /**
-     * Adiciona forma de pagamento na JTable
-     * @param mPayment {@link Payment} - Model de forma de pagamento
+     * Adiciona pagamento recebido na JTable
+     * @param mPaymentReceived {@link PaymentReceived} - Model de pagamento recebido
      */
-    public void addRow(Payment mPayment) {
-        // Adiciona nova forma de pagamento a tabela
-        lsPayments.add(mPayment);
+    public void addRow(PaymentReceived mPaymentReceived) {
+        // Adiciona novo pagamento recebido
+        lsPaymentsReceived.add(mPaymentReceived);
 
         // Notifica a JTable que todos os dados da tabela podem ter sido alterados.
         // A JTable usa esta informacao para redesenhar todas as celulas, atualizando seu conteudo.
@@ -82,7 +86,7 @@ public class PaymentTableModel extends AbstractTableModel {
      */
     public void removeRow(int rowIndex) {
         // Remove a linha informada
-        lsPayments.remove(rowIndex);
+        lsPaymentsReceived.remove(rowIndex);
 
         //Notifica a JTable que determinada linha foi removida
         fireTableRowsDeleted(rowIndex, rowIndex);
@@ -91,9 +95,9 @@ public class PaymentTableModel extends AbstractTableModel {
     /**
      * Utilizado para obter conteudo exibido ou nao na JTable
      * @param rowIndex int - Linha que deseja obter o conteudo
-     * @return {@link Payment} - Model de forma de pagamento
+     * @return {@link PaymentReceived} - Model de pagamento recebido
      */
-    public Payment getLs(int rowIndex) {
-        return lsPayments.get(rowIndex);
+    public PaymentReceived getLs(int rowIndex) {
+        return lsPaymentsReceived.get(rowIndex);
     }
 }
