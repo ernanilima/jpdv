@@ -17,6 +17,8 @@ import javax.swing.table.TableRowSorter;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 import static br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV.*;
 
@@ -762,5 +764,50 @@ public class PDVPresenter {
         mCoupon.setTable(0);
         // SALVA A VENDA DO CUPOM
         dCoupon.saveSaleCoupon(mCoupon);
+
+        saveProduct();
+    }
+
+    // Gravar os produtos do cupom
+    private void saveProduct() {
+        CompanyBR mCompanyBR = new CompanyBR();
+        List<Coupon> lsCoupon = new ArrayList<>();
+
+        // QUANTIDADE DE PRODUTOS VENDIDOS
+        int productRows = viewPDV.getProductTableBack().getRowCount();
+
+        for (int i = 0; i < productRows; i++) {
+            mProduct = new Product();
+            Unit mUnit = new Unit();
+            mCoupon = new Coupon();
+
+            mCompanyBR.setId(companyID);
+            mCoupon.setmCompany(mCompanyBR);
+            mPDV.setId(pdvID);
+            mCoupon.setmPDV(mPDV);
+            mCoupon.setCoupon(Integer.parseInt(viewPDV.getCurrentCouponID()));
+            mUnit.setId(tmProductBack.getLs(i).getmProduct().getmUnits().getId());
+            mUnit.setDescription(tmProductBack.getLs(i).getmProduct().getmUnits().getDescription());
+            mProduct.setmUnits(mUnit);
+            mProduct.setId(tmProductBack.getLs(i).getmProduct().getId());
+            mProduct.setDescriptionCoupon(tmProductBack.getLs(i).getmProduct().getDescriptionCoupon());
+            mProduct.setBarcode(tmProductBack.getLs(i).getmProduct().getBarcode());
+            mProduct.setSalePrice(tmProductBack.getLs(i).getmProduct().getSalePrice());
+            mCoupon.setmProduct(mProduct);
+            mCoupon.setQuantity(tmProductBack.getLs(i).getQuantity());
+            //mCoupon.setTotalProductValue(tmProductBack.getLs(i).getTotalProductValue()); ATE O MOMENTO, ESSA LINHA EH DISPENSAVEL
+            mCoupon.setTotalProductDiscount(0); // PENDENDE DE IMPLEMENTACAO
+            mCoupon.setmUser(mUser);
+            //mCoupon.setSupervisor // PENDENDE DE IMPLEMENTACAO
+            mCoupon.setProductCanceled(false); // PENDENDE DE IMPLEMENTACAO
+            mCoupon.setDate(Date.valueOf(Format.DFDATE.format(System.currentTimeMillis())));
+            mCoupon.setHour(Time.valueOf(Format.DFTIME.format(System.currentTimeMillis())));
+            mCoupon.setCouponStatus(false); // PENDENDE DE IMPLEMENTACAO
+            mCoupon.setTable(0); // PENDENDE DE IMPLEMENTACAO
+
+            lsCoupon.add(mCoupon);
+        }
+
+        dCoupon.saveCouponProducts(lsCoupon);
     }
 }

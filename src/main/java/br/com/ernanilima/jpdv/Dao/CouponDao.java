@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import static br.com.ernanilima.jpdv.Connection.ConnectionSQLite.closeSQLite;
 
@@ -64,10 +65,50 @@ public class CouponDao {
 
     /**
      * Salva os produtos de cupom
-     * @param mCoupon {@link Coupon} - Model de cupom
+     * @param lsCoupon {@link Coupon} - Model de cupom
      */
-    public void saveCouponProducts(Coupon mCoupon) {
-        // PENDENTE DE CRIACAO
+    public void saveCouponProducts(List<Coupon> lsCoupon) {
+        Connection conn = null;
+        PreparedStatement pst = null;
+
+        String sql = "INSERT INTO vpropdv ("
+                + "cod_filial, cod_pdv, cod_cupom, cod_pro, desc_pro, cod_bar, cod_un_medida, desc_un_medida, qtd_vend, prec_vend, "
+                + "prec_total, cod_ope, cod_sup, pro_canc, data_data, data_hora, vend_status, cod_mesa) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            conn = ConnectionSQLite.openConnection();
+            pst = conn.prepareStatement(sql);
+
+            for (Coupon mLsCoupon : lsCoupon) {
+                pst.setInt(1, mLsCoupon.getmCompany().getId());
+                pst.setInt(2, mLsCoupon.getmPDV().getId());
+                pst.setInt(3, mLsCoupon.getCoupon());
+                pst.setInt(4, mLsCoupon.getmProduct().getId());
+                pst.setString(5, mLsCoupon.getmProduct().getDescriptionCoupon());
+                pst.setLong(6, mLsCoupon.getmProduct().getBarcode());
+                pst.setInt(7, mLsCoupon.getmProduct().getmUnits().getId());
+                pst.setString(8, mLsCoupon.getmProduct().getmUnits().getDescription());
+                pst.setDouble(9, mLsCoupon.getQuantity());
+                pst.setDouble(10, mLsCoupon.getmProduct().getSalePrice());
+                pst.setDouble(11, mLsCoupon.getTotalProductValue());
+                pst.setInt(12, mLsCoupon.getmUser().getId());
+                pst.setInt(13, 0); // PENDENTE DE IMPLEMENTACAO
+                pst.setBoolean(14, mLsCoupon.isProductCanceled());
+                pst.setString(15, String.valueOf(mLsCoupon.getDate()));
+                pst.setString(16, String.valueOf(mLsCoupon.getHour()));
+                pst.setBoolean(17, mLsCoupon.isCouponStatus());
+                pst.setInt(18, mLsCoupon.getTable());
+
+                pst.executeUpdate();
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("ERRO AO ABRIR CONEXAO COM DBJPDV: " + e);
+        } catch (SQLException e) {
+            System.out.println("ERRO AO REALIZAR SALVAR VENDA: " + e);
+        } finally {
+            closeSQLite(conn, pst);
+        }
     }
 
     /**
