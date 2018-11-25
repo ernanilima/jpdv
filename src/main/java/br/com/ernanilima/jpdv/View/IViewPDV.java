@@ -65,6 +65,10 @@ public interface IViewPDV {
     // Retorna o ID do cupom atual
     public String getCurrentCouponID();
 
+    public void setCurrentDate(String date);
+
+    public void setCurrentTime(String time);
+
     // Seta o ID do cupom atual
     public void setcurrentCouponID(String couponID);
 
@@ -76,7 +80,9 @@ public interface IViewPDV {
 
     public void setVersion(String version);
 
-    public String getTotal();
+    public String getTotal(); // MUDAR NOMENCLATURA
+
+    public void setProductDescription(String productDescription);
 
     // Seta escutas em componentes do PDV
     public void setBtnLoginActionPerformed(ActionListener listener);

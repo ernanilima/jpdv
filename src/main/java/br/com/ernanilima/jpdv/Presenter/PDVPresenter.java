@@ -95,6 +95,17 @@ public class PDVPresenter {
     private int pdvID = 1;
     private int companyID = 1;
 
+    private boolean save = false;
+    private boolean cancel = true;
+
+    // Colunas da JTable produtos back
+    private final int proBackDiscountColumn = 6;
+    private final int proBackSubtotalColumn = 7;
+    private final int proBackCancellationColumn = 8;
+
+    // Coluna da JTable de pagamentos recebidos
+    private final int payReceivedValueColumn = 2;
+
     // Construtor
     public PDVPresenter() {
         this.viewPDV = new ViewPDV();
@@ -123,12 +134,28 @@ public class PDVPresenter {
         this.myFilters();
         this.myShortcutKey();
         this.viewPDV.setcurrentCouponID(couponID());
+        this.viewPDV.setCurrentDate(Format.DFDATE_BR.format(System.currentTimeMillis()));
+        this.showTime();
         this.viewPDV.setPDVID(Format.formatThreeDigits.format(pdvID));
         this.viewPDV.setCompanyID(Format.formatThreeDigits.format(companyID));
         this.viewPDV.setVersion("0.1.10");
         this.viewPDV.setBackgroundLogin(Background.getBackgroundCenter(mBg.getPathBgPDVLogin()));
         this.viewPDV.setQuantity(Format.formatQty.format(1));
         this.viewPDV.packAndShow();
+    }
+
+    // Thread que atualiza a hora
+    private void showTime() {
+        new Thread (() -> {
+            try {
+                while (true) {
+                    viewPDV.setCurrentTime(Format.DFTIME.format(System.currentTimeMillis()));
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                System.out.println("ERRO COM HORA ATUAL: " + e);
+            }
+        }).start();
     }
 
     // Primeiro cupom
@@ -236,16 +263,20 @@ public class PDVPresenter {
 
         viewPDV.setcurrentCouponID(dCoupon.nextCouponID());
         cleanBasicFields();
+        viewPDV.setProductDescription("CAIXA LIVRE!");
     }
 
     // Limpa os campos basicos
     private void cleanBasicFields() {
+        viewPDV.setProductDescription("");
         viewPDV.cleanBarcodeField();
         viewPDV.setSalePrice("");
         viewPDV.setTotalProductValue("");
-        viewPDV.setTotalCouponValue("");
-        viewPDV.setTotalValueReceivable("");
-        viewPDV.cleanTotalValueReceived();
+        if (viewPDV.getProductTableBack().getRowCount() < 1) {
+            viewPDV.setTotalCouponValue("");
+            viewPDV.setTotalValueReceivable("");
+            viewPDV.cleanTotalValueReceived();
+        }
     }
 
     /**
@@ -276,6 +307,7 @@ public class PDVPresenter {
                 viewPDV.setUsername(mUser.getName());
                 selectStartCardL(CARD_PDV);
                 focusFieldBarCode();
+                viewPDV.setProductDescription("CAIXA LIVRE!");
             } else {
                 System.out.println("Dados incorretos ou usuário não cadastrado!");
                 pPopUPMessage.showAlert("Atenção", "Dados incorretos ou usuário não cadastrado!");
@@ -323,7 +355,8 @@ public class PDVPresenter {
      */
     public void productFromSearchTable() {
         int selectedRow = viewPDV.getProductSearchTable().getSelectedRow();
-        if (selectedRow != -1) {
+        int rowCount = viewPDV.getProductSearchTable().getRowCount();
+        if (selectedRow != -1 & rowCount > 0) {
             mProduct = tmProductSearch.getLs(viewPDV.getProductSearchTable().convertRowIndexToModel(selectedRow));
             searchProduct(mProduct);
             selectSaleCardL(CardLayoutPDV.CARD_VENDA);
@@ -358,6 +391,7 @@ public class PDVPresenter {
             viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
             viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
             System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
+            viewPDV.setProductDescription(mProduct.getDescriptionCoupon());
             viewPDV.setQuantity(Format.formatQty.format(1));
             viewPDV.cleanBarcodeField();
         } else {
@@ -439,11 +473,33 @@ public class PDVPresenter {
             viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_ITENS.getNameCardLayout())) {
-            // PAINEL DE PRODUTOS BACK
-            viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
-            viewPDV.setFocusProductTableBack();
-            viewPDV.getProductTableFront().changeSelection(viewPDV.getProductTableFront().getRowCount()-1, 0, false, false);
-            viewPDV.getProductTableBack().changeSelection(viewPDV.getProductTableBack().getRowCount()-1, 0, false, false);
+            // PAINEL DE PRODUTOS BACK, LISTA DE PRODUTOS PARA CANCELAR
+
+            int productsSold = 0;
+            int rows = viewPDV.getProductTableBack().getRowCount();
+            for (int i = 0; i < rows; i++) {
+                // FAZ UMA VERIFICACAO DE QUANTOS PRODUTOS FORAM VENDIDOS, IGNORANDO OS CANCELADOS
+                if (viewPDV.getProductTableBack().getValueAt(i, proBackCancellationColumn).equals("")) {
+                    productsSold += 1;
+                }
+            }
+
+            if (productsSold > 1) {
+                viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
+                viewPDV.setFocusProductTableBack();
+                viewPDV.getProductTableFront().changeSelection(viewPDV.getProductTableFront().getRowCount()-1, 0, false, false);
+                viewPDV.getProductTableBack().changeSelection(viewPDV.getProductTableBack().getRowCount()-1, 0, false, false);
+
+            } else if (productsSold == 1) {
+                pPopUPConfirm.showConfirmDialog("CANCELAR ITEM!", "EXISTE APENAS UM ITEM, DESEJA CANCELAR O CUPOM?");
+                if (pPopUPConfirm.questionResult()) {
+                    cancelCurrentSale();
+                }
+
+            } else {
+                pPopUPMessage.showAlert("CANCELAR ITEM!", "NÃO EXISTE ITEM PARA CANCELAR!");
+
+            }
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_BUSCAR.getNameCardLayout())) {
             // PAINEL DE BUSCAR PRODUTOS
@@ -529,14 +585,6 @@ public class PDVPresenter {
     }
 
     /**
-     * Cancela produto selecionado na JTable back
-     */
-    public void cancelProduct() {
-        System.out.println("CANCELAR PRODUTO");
-        selectSaleCardL(CardLayoutPDV.CARD_VENDA);
-    }
-
-    /**
      * Metodo que verifica o desconto informado para o produto ou para o cupom
      * @param focus int - 1 Foco desconto valor / 2 Foco desconto percentual
      */
@@ -573,11 +621,13 @@ public class PDVPresenter {
     private double totalValueOfProducts() {
         double sum = 0, subtotal;
         int rows = viewPDV.getProductTableBack().getRowCount();
-        int column = viewPDV.getProductTableBack().getColumnCount() - 2; // Coluna de subtotal de cada produto
 
         for (int i = 0; i < rows; i++) {
-            subtotal = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(i, column));
-            sum += subtotal;
+            if (viewPDV.getProductTableBack().getValueAt(i, proBackCancellationColumn).equals("")){
+                // SOMA O VALOR TOTAL DOS PRODUTOS VENDIDOS, IGNORANDO OS CANCELADOS
+                subtotal = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(i, proBackSubtotalColumn));
+                sum += subtotal;
+            }
         }
         return sum;
     }
@@ -593,10 +643,9 @@ public class PDVPresenter {
         double valueReceived = !fieldValueReceived.equals("") ? Filter.filterDouble(fieldValueReceived) : 0;
 
         int rows = viewPDV.getPaymentReceivedTable().getRowCount();
-        int column = viewPDV.getPaymentReceivedTable().getColumnCount()-1; // Coluna de valore recebido
 
         for (int i = 0; i < rows; i++) {
-            totalAlreadyReceived = Filter.filterDouble((String) viewPDV.getPaymentReceivedTable().getValueAt(i, column));
+            totalAlreadyReceived = Filter.filterDouble((String) viewPDV.getPaymentReceivedTable().getValueAt(i, payReceivedValueColumn));
             totalCouponValue -= totalAlreadyReceived;
         }
 
@@ -672,7 +721,7 @@ public class PDVPresenter {
             System.out.println("VALOR RECEBIDO IGUAL AO CUPOM");
             addPaymentReceived(fieldValueReceivable);
             viewPDV.getPaymentMethodTable().clearSelection();
-            saveSale();
+            saveSale(save);
             newSale();
 
         } else {
@@ -684,7 +733,7 @@ public class PDVPresenter {
                 System.out.println("VALOR RECEBIDO IGUAL");
                 addPaymentReceived(fieldValueReceivable);
                 viewPDV.getPaymentMethodTable().clearSelection();
-                saveSale();
+                saveSale(save);
                 newSale();
 
             } else if (valueReceived < valueReceivable) {
@@ -708,7 +757,7 @@ public class PDVPresenter {
                 System.out.println("VALOR RECEBIDO MAIOR");
                 addPaymentReceived(fieldValueReceivable);
                 viewPDV.getPaymentMethodTable().clearSelection();
-                saveSale();
+                saveSale(save);
                 newSale();
 
             } else {
@@ -734,8 +783,49 @@ public class PDVPresenter {
         tmPaymentReceived.addRow(mPaymentReceived);
     }
 
-    // Salva a venda
-    private void saveSale() {
+    /**
+     * Cancela o produto selecionado na JTable back
+     */
+    public void cancelProduct() {
+
+        int selectedRow = viewPDV.getProductTableBack().getSelectedRow();
+
+        if (!viewPDV.getProductTableBack().getValueAt(selectedRow, proBackCancellationColumn).equals("")) {
+            pPopUPMessage.showAlert("CANCELAR ITEM!", "PRODUTO JÁ ESTÁ CANCELADO!");
+            return;
+        }
+
+        double subtotalToCancel = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(selectedRow, proBackSubtotalColumn));
+
+        if (subtotalToCancel > totalValueReceivable()){
+            pPopUPMessage.showAlert("CANCELAR ITEM!", "PRODUTO COM VALOR MAIOR QUE O TOTAL A RECEBER!");
+            return;
+        }
+
+        tmProductBack.setValueAt(cancel, viewPDV.getProductTableBack().getSelectedRow(), proBackCancellationColumn);
+        viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
+        selectSaleCardL(CardLayoutPDV.CARD_VENDA);
+
+        cleanBasicFields();
+
+    }
+
+    /**
+     * Cancela a venda atual
+     */
+    public void cancelCurrentSale() {
+        if (viewPDV.getProductTableBack().getRowCount() > 0) {
+            // EXECUTA APENAS SE JA EXISTIR ALGUM ITEM VENDIDO
+            saveSale(cancel);
+            newSale();
+
+        } else {
+            pPopUPMessage.showAlert("CANCELAR CUPOM ATUAL", "NÃO EXISTE CUPOM PARA CANCELAR!");
+        }
+    }
+
+    // Salva ou cancela a venda atual
+    private void saveSale(boolean saveOrCancel) {
         CompanyBR mCompanyBR = new CompanyBR();
         mProduct = new Product();
         mCoupon = new Coupon();
@@ -747,29 +837,29 @@ public class PDVPresenter {
         mCoupon.setmCompany(mCompanyBR);
         mPDV.setId(pdvID);
         mCoupon.setmPDV(mPDV);
-        mCoupon.setFormOfPayment1(tmPaymentReceived.getLs(0).getmPayment().getId());
-        mCoupon.setPaymentAmount1(tmPaymentReceived.getLs(0).getValue());
+        mCoupon.setFormOfPayment1((payments >= 1) ? tmPaymentReceived.getLs(0).getmPayment().getId() : 0);
+        mCoupon.setPaymentAmount1((payments >= 1) ? tmPaymentReceived.getLs(0).getValue() : 0);
         mCoupon.setFormOfPayment2((payments >= 2) ? tmPaymentReceived.getLs(1).getmPayment().getId() : 0);
         mCoupon.setPaymentAmount2((payments >= 2) ? tmPaymentReceived.getLs(1).getValue() : 0);
         mCoupon.setFormOfPayment3((payments == 3) ? tmPaymentReceived.getLs(2).getmPayment().getId() : 0);
         mCoupon.setPaymentAmount3((payments == 3) ? tmPaymentReceived.getLs(2).getValue() : 0);
         mCoupon.setTotalCouponValue(Filter.filterDouble(viewPDV.getTotal()));
-        mCoupon.setTotalDiscount(0);
+        mCoupon.setTotalDiscount(0); // PENDENTE DE IMPLEMENTACAO
         mCoupon.setmUser(mUser);
-        //mCoupon.setSupervisor
-        mCoupon.setCouponCanceled(false);
+        //mCoupon.setSupervisor // PENDENTE DE IMPLEMENTACAO
+        mCoupon.setCouponCanceled(saveOrCancel);
         mCoupon.setDate(Date.valueOf(Format.DFDATE.format(System.currentTimeMillis())));
         mCoupon.setHour(Time.valueOf(Format.DFTIME.format(System.currentTimeMillis())));
-        mCoupon.setCouponStatus(false);
-        mCoupon.setTable(0);
+        mCoupon.setCouponStatus(false); // PENDENTE DE IMPLEMENTACAO
+        mCoupon.setTable(0); // PENDENTE DE IMPLEMENTACAO
         // SALVA A VENDA DO CUPOM
         dCoupon.saveSaleCoupon(mCoupon);
 
-        saveProduct();
+        saveProduct(saveOrCancel);
     }
 
     // Gravar os produtos do cupom
-    private void saveProduct() {
+    private void saveProduct(boolean saveOrCancel) {
         CompanyBR mCompanyBR = new CompanyBR();
         List<Coupon> lsCoupon = new ArrayList<>();
 
@@ -796,14 +886,14 @@ public class PDVPresenter {
             mCoupon.setmProduct(mProduct);
             mCoupon.setQuantity(tmProductBack.getLs(i).getQuantity());
             //mCoupon.setTotalProductValue(tmProductBack.getLs(i).getTotalProductValue()); ATE O MOMENTO, ESSA LINHA EH DISPENSAVEL
-            mCoupon.setTotalProductDiscount(0); // PENDENDE DE IMPLEMENTACAO
+            mCoupon.setTotalProductDiscount(0); // PENDENTE DE IMPLEMENTACAO
             mCoupon.setmUser(mUser);
-            //mCoupon.setSupervisor // PENDENDE DE IMPLEMENTACAO
-            mCoupon.setProductCanceled(false); // PENDENDE DE IMPLEMENTACAO
+            //mCoupon.setSupervisor // PENDENTE DE IMPLEMENTACAO
+            mCoupon.setProductCanceled(saveOrCancel);
             mCoupon.setDate(Date.valueOf(Format.DFDATE.format(System.currentTimeMillis())));
             mCoupon.setHour(Time.valueOf(Format.DFTIME.format(System.currentTimeMillis())));
-            mCoupon.setCouponStatus(false); // PENDENDE DE IMPLEMENTACAO
-            mCoupon.setTable(0); // PENDENDE DE IMPLEMENTACAO
+            mCoupon.setCouponStatus(false); // PENDENTE DE IMPLEMENTACAO
+            mCoupon.setTable(0); // PENDENTE DE IMPLEMENTACAO
 
             lsCoupon.add(mCoupon);
         }

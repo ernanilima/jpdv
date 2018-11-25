@@ -32,6 +32,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
         btnLoginEntrar = new JButton();
         painelPDV = new JPanel();
         painelCabecalhoPDV = new JPanel();
+        campoDescricaoProduto = new JTextField();
         painelCardVendas = new JPanel();
         painelVendas = new JPanel();
         jPanelItensPDV = new JPanel();
@@ -237,15 +238,20 @@ public class ViewPDV extends JFrame implements IViewPDV {
         painelCabecalhoPDV.setBackground(new Color(255, 255, 255));
         painelCabecalhoPDV.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 
+        campoDescricaoProduto.setEditable(false);
+        campoDescricaoProduto.setFont(new Font("Verdana", 0, 48)); // NOI18N
+        campoDescricaoProduto.setHorizontalAlignment(JTextField.CENTER);
+        campoDescricaoProduto.setFocusable(false);
+
         GroupLayout painelCabecalhoPDVLayout = new GroupLayout(painelCabecalhoPDV);
         painelCabecalhoPDV.setLayout(painelCabecalhoPDVLayout);
         painelCabecalhoPDVLayout.setHorizontalGroup(
                 painelCabecalhoPDVLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(campoDescricaoProduto)
         );
         painelCabecalhoPDVLayout.setVerticalGroup(
                 painelCabecalhoPDVLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE)
+                        .addComponent(campoDescricaoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
         painelCardVendas.setLayout(new CardLayout());
@@ -303,6 +309,8 @@ public class ViewPDV extends JFrame implements IViewPDV {
                                 .addComponent(jLabelCupom))
         );
 
+        jScrollPaneItensPDV.getViewport().setOpaque(true);
+        jScrollPaneItensPDV.getViewport().setBackground(Color.WHITE);
         tbItensPDV.setFont(new Font("Verdana", 0, 18));
         tbItensPDV.setFocusable(false);
         tbItensPDV.setOpaque(false);
@@ -1225,6 +1233,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JLabel campoData;
     private JTextField campoDescontoPer;
     private JTextField campoDescontoRS;
+    private JTextField campoDescricaoProduto;
     private JLabel campoHora;
     private JLabel campoLabelLocalDesconto;
     private JLabel campoNomeOperador;
@@ -1392,6 +1401,16 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setCurrentDate(String date) {
+        campoData.setText(date);
+    }
+
+    @Override
+    public void setCurrentTime(String time) {
+        campoHora.setText(time);
+    }
+
+    @Override
     public void setcurrentCouponID(String couponID) {
         campoCupom.setText(couponID);
     }
@@ -1414,6 +1433,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public String getTotal() {
         return campoValTotalProdutos.getText();
+    }
+
+    @Override
+    public void setProductDescription(String productDescription) {
+        campoDescricaoProduto.setText(productDescription);
     }
 
     @Override

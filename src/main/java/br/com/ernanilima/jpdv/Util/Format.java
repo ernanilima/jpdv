@@ -39,6 +39,11 @@ public class Format {
     public static final DateFormat DFDATE = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
+     * Formata a data para o padrao brasileiro
+     */
+    public static final DateFormat DFDATE_BR = new SimpleDateFormat("dd/MM/yy");
+
+    /**
      * Formata a hora no padrao 24 horas
      */
     public static final DateFormat DFTIME = new SimpleDateFormat("HH:mm:ss");

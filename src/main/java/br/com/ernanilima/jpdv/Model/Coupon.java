@@ -388,34 +388,71 @@ public class Coupon {
 
 
     public String getProductHTML() {
-        return "<html>"
-                + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td width='45px'>"+
-                    // LINHA DO ITEM
-                    Format.formatThreeDigits.format(getProductRowIndex())
-                +"</td><td width='120px'>"+
-                    // CODIGO DE BARRAS
-                    Format.formatBarcode.format(getmProduct().getBarcode())
-                +"</td><td width='500px'>"+
-                    // DESCRICAO
-                    getmProduct().getDescriptionCoupon()
-                +"</td></tr></table>"
+        if (isProductCanceled()) {
+            return "<html>" // CANCELADO
+                    + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td width='45px'><strike>"+
+                        // LINHA DO ITEM
+                        Format.formatThreeDigits.format(getProductRowIndex())
+                    +"</strike></td><td width='120px'><strike>"+
+                        // CODIGO DE BARRAS
+                        Format.formatBarcode.format(getmProduct().getBarcode())
+                    +"</strike></td><td width='500px'><strike>"+
+                        // DESCRICAO
+                        getmProduct().getDescriptionCoupon()
+                    +"</strike></td></tr></table>"
 
-                + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td align='right'; width='55px'>"+
-                    // QUANTIDADE
-                    Format.formatQty.format(getQuantity())
-                +"</td><td align='center'; width='35px'>"+
-                    // UNIDADE
-                    getmProduct().getmUnits().getDescription()
-                +"</td><td align='center'; width='25px'>X</td><td width='100px'>"+
-                    // PRECO DE VENDA
-                    Format.brCurrencyFormat.format(getmProduct().getSalePrice())
-                +"</td><td width='90px'; color='#088A29'>"+
-                    // DESCONTO
-                    (getTotalProductDiscount() != 0 ? Format.brCurrencyFormat.format(-getTotalProductDiscount()) : "")
-                +"</td><td align='right'>"+
-                    // VALOR TOTAL
-                    Format.brCurrencyFormat.format(getTotalProductValue())
-                +"</td></tr></table>"+
-                "</html>";
+                    + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td align='right'; width='55px'><strike>"+
+                        // QUANTIDADE
+                        Format.formatQty.format(getQuantity())
+                    +"</strike></td><td align='center'; width='35px'><strike>"+
+                        // UNIDADE
+                        getmProduct().getmUnits().getDescription()
+                    +"</strike></td><td align='center'; width='25px'><strike>" +
+                        // MULTIPLICA
+                        "X"
+                    +"</strike></td><td width='100px'><strike>"+
+                        // PRECO DE VENDA
+                        Format.brCurrencyFormat.format(getmProduct().getSalePrice())
+                    +"</strike></td><td width='90px'; color='#FF0000'>"+
+                        "CANCELADO"
+                    +"</td><td align='right'><strike>"+
+                        // VALOR TOTAL
+                        Format.brCurrencyFormat.format(getTotalProductValue())
+                    +"</strike></td></tr></table>"+
+                    "</html>";
+        } else {
+            return "<html>" // VENDA NORMAL
+                    + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td width='45px'>"+
+                        // LINHA DO ITEM
+                        Format.formatThreeDigits.format(getProductRowIndex())
+                    +"</td><td width='120px'>"+
+                        // CODIGO DE BARRAS
+                        Format.formatBarcode.format(getmProduct().getBarcode())
+                    +"</td><td width='500px'>"+
+                        // DESCRICAO
+                        getmProduct().getDescriptionCoupon()
+                    +"</td></tr></table>"
+
+                    + "<table cellpadding='0'; cellspacing='0'; width='100%'><tr><td align='right'; width='55px'>"+
+                        // QUANTIDADE
+                        Format.formatQty.format(getQuantity())
+                    +"</td><td align='center'; width='35px'>"+
+                        // UNIDADE
+                        getmProduct().getmUnits().getDescription()
+                    +"</td><td align='center'; width='25px'>" +
+                        // MULTIPLICA
+                        "X"
+                    +"</td><td width='100px'>"+
+                        // PRECO DE VENDA
+                        Format.brCurrencyFormat.format(getmProduct().getSalePrice())
+                    +"</td><td width='90px'; color='#088A29'>"+
+                        // DESCONTO
+                        (getTotalProductDiscount() != 0 ? Format.brCurrencyFormat.format(-getTotalProductDiscount()) : "")
+                    +"</td><td align='right'>"+
+                        // VALOR TOTAL
+                        Format.brCurrencyFormat.format(getTotalProductValue())
+                    +"</td></tr></table>"+
+                    "</html>";
+        }
     }
 }

@@ -85,7 +85,7 @@ public class ProductBackTableModel extends AbstractTableModel {
             case SUBTOTAL:
                 return Format.brCurrencyFormat.format(lsProducts.get(rowIndex).getTotalProductValue());
             case CANCELADO:
-                return lsProducts.get(rowIndex).isProductCanceled();
+                return (lsProducts.get(rowIndex).isProductCanceled() ? "*" : "");
         }
         return null;
     }

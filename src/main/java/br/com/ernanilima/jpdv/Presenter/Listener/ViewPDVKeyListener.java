@@ -97,7 +97,7 @@ public class ViewPDVKeyListener {
 
             } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.CANCEL_CURRENT_SALE)) {
                 // Cancela venda atual
-                System.out.println("CANCELA VENTA ATUAL");
+                presenter.cancelCurrentSale();
 
             } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.CANCEL_LAST_SALE)) {
                 // Cancela ultima venda

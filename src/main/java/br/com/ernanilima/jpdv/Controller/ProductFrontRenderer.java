@@ -20,12 +20,12 @@ public class ProductFrontRenderer extends DefaultTableCellRenderer implements Ta
         if (row % 2 == 0) {
             setBackground(new Color(0,0,0,5));
         } else {
-            setBackground(new Color(0, 0, 0, 20));
+            setBackground(new Color(0, 0, 0, 15));
         }
 
         // Define a cor da linha selecionada na JTable
         if (isSelected) {
-            setBackground(new Color(0,0,0,40));
+            setBackground(new Color(0, 0, 104));
         }
 
         table.getTableHeader().setReorderingAllowed(false);
