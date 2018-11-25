@@ -104,7 +104,7 @@ public class PDVPresenter {
     private final int proBackCancellationColumn = 8;
 
     // Coluna da JTable de pagamentos recebidos
-    private final int payReceivedValueColumn = 2;
+    private final int payReceivedValueColumn = 1;
 
     // Construtor
     public PDVPresenter() {
@@ -797,7 +797,7 @@ public class PDVPresenter {
 
         double subtotalToCancel = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(selectedRow, proBackSubtotalColumn));
 
-        if (subtotalToCancel > totalValueReceivable()){
+        if (subtotalToCancel >= totalValueReceivable()){
             pPopUPMessage.showAlert("CANCELAR ITEM!", "PRODUTO COM VALOR MAIOR QUE O TOTAL A RECEBER!");
             return;
         }
@@ -889,7 +889,7 @@ public class PDVPresenter {
             mCoupon.setTotalProductDiscount(0); // PENDENTE DE IMPLEMENTACAO
             mCoupon.setmUser(mUser);
             //mCoupon.setSupervisor // PENDENTE DE IMPLEMENTACAO
-            mCoupon.setProductCanceled(saveOrCancel);
+            mCoupon.setProductCanceled((tmProductBack.getLs(i).isProductCanceled() || saveOrCancel));
             mCoupon.setDate(Date.valueOf(Format.DFDATE.format(System.currentTimeMillis())));
             mCoupon.setHour(Time.valueOf(Format.DFTIME.format(System.currentTimeMillis())));
             mCoupon.setCouponStatus(false); // PENDENTE DE IMPLEMENTACAO
