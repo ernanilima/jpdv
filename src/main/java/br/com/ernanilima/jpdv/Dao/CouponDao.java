@@ -73,8 +73,8 @@ public class CouponDao {
 
         String sql = "INSERT INTO vpropdv ("
                 + "cod_filial, cod_pdv, cod_cupom, cod_pro, desc_pro, cod_bar, cod_un_medida, desc_un_medida, qtd_vend, prec_vend, "
-                + "prec_total, cod_ope, cod_sup, pro_canc, data_data, data_hora, vend_status, cod_mesa) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "desconto, prec_total, cod_ope, cod_sup, pro_canc, data_data, data_hora, vend_status, cod_mesa) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = ConnectionSQLite.openConnection();
@@ -91,14 +91,15 @@ public class CouponDao {
                 pst.setString(8, mLsCoupon.getmProduct().getmUnits().getDescription());
                 pst.setDouble(9, mLsCoupon.getQuantity());
                 pst.setDouble(10, mLsCoupon.getmProduct().getSalePrice());
-                pst.setDouble(11, mLsCoupon.getTotalProductValue());
-                pst.setInt(12, mLsCoupon.getmUser().getId());
-                pst.setInt(13, 0); // PENDENTE DE IMPLEMENTACAO
-                pst.setBoolean(14, mLsCoupon.isProductCanceled());
-                pst.setString(15, String.valueOf(mLsCoupon.getDate()));
-                pst.setString(16, String.valueOf(mLsCoupon.getHour()));
-                pst.setBoolean(17, mLsCoupon.isCouponStatus());
-                pst.setInt(18, mLsCoupon.getTable());
+                pst.setDouble(11, mLsCoupon.getTotalProductDiscount());
+                pst.setDouble(12, mLsCoupon.getTotalProductValue());
+                pst.setInt(13, mLsCoupon.getmUser().getId());
+                pst.setInt(14, 0); // PENDENTE DE IMPLEMENTACAO
+                pst.setBoolean(15, mLsCoupon.isProductCanceled());
+                pst.setString(16, String.valueOf(mLsCoupon.getDate()));
+                pst.setString(17, String.valueOf(mLsCoupon.getHour()));
+                pst.setBoolean(18, mLsCoupon.isCouponStatus());
+                pst.setInt(19, mLsCoupon.getTable());
 
                 pst.executeUpdate();
             }

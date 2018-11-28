@@ -84,6 +84,15 @@ public interface IViewPDV {
 
     public void setProductDescription(String productDescription);
 
+    public void setDiscountDescription(String description);
+
+    public boolean getTotalProductIsVisible();
+    public boolean getTotalCouponIsVisible();
+    public boolean getBarcodeIsFocusOwner();
+    public boolean getSearchProductIsFocusOwner();
+    public boolean getDiscountValueIsFocusOwner();
+    public boolean getDiscountPercentageIsFocusOwner();
+
     // Seta escutas em componentes do PDV
     public void setBtnLoginActionPerformed(ActionListener listener);
     public void setBtnExitActionPerformed(ActionListener listener);
@@ -94,6 +103,7 @@ public interface IViewPDV {
     public void setFieldTotalValueReceivedKeyPressed(KeyAdapter adapter);
     public void setFieldDiscountValueKeyPressed(KeyAdapter adapter);
     public void setFieldDiscountPercentageKeyPressed(KeyAdapter adapter);
+    public void setBtnConfirmDiscountActionPerformed(ActionListener listener);
     public void setFieldSearchProductKeyPressed(KeyAdapter adapter);
     public void setBtnClearSearchActionPerformed(ActionListener listener);
 

@@ -15,6 +15,7 @@ import br.com.ernanilima.jpdv.View.ViewPDV;
 import javax.swing.*;
 import javax.swing.table.TableRowSorter;
 
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -221,6 +222,7 @@ public class PDVPresenter {
         viewPDV.setFieldTotalValueReceivedKeyPressed(new ViewPDVKeyListener.FieldTotalValueReceivedKeyListener(this));
         viewPDV.setFieldDiscountValueKeyPressed(new ViewPDVKeyListener.FieldDiscountValueKeyListener(this));
         viewPDV.setFieldDiscountPercentageKeyPressed(new ViewPDVKeyListener.FieldDiscountPercentageKeyListener(this));
+        viewPDV.setBtnConfirmDiscountActionPerformed(new ViewPDVActionListener.BtnConfirmDiscountActionListener(this));
     }
 
     // Metodo que gerencia os campos do ViewPDV
@@ -272,6 +274,8 @@ public class PDVPresenter {
         viewPDV.cleanBarcodeField();
         viewPDV.setSalePrice("");
         viewPDV.setTotalProductValue("");
+        viewPDV.cleanDiscountValue();
+        viewPDV.cleanDiscountPercentage();
         if (viewPDV.getProductTableBack().getRowCount() < 1) {
             viewPDV.setTotalCouponValue("");
             viewPDV.setTotalValueReceivable("");
@@ -407,10 +411,10 @@ public class PDVPresenter {
      * Inseri uma nova quantidade de venda
      */
     public void newQuantity() {
-        if (!viewPDV.getBarcode().equals("")) {
+        if (!viewPDV.getBarcode().equals("") & !viewPDV.getBarcode().equals(".")) {
             // Executa se o campo de codigo de barras nao estiver vazio
             double qtyPDV = Double.parseDouble(viewPDV.getBarcode());
-            if ( qtyPDV >= minQty & qtyPDV <= maxQty ) {
+            if (qtyPDV >= minQty & qtyPDV <= maxQty) {
                 // Executa se a quantidade informada estiver entre
                 // o minimo e maximo permitido nos parametros
                 viewPDV.setQuantity(Format.formatQty.format(qtyPDV));
@@ -551,7 +555,6 @@ public class PDVPresenter {
      * Exibe o cardLayout que informar no parametro
      * {@link CardLayoutPDV#CARD_LOGO} - Painel de logotipo
      * {@link CardLayoutPDV#CARD_FPAGAMENTO} - Painel de formas de pagamento
-     * {@link CardLayoutPDV#CARD_DESCONTO} - Painel de informar desconto
      * {@link CardLayoutPDV#CARD_BOTONS_TOUCH} - Painel de botons touch
      * @param cardLayoutPDV {@link CardLayoutPDV}
      */
@@ -563,16 +566,51 @@ public class PDVPresenter {
             // PAINEL DE FORMAS DE PAGAMENTO
             viewPDV.setLogoCardL(CARD_FPAGAMENTO.getNameCardLayout());
 
-        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_DESCONTO.getNameCardLayout())) {
-            // PAINEL DE DESCONTO
-            viewPDV.setLogoCardL(cardLayoutPDV.getNameCardLayout());
-            viewPDV.setFocusFieldDiscountValue();
-            viewPDV.setFocusableFieldTotalValueReceived(false);
-            viewPDV.setFocusableFieldBarcode(false);
-
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_BOTONS_TOUCH.getNameCardLayout())) {
             // PAINEL DE BOTONS TOUCH
             viewPDV.setLogoCardL(cardLayoutPDV.getNameCardLayout());
+
+        }
+    }
+
+    /**
+     * Exibe o cardLayout de desconto
+     * {@link CardLayoutPDV#CARD_DESCONTO} - Painel de informar desconto
+     */
+    public void selectDiscountCardL() {
+        boolean totalProductIsVisible = viewPDV.getTotalProductIsVisible();
+        boolean totalCouponIsVisible = viewPDV.getTotalCouponIsVisible();
+        int productRows = viewPDV.getProductTableBack().getRowCount();
+        int selectedRowFront = viewPDV.getProductTableFront().getSelectedRow();
+
+        if (totalProductIsVisible & productRows > 0) {
+            // DESCONTO NO PRODUTO
+            double discountValue = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(selectedRowFront, proBackDiscountColumn));
+            if (discountValue > 0) {
+                pPopUPMessage.showAlert("ATENÇÃO!", "PRODUTO JÁ POSSUI DESCONTO!");
+                return;
+            }
+
+            boolean productCanceled = !viewPDV.getProductTableBack().getValueAt(selectedRowFront, proBackCancellationColumn).equals("");
+            if (!productCanceled) {
+                cleanBasicFields();
+                viewPDV.setDiscountDescription("DESCONTO NO ITEM");
+                viewPDV.setLogoCardL(CARD_DESCONTO.getNameCardLayout());
+                viewPDV.setFocusFieldDiscountValue();
+                viewPDV.setFocusableFieldBarcode(false);
+
+            } else {
+                pPopUPMessage.showAlert("ATENÇÃO!", "DESCONTO NÃO PERMITIDO EM PRODUTO CANCELADO!");
+
+            }
+        } else if (totalCouponIsVisible & productRows > 0) {
+            // DESCONTO NO CUPOM
+            cleanBasicFields();
+            viewPDV.setDiscountDescription("DESCONTO NO CUPOM");
+            viewPDV.setLogoCardL(CARD_DESCONTO.getNameCardLayout());
+            viewPDV.setFocusFieldDiscountValue();
+            viewPDV.setFocusableFieldTotalValueReceived(false);
+            System.out.println("DESCONTO NO CUPOM");
 
         }
     }
@@ -585,38 +623,77 @@ public class PDVPresenter {
     }
 
     /**
-     * Metodo que verifica o desconto informado para o produto ou para o cupom
-     * @param focus int - 1 Foco desconto valor / 2 Foco desconto percentual
+     * Realiza a validacao do desconto informado para produto ou cupom, em valor e percentual
      */
-    public void validateDiscount(int focus) {
+    public void validateDiscount() {
 
-        String discountValue = viewPDV.getDiscountValue();
-        String discountPercentage = viewPDV.getDiscountPercentage();
+        String fieldDiscountValue = viewPDV.getDiscountValue();
+        String fieldDiscountPercentage = viewPDV.getDiscountPercentage();
+        boolean totalProductIsVisible = viewPDV.getTotalProductIsVisible();
+        boolean totalCouponIsVisible = viewPDV.getTotalCouponIsVisible();
 
-        if (!discountValue.equals("") & discountPercentage.equals("")) {
+        boolean discountValueIsFocusOwner = viewPDV.getDiscountValueIsFocusOwner();
+        boolean discountPercentageIsFocusOwner = viewPDV.getDiscountPercentageIsFocusOwner();
+
+        if (!fieldDiscountValue.equals("") & fieldDiscountPercentage.equals("")) {
             System.out.println("TEM VALOR");
-            selectValueCardL(CardLayoutPDV.CARD_VALOR_CUPOM);
-        } else if (discountValue.equals("") & !discountPercentage.equals("")) {
+            if (totalProductIsVisible) {
+                // DESCONTO NO PRODUTO
+                double discountValue = Filter.filterDouble(fieldDiscountValue);
+                if (discountValue >= totalValueReceivable()){
+                    pPopUPMessage.showAlert("CANCELAR ITEM!", "DESCONTO COM VALOR MAIOR QUE O TOTAL A RECEBER!");
+                    return;
+                }
+
+                productDiscount(discountValue);
+
+            } else if (totalCouponIsVisible) {
+                // DESCONTO NO CUPOM
+            }
+        } else if (fieldDiscountValue.equals("") & !fieldDiscountPercentage.equals("")) {
             System.out.println("TEM PERCENTUAL");
             selectValueCardL(CardLayoutPDV.CARD_VALOR_CUPOM);
-        } else if (!discountValue.equals("") & !discountPercentage.equals("")) {
+        } else if (!fieldDiscountValue.equals("") & !fieldDiscountPercentage.equals("")) {
             System.out.println("TEM VALOR E PERCENTUAL");
             viewPDV.cleanDiscountValue();
             viewPDV.cleanDiscountPercentage();
             viewPDV.setFocusFieldDiscountValue();
-        } else if (discountValue.equals("") & discountPercentage.equals("") & focus == 1) {
-            System.out.println("NAO TEM NADA");
+        } else if (fieldDiscountValue.equals("") & fieldDiscountPercentage.equals("") & discountValueIsFocusOwner) {
+            System.out.println("NAO TEM NADA NO CAMPO VALOR");
             System.out.println("VAI PARA PERCENTUAL");
             viewPDV.setFocusFieldDiscountPercentage();
-        } else if (discountValue.equals("") & discountPercentage.equals("") & focus == 2) {
-            System.out.println("NAO TEM NADA");
+        } else if (fieldDiscountValue.equals("") & fieldDiscountPercentage.equals("") & discountPercentageIsFocusOwner) {
+            System.out.println("NAO TEM NADA NO CAMPO PERCENTUAL");
             System.out.println("VAI PARA VALOR");
             viewPDV.setFocusFieldDiscountValue();
         }
     }
 
     /**
-     * Valor total de produtos vendidos
+     * Realiza desconto no produto
+     * @param discountValue double - Valor do desconto
+     */
+    private void productDiscount(double discountValue) {
+        int selectedRowFront = viewPDV.getProductTableFront().getSelectedRow();
+        double totalValueProduct = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(selectedRowFront, proBackSubtotalColumn));
+
+        if (discountValue <= (totalValueProduct - 0.01) & discountValue != 0) {
+            // SETA O VALOR DO DESCONTO NA TABELA DE VENDA
+            tmProductBack.setValueAt(discountValue, selectedRowFront, proBackDiscountColumn);
+            viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
+
+            tmProductFront.fireTableDataChanged();
+            viewPDV.getProductTableFront().changeSelection(selectedRowFront, 0, false, false);
+
+            selectValueCardL(CARD_VALOR_PRODUTO);
+
+        } else {
+            pPopUPMessage.showAlert("ATENÇÃO!", "DESCONTO MAIOR QUE O TOTAL A RECEBER!");
+        }
+    }
+
+    /**
+     * @return double - Valor total de produtos vendidos
      */
     private double totalValueOfProducts() {
         double sum = 0, subtotal;
@@ -628,6 +705,21 @@ public class PDVPresenter {
                 subtotal = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(i, proBackSubtotalColumn));
                 sum += subtotal;
             }
+        }
+        return sum;
+    }
+
+    /**
+     * @return double - Valor total de desconto nos produtos
+     */
+    private double totalDiscountProducts() {
+        double sum = 0, subtotal;
+        int rows = viewPDV.getProductTableBack().getRowCount();
+
+        for (int i = 0; i < rows; i++) {
+            // SOMA O VALOR TOTAL DE DESCONTO DOS PRODUTOS
+            subtotal = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(i, proBackDiscountColumn));
+            sum += subtotal;
         }
         return sum;
     }
@@ -685,19 +777,32 @@ public class PDVPresenter {
 
     /**
      * Movimenta a linha da tabela
-     * @param move int - 1=UP / 0=DOWN
      */
-    public void moveTableRow(int move) {
-        int rows = viewPDV.getProductSearchTable().getRowCount();
-        int row = viewPDV.getProductSearchTable().getSelectedRow();
+    public void moveTableRow (int event) {
+        int rows = 0, row = 0;
 
-        if (move == 1 & row > 0) {
+        boolean barcodeIsFocusOwner = viewPDV.getBarcodeIsFocusOwner();
+        boolean searchProductIsFocusOwner = viewPDV.getSearchProductIsFocusOwner();
+
+        if (barcodeIsFocusOwner) {
+            // PRODUTO FRONT
+            rows = viewPDV.getProductTableFront().getRowCount();
+            row = viewPDV.getProductTableFront().getSelectedRow();
+        } else if (searchProductIsFocusOwner) {
+            // BUSCA DE PRODUTO
+            rows = viewPDV.getProductSearchTable().getRowCount();
+            row = viewPDV.getProductSearchTable().getSelectedRow();
+        }
+
+        if (event == KeyEvent.VK_UP & row > 0) {
             // SELECIONA A LINHA SUPERIOR
-            viewPDV.getProductSearchTable().changeSelection(row - 1, 0, false, false);
+            (barcodeIsFocusOwner ? viewPDV.getProductTableFront() : viewPDV.getProductSearchTable())
+                    .changeSelection(row - 1, 0, false, false);
 
-        } else if (move == 0 & (row + 1) < rows) {
+        } else if (event == KeyEvent.VK_DOWN & (row + 1) < rows) {
             // SELECIONA A LINHA INFERIOR
-            viewPDV.getProductSearchTable().changeSelection(row + 1, 0, false, false);
+            (barcodeIsFocusOwner ? viewPDV.getProductTableFront() : viewPDV.getProductSearchTable())
+                    .changeSelection(row + 1, 0, false, false);
         }
     }
 
@@ -712,7 +817,7 @@ public class PDVPresenter {
         String fieldValueReceivable = viewPDV.getFieldTotalValueReceivable(); // VALOR A RECEBER
 
         if (paymentSelectedRow == -1) {
-            pPopUPMessage.showAlert("ATENCAO!", "ESCOLHA UMA FORMA DE PAGAMENTO!");
+            pPopUPMessage.showAlert("ATENÇÃO!", "ESCOLHA UMA FORMA DE PAGAMENTO!");
             return;
         }
 
@@ -725,6 +830,11 @@ public class PDVPresenter {
             newSale();
 
         } else {
+            if (fieldValueReceived.equals(",") || Filter.filterDouble(fieldValueReceived) < 0.01) {
+                pPopUPMessage.showAlert("ATENÇÃO!", "VALOR INVÁLIDO!");
+                return;
+            }
+
             double valueReceived = Filter.filterDouble(fieldValueReceived); // VALOR RECEBIDO
             double valueReceivable = Filter.filterDouble(fieldValueReceivable); // VALOR A RECEBER
 
@@ -740,7 +850,7 @@ public class PDVPresenter {
                 // VALOR RECEBIDO EH MENOR QUE O VALOR A RECEBER
                 if (viewPDV.getPaymentReceivedTable().getRowCount() == paymentMethodsMaximum ) {
                     // VALIDACAO QUE PERMITE APENAS 3 FORMAS DE PAGAMENTO
-                    pPopUPMessage.showAlert("ATENCAO, MÁXIMO DE 3 FORMAS DE PAGAMENTO!",
+                    pPopUPMessage.showAlert("ATENÇÃO, MÁXIMO DE 3 FORMAS DE PAGAMENTO!",
                             "INFORME UM VALOR ACIMA DE " + Format.brCurrencyFormat.format(valueReceivable));
                     return;
                 }
@@ -796,13 +906,21 @@ public class PDVPresenter {
         }
 
         double subtotalToCancel = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(selectedRow, proBackSubtotalColumn));
-
         if (subtotalToCancel >= totalValueReceivable()){
             pPopUPMessage.showAlert("CANCELAR ITEM!", "PRODUTO COM VALOR MAIOR QUE O TOTAL A RECEBER!");
             return;
         }
 
-        tmProductBack.setValueAt(cancel, viewPDV.getProductTableBack().getSelectedRow(), proBackCancellationColumn);
+        double discountValue = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(selectedRow, proBackDiscountColumn));
+        if (discountValue > 0) {
+            pPopUPConfirm.showConfirmDialog("ATENÇÃO!", "ITEM COM DESCONTO, TEM CERTEZA QUE DESEJA CANCELAR?");
+            if (!pPopUPConfirm.questionResult()) {
+                return;
+            }
+        }
+
+        tmProductBack.setValueAt(cancel, selectedRow, proBackCancellationColumn);
+        tmProductBack.setValueAt(0.0, selectedRow, proBackDiscountColumn); //DEFINE VALOR DE DESCONTO = 0
         viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
         selectSaleCardL(CardLayoutPDV.CARD_VENDA);
 
@@ -844,7 +962,7 @@ public class PDVPresenter {
         mCoupon.setFormOfPayment3((payments == 3) ? tmPaymentReceived.getLs(2).getmPayment().getId() : 0);
         mCoupon.setPaymentAmount3((payments == 3) ? tmPaymentReceived.getLs(2).getValue() : 0);
         mCoupon.setTotalCouponValue(Filter.filterDouble(viewPDV.getTotal()));
-        mCoupon.setTotalDiscount(0); // PENDENTE DE IMPLEMENTACAO
+        mCoupon.setTotalDiscount(totalDiscountProducts());
         mCoupon.setmUser(mUser);
         //mCoupon.setSupervisor // PENDENTE DE IMPLEMENTACAO
         mCoupon.setCouponCanceled(saveOrCancel);
@@ -886,7 +1004,7 @@ public class PDVPresenter {
             mCoupon.setmProduct(mProduct);
             mCoupon.setQuantity(tmProductBack.getLs(i).getQuantity());
             //mCoupon.setTotalProductValue(tmProductBack.getLs(i).getTotalProductValue()); ATE O MOMENTO, ESSA LINHA EH DISPENSAVEL
-            mCoupon.setTotalProductDiscount(0); // PENDENTE DE IMPLEMENTACAO
+            mCoupon.setTotalProductDiscount(tmProductBack.getLs(i).getTotalProductDiscount());
             mCoupon.setmUser(mUser);
             //mCoupon.setSupervisor // PENDENTE DE IMPLEMENTACAO
             mCoupon.setProductCanceled((tmProductBack.getLs(i).isProductCanceled() || saveOrCancel));
@@ -899,5 +1017,20 @@ public class PDVPresenter {
         }
 
         dCoupon.saveCouponProducts(lsCoupon);
+    }
+
+    /**
+     * Sai da tela de desconto
+     */
+    public void exitDiscount() {
+        boolean totalProductIsVisible = viewPDV.getTotalProductIsVisible();
+        boolean totalCouponIsVisible = viewPDV.getTotalCouponIsVisible();
+        if (totalProductIsVisible) {
+            // VOLTA PARA A TELA DE INSERIR PRODUTO
+            selectValueCardL(CARD_VALOR_PRODUTO);
+        } else if (totalCouponIsVisible) {
+            // VOLTA PARA A TELA DE FINALIZAR CUPOM
+            selectValueCardL(CARD_VALOR_CUPOM);
+        }
     }
 }

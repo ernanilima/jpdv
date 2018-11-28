@@ -100,6 +100,7 @@ public class CreateDatabaseSQLite extends ConnectionSQLite {
                     + "desc_un_medida STRING (50), " // Descricao da unidade de medida do produto vendido
                     + "qtd_vend    DOUBLE (10, 2) NOT NULL, " // Quantidade do produto vendido
                     + "prec_vend   DOUBLE (10, 2) NOT NULL, " // Preco de venda do produto
+                    + "desconto    DOUBLE (10, 2), " // Total de desconto no produto
                     + "prec_total  DOUBLE (10, 2) NOT NULL, " // Preco total do produto (quantidade * preco de venda)
                     + "cod_ope     INT            NOT NULL, " // Codigo do operador que vendeu a mercadoria
                     + "cod_sup     INT, " // Codigo do supervisor em caso de desconto ou cancelamento

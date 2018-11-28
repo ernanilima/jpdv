@@ -72,4 +72,24 @@ public class ViewPDVActionListener {
             presenter.cleanAllProductSearch();
         }
     }
+
+    /**
+     * Executa o metodo "{@link PDVPresenter#validateDiscount()}".
+     */
+    public static class BtnConfirmDiscountActionListener implements ActionListener {
+        private final PDVPresenter presenter;
+
+        /**
+         * Metodo construtor
+         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         */
+        public BtnConfirmDiscountActionListener(PDVPresenter presenter) {
+            this.presenter = presenter;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            presenter.validateDiscount();
+        }
+    }
 }

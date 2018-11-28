@@ -167,7 +167,7 @@ public class Coupon {
     //    return totalProductValue;
     //}
     public double getTotalProductValue() {
-        return getQuantity() * mProduct.getSalePrice();
+        return (getQuantity() * mProduct.getSalePrice()) - getTotalProductDiscount();
     }
 
     /**

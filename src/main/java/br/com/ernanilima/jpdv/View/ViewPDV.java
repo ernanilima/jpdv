@@ -605,7 +605,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         campoLabelLocalDesconto.setFont(new Font("Verdana", 0, 18)); // NOI18N
         campoLabelLocalDesconto.setHorizontalAlignment(SwingConstants.CENTER);
-        campoLabelLocalDesconto.setText("DESCONTO NO ITEM");
+        campoLabelLocalDesconto.setText("DESCONTO");
         campoLabelLocalDesconto.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 0, 0)));
 
         jLabelDescontoRS.setFont(new Font("Verdana", 0, 18)); // NOI18N
@@ -1441,6 +1441,41 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setDiscountDescription(String description) {
+        campoLabelLocalDesconto.setText(description);
+    }
+
+    @Override
+    public boolean getTotalProductIsVisible() {
+        return painelValProduto.isVisible();
+    }
+
+    @Override
+    public boolean getTotalCouponIsVisible() {
+        return painelValCupom.isVisible();
+    }
+
+    @Override
+    public boolean getBarcodeIsFocusOwner() {
+        return campoCodBarras.isFocusOwner();
+    }
+
+    @Override
+    public boolean getSearchProductIsFocusOwner() {
+        return campoBuscaProduto.isFocusOwner();
+    }
+
+    @Override
+    public boolean getDiscountValueIsFocusOwner() {
+        return campoDescontoRS.isFocusOwner();
+    }
+
+    @Override
+    public boolean getDiscountPercentageIsFocusOwner() {
+        return campoDescontoPer.isFocusOwner();
+    }
+
+    @Override
     public void setBtnLoginActionPerformed(ActionListener listener) {
         btnLoginEntrar.addActionListener(listener);
     }
@@ -1484,6 +1519,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public void setFieldDiscountPercentageKeyPressed(KeyAdapter adapter) {
         campoDescontoPer.addKeyListener(adapter);
+    }
+
+    @Override
+    public void setBtnConfirmDiscountActionPerformed(ActionListener listener) {
+        btnConfirmarDesconto.addActionListener(listener);
     }
 
     @Override

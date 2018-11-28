@@ -105,7 +105,7 @@ public class ViewPDVKeyListener {
 
             } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.DISCOUNT_ON_PRODUCT)) {
                 // Desconto do produto
-                System.out.println("DESCONTO NO PRODUTO");
+                presenter.selectDiscountCardL();
 
             } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.REPEAT_LAST_PRODUCT)) {
                 // Repetir ultimo produto inserido
@@ -118,6 +118,14 @@ public class ViewPDVKeyListener {
             } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                 // Exibe mensagem para sair do sistema
                 presenter.exitPDV();
+
+            } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                // MOVE PARA A LINHA SUPERIOR NA TABELA DE PRODUTOS VENDIDOS
+                presenter.moveTableRow(KeyEvent.VK_UP);
+
+            } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                // MOVE PARA A LINHA INFERIOR NA TABELA DE PRODUTOS VENDIDOS
+                presenter.moveTableRow(KeyEvent.VK_DOWN);
 
             }
         }
@@ -179,11 +187,11 @@ public class ViewPDVKeyListener {
 
             } else if (e.getKeyCode() == KeyEvent.VK_UP) {
                 // MOVE PARA A LINHA SUPERIOR NA TABELA DE BUSCA DE PRODUTO
-                presenter.moveTableRow(1);
+                presenter.moveTableRow(KeyEvent.VK_UP);
 
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 // MOVE PARA A LINHA INFERIOR NA TABELA DE BUSCA DE PRODUTO
-                presenter.moveTableRow(0);
+                presenter.moveTableRow(KeyEvent.VK_DOWN);
 
             }
         }
@@ -223,7 +231,7 @@ public class ViewPDVKeyListener {
 
             } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.DISCOUNT_ON_SALE)) {
                 // DESCONTO NA VENDA
-                presenter.selectLogoCardL(CardLayoutPDV.CARD_DESCONTO);
+                presenter.selectDiscountCardL();
 
             } else if (e.getKeyCode() == presenter.getShortcutKey(IndexShortcutKey.PAYMENT_MONEY)) {
                 // PAGAMENTO EM DINHEIRO
@@ -259,11 +267,11 @@ public class ViewPDVKeyListener {
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER){
                 // DESCONTO POR VALOR
-                presenter.validateDiscount(1);
+                presenter.validateDiscount();
 
             } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
-                // VOLTA PARA A TELA DE FINALIZAR VENDA
-                presenter.selectValueCardL(CardLayoutPDV.CARD_VALOR_CUPOM);
+                // SAI DA TELA DE DESCONTO
+                presenter.exitDiscount();
 
             }
         }
@@ -287,11 +295,11 @@ public class ViewPDVKeyListener {
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER){
                 // DESCONTO POR PERCENTUAL
-                presenter.validateDiscount(2);
+                presenter.validateDiscount();
 
             } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
-                // VOLTA PARA A TELA DE FINALIZAR VENDA
-                presenter.selectValueCardL(CardLayoutPDV.CARD_VALOR_CUPOM);
+                // SAI DA TELA DE DESCONTO
+                presenter.exitDiscount();
 
             }
         }
