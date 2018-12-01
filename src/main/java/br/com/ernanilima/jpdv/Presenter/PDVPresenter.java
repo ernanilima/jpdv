@@ -159,6 +159,32 @@ public class PDVPresenter {
         }).start();
     }
 
+    // Thread que controle o tempo da tela de troco
+    private class ChangeScreen extends Thread {
+
+        private int changeCoupon = 0;
+        private final int waitingTime = 10;
+
+        private ChangeScreen(int changeCoupon) {
+            this.changeCoupon = changeCoupon;
+        }
+
+        @Override
+        public void run() {
+            try {
+                ChangeScreen.sleep(1000 * waitingTime);
+                int currentCoupon = Integer.parseInt(viewPDV.getCurrentCouponID());
+                if (viewPDV.getChangeScreenIsVisible() & changeCoupon == currentCoupon) {
+                    newSale();
+                } else {
+                    this.interrupt();
+                }
+            } catch (InterruptedException e) {
+                System.out.println("ERRO NO TEMPO DA TELA DE TROCO: " + e);
+            }
+        }
+    }
+
     // Primeiro cupom
     private String couponID() {
         String id = dCoupon.nextCouponID();
@@ -223,6 +249,7 @@ public class PDVPresenter {
         viewPDV.setFieldDiscountValueKeyPressed(new ViewPDVKeyListener.FieldDiscountValueKeyListener(this));
         viewPDV.setFieldDiscountPercentageKeyPressed(new ViewPDVKeyListener.FieldDiscountPercentageKeyListener(this));
         viewPDV.setBtnConfirmDiscountActionPerformed(new ViewPDVActionListener.BtnConfirmDiscountActionListener(this));
+        viewPDV.setFieldChangeValueKeyPressed(new ViewPDVKeyListener.FieldChangeValueKeyListener(this));
     }
 
     // Metodo que gerencia os campos do ViewPDV
@@ -237,13 +264,13 @@ public class PDVPresenter {
         viewPDV.setFieldTotalValueReceivedDocument(new FieldManager.FieldFilterMonetary());
         viewPDV.setFieldDiscountValueDocument(new FieldManager.FieldFilterMonetary());
         //viewPDV.setFieldDiscountPercentageDocument( CRIAR UM DOCUMENTO DE %);
+        viewPDV.setFieldChangeValueDocument(new FieldManager.FieldFilterMonetary());
+        viewPDV.setFieldValueReceivableChangeDocument(new FieldManager.FieldFilterMonetary());
+        viewPDV.setValueReceivedChangeDocument(new FieldManager.FieldFilterMonetary());
     }
 
     // Nova venda
-    private void newSale() {
-        selectSaleCardL(CARD_VENDA);
-        selectValueCardL(CARD_VALOR_PRODUTO);
-
+    public void newSale() {
         // LIMPAR PRODUTOS VENDIDOS
         int productRows = viewPDV.getProductTableFront().getRowCount();
         if (productRows > 0) {
@@ -266,6 +293,9 @@ public class PDVPresenter {
         viewPDV.setcurrentCouponID(dCoupon.nextCouponID());
         cleanBasicFields();
         viewPDV.setProductDescription("CAIXA LIVRE!");
+
+        selectValueCardL(CARD_VALOR_PRODUTO);
+        selectSaleCardL(CARD_VENDA);
     }
 
     // Limpa os campos basicos
@@ -837,7 +867,7 @@ public class PDVPresenter {
         if (fieldValueReceived.equals("")) {
             // VALOR RECEBIDO EH IGUAL AO VALOR DO CUPOM
             System.out.println("VALOR RECEBIDO IGUAL AO CUPOM");
-            addPaymentReceived(fieldValueReceivable);
+            addPaymentReceived(Filter.filterDouble(fieldValueReceivable));
             viewPDV.getPaymentMethodTable().clearSelection();
             saveSale(save);
             newSale();
@@ -854,7 +884,7 @@ public class PDVPresenter {
             if (valueReceived == valueReceivable) {
                 // VALOR RECEBIDO EH IGUAL AO VALOR A RECEBER
                 System.out.println("VALOR RECEBIDO IGUAL");
-                addPaymentReceived(fieldValueReceivable);
+                addPaymentReceived(valueReceivable);
                 viewPDV.getPaymentMethodTable().clearSelection();
                 saveSale(save);
                 newSale();
@@ -870,7 +900,7 @@ public class PDVPresenter {
 
                 System.out.println("VALOR RECEBIDO MENOR");
                 viewPDV.setTotalValueReceivable(Format.brCurrencyFormat.format(totalValueReceivable()));
-                addPaymentReceived(fieldValueReceived);
+                addPaymentReceived(valueReceived);
                 viewPDV.getPaymentMethodTable().clearSelection();
                 viewPDV.cleanTotalValueReceived();
 
@@ -878,10 +908,16 @@ public class PDVPresenter {
                 // VALOR RECEBIDO EH MAIOR QUE O VALOR A RECEBER
                 // VALOR MAIOR PERMITIDO APENAS PARA PAGAMENTO EM DINHEIRO
                 System.out.println("VALOR RECEBIDO MAIOR");
-                addPaymentReceived(fieldValueReceivable);
+                addPaymentReceived(valueReceivable);
                 viewPDV.getPaymentMethodTable().clearSelection();
+                viewPDV.setValueReceivableChange(Format.brCurrencyFormat.format(valueReceivable));
+                viewPDV.setValueReceivedChange(Format.brCurrencyFormat.format(valueReceived));
+                viewPDV.setChangeValue(Format.brCurrencyFormat.format(valueReceived - valueReceivable));
+                selectSaleCardL(CARD_TROCO );
+                viewPDV.setFocusFieldChangeValue();
+                ChangeScreen changeScreen = new ChangeScreen(Integer.parseInt(viewPDV.getCurrentCouponID()));
+                changeScreen.start();
                 saveSale(save);
-                newSale();
 
             } else {
                 System.out.println("TROCO APENAS PARA DINHEIRO");
@@ -892,7 +928,7 @@ public class PDVPresenter {
     }
 
     // Adiciona recebimento na tabela
-    private void addPaymentReceived(String value) {
+    private void addPaymentReceived(double value) {
         Payment mPayment = new Payment();
         PaymentReceived mPaymentReceived = new PaymentReceived();
 
@@ -901,7 +937,7 @@ public class PDVPresenter {
         mPayment.setId(tmPayment.getLs(paymentRowSelected).getId());
         mPayment.setDescription(tmPayment.getLs(paymentRowSelected).getDescription());
         mPaymentReceived.setmPayment(mPayment);
-        mPaymentReceived.setValue(Filter.filterDouble(value));
+        mPaymentReceived.setValue(value);
 
         tmPaymentReceived.addRow(mPaymentReceived);
     }

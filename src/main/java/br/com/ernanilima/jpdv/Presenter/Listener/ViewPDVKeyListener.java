@@ -306,4 +306,28 @@ public class ViewPDVKeyListener {
             }
         }
     }
+
+    /**
+     * Escuta as teclas precionadas no campo de "troco".
+     */
+    public static class FieldChangeValueKeyListener extends KeyAdapter {
+        private final PDVPresenter presenter;
+
+        /**
+         * Metodo construtor
+         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         */
+        public FieldChangeValueKeyListener(PDVPresenter presenter) {
+            this.presenter = presenter;
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
+                // VOLTA PRA TELA DE VENDA
+                presenter.newSale();
+
+            }
+        }
+    }
 }

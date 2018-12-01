@@ -113,6 +113,9 @@ public class ViewPDV extends JFrame implements IViewPDV {
         jLabelRS6 = new JLabel();
         jLabelRS7 = new JLabel();
         jLabelRS8 = new JLabel();
+        jLabelRS9 = new JLabel();
+        jLabelRS10 = new JLabel();
+        jLabelRS11 = new JLabel();
         btnVirgula = new JButton();
         btnBackspace = new JButton();
         btnSairNumerico = new JButton();
@@ -123,6 +126,12 @@ public class ViewPDV extends JFrame implements IViewPDV {
         btnQuantidade = new JButton();
         btnEnterNumerico = new JButton();
         painelTroco = new JPanel();
+        jLabelValTotalAReceberTroco = new JLabel();
+        campoValTotalAReceberTroco = new JTextField();
+        jLabelValTotalRecebidoTroco = new JLabel();
+        campoValTotalRecebidoTroco = new JTextField();
+        jLabelValTroco = new JLabel();
+        campoValTroco = new JTextField();
         painelItensVendidos = new JPanel();
         jScrollPaneItensVendidosPDV = new JScrollPane();
         tbItensVendidosPDV = new JTable();
@@ -153,6 +162,8 @@ public class ViewPDV extends JFrame implements IViewPDV {
         //setResizable(false);
 
         painelCardPDV.setLayout(new CardLayout());
+
+        jPanelLogin.setOpaque(false);
 
         labelUsuarioLogin.setFont(new Font("Verdana", 0, 12)); // NOI18N
         labelUsuarioLogin.setText("USUÁRIO");
@@ -251,7 +262,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
         );
         painelCabecalhoPDVLayout.setVerticalGroup(
                 painelCabecalhoPDVLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(campoDescricaoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                        .addComponent(campoDescricaoProduto, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
         painelCardVendas.setLayout(new CardLayout());
@@ -391,7 +402,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         campoValTotalProdutos.setEditable(false);
         campoValTotalProdutos.setBackground(Color.WHITE);
-        campoValTotalProdutos.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoValTotalProdutos.setFont(new Font("Verdana", 0, 48)); // NOI18N
         campoValTotalProdutos.setHorizontalAlignment(JTextField.RIGHT);
         campoValTotalProdutos.setFocusable(false);
         campoValTotalProdutos.setLayout(new BorderLayout());
@@ -978,21 +989,91 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelCardVendas.add(painelVendas, "cardPDVVenda");
 
+        jLabelValTotalAReceberTroco.setFont(new Font("Verdana", 0, 14)); // NOI18N
+        jLabelValTotalAReceberTroco.setText("TOTAL A RECEBER");
+
+        jLabelRS9.setBackground(new Color(255, 255, 255));
+        jLabelRS9.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelRS9.setText("R$");
+        jLabelRS9.setOpaque(true);
+        campoValTotalAReceberTroco.setEditable(false);
+        campoValTotalAReceberTroco.setBackground(new Color(255, 255, 255));
+        campoValTotalAReceberTroco.setFont(new Font("Verdana", 0, 24)); // NOI18N
+        campoValTotalAReceberTroco.setHorizontalAlignment(JTextField.RIGHT);
+        campoValTotalAReceberTroco.setFocusable(false);
+        campoValTotalAReceberTroco.setLayout(new BorderLayout());
+        campoValTotalAReceberTroco.add(jLabelRS9,BorderLayout.LINE_START);
+
+        jLabelValTotalRecebidoTroco.setFont(new Font("Verdana", 0, 14)); // NOI18N
+        jLabelValTotalRecebidoTroco.setText("TOTAL RECEBIDO");
+
+        jLabelRS10.setBackground(new Color(255, 255, 255));
+        jLabelRS10.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelRS10.setText("R$");
+        jLabelRS10.setOpaque(true);
+        campoValTotalRecebidoTroco.setEditable(false);
+        campoValTotalRecebidoTroco.setBackground(new Color(255, 255, 255));
+        campoValTotalRecebidoTroco.setFont(new Font("Verdana", 0, 24)); // NOI18N
+        campoValTotalRecebidoTroco.setHorizontalAlignment(JTextField.RIGHT);
+        campoValTotalRecebidoTroco.setFocusable(false);
+        campoValTotalRecebidoTroco.setLayout(new BorderLayout());
+        campoValTotalRecebidoTroco.add(jLabelRS10,BorderLayout.LINE_START);
+
+        jLabelValTroco.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelValTroco.setText("TROCO");
+
+        jLabelRS11.setBackground(new Color(255, 255, 255));
+        jLabelRS11.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        jLabelRS11.setText("R$");
+        jLabelRS11.setOpaque(true);
+        campoValTroco.setEditable(false);
+        campoValTroco.setBackground(new Color(255, 255, 255));
+        campoValTroco.setFont(new Font("Verdana", 0, 48)); // NOI18N
+        campoValTroco.setHorizontalAlignment(JTextField.RIGHT);
+        campoValTroco.setLayout(new BorderLayout());
+        campoValTroco.add(jLabelRS11,BorderLayout.LINE_START);
+
         GroupLayout painelTrocoLayout = new GroupLayout(painelTroco);
         painelTroco.setLayout(painelTrocoLayout);
         painelTrocoLayout.setHorizontalGroup(
                 painelTrocoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 1280, Short.MAX_VALUE)
+                        .addGroup(painelTrocoLayout.createSequentialGroup()
+                                .addContainerGap(475, Short.MAX_VALUE)
+                                .addGroup(painelTrocoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(painelTrocoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabelValTroco, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(campoValTroco, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(painelTrocoLayout.createSequentialGroup()
+                                                .addGroup(painelTrocoLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(jLabelValTotalAReceberTroco, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                                        .addComponent(campoValTotalAReceberTroco, GroupLayout.Alignment.LEADING))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(painelTrocoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(campoValTotalRecebidoTroco, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabelValTotalRecebidoTroco, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(475, Short.MAX_VALUE))
         );
         painelTrocoLayout.setVerticalGroup(
                 painelTrocoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 576, Short.MAX_VALUE)
+                        .addGroup(GroupLayout.Alignment.TRAILING, painelTrocoLayout.createSequentialGroup()
+                                .addContainerGap(396, Short.MAX_VALUE)
+                                .addGroup(painelTrocoLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabelValTotalAReceberTroco)
+                                        .addComponent(jLabelValTotalRecebidoTroco))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(painelTrocoLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(campoValTotalAReceberTroco, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(campoValTotalRecebidoTroco, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelValTroco)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoValTroco, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
 
         painelCardVendas.add(painelTroco, "cardPDVTroco");
 
         tbItensVendidosPDV.setFont(new Font("Verdana", 0, 18)); // NOI18N
-        //tbItensVendidosPDV.setFocusable(false);
         tbItensVendidosPDV.setOpaque(false);
         tbItensVendidosPDV.setRowHeight(25);
         jScrollPaneItensVendidosPDV.setViewportView(tbItensVendidosPDV);
@@ -1237,6 +1318,9 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JLabel campoHora;
     private JLabel campoLabelLocalDesconto;
     private JLabel campoNomeOperador;
+    private JLabel jLabelValTotalAReceberTroco;
+    private JLabel jLabelValTotalRecebidoTroco;
+    private JLabel jLabelValTroco;
     private JTextField campoPrecoProduto;
     private JTextField campoQuantidade;
     private JPasswordField campoSenhaUsuario;
@@ -1246,6 +1330,9 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JTextField campoValTotalDesconto;
     private JTextField campoValTotalProdutos;
     private JTextField campoValTotalRecebido;
+    private JTextField campoValTotalAReceberTroco;
+    private JTextField campoValTotalRecebidoTroco;
+    private JTextField campoValTroco;
     private JLabel jLabelRS1;
     private JLabel jLabelRS2;
     private JLabel jLabelRS3;
@@ -1254,6 +1341,9 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JLabel jLabelRS6;
     private JLabel jLabelRS7;
     private JLabel jLabelRS8;
+    private JLabel jLabelRS9;
+    private JLabel jLabelRS10;
+    private JLabel jLabelRS11;
     private JLabel campoVersao;
     private JLabel imgLogo;
     private JLabel jLabelCodBarras;
@@ -1446,6 +1536,21 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setChangeValue(String changeValue) {
+        campoValTroco.setText(changeValue);
+    }
+
+    @Override
+    public void setValueReceivableChange(String receivableChange) {
+        campoValTotalAReceberTroco.setText(receivableChange);
+    }
+
+    @Override
+    public void setValueReceivedChange(String receivedChange) {
+        campoValTotalRecebidoTroco.setText(receivedChange);
+    }
+
+    @Override
     public boolean getTotalProductIsVisible() {
         return painelValProduto.isVisible();
     }
@@ -1453,6 +1558,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public boolean getTotalCouponIsVisible() {
         return painelValCupom.isVisible();
+    }
+
+    @Override
+    public boolean getChangeScreenIsVisible() {
+        return painelTroco.isVisible();
     }
 
     @Override
@@ -1537,6 +1647,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setFieldChangeValueKeyPressed(KeyAdapter adapter) {
+        campoValTroco.addKeyListener(adapter);
+    }
+
+    @Override
     public void setFieldBarcodeDocument(Document document) {
         campoCodBarras.setDocument(document);
     }
@@ -1588,6 +1703,21 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setFieldChangeValueDocument(Document document) {
+        campoValTroco.setDocument(document);
+    }
+
+    @Override
+    public void setFieldValueReceivableChangeDocument(Document document) {
+        campoValTotalAReceberTroco.setDocument(document);
+    }
+
+    @Override
+    public void setValueReceivedChangeDocument(Document document) {
+        campoValTotalRecebidoTroco.setDocument(document);
+    }
+
+    @Override
     public void setFocusFieldID() {
         campoCodUsuario.requestFocus();
         campoCodUsuario.selectAll();
@@ -1628,6 +1758,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public void setFocusFieldSearchProduct() {
         campoBuscaProduto.requestFocus();
+    }
+
+    @Override
+    public void setFocusFieldChangeValue() {
+        campoValTroco.requestFocus();
     }
 
     @Override

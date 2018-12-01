@@ -86,8 +86,15 @@ public interface IViewPDV {
 
     public void setDiscountDescription(String description);
 
+    public void setChangeValue(String changeValue);
+
+    public void setValueReceivableChange(String receivableChange);
+
+    public void setValueReceivedChange(String receivedChange);
+
     public boolean getTotalProductIsVisible();
     public boolean getTotalCouponIsVisible();
+    public boolean getChangeScreenIsVisible();
     public boolean getBarcodeIsFocusOwner();
     public boolean getSearchProductIsFocusOwner();
     public boolean getDiscountValueIsFocusOwner();
@@ -106,6 +113,7 @@ public interface IViewPDV {
     public void setBtnConfirmDiscountActionPerformed(ActionListener listener);
     public void setFieldSearchProductKeyPressed(KeyAdapter adapter);
     public void setBtnClearSearchActionPerformed(ActionListener listener);
+    public void setFieldChangeValueKeyPressed(KeyAdapter adapter);
 
     // Associa um campo de texto a um Document
     public void setFieldBarcodeDocument(Document document);
@@ -118,6 +126,9 @@ public interface IViewPDV {
     public void setFieldTotalValueReceivedDocument(Document document);
     public void setFieldDiscountValueDocument(Document document);
     public void setFieldDiscountPercentageDocument(Document document);
+    public void setFieldChangeValueDocument(Document document);
+    public void setFieldValueReceivableChangeDocument(Document document);
+    public void setValueReceivedChangeDocument(Document document);
 
     // Definir foco em determinado componente do PDV
     public void setFocusFieldID();
@@ -128,6 +139,7 @@ public interface IViewPDV {
     public void setFocusFieldDiscountValue();
     public void setFocusFieldDiscountPercentage();
     public void setFocusFieldSearchProduct();
+    public void setFocusFieldChangeValue();
 
     // Habilitar ou desabilitar foco
     public void setFocusableFieldBarcode(boolean focus);
