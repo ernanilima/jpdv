@@ -1,5 +1,6 @@
 package br.com.ernanilima.jpdv.Model;
 
+import br.com.ernanilima.jpdv.Util.Filter;
 import br.com.ernanilima.jpdv.Util.Format;
 
 import java.sql.Date;
@@ -21,7 +22,7 @@ public class Coupon {
     private Time hour;
     private boolean couponStatus;
     private double quantity;
-    private double totalProductValue;
+    //private double totalProductValue;
     private double totalCouponValue;
     private int formOfPayment1;
     private double paymentAmount1;
@@ -167,16 +168,16 @@ public class Coupon {
     //    return totalProductValue;
     //}
     public double getTotalProductValue() {
-        return (getQuantity() * mProduct.getSalePrice()) - getTotalProductDiscount();
+        return Filter.filterDouble(Format.roundingTwoUP.format((getQuantity() * mProduct.getSalePrice()) - getTotalProductDiscount()));
     }
 
     /**
      * Atribui o valor total do produto na variavel "{@link #totalProductValue}"
      * @param totalProductValue double - Valor total do produto
      */
-    public void setTotalProductValue(double totalProductValue) {
+    /*public void setTotalProductValue(double totalProductValue) {
         this.totalProductValue = totalProductValue;
-    }
+    }*/
 
     /**
      * @return double - Valor total do cupom

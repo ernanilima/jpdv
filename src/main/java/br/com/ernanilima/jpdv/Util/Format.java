@@ -1,5 +1,6 @@
 package br.com.ernanilima.jpdv.Util;
 
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -27,6 +28,12 @@ public class Format {
      * Formata a quantidade do produto, 3 casas decimais
      */
     public static final DecimalFormat formatQty = new DecimalFormat("##0.000");
+
+    /**
+     * Arredondamento para cima, valores com duas casas decimais
+     */
+    public static final DecimalFormat roundingTwoUP = new DecimalFormat("#####.00");
+    static { roundingTwoUP.setRoundingMode(RoundingMode.UP); }
 
     /**
      * Formata valores monetarios com o padrao do Brasil
