@@ -43,6 +43,9 @@ public class PDVPresenter {
     // Presenter do pop-up de confirmacao (sim/nao)
     private final PopUPConfirmDialogPresenter pPopUPConfirm;
 
+    // Presenter do pop-up de validar nivel do usuario
+    private final PopUPUserPermissionDialogPresenter pPopUPUserPermission;
+
     // Model do usuario
     private final User mUser;
 
@@ -112,6 +115,7 @@ public class PDVPresenter {
         this.viewPDV = new ViewPDV();
         this.pPopUPMessage = new PopUPMessageDialogPresenter();
         this.pPopUPConfirm = new PopUPConfirmDialogPresenter();
+        this.pPopUPUserPermission = new PopUPUserPermissionDialogPresenter();
         this.mUser = new User();
         this.mSupport = new Support();
         this.mBg = new Backgrounds();
