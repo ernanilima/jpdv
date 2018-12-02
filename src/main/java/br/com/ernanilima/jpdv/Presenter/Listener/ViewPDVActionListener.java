@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Classe que escuta as acoes do usuario na ViewPDV.
+ * Classe que escuta as acoes do usuario na {@link br.com.ernanilima.jpdv.View.ViewPDV}.
  *
  * @author Ernani Lima
  */
@@ -20,8 +20,7 @@ public class ViewPDVActionListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public BtnLoginUserActionListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -40,8 +39,7 @@ public class ViewPDVActionListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public BtnExitActionListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -60,8 +58,7 @@ public class ViewPDVActionListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public BtnClearSearchActionListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -80,8 +77,7 @@ public class ViewPDVActionListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public BtnConfirmDiscountActionListener(PDVPresenter presenter) {
             this.presenter = presenter;

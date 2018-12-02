@@ -7,7 +7,6 @@ package br.com.ernanilima.jpdv.Model;
  */
 public class Unit {
 
-    // Variaveis da unidade de medida
     private int id;
     private String description;
 
@@ -22,7 +21,6 @@ public class Unit {
     }
 
     /**
-     * Atribui o ID da unidade de medida na variavel "{@link #id}"
      * @param id int - ID da unidade de medida
      */
     public void setId(int id) {
@@ -37,7 +35,6 @@ public class Unit {
     }
 
     /**
-     * Atribui a descricao da unidade de medida na variavel "{@link #description}"
      * @param description String - Descricao da unidade de medida
      */
     public void setDescription(String description) {

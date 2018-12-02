@@ -10,26 +10,28 @@ import java.awt.*;
  *
  * @author Ernani Lima
  */
-public class PaymentRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
+public class PaymentMethodRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-        // Alterna as cores a cada linha inserida na JTable
+        final int PAYMENT_METHODS = 0;
+
+        // ALTERNA AS CORES DAS LINHAS
         if (row % 2 == 0) {
             setBackground(new Color(250, 250, 250));
         } else {
             setBackground(new Color(240, 240, 240));
         }
 
-        // Define a cor da linha selecionada na JTable
+        // DEFINE A COR DA LINHA SELECIONADA
         if (isSelected) {
             setBackground(new Color(0, 0, 104));
         }
 
         table.getTableHeader().setReorderingAllowed(false);
-        table.getColumnModel().getColumn(0).setResizable(false);
+        table.getColumnModel().getColumn(PAYMENT_METHODS).setResizable(false);
 
         return this;
     }

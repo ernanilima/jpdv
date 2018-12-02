@@ -8,13 +8,11 @@ import java.io.InputStream;
  * @author Ernani Lima
  */
 public class Backgrounds {
-    /**
-     * InputStream com o caminho interno da aplicacao contendo cada imagem de background
-     */
+
     private final InputStream imgBgDialog = getClass().getResourceAsStream("/backgrounds/bg_dialog.png");
     private final InputStream imgBgPDVLogin = getClass().getResourceAsStream("/backgrounds/bg_login_jpdv.png");
 
-    // Construtor vazio
+    // Construtor
     public Backgrounds() {}
 
     /**

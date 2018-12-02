@@ -19,15 +19,15 @@ import static br.com.ernanilima.jpdv.Connection.ConnectionSQLite.closeSQLite;
 public class CouponDao {
 
     /**
-     * Salva os dados de venda de cupom
+     * Salva cupom vendido
      * @param mCoupon {@link Coupon} - Model de cupom
      */
     public void saveSaleCoupon(Coupon mCoupon) {
         Connection conn = null;
         PreparedStatement pst = null;
-        String sql = "INSERT INTO vendpdv ("
-                + "cod_filial, cod_pdv, cod_pag01, val_fpg01, cod_pag02, val_fpg02, cod_pag03, val_fpg03, "
-                + "cup_total, cup_desconto, cod_ope, cod_sup, cup_canc, data_data, data_hora, vend_status, cod_mesa) "
+        String sql = "INSERT INTO vcupom ("
+                + "cod_filial, cod_pdv, cod_pag01, val_pag01, cod_pag02, val_pag02, cod_pag03, val_pag03, "
+                + "val_total, val_desconto, cod_ope, cod_sup, cup_canc, data_venda, hora_venda, status, cod_mesa) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -52,12 +52,12 @@ public class CouponDao {
             pst.setBoolean(16, mCoupon.isCouponStatus());
             pst.setInt(17, mCoupon.getTable());
             pst.executeUpdate();
-            System.out.println("GRAVOU A VENDA NO BANCO DE DADOS");
+            System.out.println("GRAVOU CUPOM");
 
         } catch (ClassNotFoundException e) {
             System.out.println("ERRO AO ABRIR CONEXAO COM DBJPDV: " + e);
         } catch (SQLException e) {
-            System.out.println("ERRO AO REALIZAR SALVAR VENDA: " + e);
+            System.out.println("ERRO AO SALVAR CUPOM: " + e);
         } finally {
             closeSQLite(conn, pst);
         }
@@ -71,9 +71,10 @@ public class CouponDao {
         Connection conn = null;
         PreparedStatement pst = null;
 
-        String sql = "INSERT INTO vpropdv ("
-                + "cod_filial, cod_pdv, cod_cupom, cod_pro, desc_pro, cod_bar, cod_un_medida, desc_un_medida, qtd_vend, prec_vend, "
-                + "desconto, prec_total, cod_ope, cod_sup, pro_canc, data_data, data_hora, vend_status, cod_mesa) "
+        String sql = "INSERT INTO vproduto ("
+                + "cod_filial, cod_pdv, cod_cupom, cod_produto, desc_produto, cod_barras, "
+                + "cod_un_medida, desc_un_medida, qtd_vendida, prec_venda, val_desconto, val_total, "
+                + "cod_ope, cod_sup, pro_canc, data_venda, hora_venda, status, cod_mesa) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -102,11 +103,12 @@ public class CouponDao {
                 pst.setInt(19, mLsCoupon.getTable());
 
                 pst.executeUpdate();
+                System.out.println("GRAVOU PRODUTO DE CUPOM");
             }
         } catch (ClassNotFoundException e) {
             System.out.println("ERRO AO ABRIR CONEXAO COM DBJPDV: " + e);
         } catch (SQLException e) {
-            System.out.println("ERRO AO REALIZAR SALVAR VENDA: " + e);
+            System.out.println("ERRO AO SALVAR PRODUTO DE CUPOM: " + e);
         } finally {
             closeSQLite(conn, pst);
         }
@@ -120,7 +122,7 @@ public class CouponDao {
         PreparedStatement pst = null;
         ResultSet rs = null;
         String nextID;
-        String sql = "SELECT seq FROM sqlite_sequence WHERE name='vendpdv'";
+        String sql = "SELECT seq FROM sqlite_sequence WHERE name='vcupom'";
 
         try {
             conn = ConnectionSQLite.openConnection();

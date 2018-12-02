@@ -2,7 +2,6 @@ package br.com.ernanilima.jpdv.Presenter.Listener;
 
 import br.com.ernanilima.jpdv.Model.Enum.IndexShortcutKey;
 import br.com.ernanilima.jpdv.Presenter.PDVPresenter;
-import br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -10,7 +9,7 @@ import java.awt.event.KeyEvent;
 import static br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV.*;
 
 /**
- * Classe que escuta teclas precionadas na ViewPDV
+ * Classe que escuta teclas precionadas na {@link br.com.ernanilima.jpdv.View.ViewPDV}
  *
  * @author Ernani Lima
  */
@@ -23,8 +22,7 @@ public class ViewPDVKeyListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public FieldIDKeyListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -48,8 +46,7 @@ public class ViewPDVKeyListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public FieldPassqordKeyListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -66,14 +63,13 @@ public class ViewPDVKeyListener {
     }
 
     /**
-     * Escuta as teclas precionadas no campo de codigo de barras.
+     * Escuta as teclas precionadas no campo de "codigo de barras".
      */
     public static class FieldBarcodeKeyListener extends KeyAdapter {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public FieldBarcodeKeyListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -140,8 +136,7 @@ public class ViewPDVKeyListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public ProductTableBackKeyListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -168,8 +163,7 @@ public class ViewPDVKeyListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public FieldSearchProductKeyListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -214,8 +208,7 @@ public class ViewPDVKeyListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public FieldTotalValueReceivedKeyListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -258,8 +251,7 @@ public class ViewPDVKeyListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public FieldDiscountValueKeyListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -286,8 +278,7 @@ public class ViewPDVKeyListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public FieldDiscountPercentageKeyListener(PDVPresenter presenter) {
             this.presenter = presenter;
@@ -314,8 +305,7 @@ public class ViewPDVKeyListener {
         private final PDVPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PDVPresenter} - Classe presenter da ViewPDV.
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
          */
         public FieldChangeValueKeyListener(PDVPresenter presenter) {
             this.presenter = presenter;

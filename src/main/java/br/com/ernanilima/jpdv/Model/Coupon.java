@@ -13,7 +13,6 @@ import java.sql.Time;
  */
 public class Coupon {
 
-    // Variaveis do Cupom de PDV
     private int coupon;
     private boolean productCanceled;
     private int productRowIndex;
@@ -49,7 +48,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o numero do cupom na variavel "{@link #coupon}"
      * @param coupon int - Numero do cupom
      */
     public void setCoupon(int coupon) {
@@ -64,7 +62,6 @@ public class Coupon {
     }
 
     /**
-     * Atrobui "true" na variavel "{@link #productCanceled}" caso o produto seja cancelado
      * @param productCanceled boolean - "True" para produto cancelado
      */
     public void setProductCanceled(boolean productCanceled) {
@@ -79,7 +76,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o numero da linha do produto de cupom na variavel {@link #productRowIndex}
      * @param productRowIndex int - Numero da linha do produto de cupom
      */
     public void setProductRowIndex(int productRowIndex) {
@@ -94,7 +90,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui "true" na variavel "{@link #couponCanceled}" caso o cupom seja cancelado
      * @param couponCanceled boolean - "True" para cupom cancelado
      */
     public void setCouponCanceled(boolean couponCanceled) {
@@ -109,7 +104,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui a data do cupom na variavel "{@link #date}"
      * @param date Date - Data do cupom
      */
     public void setDate(Date date) {
@@ -124,7 +118,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui a hora do cupom na variavel "{@link #hour}"
      * @param hour Time - Hora do cupom
      */
     public void setHour(Time hour) {
@@ -139,7 +132,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui "true" na variavel "{@link #couponStatus}" para cupom gravado no servidor
      * @param couponStatus boolean - "True" para cupom gravado no servidor
      */
     public void setCouponStatus(boolean couponStatus) {
@@ -154,7 +146,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui a quantidade total do produto na variavel "{@link #quantity}"
      * @param quantity double - Quantidade total do produto
      */
     public void setQuantity(double quantity) {
@@ -172,7 +163,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o valor total do produto na variavel "{@link #totalProductValue}"
      * @param totalProductValue double - Valor total do produto
      */
     /*public void setTotalProductValue(double totalProductValue) {
@@ -187,7 +177,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o valor total do cupom na variavel "{@link #totalCouponValue}"
      * @param totalCouponValue double - Valor total do cupom
      */
     public void setTotalCouponValue(double totalCouponValue) {
@@ -202,7 +191,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o codigo da forma de pagamento 1 na variavel "{@link #formOfPayment1}"
      * @param formOfPayment1 int - Forma de pagamento 1
      */
     public void setFormOfPayment1(int formOfPayment1) {
@@ -217,7 +205,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o valor total do pagamento 1 na variavel "{@link #paymentAmount1}"
      * @param paymentAmount1 double - Valor total do pagamento 1
      */
     public void setPaymentAmount1(double paymentAmount1) {
@@ -231,7 +218,6 @@ public class Coupon {
         return formOfPayment2;
     }
     /**
-     * Atribui o codigo da forma de pagamento 2 na variavel "{@link #formOfPayment2}"
      * @param formOfPayment2 int - Forma de pagamento 2
      */
     public void setFormOfPayment2(int formOfPayment2) {
@@ -246,7 +232,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o valor total do pagamento 2 na variavel "{@link #paymentAmount2}"
      * @param paymentAmount2 double - Valor total do pagamento 2
      */
     public void setPaymentAmount2(double paymentAmount2) {
@@ -261,7 +246,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o codigo da forma de pagamento 3 na variavel "{@link #formOfPayment3}"
      * @param formOfPayment3 int - Forma de pagamento 3
      */
     public void setFormOfPayment3(int formOfPayment3) {
@@ -276,7 +260,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o valor total do pagamento 3 na variavel "{@link #paymentAmount3}"
      * @param paymentAmount3 double - Valor total do pagamento 3
      */
     public void setPaymentAmount3(double paymentAmount3) {
@@ -291,7 +274,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui na variavel "{@link #totalDiscount}" o valor total de desconto
      * @param totalDiscount double - Valor total de desconto
      */
     public void setTotalDiscount(double totalDiscount) {
@@ -306,7 +288,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui na variavel "{@link #totalProductDiscount}" o valor total de desconto no produto
      * @param totalProductDiscount double - Valor total de desconto no produto
      */
     public void setTotalProductDiscount(double totalProductDiscount) {
@@ -321,7 +302,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o numero da mesa do estabelecimento na variavel "{@link #table}"
      * @param table int - Numero da mesa do estabelecimento
      */
     public void setTable(int table) {
@@ -336,7 +316,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o produto na Classe Model {@link Product}
      * @param mProduct {@link Product} - Classe Model de produto
      */
     public void setmProduct(Product mProduct) {
@@ -351,7 +330,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui a Empresa/Filial na Classe Model {@link CompanyBR}
      * @param mCompany {@link CompanyBR} - Classe Model da Empresa/Filial
      */
     public void setmCompany(CompanyBR mCompany) {
@@ -366,7 +344,6 @@ public class Coupon {
     }
 
     /**
-     * Atribui o usuario na Classe Model {@link User}
      * @param mUser {@link User} - Classe Model de usuario
      */
     public void setmUser(User mUser) {

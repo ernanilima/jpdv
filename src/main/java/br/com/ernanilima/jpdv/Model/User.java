@@ -7,7 +7,6 @@ package br.com.ernanilima.jpdv.Model;
  */
 public class User {
 
-    // Variaveis do usuario
     private int id;
     private String name;
     private String pwd;
@@ -24,7 +23,6 @@ public class User {
     }
 
     /**
-     * Atribui o ID de usuario na variavel "{@link #id}"
      * @param id int - ID do usuario
      */
     public void setId(int id) {
@@ -39,7 +37,6 @@ public class User {
     }
 
     /**
-     * Atribui o nome de usuario na variavel "{@link #name}"
      * @param name String - Nome do usuario
      */
     public void setName(String name) {
@@ -54,7 +51,6 @@ public class User {
     }
 
     /**
-     * Atribui o senha de usuario na variavel "{@link #pwd}"
      * @param pwd String - Senha do usuario
      */
     public void setPwd(String pwd) {
@@ -69,7 +65,6 @@ public class User {
     }
 
     /**
-     * Atribui o nivel do usuario na variavel "{@link #level}"
      * @param level int - Nivel de acesso do usuario
      */
     public void setLevel(int level) {

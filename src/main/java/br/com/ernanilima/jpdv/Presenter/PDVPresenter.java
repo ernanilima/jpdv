@@ -86,7 +86,7 @@ public class PDVPresenter {
     private final TableRowSorter<ProductSearchTableModel> trsProductSearch;
 
     // TableModel de formas de pagamento
-    private final PaymentTableModel tmPayment;
+    private final PaymentMethodTableModel tmPayment;
 
     // TableModel de pagamento recebido
     private final PaymentReceivedTableModel tmPaymentReceived;
@@ -126,7 +126,7 @@ public class PDVPresenter {
         this.tmProductBack = new ProductBackTableModel();
         this.tmProductSearch = new ProductSearchTableModel();
         this.trsProductSearch = new TableRowSorter<>(tmProductSearch);
-        this.tmPayment = new PaymentTableModel();
+        this.tmPayment = new PaymentMethodTableModel();
         this.tmPaymentReceived = new PaymentReceivedTableModel();
         this.myTables();
         this.fillProductSearchTable();
@@ -204,7 +204,7 @@ public class PDVPresenter {
         viewPDV.getProductSearchTable().setDefaultRenderer(Object.class, new ProductSearchRenderer());
         viewPDV.getProductSearchTable().setRowSorter(trsProductSearch);
         viewPDV.getPaymentMethodTable().setModel(tmPayment);
-        viewPDV.getPaymentMethodTable().setDefaultRenderer(Object.class, new PaymentRenderer());
+        viewPDV.getPaymentMethodTable().setDefaultRenderer(Object.class, new PaymentMethodRenderer());
         viewPDV.getPaymentReceivedTable().setModel(tmPaymentReceived);
         viewPDV.getPaymentReceivedTable().setDefaultRenderer(Object.class, new PaymentReceivedRenderer());
         viewPDV.getPaymentReceivedTable().setRowSelectionAllowed(false);
@@ -221,7 +221,7 @@ public class PDVPresenter {
 
     // Preenche a tabela de formas de pagamento
     private  void fillPaymentMethodTable() {
-        PaymentDao dPayment = new PaymentDao();
+        PaymentMethodDao dPayment = new PaymentMethodDao();
         int rows = tmPayment.getRowCount();
         for (int i = rows - 1; i >= 0; i--) {
             tmPayment.removeRow(i);
@@ -929,7 +929,7 @@ public class PDVPresenter {
 
     // Adiciona recebimento na tabela
     private void addPaymentReceived(double value) {
-        Payment mPayment = new Payment();
+        PaymentMethod mPayment = new PaymentMethod();
         PaymentReceived mPaymentReceived = new PaymentReceived();
 
         int paymentRowSelected = viewPDV.getPaymentMethodTable().getSelectedRow();

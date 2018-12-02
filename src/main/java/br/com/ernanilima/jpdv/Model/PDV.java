@@ -7,7 +7,6 @@ package br.com.ernanilima.jpdv.Model;
  */
 public class PDV {
 
-    // Variaveis do PDV
     private int id;
     private String ip;
     private String version;

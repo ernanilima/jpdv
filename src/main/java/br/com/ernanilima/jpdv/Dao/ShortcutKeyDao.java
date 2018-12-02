@@ -20,8 +20,7 @@ import static br.com.ernanilima.jpdv.Connection.ConnectionSQLite.closeSQLite;
 public class ShortcutKeyDao {
 
     /**
-     * Realiza uma busca por todas as teclas de atalho armazenadas no banco de dados e
-     * cria uma lista para armazenar no Model de teclas de atalho.
+     * Cria uma lista com as teclas de atalho.
      * @return List {@link ShortcutKey} - Lista de teclas de atalho
      */
     public List<ShortcutKey> listShortcutKeys() {

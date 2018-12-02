@@ -18,7 +18,7 @@ import static br.com.ernanilima.jpdv.Connection.ConnectionSQLite.openConnectionP
 public class UserDao {
 
     /**
-     * Realizar validacao de login de usuario de PDV
+     * Validacao de login de usuario de PDV
      * @param mUser {@link User} - Model de usuario
      * @return boolean - "true" se login realizado com sucesso
      */
@@ -26,7 +26,7 @@ public class UserDao {
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM tabuser WHERE user_id = ? AND user_senha = ?";
+        String sql = "SELECT * FROM usuario WHERE id = ? AND senha = ?";
 
         try {
             conn = openConnectionParame();
@@ -37,9 +37,9 @@ public class UserDao {
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                mUser.setId(rs.getInt("user_id"));
-                mUser.setName(rs.getString("user_nome"));
-                mUser.setLevel(rs.getInt("user_nivel"));
+                mUser.setId(rs.getInt("id"));
+                mUser.setName(rs.getString("nome"));
+                mUser.setLevel(rs.getInt("nivel"));
                 return true;
             }
         } catch (ClassNotFoundException e) {

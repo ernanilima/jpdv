@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Table Model de produtos.
+ * TableModel de produtos.
  * A tabela de produtos eh onde o usuario pode escolher o
  * produto para adicionar na venda
  *
@@ -16,19 +16,16 @@ import java.util.List;
  */
 public class ProductSearchTableModel extends AbstractTableModel {
 
-    // Constantes representando o indice das colunas
-    private static final int COD = 0;
-    private static final int DESCRICAO = 1;
-    private static final int COD_BARRAS = 2;
-    private static final int PRECO_UND = 3;
-    private static final int UNIDADE = 4;
+    private static final int CODE = 0;
+    private static final int DESCRIPTION = 1;
+    private static final int BARCODE = 2;
+    private static final int PRICE = 3;
+    private static final int UNIT = 4;
 
-    // Lista de produtos do cupom
     private final List<Product> lsProducts = new ArrayList<>();
     private final String[] columns = {"COD", "DESCRIÇÃO", "COD. BARRAS", "PREÇO UND", "UND"};
 
     /**
-     * Determinha o nome de cada coluna da JTable
      * @param column int - indice da coluna
      * @return String - Nome da coluna
      */
@@ -38,7 +35,6 @@ public class ProductSearchTableModel extends AbstractTableModel {
     }
 
     /**
-     * Com esta informacao, a JTable sabe quantas linhas devem ser exibidas
      * @return int - Quantidade total de linhas
      */
     @Override
@@ -47,7 +43,6 @@ public class ProductSearchTableModel extends AbstractTableModel {
     }
 
     /**
-     * O valor retornado define a quantidade de colunas da JTable
      * @return int - Quantidade total de colunas
      */
     @Override
@@ -64,47 +59,38 @@ public class ProductSearchTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         System.out.println("LOOP GET SEARCH");
         switch (columnIndex) {
-            case COD:
+            case CODE:
                 return lsProducts.get(rowIndex).getId();
-            case DESCRICAO:
+            case DESCRIPTION:
                 return lsProducts.get(rowIndex).getDescriptionCoupon();
-            case COD_BARRAS:
+            case BARCODE:
                 return Format.formatBarcode.format(lsProducts.get(rowIndex).getBarcode());
-            case PRECO_UND:
+            case PRICE:
                 return Format.brCurrencyFormat.format(lsProducts.get(rowIndex).getSalePrice());
-            case UNIDADE:
+            case UNIT:
                 return lsProducts.get(rowIndex).getmUnits().getDescription();
         }
         return null;
     }
 
     /**
-     * Adiciona produto na JTable
      * @param mProduct {@link Product} - Model de produto
      */
     public void addRow(Product mProduct) {
-        // Adiciona produto na tabela
         lsProducts.add(mProduct);
-
-        // Notifica a JTable que todos os dados da tabela podem ter sido alterados.
-        // A JTable usa esta informacao para redesenhar todas as celulas, atualizando seu conteudo.
-        fireTableDataChanged();
+        fireTableDataChanged(); // ATUALIZA A JTABLE
     }
 
     /**
-     * Remove linha da JTable
      * @param rowIndex int - Linha para remover
      */
     public void removeRow(int rowIndex) {
-        // Remove a linha informada
         lsProducts.remove(rowIndex);
-
-        //Notifica a JTable que determinada linha foi removida
-        fireTableRowsDeleted(rowIndex, rowIndex);
+        fireTableRowsDeleted(rowIndex, rowIndex); // ATUALIZA A LINHA REMOVIDA DA JTABLE
     }
 
     /**
-     * Utilizado para obter conteudo nao exibido na JTable
+     * Utilizado para obter algum conteudo exibido ou nao na JTable
      * @param rowIndex int - Linha que deseja obter o conteudo
      * @return {@link Product} - Model de produto de acordo com o parametro informado
      */

@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Classe que escuta as acoes do usuario na View PopUPConfirmDialog
+ * Classe que escuta as acoes do usuario na View {@link br.com.ernanilima.jpdv.View.PopUPConfirmDialog}
  *
  * @author Ernani Lima
  */
@@ -21,8 +21,7 @@ public class PopUPConfirmDialogActionListener {
         private final PopUPConfirmDialogPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PopUPConfirmDialogPresenter} - Classe presenter da View PopUPConfirmDialog.
+         * @param presenter {@link PopUPConfirmDialogPresenter} - Classe presenter da View {@link br.com.ernanilima.jpdv.View.PopUPConfirmDialog}.
          */
         public YesActionListener(PopUPConfirmDialogPresenter presenter) {
             this.presenter = presenter;
@@ -44,8 +43,7 @@ public class PopUPConfirmDialogActionListener {
         private final PopUPConfirmDialogPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PopUPConfirmDialogPresenter} - Classe presenter da View PopUPConfirmDialog.
+         * @param presenter {@link PopUPConfirmDialogPresenter} - Classe presenter da View {@link br.com.ernanilima.jpdv.View.PopUPConfirmDialog}.
          */
         public NoActionListener(PopUPConfirmDialogPresenter presenter) {
             this.presenter = presenter;

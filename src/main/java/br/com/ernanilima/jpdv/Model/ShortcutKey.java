@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class ShortcutKey {
 
-    // Variaveis da tecla de atalho
     private int id;
     private String description;
     private int keyCode;
@@ -27,7 +26,6 @@ public class ShortcutKey {
     }
 
     /**
-     * Atribui o ID da tecla de atalho na variavel {@link #id}
      * @param id int - ID da tecla de atalho
      */
     public void setId(int id) {
@@ -42,7 +40,6 @@ public class ShortcutKey {
     }
 
     /**
-     * Atribui a descricao da tecla de atalho na variavel {@link #description}
      * @param description String - Descricao da tecla de atalho
      */
     public void setDescription(String description) {
@@ -57,7 +54,6 @@ public class ShortcutKey {
     }
 
     /**
-     * Atribui o KeyCode da tecla de atalho na variavel {@link #keyCode}
      * @param keyCode int - Keycode da tecla de atalho
      */
     public void setKeyCode(int keyCode) {
@@ -72,7 +68,6 @@ public class ShortcutKey {
     }
 
     /**
-     * Atribui o KeyText da tecla de atalho na variavel {@link #keyText}
      * @param keyText String - KeyText da tecla de atalho
      */
     public void setKeyText(String keyText) {
@@ -87,7 +82,6 @@ public class ShortcutKey {
     }
 
     /**
-     * Atribui a lista de teclas de atalho
      * @param lsShortcutKeys List<{@link ShortcutKey} - Lista de teclas de atalho
      */
     public void setLsShortcutKeys(List<ShortcutKey> lsShortcutKeys) {

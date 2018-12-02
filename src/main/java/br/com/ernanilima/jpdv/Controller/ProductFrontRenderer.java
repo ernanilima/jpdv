@@ -6,7 +6,9 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
 /**
- * TableCellRenderer da JTable de produtos
+ * TableCellRenderer da JTable de produtos front.
+ * A tabela de produtos front eh a tabela que exibe os
+ * produtos vendidos
  *
  * @author Ernani Lima
  */
@@ -16,20 +18,22 @@ public class ProductFrontRenderer extends DefaultTableCellRenderer implements Ta
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-        // Alterna as cores a cada linha inserida na JTable
+        final int PRODUCT_SOLD = 0;
+
+        // ALTERNA AS CORES DAS LINHAS
         if (row % 2 == 0) {
             setBackground(new Color(0,0,0,5));
         } else {
             setBackground(new Color(0, 0, 0, 15));
         }
 
-        // Define a cor da linha selecionada na JTable
+        // DEFINE A COR DA LINHA SELECIONADA
         if (isSelected) {
             setBackground(new Color(0, 0, 104));
         }
 
         table.getTableHeader().setReorderingAllowed(false);
-        table.getColumnModel().getColumn(0).setResizable(false);
+        table.getColumnModel().getColumn(PRODUCT_SOLD).setResizable(false);
 
         return this;
     }

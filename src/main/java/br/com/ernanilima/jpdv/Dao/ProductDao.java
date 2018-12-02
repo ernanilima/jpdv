@@ -29,7 +29,7 @@ public class ProductDao {
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM produtos WHERE cod_bar = ?";
+        String sql = "SELECT * FROM produto WHERE cod_barras = ?";
 
         try {
             conn = ConnectionSQLite.openConnection();
@@ -39,12 +39,12 @@ public class ProductDao {
 
             if (rs.next()) {
                 Unit mUnit = new Unit();
-                mProduct.setId(rs.getInt("cod_pro"));
-                mProduct.setDescription(rs.getString("desc_pro"));
-                mProduct.setDescriptionCoupon(rs.getString("desc_procp"));
-                mProduct.setBarcode(rs.getLong("cod_bar"));
+                mProduct.setId(rs.getInt("cod"));
+                mProduct.setDescription(rs.getString("desc"));
+                mProduct.setDescriptionCoupon(rs.getString("desc_cp"));
                 mUnit.setId(rs.getInt("cod_un_medida"));
                 mUnit.setDescription(rs.getString("desc_un_medida"));
+                mProduct.setBarcode(rs.getLong("cod_barras"));
                 mProduct.setmUnits(mUnit);
                 mProduct.setSalePrice(rs.getDouble("prec_vend"));
                 mProduct.setPromotionalPrice(rs.getDouble("prec_prom"));
@@ -61,7 +61,7 @@ public class ProductDao {
     }
 
     /**
-     * Cria uma lista com todos os produtos do bando de dados.
+     * Cria uma lista com todos os produtos.
      * @return List {@link Product} - Lista de produtos
      */
     public List<Product> listProducts() {
@@ -69,7 +69,7 @@ public class ProductDao {
         PreparedStatement pst = null;
         ResultSet rs = null;
         List<Product> lsProducts = new ArrayList<>();
-        String sql = "SELECT * FROM produtos ORDER BY desc_procp";
+        String sql = "SELECT * FROM produto ORDER BY desc_cp";
 
         try {
             conn = ConnectionSQLite.openConnection();
@@ -78,12 +78,12 @@ public class ProductDao {
             while (rs.next()) {
                 Product mProduct = new Product();
                 Unit mUnit = new Unit();
-                mProduct.setId(rs.getInt("cod_pro"));
-                mProduct.setDescription(rs.getString("desc_pro"));
-                mProduct.setDescriptionCoupon(rs.getString("desc_procp"));
-                mProduct.setBarcode(rs.getLong("cod_bar"));
+                mProduct.setId(rs.getInt("cod"));
+                mProduct.setDescription(rs.getString("desc"));
+                mProduct.setDescriptionCoupon(rs.getString("desc_cp"));
                 mUnit.setId(rs.getInt("cod_un_medida"));
                 mUnit.setDescription(rs.getString("desc_un_medida"));
+                mProduct.setBarcode(rs.getLong("cod_barras"));
                 mProduct.setmUnits(mUnit);
                 mProduct.setSalePrice(rs.getDouble("prec_vend"));
                 mProduct.setPromotionalPrice(rs.getDouble("prec_prom"));

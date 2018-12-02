@@ -7,7 +7,6 @@ package br.com.ernanilima.jpdv.Model;
  */
 public class Product {
 
-    // Variaveis do produto
     private int id;
     private String description;
     private String descriptionCoupon;
@@ -27,7 +26,6 @@ public class Product {
     }
 
     /**
-     * Atribui o ID do produto na variavel "{@link #id}"
      * @param id int - ID do produto
      */
     public void setId(int id) {
@@ -42,7 +40,6 @@ public class Product {
     }
 
     /**
-     * Atribui a descricao do procuto na variavel "{@link #description}"
      * @param description String - Descricao do produto
      */
     public void setDescription(String description) {
@@ -57,7 +54,6 @@ public class Product {
     }
 
     /**
-     * Atribui a descricao de cupom do produto na variavel "{@link #descriptionCoupon}"
      * @param descriptionCoupon String - Descricao de cupom do produto
      */
     public void setDescriptionCoupon(String descriptionCoupon) {
@@ -72,7 +68,6 @@ public class Product {
     }
 
     /**
-     * Atribui o codigo de barras do produto na variavel "{@link #barcode}"
      * @param barCode long - Codigo de barras do produto
      */
     public void setBarcode(long barCode) {
@@ -87,7 +82,6 @@ public class Product {
     }
 
     /**
-     * Atribui o preco de venda do produto na variavel "{@link #salePrice}"
      * @param salePrice double - Preco de venda do produto
      */
     public void setSalePrice(double salePrice) {
@@ -102,7 +96,6 @@ public class Product {
     }
 
     /**
-     * Atribui o preco promocional do produto na variavel "{@link #promotionalPrice}"
      * @param promotionalPrice double - Preco promocional do produto
      */
     public void setPromotionalPrice(double promotionalPrice) {
@@ -117,7 +110,6 @@ public class Product {
     }
 
     /**
-     * Atribui a unidade de medita na Classe Model "{@link Unit}"
      * @param mUnits {@link Unit} - Unidade de medida do produto
      */
     public void setmUnits(Unit mUnits) {

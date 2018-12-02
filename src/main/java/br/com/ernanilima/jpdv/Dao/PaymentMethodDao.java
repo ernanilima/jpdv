@@ -1,7 +1,7 @@
 package br.com.ernanilima.jpdv.Dao;
 
 import br.com.ernanilima.jpdv.Connection.ConnectionSQLite;
-import br.com.ernanilima.jpdv.Model.Payment;
+import br.com.ernanilima.jpdv.Model.PaymentMethod;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,27 +17,27 @@ import static br.com.ernanilima.jpdv.Connection.ConnectionSQLite.closeSQLite;
  *
  * @author Ernani Lima
  */
-public class PaymentDao {
+public class PaymentMethodDao {
 
     /**
-     * Cria uma lista com todas as formas de pagamento gravadas no bando de dados.
-     * @return List {@link Payment} - Lista de formas de pagamento
+     * Cria uma lista com todas as formas de pagamento
+     * @return List {@link PaymentMethod} - Lista de formas de pagamento
      */
-    public List<Payment> listPayments() {
+    public List<PaymentMethod> listPayments() {
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
-        List<Payment> lsPayments = new ArrayList<>();
-        String sql = "SELECT * FROM forpag";
+        List<PaymentMethod> lsPayments = new ArrayList<>();
+        String sql = "SELECT * FROM fpagamento";
 
         try {
             conn = ConnectionSQLite.openConnectionParame();
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
-                Payment mPayment = new Payment();
-                mPayment.setId(rs.getInt("cod_fpag"));
-                mPayment.setDescription(rs.getString("desc_fpag"));
+                PaymentMethod mPayment = new PaymentMethod();
+                mPayment.setId(rs.getInt("cod"));
+                mPayment.setDescription(rs.getString("desc"));
                 lsPayments.add(mPayment);
             }
         } catch (ClassNotFoundException e) {

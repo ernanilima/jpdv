@@ -20,8 +20,7 @@ public class PopUPMessageDialogKeyListener {
         private final PopUPMessageDialogPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PopUPMessageDialogPresenter} - Classe presenter da View PopUPMessageDialog.
+         * @param presenter {@link PopUPMessageDialogPresenter} - Classe presenter da View {@link br.com.ernanilima.jpdv.View.PopUPMessageDialog}.
          */
         public OkKeyListener(PopUPMessageDialogPresenter presenter) {
             this.presenter = presenter;
@@ -29,9 +28,7 @@ public class PopUPMessageDialogKeyListener {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                presenter.closePopUP();
-            } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER | e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                 presenter.closePopUP();
             }
         }

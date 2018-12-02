@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Classe que escuta as acoes do usuario na View PopUPMessageDialog
+ * Classe que escuta as acoes do usuario na View {@link br.com.ernanilima.jpdv.View.PopUPMessageDialog}
  *
  * @author Ernani Lima
  */
@@ -19,8 +19,7 @@ public class PopUPMessageDialogActionListener {
         private final PopUPMessageDialogPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PopUPMessageDialogPresenter} - Classe presenter da View PopUPMessageDialog.
+         * @param presenter {@link PopUPMessageDialogPresenter} - Classe presenter da View {@link br.com.ernanilima.jpdv.View.PopUPMessageDialog}.
          */
         public OkActionListener(PopUPMessageDialogPresenter presenter) {
             this.presenter = presenter;

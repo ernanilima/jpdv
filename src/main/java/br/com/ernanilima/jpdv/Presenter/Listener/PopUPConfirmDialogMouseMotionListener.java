@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Classe que escuta a movimentacao e click do mouse na View PopUPConfirmDialog
+ * Classe que escuta a movimentacao e click do mouse na View {@link br.com.ernanilima.jpdv.View.PopUPConfirmDialog}
  *
  * @author Ernani Lima
  */
@@ -23,8 +23,7 @@ public class PopUPConfirmDialogMouseMotionListener {
         private int x, y;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PopUPConfirmDialogPresenter} - Classe presenter da View PopUPConfirmDialog.
+         * @param presenter {@link PopUPConfirmDialogPresenter} - Classe presenter da View {@link br.com.ernanilima.jpdv.View.PopUPConfirmDialog}.
          */
         public TopBarMouseMotionListener(PopUPConfirmDialogPresenter presenter) {
             this.presenter = presenter;
@@ -43,9 +42,7 @@ public class PopUPConfirmDialogMouseMotionListener {
      */
     public static class TopBarMouseListener extends MouseAdapter {
 
-        /**
-         * Metodo construtor vazio
-         */
+        // Construtor vazio
         public TopBarMouseListener() {}
 
         @Override

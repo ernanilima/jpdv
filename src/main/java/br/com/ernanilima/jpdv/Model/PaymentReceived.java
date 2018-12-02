@@ -9,7 +9,7 @@ public class PaymentReceived {
 
     // Variaveis de pagamento recebido
     private double value;
-    private Payment mPayment;
+    private PaymentMethod mPayment;
 
     // Construtor vazio
     public PaymentReceived() {}
@@ -30,16 +30,16 @@ public class PaymentReceived {
     }
 
     /**
-     * @return {@link Payment} - Model de forma de pagamento
+     * @return {@link PaymentMethod} - Model de forma de pagamento
      */
-    public Payment getmPayment() {
+    public PaymentMethod getmPayment() {
         return mPayment;
     }
 
     /**
-     * @param mPayment {@link Payment} - Model de forma de pagamento
+     * @param mPayment {@link PaymentMethod} - Model de forma de pagamento
      */
-    public void setmPayment(Payment mPayment) {
+    public void setmPayment(PaymentMethod mPayment) {
         this.mPayment = mPayment;
     }
 }

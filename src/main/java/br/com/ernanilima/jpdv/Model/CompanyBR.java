@@ -7,7 +7,6 @@ package br.com.ernanilima.jpdv.Model;
  */
 public class CompanyBR {
 
-    // Variaveis da Empresa/Filial
     private int id;
     private String razaoSocial;
     private String nomeFantasia;
@@ -31,7 +30,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui o ID da Empresa/Filial na variavel "{@link #id}"
      * @param id int - ID da Empresa/Filial
      */
     public void setId(int id) {
@@ -46,7 +44,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui a Razao Social da Empresa/Filial na variavel "{@link #razaoSocial}"
      * @param razaoSocial String - Razao Social da Empresa/Filial
      */
     public void setRazaoSocial(String razaoSocial) {
@@ -61,7 +58,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui o Nome Fantasia da Empresa/Filial na variavel "{@link #nomeFantasia}"
      * @param nomeFantasia String - Nome Fantasia da Empresa/Filial
      */
     public void setNomeFantasia(String nomeFantasia) {
@@ -76,7 +72,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui o CNPJ da Empresa/Filial na variavel "{@link #cnpj}"
      * @param cnpj int - CNPJ da Empresa/Filial
      */
     public void setCnpj(int cnpj) {
@@ -91,7 +86,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui a Inscricao Estadual da Empresa/Filial na variavel "{@link #inscEstadual}"
      * @param inscEstadual int - Inscricao Estadual da Empresa/Filial
      */
     public void setInscEstadual(int inscEstadual) {
@@ -106,7 +100,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui o Endereco da Empresa/Filial na variavel "{@link #endereco}"
      * @param endereco String - Endereco da Empresa/Filial
      */
     public void setEndereco(String endereco) {
@@ -121,7 +114,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui o Numero (endereco) da Empresa/Filial na variavel "{@link #numero}"
      * @param numero int - Numero (endereco) da Empresa/Filial
      */
     public void setNumero(int numero) {
@@ -136,7 +128,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui o Bairro da Empresa/Filial na variavel "{@link #bairro}"
      * @param bairro String - Bairro da Empresa/Filial
      */
     public void setBairro(String bairro) {
@@ -151,7 +142,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui o Complemento de Endereco da Empresa/Filial na variavel "{@link #complemento}"
      * @param complemento String - Complemento de endereco da Empresa/Filial
      */
     public void setComplemento(String complemento) {
@@ -166,7 +156,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui a Cidade da Empresa/Filial na variavel "{@link #cidade}"
      * @param cidade String - Cidade da Empresa/Filial
      */
     public void setCidade(String cidade) {
@@ -181,7 +170,6 @@ public class CompanyBR {
     }
 
     /**
-     * Atribui o Estado (unidade federativa) da Empresa/Filial na variavel "{@link #uf}"
      * @param uf String - Estado (unidade federativa) da Empresa/Filial
      */
     public void setUf(String uf) {

@@ -6,7 +6,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
- * Classe que escuta teclas precionadas na View PopUPConfirmDialog
+ * Classe que escuta teclas precionadas na View {@link br.com.ernanilima.jpdv.View.PopUPConfirmDialog}
  *
  * @author Ernani Lima
  */
@@ -21,8 +21,7 @@ public class PopUPConfirmDialogKeyListener {
         private final PopUPConfirmDialogPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PopUPConfirmDialogPresenter} - Classe presenter da View PopUPConfirmDialog.
+         * @param presenter {@link PopUPConfirmDialogPresenter} - Classe presenter da View {@link br.com.ernanilima.jpdv.View.PopUPConfirmDialog}.
          */
         public YesKeyListener(PopUPConfirmDialogPresenter presenter) {
             this.presenter = presenter;
@@ -53,8 +52,7 @@ public class PopUPConfirmDialogKeyListener {
         private final PopUPConfirmDialogPresenter presenter;
 
         /**
-         * Metodo construtor
-         * @param presenter {@link PopUPConfirmDialogPresenter} - Classe presenter da View PopUPConfirmDialog.
+         * @param presenter {@link PopUPConfirmDialogPresenter} - Classe presenter da View {@link br.com.ernanilima.jpdv.View.PopUPConfirmDialog}.
          */
         public NoKeyListener(PopUPConfirmDialogPresenter presenter) {
             this.presenter = presenter;

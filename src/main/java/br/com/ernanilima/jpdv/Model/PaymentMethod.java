@@ -5,14 +5,13 @@ package br.com.ernanilima.jpdv.Model;
  *
  * @author Ernani Lima
  */
-public class Payment {
+public class PaymentMethod {
 
-    // Variaveis de forma de pagamento
     private int id;
     private String description;
 
     // Construtor vazio
-    public Payment() {}
+    public PaymentMethod() {}
 
     /**
      * @return int - ID da forma de pagamento
@@ -22,7 +21,6 @@ public class Payment {
     }
 
     /**
-     * Atribui o ID da forma de pagamento na variavel "{@link #id}"
      * @param id int - ID da forma de pagamento
      */
     public void setId(int id) {
@@ -37,7 +35,6 @@ public class Payment {
     }
 
     /**
-     * Atribui a descricao da forma de pagamento na variavel "{@link #description}"
      * @param description String - Descricao da forma de pagamento
      */
     public void setDescription(String description) {

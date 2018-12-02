@@ -16,7 +16,10 @@ public class PaymentReceivedRenderer extends DefaultTableCellRenderer implements
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-        // Alterna as cores a cada linha inserida na JTable
+        final int DESCRIPTION = 0;
+        final int VALUE = 1;
+
+        // ALTERNA AS CORES DAS LINHAS
         if (row % 2 == 0) {
             setBackground(new Color(250, 250, 250));
         } else {
@@ -24,10 +27,10 @@ public class PaymentReceivedRenderer extends DefaultTableCellRenderer implements
         }
 
         table.getTableHeader().setReorderingAllowed(false);
-        table.getColumnModel().getColumn(0).setResizable(false);
-        table.getColumnModel().getColumn(0).setPreferredWidth(100); //DESCRICAO
-        table.getColumnModel().getColumn(1).setResizable(false);
-        table.getColumnModel().getColumn(1).setPreferredWidth(10); //VALOR
+        table.getColumnModel().getColumn(DESCRIPTION).setResizable(false);
+        table.getColumnModel().getColumn(DESCRIPTION).setPreferredWidth(100);
+        table.getColumnModel().getColumn(VALUE).setResizable(false);
+        table.getColumnModel().getColumn(VALUE).setPreferredWidth(10);
 
         return this;
     }

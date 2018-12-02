@@ -1,7 +1,7 @@
 package br.com.ernanilima.jpdv.Model.Enum;
 
 /**
- * Enumeradores com Index das teclas de atalho da lista armazenada
+ * Indice das teclas de atalho da lista armazenada
  * no Model {@link br.com.ernanilima.jpdv.Model.ShortcutKey}
  *
  * @author Ernani Lima

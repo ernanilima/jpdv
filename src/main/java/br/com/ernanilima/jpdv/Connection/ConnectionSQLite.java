@@ -1,36 +1,35 @@
 package br.com.ernanilima.jpdv.Connection;
 
-
 import java.io.File;
 import java.sql.*;
 
 /**
- * Classe de conexao com banco de dados NoSQL SQLite
+ * Classe de conexao com banco de dados NoSQL SQLite.
  * Bacos de dados: "dbjpdv.db" e "parame.db"
  *
  * @author Ernani Lima
  */
 public class ConnectionSQLite {
 
-    /**
-     * Arquivo SQLite referente ao banco de dados SQLite
-     */
-    protected static final File DB_JPDV = new File("dbjpdv.db");
-    protected static final File DB_JPDV_PARAME = new File("parame.db");
+    /** Arquivo SQLite dbjpdv.db armazena os produtos e vedas realizadas */
+    static final File DB_JPDV = new File("dbjpdv.db");
 
-    /**
-     * Driver de conexao para banco de dados SQLite
-     */
+    /** Arquivo SQLite parame.db armazena os parametros no pdv */
+    static final File DB_JPDV_PARAME = new File("parame.db");
+
+
+    /** Driver de conexao para o banco de dados SQLite */
     private static final String DRIVER = "org.sqlite.JDBC";
 
-    /**
-     * Caminho para o banco de dados
-     */
+
+    /** Caminho para o banco de dados dbjpdv.db */
     private static final String PATH_DB = "jdbc:sqlite:" + DB_JPDV.getPath();
+
+    /** Caminho para o banco de dados parame.db */
     private static final String PATH_DB_PARAME = "jdbc:sqlite:" + DB_JPDV_PARAME.getPath();
 
     /**
-     * Responsavel por abrir a conexao com banco de dados que armazena os produtos do PDV.
+     * Responsavel por abrir a conexao com o banco de dados que armazena os produtos e vendas do PDV.
      * Banco de dados "dbjpdv.db" SQLite
      * @return Connection - Conexao com banco de dados dbjpdv.db
      * @throws java.lang.ClassNotFoundException
@@ -42,7 +41,7 @@ public class ConnectionSQLite {
     }
 
     /**
-     * Responsavel por abrir a conexao com banco de dados que armazena os parametros de PDV.
+     * Responsavel por abrir a conexao com o banco de dados que armazena os parametros de PDV.
      * Banco de dados "parame.db" SQLite
      * @return Connection - Conexao com banco de dados parame.db
      * @throws java.lang.ClassNotFoundException

@@ -7,17 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Table Model de produtos front (JTable principal)
+ * TableModel de produtos front.
+ * A tabela de produtos front eh a tabela que exibe os
+ * produtos vendidos
  *
  * @author Ernani Lima
  */
 public class ProductFrontTableModel extends AbstractTableModel {
 
-    // Lista de produtos do cupom
+    private static final int PRODUCT_SOLD = 0;
+
     private final List<Coupon> lsProducts = new ArrayList<>();
 
     /**
-     * Com esta informacao, a JTable sabe quantas linhas devem ser exibidas
      * @return int - Quantidade total de linhas
      */
     @Override
@@ -26,7 +28,6 @@ public class ProductFrontTableModel extends AbstractTableModel {
     }
 
     /**
-     * O valor retornado define a quantidade de colunas da JTable
      * @return int - Quantidade total de colunas
      */
     @Override
@@ -42,34 +43,25 @@ public class ProductFrontTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
-            case 0:
+            case PRODUCT_SOLD:
                 return lsProducts.get(rowIndex).getProductHTML();
         }
         return null;
     }
 
     /**
-     * Metodo que adiciona produto na JTable
      * @param mCoupon {@link Coupon} - Model de cupom
      */
     public void addRow(Coupon mCoupon) {
-        // Adiciona novo produto a tabela
         lsProducts.add(mCoupon);
-
-        // Notifica que todos os dados da tabela podem ter sido alterados.
-        // A JTable usa esta informacao para redesenhar todas as celulas, atualizando seu conteudo.
-        fireTableDataChanged();
+        fireTableDataChanged(); // ATUALIZA A JTABLE
     }
 
     /**
-     * Remove linha da JTable
      * @param rowIndex int - Linha para remover
      */
     public void removeRow(int rowIndex) {
-        // Remove a linha informada
         lsProducts.remove(rowIndex);
-
-        //Notifica a JTable que determinada linha foi removida
-        fireTableRowsDeleted(rowIndex, rowIndex);
+        fireTableRowsDeleted(rowIndex, rowIndex); // ATUALIZA A LINHA REMOVIDA DA JTABLE
     }
 }

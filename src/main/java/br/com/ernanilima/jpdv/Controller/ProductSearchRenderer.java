@@ -6,9 +6,7 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
 /**
- * TableCellRenderer da JTable de produtos.
- * A tabela de produtos eh onde o usuario pode escolher o
- * produto para adicionar na venda
+ * TableCellRenderer da JTable de busca de produtos.
  *
  * @author Ernani Lima
  */
@@ -18,29 +16,35 @@ public class ProductSearchRenderer extends DefaultTableCellRenderer implements T
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-        // Alterna as cores a cada linha inserida na JTable
+        final int CODE = 0;
+        final int DESCRIPTION = 1;
+        final int BARCODE = 2;
+        final int PRICE = 3;
+        final int UNIT = 4;
+
+        // ALTERNA AS CORES DAS LINHAS
         if (row % 2 == 0) {
             setBackground(new Color(250, 250, 250));
         } else {
             setBackground(new Color(240, 240, 240));
         }
 
-        // Define a cor da linha selecionada na JTable
+        // DEFINE A COR DA LINHA SELECIONADA
         if (isSelected) {
             setBackground(new Color(0, 0, 104));
         }
 
         table.getTableHeader().setReorderingAllowed(false);
-        table.getColumnModel().getColumn(0).setResizable(false);
-        table.getColumnModel().getColumn(1).setResizable(false);
-        table.getColumnModel().getColumn(2).setResizable(false);
-        table.getColumnModel().getColumn(3).setResizable(false);
-        table.getColumnModel().getColumn(4).setResizable(false);
-        table.getColumnModel().getColumn(0).setPreferredWidth(2); //COD
-        table.getColumnModel().getColumn(1).setPreferredWidth(300); //DESCRIÇÃO
-        table.getColumnModel().getColumn(2).setPreferredWidth(100); //COD. BARRAS
-        table.getColumnModel().getColumn(3).setPreferredWidth(100); //PREÇO UND
-        table.getColumnModel().getColumn(4).setPreferredWidth(10); //UNIDADE
+        table.getColumnModel().getColumn(CODE).setResizable(false);
+        table.getColumnModel().getColumn(DESCRIPTION).setResizable(false);
+        table.getColumnModel().getColumn(BARCODE).setResizable(false);
+        table.getColumnModel().getColumn(PRICE).setResizable(false);
+        table.getColumnModel().getColumn(UNIT).setResizable(false);
+        table.getColumnModel().getColumn(CODE).setPreferredWidth(2);
+        table.getColumnModel().getColumn(DESCRIPTION).setPreferredWidth(300);
+        table.getColumnModel().getColumn(BARCODE).setPreferredWidth(100);
+        table.getColumnModel().getColumn(PRICE).setPreferredWidth(100);
+        table.getColumnModel().getColumn(UNIT).setPreferredWidth(10);
 
         return this;
     }
