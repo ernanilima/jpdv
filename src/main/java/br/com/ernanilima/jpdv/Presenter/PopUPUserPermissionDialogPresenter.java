@@ -35,9 +35,6 @@ public class PopUPUserPermissionDialogPresenter {
     // ID do usuario com a permissao
     private int userIdPermission;
 
-    // Nivel do usuario com a permissao
-    private int userLevelPermission;
-
     // Confirma a validacao do nivel
     private boolean validation;
 
@@ -73,7 +70,7 @@ public class PopUPUserPermissionDialogPresenter {
      * @param message String - Mensagem para exibir no Dialog
      */
     public void showUserPermissionDialog(int requestedLevel, String title, String message) {
-        validation = false; userLevelPermission = 0; userIdPermission = 0;
+        validation = false; userIdPermission = 0;
         viewIPopUPUserPermission.clearIDPassword();
         this.requestedLevel = requestedLevel;
         viewIPopUPUserPermission.setShowPopUP(title, message);
@@ -114,7 +111,6 @@ public class PopUPUserPermissionDialogPresenter {
             if (mUser.getLevel() >= requestedLevel) {
                 System.out.println("NIVEL DE ACESSO OK!");
                 userIdPermission = Integer.parseInt(id);
-                userLevelPermission = mUser.getLevel();
                 validation = true;
                 closePopUP();
 
@@ -144,13 +140,6 @@ public class PopUPUserPermissionDialogPresenter {
      */
     public int getUserId() {
         return userIdPermission;
-    }
-
-    /**
-     * @return int - Nivel do usuario com a permissao
-     */
-    public int getUserLevel() {
-        return userLevelPermission;
     }
 
     /**

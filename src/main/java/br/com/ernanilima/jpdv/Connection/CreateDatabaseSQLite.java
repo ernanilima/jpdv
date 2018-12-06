@@ -205,7 +205,8 @@ public class CreateDatabaseSQLite extends ConnectionSQLite {
 
             String sqlUser = "INSERT INTO usuario (id, nome, senha, nivel) VALUES (1, 'OPERADOR', '6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B', 1);"
                     + "INSERT INTO usuario (id, nome, senha, nivel) VALUES (2, 'FISCAL DE CAIXA', 'D4735E3A265E16EEE03F59718B9B5D03019C07D8B6C51F90DA3A666EEC13AB35', 2);"
-                    + "INSERT INTO usuario (id, nome, senha, nivel) VALUES (3, 'GERENTE', '4E07408562BEDB8B60CE05C1DECFE3AD16B72230967DE01F640B7E4729B49FCE', 3);";
+                    + "INSERT INTO usuario (id, nome, senha, nivel) VALUES (3, 'GERENTE', '4E07408562BEDB8B60CE05C1DECFE3AD16B72230967DE01F640B7E4729B49FCE', 3);"
+                    + "INSERT INTO usuario (id, nome, senha, nivel) VALUES (4, 'DIRETOR', '4B227777D4DD1FC61C6F884F48641D02B4D121D3FD328CB08B5531FCACDABF8A', 3);";
             st.executeUpdate(sqlUser);
             System.out.println("INSERIU USUARIOS");
 

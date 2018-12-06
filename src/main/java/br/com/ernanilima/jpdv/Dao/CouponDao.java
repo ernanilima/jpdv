@@ -45,7 +45,7 @@ public class CouponDao {
             pst.setDouble(9, mCoupon.getTotalCouponValue());
             pst.setDouble(10, mCoupon.getTotalDiscount());
             pst.setInt(11, mCoupon.getmUser().getId());
-            pst.setInt(12, 0); // PENDENTE DE DEFINIR CODIGO DO SUPERVISOR
+            pst.setInt(12, mCoupon.getSupervisorID());
             pst.setBoolean(13, mCoupon.isCouponCanceled());
             pst.setString(14, String.valueOf(mCoupon.getDate()));
             pst.setString(15, String.valueOf(mCoupon.getHour()));
@@ -95,7 +95,7 @@ public class CouponDao {
                 pst.setDouble(11, mLsCoupon.getTotalProductDiscount());
                 pst.setDouble(12, mLsCoupon.getTotalProductValue());
                 pst.setInt(13, mLsCoupon.getmUser().getId());
-                pst.setInt(14, 0); // PENDENTE DE IMPLEMENTACAO
+                pst.setInt(14, mLsCoupon.getSupervisorID());
                 pst.setBoolean(15, mLsCoupon.isProductCanceled());
                 pst.setString(16, String.valueOf(mLsCoupon.getDate()));
                 pst.setString(17, String.valueOf(mLsCoupon.getHour()));

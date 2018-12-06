@@ -94,8 +94,7 @@ public class PDVPresenter {
     // TableModel de pagamento recebido
     private final PaymentReceivedTableModel tmPaymentReceived;
 
-    private String id;
-    private String password;
+    private int currentUserLevel;
     private int pdvID = 1;
     private int companyID = 1;
 
@@ -109,6 +108,11 @@ public class PDVPresenter {
 
     // Coluna da JTable de pagamentos recebidos
     private final int payReceivedValueColumn = 1;
+
+    // Niveis solicitados
+    private int levelCancelProduct = 2;
+    private int levelCancelCurrentCoupon = 2;
+    private int levelItemDiscount = 2;
 
     // Construtor
     public PDVPresenter() {
@@ -321,8 +325,8 @@ public class PDVPresenter {
      * Metodo que realiza a validacao de login do usuario ou do suporte tecnico
      */
     public void userLogin() {
-        id = viewPDV.getUserID();
-        password = Encrypt.sha256(viewPDV.getPassword());
+        String id = viewPDV.getUserID();
+        String password = Encrypt.sha256(viewPDV.getPassword());
 
         if (id.equals("")) {
             System.out.println("INFORME O CODIGO DO OPERADOR!");
@@ -343,6 +347,7 @@ public class PDVPresenter {
                 System.out.println("LOGIN REALIZADO!");
                 viewPDV.setUserID(String.valueOf(mUser.getId()));
                 viewPDV.setUsername(mUser.getName());
+                currentUserLevel = mUser.getLevel();
                 selectStartCardL(CARD_PDV);
                 focusFieldBarCode();
                 viewPDV.setProductDescription("CAIXA LIVRE!");
@@ -686,17 +691,25 @@ public class PDVPresenter {
 
                 int selectedRowFront = viewPDV.getProductTableFront().getSelectedRow();
                 double totalValueProduct = Filter.filterDouble((String) viewPDV.getProductTableBack().getValueAt(selectedRowFront, proBackSubtotalColumn));
-                if (discountValue == (totalValueProduct)) {
-                    pPopUPMessage.showAlert("DESCONTO NO ITEM!", "DESCONTO COM VALOR IGUAL AO VALOR TOTAL DO ITEM!");
-                    return;
-                } else if (discountValue > (totalValueProduct)) {
+                if (discountValue > totalValueProduct) {
                     pPopUPMessage.showAlert("DESCONTO NO ITEM!", "DESCONTO COM VALOR MAIOR QUE O TOTAL DO ITEM!");
+                    return;
+                } else if (discountValue == totalValueProduct) {
+                    pPopUPMessage.showAlert("DESCONTO NO ITEM!", "DESCONTO COM VALOR IGUAL AO VALOR TOTAL DO ITEM!");
                     return;
                 } else if (discountValue == 0) {
                     pPopUPMessage.showAlert("DESCONTO NO ITEM!", "VALOR DE DESCONTO INVÁLIDO!");
                     viewPDV.cleanDiscountValue();
                     viewPDV.cleanDiscountPercentage();
                     return;
+                }
+
+                if (currentUserLevel < levelItemDiscount) {
+                    // VALIDACAO DE NIVEL PARA REALIZAR DESCONTO NO ITEM
+                    pPopUPUserPermission.showUserPermissionDialog(levelItemDiscount, "SOLICITAÇÃO DE SUPERVISOR", "DESCONTO NO ITEM");
+                    if (!pPopUPUserPermission.getValidation()) {
+                        return;
+                    }
                 }
 
                 productDiscount(selectedRowFront, discountValue);
@@ -730,6 +743,8 @@ public class PDVPresenter {
      */
     private void productDiscount(int selectedRowFront, double discountValue) {
         // SETA O VALOR DO DESCONTO NA TABELA DE VENDA
+
+        tmProductBack.getLs(selectedRowFront).setSupervisorID((currentUserLevel < levelItemDiscount ? pPopUPUserPermission.getUserId() : mUser.getId()));
         tmProductBack.setValueAt(discountValue, selectedRowFront, proBackDiscountColumn);
         viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
 
@@ -972,6 +987,15 @@ public class PDVPresenter {
             }
         }
 
+        if (currentUserLevel < levelCancelProduct) {
+            // VALIDACAO DE NIVEL PARA CANCELAR PRODUTO
+            pPopUPUserPermission.showUserPermissionDialog(levelCancelProduct, "SOLICITAÇÃO DE SUPERVISOR", "CANCELAR PRODUTO");
+            if (!pPopUPUserPermission.getValidation()) {
+                return;
+            }
+        }
+
+        tmProductBack.getLs(selectedRow).setSupervisorID((currentUserLevel < levelCancelProduct ? pPopUPUserPermission.getUserId() : mUser.getId()));
         tmProductBack.setValueAt(cancel, selectedRow, proBackCancellationColumn);
         tmProductBack.setValueAt(0.0, selectedRow, proBackDiscountColumn); //DEFINE VALOR DE DESCONTO = 0
         viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
@@ -987,6 +1011,22 @@ public class PDVPresenter {
     public void cancelCurrentSale() {
         if (viewPDV.getProductTableBack().getRowCount() > 0) {
             // EXECUTA APENAS SE JA EXISTIR ALGUM ITEM VENDIDO
+
+            if (currentUserLevel < levelCancelCurrentCoupon) {
+                // VALIDACAO DE NIVEL PARA CANCELAR CUPOM ATUAL
+                pPopUPUserPermission.showUserPermissionDialog(levelCancelCurrentCoupon, "SOLICITAÇÃO DE SUPERVISOR", "CANCELAR CUPOM ATUAL");
+                if (!pPopUPUserPermission.getValidation()) {
+                    return;
+                }
+            }
+
+            // QUANTIDADE DE PRODUTOS VENDIDOS
+            int productRows = viewPDV.getProductTableBack().getRowCount();
+            for (int i = 0; i < productRows; i++) {
+                // ATRIBUI O ID DE QUEM CANCELOU O CUPOM EM TODOS OS PRODUTOS
+                tmProductBack.getLs(i).setSupervisorID((currentUserLevel < levelCancelCurrentCoupon ? pPopUPUserPermission.getUserId() : mUser.getId()));
+            }
+
             saveSale(cancel);
             newSale();
 
@@ -1017,7 +1057,7 @@ public class PDVPresenter {
         mCoupon.setTotalCouponValue(Filter.filterDouble(viewPDV.getTotal()));
         mCoupon.setTotalDiscount(totalDiscountProducts());
         mCoupon.setmUser(mUser);
-        //mCoupon.setSupervisor // PENDENTE DE IMPLEMENTACAO
+        mCoupon.setSupervisorID((saveOrCancel & currentUserLevel < levelCancelCurrentCoupon ? pPopUPUserPermission.getUserId() : mUser.getId())); // PENDENTE DE IMPLEMENTACAO
         mCoupon.setCouponCanceled(saveOrCancel);
         mCoupon.setDate(Date.valueOf(Format.DFDATE.format(System.currentTimeMillis())));
         mCoupon.setHour(Time.valueOf(Format.DFTIME.format(System.currentTimeMillis())));
@@ -1059,7 +1099,7 @@ public class PDVPresenter {
             //mCoupon.setTotalProductValue(tmProductBack.getLs(i).getTotalProductValue()); ATE O MOMENTO, ESSA LINHA EH DISPENSAVEL
             mCoupon.setTotalProductDiscount(tmProductBack.getLs(i).getTotalProductDiscount());
             mCoupon.setmUser(mUser);
-            //mCoupon.setSupervisor // PENDENTE DE IMPLEMENTACAO
+            mCoupon.setSupervisorID(tmProductBack.getLs(i).getSupervisorID());
             mCoupon.setProductCanceled((tmProductBack.getLs(i).isProductCanceled() || saveOrCancel));
             mCoupon.setDate(Date.valueOf(Format.DFDATE.format(System.currentTimeMillis())));
             mCoupon.setHour(Time.valueOf(Format.DFTIME.format(System.currentTimeMillis())));

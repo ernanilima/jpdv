@@ -31,6 +31,7 @@ public class Coupon {
     private double paymentAmount3;
     private double totalDiscount;
     private double totalProductDiscount;
+    private int supervisorID;
     private int table;
     private Product mProduct;
     private CompanyBR mCompany;
@@ -292,6 +293,20 @@ public class Coupon {
      */
     public void setTotalProductDiscount(double totalProductDiscount) {
         this.totalProductDiscount = totalProductDiscount;
+    }
+
+    /**
+     * @return int - ID do supervisor que realizou liberacao
+     */
+    public int getSupervisorID() {
+        return supervisorID;
+    }
+
+    /**
+     * @param supervisorID int - ID do supervisor que realizou liberacao
+     */
+    public void setSupervisorID(int supervisorID) {
+        this.supervisorID = supervisorID;
     }
 
     /**
