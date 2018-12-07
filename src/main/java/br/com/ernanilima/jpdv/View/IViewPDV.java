@@ -44,6 +44,9 @@ public interface IViewPDV {
     // Seta o valor total do cupom
     public void setTotalCouponValue(String totalCouponValue);
 
+    /** @param value String - VALOR TOTAL DOS PRODUTOS */
+    public void setTotalValueProducts(String value);
+
     // Seta o valor total a receber
     public void setTotalValueReceivable(String totalValueReceivable);
 
@@ -85,6 +88,9 @@ public interface IViewPDV {
     public void setProductDescription(String productDescription);
 
     public void setDiscountDescription(String description);
+
+    /** @param value String - VALOR TOTAL DE DESCONTO */
+    public void setTotalDiscountValue(String value);
 
     public void setChangeValue(String changeValue);
 
@@ -144,6 +150,9 @@ public interface IViewPDV {
     // Habilitar ou desabilitar foco
     public void setFocusableFieldBarcode(boolean focus);
     public void setFocusableFieldTotalValueReceived(boolean focus);
+
+    /** @param visible boolean - VISIBILIDADE DO CAMPO DE DESCONTO */
+    public void setVisibleDiscountField(boolean visible);
 
     // Limpar campos
     public void cleanBarcodeField();

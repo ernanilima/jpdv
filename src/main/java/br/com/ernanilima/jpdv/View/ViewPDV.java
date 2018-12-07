@@ -393,7 +393,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
         campoSubTotalProduto.add(jLabelRS2, BorderLayout.LINE_START);
 
         jLabelValTotalProdutos.setFont(new Font("Verdana", 0, 18)); // NOI18N
-        jLabelValTotalProdutos.setText("VALOR TOTAL DO CUPOM");
+        jLabelValTotalProdutos.setText("VALOR TOTAL DOS PRODUTOS");
 
         jLabelRS3.setBackground(new Color(255, 255, 255));
         jLabelRS3.setFont(new Font("Verdana", 0, 36)); // NOI18N
@@ -483,6 +483,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
         campoValTotalDesconto.setEditable(false);
         campoValTotalDesconto.setBackground(Color.WHITE);
         campoValTotalDesconto.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoValTotalDesconto.setForeground(new Color(0, 102, 0));
         campoValTotalDesconto.setHorizontalAlignment(JTextField.RIGHT);
         campoValTotalDesconto.setFocusable(false);
         campoValTotalDesconto.setLayout(new BorderLayout());
@@ -1451,8 +1452,12 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
     @Override
     public void setTotalCouponValue(String totalCouponValue) {
-        campoValTotalProdutos.setText(totalCouponValue);
         campoValTotalCupom.setText(totalCouponValue);
+    }
+
+    @Override
+    public void setTotalValueProducts(String value) {
+        campoValTotalProdutos.setText(value);
     }
 
     @Override
@@ -1533,6 +1538,11 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public void setDiscountDescription(String description) {
         campoLabelLocalDesconto.setText(description);
+    }
+
+    @Override
+    public void setTotalDiscountValue(String value) {
+        campoValTotalDesconto.setText(value);
     }
 
     @Override
@@ -1773,6 +1783,12 @@ public class ViewPDV extends JFrame implements IViewPDV {
     @Override
     public void setFocusableFieldTotalValueReceived(boolean focus) {
         campoValTotalRecebido.setFocusable(focus);
+    }
+
+    @Override
+    public void setVisibleDiscountField(boolean visible) {
+        jLabelValTotalDesconto.setVisible(visible);
+        campoValTotalDesconto.setVisible(visible);
     }
 
     @Override

@@ -316,6 +316,7 @@ public class PDVPresenter {
         viewPDV.cleanDiscountPercentage();
         if (viewPDV.getProductTableBack().getRowCount() < 1) {
             viewPDV.setTotalCouponValue("");
+            viewPDV.setTotalValueProducts("");
             viewPDV.setTotalValueReceivable("");
             viewPDV.cleanTotalValueReceived();
         }
@@ -432,7 +433,7 @@ public class PDVPresenter {
             viewPDV.getProductTableBack().changeSelection(viewPDV.getProductTableBack().getRowCount()-1, 0, false, false);
             viewPDV.setSalePrice(Format.brCurrencyFormat.format(mCoupon.getmProduct().getSalePrice()));
             viewPDV.setTotalProductValue(Format.brCurrencyFormat.format(mCoupon.getTotalProductValue()));
-            viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
+            viewPDV.setTotalValueProducts(Format.brCurrencyFormat.format(totalValueOfProducts()));
             System.out.println("PRODUTO: " + mCoupon.getmProduct().getDescriptionCoupon());
             viewPDV.setProductDescription(mProduct.getDescriptionCoupon());
             viewPDV.setQuantity(Format.formatQty.format(1));
@@ -565,6 +566,12 @@ public class PDVPresenter {
                 viewPDV.cleanTotalValueReceived();
                 viewPDV.setTotalValueReceivable(Format.brCurrencyFormat.format(totalValueReceivable()));
                 viewPDV.getPaymentMethodTable().clearSelection();
+
+                viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalCouponValue()));
+
+                boolean discount = totalDiscountProducts() > 0;
+                viewPDV.setVisibleDiscountField(discount);
+                viewPDV.setTotalDiscountValue((discount ? Format.brCurrencyFormat.format(totalDiscountProducts()) : ""));
 
                 // PAINEL DE VALORES DO CUPOM
                 viewPDV.setValueCardL(cardLayoutPDV.getNameCardLayout());
@@ -746,12 +753,19 @@ public class PDVPresenter {
 
         tmProductBack.getLs(selectedRowFront).setSupervisorID((currentUserLevel < levelItemDiscount ? pPopUPUserPermission.getUserId() : mUser.getId()));
         tmProductBack.setValueAt(discountValue, selectedRowFront, proBackDiscountColumn);
-        viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
+        viewPDV.setTotalValueProducts(Format.brCurrencyFormat.format(totalValueOfProducts()));
 
         tmProductFront.fireTableDataChanged();
         viewPDV.getProductTableFront().changeSelection(selectedRowFront, 0, false, false);
 
         selectValueCardL(CARD_VALOR_PRODUTO);
+    }
+
+    /**
+     * @return double - Valor total do cupom sem os descontos
+     */
+    private double totalCouponValue() {
+        return totalValueOfProducts() + totalDiscountProducts();
     }
 
     /**
@@ -998,7 +1012,7 @@ public class PDVPresenter {
         tmProductBack.getLs(selectedRow).setSupervisorID((currentUserLevel < levelCancelProduct ? pPopUPUserPermission.getUserId() : mUser.getId()));
         tmProductBack.setValueAt(cancel, selectedRow, proBackCancellationColumn);
         tmProductBack.setValueAt(0.0, selectedRow, proBackDiscountColumn); //DEFINE VALOR DE DESCONTO = 0
-        viewPDV.setTotalCouponValue(Format.brCurrencyFormat.format(totalValueOfProducts()));
+        viewPDV.setTotalValueProducts(Format.brCurrencyFormat.format(totalValueOfProducts()));
         selectSaleCardL(CARD_VENDA);
 
         cleanBasicFields();
@@ -1057,7 +1071,7 @@ public class PDVPresenter {
         mCoupon.setTotalCouponValue(Filter.filterDouble(viewPDV.getTotal()));
         mCoupon.setTotalDiscount(totalDiscountProducts());
         mCoupon.setmUser(mUser);
-        mCoupon.setSupervisorID((saveOrCancel & currentUserLevel < levelCancelCurrentCoupon ? pPopUPUserPermission.getUserId() : mUser.getId())); // PENDENTE DE IMPLEMENTACAO
+        mCoupon.setSupervisorID((saveOrCancel ? (currentUserLevel < levelCancelCurrentCoupon ? pPopUPUserPermission.getUserId() : mUser.getId()) : 0));
         mCoupon.setCouponCanceled(saveOrCancel);
         mCoupon.setDate(Date.valueOf(Format.DFDATE.format(System.currentTimeMillis())));
         mCoupon.setHour(Time.valueOf(Format.DFTIME.format(System.currentTimeMillis())));
