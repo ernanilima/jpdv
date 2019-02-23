@@ -156,10 +156,10 @@ public class ViewPDV extends JFrame implements IViewPDV {
         campoNomeOperador = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //setExtendedState(6);
-        //setUndecorated(true);
+        setExtendedState(6);
         setMinimumSize(new Dimension(1280, 720));
-        //setResizable(false);
+        setUndecorated(true);
+        setResizable(false);
 
         painelCardPDV.setLayout(new CardLayout());
 
@@ -1267,7 +1267,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
                         .addComponent(painelCardPDV, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        //pack();
+        pack();
         setLocationRelativeTo(null);
     }
 
@@ -1872,7 +1872,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
     @Override
     public void packAndShow() {
-        pack();
+        //pack(); // PENDENTE DE VERIFICAR NECESSIDADE
         jScrollPaneItensPDV.setColumnHeader(null);
         setVisible(true);
     }

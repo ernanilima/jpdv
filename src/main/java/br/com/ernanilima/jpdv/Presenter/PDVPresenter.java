@@ -520,8 +520,8 @@ public class PDVPresenter {
             // PAINEL DE PRODUTOS BACK, LISTA DE PRODUTOS PARA CANCELAR
 
             int productsSold = 0;
-            int rows = viewPDV.getProductTableBack().getRowCount();
-            for (int i = 0; i < rows; i++) {
+            int rowsTableBack = viewPDV.getProductTableBack().getRowCount();
+            for (int i = 0; i < rowsTableBack; i++) {
                 // FAZ UMA VERIFICACAO DE QUANTOS PRODUTOS FORAM VENDIDOS, IGNORANDO OS CANCELADOS
                 if (viewPDV.getProductTableBack().getValueAt(i, proBackCancellationColumn).equals("")) {
                     productsSold += 1;
@@ -531,8 +531,8 @@ public class PDVPresenter {
             if (productsSold > 1) {
                 viewPDV.setSaleCardL(cardLayoutPDV.getNameCardLayout());
                 viewPDV.setFocusProductTableBack();
-                viewPDV.getProductTableFront().changeSelection(viewPDV.getProductTableFront().getRowCount()-1, 0, false, false);
-                viewPDV.getProductTableBack().changeSelection(viewPDV.getProductTableBack().getRowCount()-1, 0, false, false);
+                viewPDV.getProductTableFront().changeSelection(rowsTableBack -1, 0, false, false);
+                viewPDV.getProductTableBack().changeSelection(rowsTableBack -1, 0, false, false);
 
             } else if (productsSold == 1) {
                 pPopUPConfirm.showConfirmDialog("CANCELAR ITEM!", "EXISTE APENAS UM ITEM, DESEJA CANCELAR O CUPOM?");

@@ -56,9 +56,9 @@ public class Background {
         try {
             BufferedImage imgBuffer = ImageIO.read(inputStream);
             JImagePanel background = new JImagePanel(imgBuffer);
-            Rectangle rect = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
-            //background.setSize((int) rect.getWidth(), (int) rect.getHeight());
-            background.setSize(1280, 720);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            background.setSize((int) screenSize.getWidth(), (int) screenSize.getHeight());
+            //background.setSize(1280, 720); // UTILIZDO PARA TESTE
             background.setFillType(fillType);
             return background;
         } catch (IOException e) {
