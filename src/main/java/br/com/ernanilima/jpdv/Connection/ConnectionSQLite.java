@@ -5,7 +5,7 @@ import java.sql.*;
 
 /**
  * Classe de conexao com banco de dados NoSQL SQLite.
- * Bacos de dados: "dbjpdv.db" e "parame.db"
+ * Bacos de dados: "dbjpdv.db", "parame.db" e "financ.db"
  *
  * @author Ernani Lima
  */
@@ -17,6 +17,9 @@ public class ConnectionSQLite {
     /** Arquivo SQLite parame.db armazena os parametros no pdv */
     static final File DB_JPDV_PARAME = new File("parame.db");
 
+    /** Arquivo SQLite financ.db armazena os valores financeiros do pdv */
+    static final File DB_JPDV_FINANC = new File("financ.db");
+
 
     /** Driver de conexao para o banco de dados SQLite */
     private static final String DRIVER = "org.sqlite.JDBC";
@@ -27,6 +30,9 @@ public class ConnectionSQLite {
 
     /** Caminho para o banco de dados parame.db */
     private static final String PATH_DB_PARAME = "jdbc:sqlite:" + DB_JPDV_PARAME.getPath();
+
+    /** Caminho para o banco de dados financ.db */
+    private static final String PATH_DB_FINANC = "jdbc:sqlite:" + DB_JPDV_FINANC.getPath();
 
     /**
      * Responsavel por abrir a conexao com o banco de dados que armazena os produtos e vendas do PDV.
@@ -50,6 +56,18 @@ public class ConnectionSQLite {
     public static Connection openConnectionParame() throws ClassNotFoundException, SQLException {
         Class.forName(DRIVER);
         return DriverManager.getConnection(PATH_DB_PARAME);
+    }
+
+    /**
+     * Responsavel por abrir a conexao com o banco de dados que armazena os valores financeiros do PDV.
+     * Banco de dados "financ.db" SQLite
+     * @return Connection - Conexao com banco de dados financ.db
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
+     */
+    public static Connection openConnectionFinanc() throws ClassNotFoundException, SQLException {
+        Class.forName(DRIVER);
+        return DriverManager.getConnection(PATH_DB_FINANC);
     }
 
     /**

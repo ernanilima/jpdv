@@ -9,6 +9,7 @@ import java.sql.Statement;
  * Insere valores padroes em cada um dos bancos de dados
  * Banco de dados a ser criado: {@link #DB_JPDV}
  * Banco de dados a ser criado: {@link #DB_JPDV_PARAME}
+ * Banco de dados a ser criado: {@link #DB_JPDV_FINANC}
  *
  * @author Ernani Lima
  */
@@ -26,6 +27,7 @@ public class CreateDatabaseSQLite extends ConnectionSQLite {
      */
     private static void checkDB() {
         if (!DB_JPDV.exists()) {
+            System.out.println("CRIOU BANCO DBJPDV.DB");
             createTablesPDV();
             insertPDV();
         } else {
@@ -34,11 +36,21 @@ public class CreateDatabaseSQLite extends ConnectionSQLite {
         }
 
         if (!DB_JPDV_PARAME.exists()) {
+            System.out.println("CRIOU BANCO PARAME.DB");
             createTablesPARAME();
             insertPARAME();
         } else {
             cleanTablesPARAME();
             insertPARAME();
+        }
+
+        if (!DB_JPDV_FINANC.exists()) {
+            System.out.println("CRIOU BANCO FINANC.DB");
+            createTablesFINANC();
+            //insertFINANC();
+        } else {
+            cleanTablesFINANC();
+            //insertFINANC();
         }
     }
 
@@ -154,6 +166,61 @@ public class CreateDatabaseSQLite extends ConnectionSQLite {
             System.out.println("ERRO AO ABRIR CONEXAO COM PARAME: " + e);
         } catch (ClassNotFoundException e) {
             System.out.println("ERRO COM ARQUIVO PARAME: " + e);
+        } finally {
+            closeSQLite(conn);
+        }
+    }
+
+    /**
+     * Cria as tabelas de valores financeiros do PDV.
+     * Tabelas "opening", "withdrawal" e "deposit".
+     * Tabelas seram criadas no banco de dados {@link #DB_JPDV_FINANC}
+     */
+    private static void createTablesFINANC() {
+        Connection conn = null;
+        try {
+            conn = openConnectionFinanc();
+            Statement st = conn.createStatement();
+
+            String sqlOpening = "CREATE TABLE IF NOT EXISTS opening (" + // Tabela com os valores de abertura de PDV
+                    "id            INTEGER        PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL," + // Codigo da abertura
+                    "cod_filial    INT            NOT NULL," + // Codigo da Filial onde o PDV esta
+                    "cod_pdv       INT            NOT NULL," + // Numero do PDV
+                    "cod_ope       INT            NOT NULL," + // Codigo do operador a utilizar o PDV
+                    "cod_sup       INT            NOT NULL," + // Codigo do supervisor que realizou a abertura do PDV
+                    "initial_value DOUBLE (10, 2) NOT NULL," + // Valor inicial do PDV (troco)
+                    "opening_date  DATE           NOT NULL," + // Data de abertura do PDV
+                    "opening_time  TIME           NOT NULL," + // Hora de abertura do PDV
+                    "status        BOOLEAN)"; // Status do PDV (true = aberto)
+            st.execute(sqlOpening);
+            System.out.println("CRIOU TABELA OPENING");
+
+            String sqlWithdrawal = "CREATE TABLE IF NOT EXISTS withdrawal (" + // Tabela de sangrias/retiradas do PDV
+                    "id                INTEGER        PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," + // Codigo da sangria/retirada
+                    "id_opening        INT            NOT NULL," + // Codigo da abertura
+                    "cod_sup           INT            NOT NULL," + // Codigo do supervisor que realizou a sangria/retirada
+                    "withdrawn_value   DOUBLE (10, 2) NOT NULL," + // Valor da sangria/retirada
+                    "withdrawal_reason STRING (50)," + // Motivo da sangria/retirada
+                    "withdrawal_date   DATE           NOT NULL," + // Data da sangria/retirada
+                    "withdrawal_time   TIME           NOT NULL)"; // Hora da sangria/retirada
+            st.execute(sqlWithdrawal);
+            System.out.println("CRIOU TABELA WITHDRAWAL");
+
+            String sqlDeposit = "CREATE TABLE IF NOT EXISTS deposit (" + // Tabela de suprimento/deposito realizado no PDV
+                    "id              INTEGER        PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," + // Codigo do suprimento/deposito
+                    "id_opening      INT            NOT NULL," + // Codigo da abertura
+                    "cod_sup         INT            NOT NULL," + // Codigo do supervisor que realizou a suprimento/deposito
+                    "deposited_value DOUBLE (10, 2) NOT NULL," + // Valor do suprimento/deposito
+                    "deposit_reason  STRING (50)," + // Motivo do suprimento/deposito
+                    "deposit_date    DATE           NOT NULL," + // Data do suprimento/deposito
+                    "deposit_time    TIME           NOT NULL)"; // Hora do suprimento/deposito
+            st.execute(sqlDeposit);
+            System.out.println("CRIOU TABELA DEPOSIT");
+
+        } catch (SQLException e) {
+            System.out.println("ERRO AO ABRIR CONEXAO COM FINANC: " + e);
+        } catch (ClassNotFoundException e) {
+            System.out.println("ERRO COM ARQUIVO FINANC: " + e);
         } finally {
             closeSQLite(conn);
         }
@@ -280,6 +347,29 @@ public class CreateDatabaseSQLite extends ConnectionSQLite {
             System.out.println("ERRO AO ABRIR CONEXAO COM PARAME: " + e);
         } catch (ClassNotFoundException e) {
             System.out.println("ERRO COM ARQUIVO PARAME: " + e);
+        } finally {
+            closeSQLite(conn);
+        }
+    }
+
+    /**
+     * Limpa todas as tabelas do banco de dados {@link #DB_JPDV_FINANC}
+     */
+    private static void cleanTablesFINANC() {
+        Connection conn = null;
+        Statement st;
+        String sql = "DELETE FROM opening;"
+                + "DELETE FROM withdrawal;"
+                + "DELETE FROM deposit;";
+        try {
+            conn = openConnectionFinanc();
+            st = conn.createStatement();
+            st.executeUpdate(sql);
+            System.out.println("LIMPOU TABELAS FINANC");
+        } catch (SQLException e) {
+            System.out.println("ERRO AO ABRIR CONEXAO COM FINANC: " + e);
+        } catch (ClassNotFoundException e) {
+            System.out.println("ERRO COM ARQUIVO FINANC: " + e);
         } finally {
             closeSQLite(conn);
         }
