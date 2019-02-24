@@ -18,6 +18,40 @@ import static br.com.ernanilima.jpdv.Connection.ConnectionSQLite.openConnectionP
 public class UserDao {
 
     /**
+     * Validar ID de usuario existente
+     * @param mUser {@link User} - Model de usuario
+     * @return boolean - "true" se ID usuario existir
+     */
+    public boolean validateUserID(User mUser) {
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM usuario WHERE id = ?";
+
+        try {
+            conn = openConnectionParame();
+            pst = conn.prepareStatement(sql);
+            pst.setInt(1, mUser.getId());
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                mUser.setId(rs.getInt("id"));
+                mUser.setName(rs.getString("nome"));
+                mUser.setLevel(rs.getInt("nivel"));
+                return true;
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("ERRO AO ABRIR CONEXAO COM PARAME: " + e);
+        } catch (SQLException e) {
+            System.out.println("ERRO AO REALIZAR LOGIN DE USUARIO: " + e);
+        } finally {
+            closeSQLite(conn, pst, rs);
+        }
+        return false;
+    }
+
+    /**
      * Validacao de login de usuario de PDV
      * @param mUser {@link User} - Model de usuario
      * @return boolean - "true" se login realizado com sucesso

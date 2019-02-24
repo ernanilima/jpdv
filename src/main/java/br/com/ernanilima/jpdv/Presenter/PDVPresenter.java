@@ -339,6 +339,8 @@ public class PDVPresenter {
             focusFieldPassword();
         } else if (Integer.parseInt(id) == (mSupport.getId()) & password.equals(mSupport.getPwd())) {
             System.out.println("LOGIN DO SUPORTE TECNICO!");
+            OpeningPresenter openingPresenter = new OpeningPresenter();
+            openingPresenter.showViewOpening();
             pPopUPMessage.showAlert("ALERTA", "Login do Suporte!");
         } else {
             mUser.setId(Integer.parseInt(id));
