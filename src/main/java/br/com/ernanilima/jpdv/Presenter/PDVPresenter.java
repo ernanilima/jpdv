@@ -92,7 +92,7 @@ public class PDVPresenter {
     private int levelCancelProduct = 2;
     private int levelCancelCurrentCoupon = 2;
     private int levelItemDiscount = 2;
-    private int levelAdminOptions = 2;
+    private int levelAdminOptions = 1;
 
     // Construtor
     public PDVPresenter() {
