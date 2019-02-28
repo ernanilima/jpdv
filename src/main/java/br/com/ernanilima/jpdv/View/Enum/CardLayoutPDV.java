@@ -14,6 +14,12 @@ public enum CardLayoutPDV {
     CARD_PDV("cardPDV"),
 
     /**
+     * Seleciona "tela do painel admin"
+     * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setStartCardL(String)}
+     */
+    CARD_ADMIN("cardAdmin"),
+
+    /**
      * Seleciona "tela de vendas"
      * Utilizado em {@link br.com.ernanilima.jpdv.View.IViewPDV#setStartCardL(String)}
      */

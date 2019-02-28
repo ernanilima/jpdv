@@ -24,6 +24,10 @@ public interface IViewOpening {
     public void setOperatorName(String name);
     public void clearOperator();
 
+    // Valor inicial
+    public String getInitialValue();
+    public void setInitialValue(String initialValue);
+
     // Definir foco no campo de codigo do operador
     public void setFocusOperatorIDField();
 
@@ -49,6 +53,9 @@ public interface IViewOpening {
 
     // Seta a movimentacao do Dialog na barra superior
     public void setMouseMotion(int x, int y);
+
+    // Limpar campos
+    public void clearFields();
 
     // Retorna true se o dialog estiver visivel
     public boolean getVisible();

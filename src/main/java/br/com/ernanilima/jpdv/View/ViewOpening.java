@@ -233,6 +233,16 @@ public class ViewOpening extends JDialog implements IViewOpening {
     }
 
     @Override
+    public String getInitialValue() {
+        return campoValInicial.getText();
+    }
+
+    @Override
+    public void setInitialValue(String initialValue) {
+        campoValInicial.setText(initialValue);
+    }
+
+    @Override
     public void setFocusOperatorIDField() {
         campoCodOperador.requestFocus();
     }
@@ -240,6 +250,7 @@ public class ViewOpening extends JDialog implements IViewOpening {
     @Override
     public void setFocusInitialValueField() {
         campoValInicial.requestFocus();
+        campoValInicial.selectAll();
     }
 
     @Override
@@ -300,6 +311,13 @@ public class ViewOpening extends JDialog implements IViewOpening {
     @Override
     public void setMouseMotion(int x, int y) {
         setLocation(x, y);
+    }
+
+    @Override
+    public void clearFields() {
+        campoCodOperador.setText("");
+        campoNomeOperador.setText("");
+        campoValInicial.setText("");
     }
 
     @Override

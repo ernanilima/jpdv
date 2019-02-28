@@ -25,7 +25,7 @@ public class ViewOpeningActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            presenter.validateOpening();
+            presenter.saveOpening();
         }
     }
 

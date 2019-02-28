@@ -47,10 +47,9 @@ public class CreateDatabaseSQLite extends ConnectionSQLite {
         if (!DB_JPDV_FINANC.exists()) {
             System.out.println("CRIOU BANCO FINANC.DB");
             createTablesFINANC();
-            //insertFINANC();
         } else {
+            // Remover else assim que estiver funcionando o fechamento de caixa
             cleanTablesFINANC();
-            //insertFINANC();
         }
     }
 
@@ -161,7 +160,29 @@ public class CreateDatabaseSQLite extends ConnectionSQLite {
                     + "codtcl       INT, " // KeyCode da tecla de atalho
                     + "tecla        VARCHAR (10))"; // Tecla de atalho
             st.execute(sqlTcl);
-            System.out.println("CRIOU TABELA TCLATALHO");
+
+            String sqlCompanyBR = "CREATE TABLE IF NOT EXISTS companybr (" +
+                    "id           INT         NOT NULL UNIQUE," +
+                    "razaoSocial  STRING (40) NOT NULL," +
+                    "nomeFantasia STRING (40) NOT NULL," +
+                    "cnpj         STRING (20) NOT NULL UNIQUE," +
+                    "inscEstadual STRING (20) NOT NULL UNIQUE," +
+                    "endereco     STRING (40) NOT NULL," +
+                    "numero       STRING (5)  NOT NULL," +
+                    "bairro       STRING (20) NOT NULL," +
+                    "complemento  STRING," +
+                    "cidade       STRING (20) NOT NULL," +
+                    "uf           STRING (5)  NOT NULL)";
+            st.execute(sqlCompanyBR);
+            System.out.println("CRIOU TABELA COMPANYBR");
+
+            String sqlPDV = "CREATE TABLE IF NOT EXISTS pdv (" +
+                    "id         INT    NOT NULL UNIQUE," +
+                    "ip         STRING (20) NOT NULL," +
+                    "releasekey STRING NOT NULL," +
+                    "version    STRING (10) NOT NULL)";
+            st.execute(sqlPDV);
+            System.out.println("CRIOU TABELA PDV");
         } catch (SQLException e) {
             System.out.println("ERRO AO ABRIR CONEXAO COM PARAME: " + e);
         } catch (ClassNotFoundException e) {
@@ -297,6 +318,15 @@ public class CreateDatabaseSQLite extends ConnectionSQLite {
                     + "INSERT INTO tclatalho (id, desc_atalho, codtcl, tecla) VALUES (18, 'Repetir Ultimo Item', 82, 'R');";
             st.executeUpdate(sqlTcl);
             System.out.println("INSERIU TECLAS DE ATALHO");
+
+            String sqlCompanyBR = "INSERT INTO companybr (id, razaoSocial, nomeFantasia, cnpj, inscEstadual, endereco, numero, bairro, complemento, cidade, uf) " +
+                    "VALUES (1, 'Empresa super foda Ltda', 'Empresa muito foda', '66999666999166', '9996669991', 'Rua muito louca', '69', 'Bairro Cabuloso', 'Esquina com Deus me livre', 'Cidade Louca', 'Muito Longe');";
+            st.executeUpdate(sqlCompanyBR);
+            System.out.println("INSERIU COMPANYBR");
+
+            String sqlPDV = "INSERT INTO pdv (id, ip, releasekey, version) VALUES (1, '127.0.0.1', 'AindaPendenteDeImplementacao', '0.1.2');";
+            st.executeUpdate(sqlPDV);
+            System.out.println("INSERIU PDV");
         } catch (SQLException e) {
             System.out.println("ERRO AO ABRIR CONEXAO COM PARAME: " + e);
         } catch (ClassNotFoundException e) {
@@ -337,7 +367,9 @@ public class CreateDatabaseSQLite extends ConnectionSQLite {
         Statement st;
         String sql = "DELETE FROM fpagamento;"
                 + "DELETE FROM usuario;"
-                + "DELETE FROM tclatalho;";
+                + "DELETE FROM tclatalho;"
+                + "DELETE FROM companybr;"
+                + "DELETE FROM pdv;";
         try {
             conn = openConnectionParame();
             st = conn.createStatement();

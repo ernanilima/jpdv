@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.text.Document;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.MouseAdapter;
 
 /**
  * Interface da ViewPDV
@@ -21,7 +22,7 @@ public interface IViewPDV {
     public void setUserID(String id);
 
     // Seta o Nome do usuario
-    public void setUsername(String username);
+    public void setUserName(String username);
 
     // Retorna a senha do usuario
     public String getPassword();
@@ -111,6 +112,8 @@ public interface IViewPDV {
     public void setBtnExitActionPerformed(ActionListener listener);
     public void setFieldIDKeyPressed(KeyAdapter adapter);
     public void setFieldPasswordKeyPressed(KeyAdapter adapter);
+    public void setKeyPressedAdminOptions(KeyAdapter adapter);
+    public void setMousePressedAdminOptions(MouseAdapter adapter);
     public void setFieldBarcodeKeyPressed(KeyAdapter adapter);
     public void setProductTableBackKeyPressed(KeyAdapter adapter);
     public void setFieldTotalValueReceivedKeyPressed(KeyAdapter adapter);
@@ -155,6 +158,7 @@ public interface IViewPDV {
     public void setVisibleDiscountField(boolean visible);
 
     // Limpar campos
+    public void cleanLoginFields();
     public void cleanBarcodeField();
     public void cleanDiscountValue();
     public void cleanDiscountPercentage();
@@ -174,8 +178,12 @@ public interface IViewPDV {
     public JTable getPaymentMethodTable();
     public JTable getPaymentReceivedTable();
 
+    // Retorna o componente JList
+    public JList getListAdminOptions();
+
     // Seta a Imagem de background direto no jPanel
     public void setBackgroundLogin(JImagePanel imagePanel);
+    public void setBackgroundAdminOptions(JImagePanel imagePanel);
 
     // Exibe a tela do PDV
     public void packAndShow();

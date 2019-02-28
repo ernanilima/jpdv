@@ -11,6 +11,7 @@ public class Backgrounds {
 
     private final InputStream imgBgDialog = getClass().getResourceAsStream("/backgrounds/bg_dialog.png");
     private final InputStream imgBgPDVLogin = getClass().getResourceAsStream("/backgrounds/bg_login_jpdv.png");
+    private final InputStream imgBgPDVAdminOptions = getClass().getResourceAsStream("/backgrounds/bg_admin_options.png");
 
     // Construtor
     public Backgrounds() {}
@@ -27,5 +28,12 @@ public class Backgrounds {
      */
     public InputStream getPathBgPDVLogin() {
         return imgBgPDVLogin;
+    }
+
+    /**
+     * @return InputStream - Caminho interno da imagem de Background da tela de opcoes do admin
+     */
+    public InputStream getPathBgPDVAdminOptions() {
+        return imgBgPDVAdminOptions;
     }
 }

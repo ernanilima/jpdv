@@ -1,15 +1,23 @@
 package br.com.ernanilima.jpdv.Presenter;
 
+import br.com.ernanilima.jpdv.Dao.OpeningPDVDao;
 import br.com.ernanilima.jpdv.Dao.UserDao;
+import br.com.ernanilima.jpdv.Model.CompanyBR;
+import br.com.ernanilima.jpdv.Model.OpeningPDV;
+import br.com.ernanilima.jpdv.Model.PDV;
 import br.com.ernanilima.jpdv.Model.User;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewOpeningActionListener.*;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewOpeningFocusListener.*;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewOpeningKeyListener.*;
 import br.com.ernanilima.jpdv.Presenter.Listener.ViewOpeningMouseMotionListener.*;
 import br.com.ernanilima.jpdv.Util.FieldManager;
+import br.com.ernanilima.jpdv.Util.Filter;
 import br.com.ernanilima.jpdv.Util.Format;
 import br.com.ernanilima.jpdv.View.IViewOpening;
 import br.com.ernanilima.jpdv.View.ViewOpening;
+
+import java.sql.Date;
+import java.sql.Time;
 
 /**
  * Presenter da {@link br.com.ernanilima.jpdv.View.ViewOpening}
@@ -18,17 +26,21 @@ import br.com.ernanilima.jpdv.View.ViewOpening;
  */
 public class OpeningPresenter {
 
-    // Interface da ViewOpening
-    private final IViewOpening viewOpening;
+    private final IViewOpening viewOpening; // Interface da ViewOpening
 
-    // Model do usuario
-    private final User mUser;
+    /** Model */
+    private CompanyBR mCompany; // Model da Empresa/Filial
+    private PDV mPdv; // Model do PDV
+    private final User mUser; // Model do usuario
 
-    // Dao do usuario
-    private final UserDao dUser;
+    /** Dao */
+    private final UserDao dUser; // Dao do usuario
 
-    // Presenter do pop-up de alertas/ok
-    private final PopUPMessageDialogPresenter pPopUPMessage;
+    /** Presenter */
+    private final PopUPMessageDialogPresenter pPopUPMessage; // Presenter do pop-up de alertas/ok
+
+    private int supervisorID; // ID do supervisor
+    private double initialValue = 0; // Valor inicial padrao
 
     // Construtor
     public OpeningPresenter() {
@@ -75,8 +87,16 @@ public class OpeningPresenter {
 
     /**
      * Exibe o Dialog de abertura de caixa PDV.
+     * @param mCompany {@link CompanyBR} - Model da Empresa/Filial
+     * @param mPdv {@link PDV} - Model do PDV
+     * @param supervisorID int - ID do supervisor
      */
-    void showViewOpening() {
+    void showViewOpening(CompanyBR mCompany, PDV mPdv, int supervisorID) {
+        this.mCompany = mCompany;
+        this.mPdv = mPdv;
+        this.supervisorID = supervisorID;
+
+        viewOpening.setInitialValue(Format.brCurrencyFormat.format(initialValue));
         viewOpening.setShow();
     }
 
@@ -109,8 +129,31 @@ public class OpeningPresenter {
         }
     }
 
-    public void validateOpening() {
-        
+    /**
+     * Validacao de valor digitado
+     * Grava abertura de caixa PDV
+     */
+    public void saveOpening() {
+        String initialValue = viewOpening.getInitialValue();
+        if (initialValue.equals("") | initialValue.equals(",")) {
+            pPopUPMessage.showAlert("ATENÇÃO!", "VALOR INICIAL INVÁLIDO!");
+            return;
+        }
+        OpeningPDVDao dOpening = new OpeningPDVDao();
+        OpeningPDV mOpening = new OpeningPDV();
+
+        mOpening.setSupervisorID(supervisorID);
+        mOpening.setInitialValue(Filter.filterDouble(initialValue));
+        mOpening.setDate(Date.valueOf(Format.DFDATE.format(System.currentTimeMillis())));
+        mOpening.setHour(Time.valueOf(Format.DFTIME.format(System.currentTimeMillis())));
+        mOpening.setStatus(true);
+        mOpening.setmCompany(mCompany);
+        mOpening.setmUser(mUser);
+        mOpening.setmPDV(mPdv);
+
+        dOpening.saveOpeningPDV(mOpening);
+
+        closePopUP();
     }
 
     /**
@@ -124,8 +167,10 @@ public class OpeningPresenter {
 
     /**
      * Fecha o Dialog com setVisible(false)
+     * Limpa todos os campos
      */
     public void closePopUP() {
+        viewOpening.clearFields();
         viewOpening.setClose();
     }
 }

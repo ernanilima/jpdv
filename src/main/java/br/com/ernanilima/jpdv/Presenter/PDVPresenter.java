@@ -3,11 +3,14 @@ package br.com.ernanilima.jpdv.Presenter;
 import br.com.ernanilima.jpdv.Controller.*;
 import br.com.ernanilima.jpdv.Dao.*;
 import br.com.ernanilima.jpdv.Model.*;
+import br.com.ernanilima.jpdv.Model.Enum.AdminOptions;
 import br.com.ernanilima.jpdv.Model.Enum.IndexShortcutKey;
+import br.com.ernanilima.jpdv.Model.ListModel.AdminOptionsListModel;
 import br.com.ernanilima.jpdv.Model.TableModel.*;
+import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVMouseMotionListener.*;
 import br.com.ernanilima.jpdv.Util.*;
-import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVActionListener;
-import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVKeyListener;
+import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVActionListener.*;
+import br.com.ernanilima.jpdv.Presenter.Listener.ViewPDVKeyListener.*;
 import br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV;
 import br.com.ernanilima.jpdv.View.IViewPDV;
 import br.com.ernanilima.jpdv.View.ViewPDV;
@@ -21,6 +24,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import static br.com.ernanilima.jpdv.Model.Enum.AdminOptions.*;
 import static br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV.*;
 
 /**
@@ -30,74 +34,49 @@ import static br.com.ernanilima.jpdv.View.Enum.CardLayoutPDV.*;
  */
 public class PDVPresenter {
 
+    private final IViewPDV viewPDV; // Interface da ViewPDV
+
+    /** Model */
+    private CompanyBR mCompanyBR; // Model da Empresa/Filial
+    private PDV mPDV; // Model do PDV
+    private final Backgrounds mBg; // Model de imagens de background do sistema
+    private final User mUser; // Model do usuario
+    private final Support mSupport; // Model do suporte
+    private final OpeningPDV mOpeningPDV; // Model de Abertura de caixa PDV
+    private Product mProduct; // Model de produto
+    private Coupon mCoupon; // Model de cupom
+    private final ShortcutKey mShortcutKey; // Model teclas de atalho
+
+    /** Dao */
+    private final UserDao dUser; // Dao do usuario
+    private final OpeningPDVDao dOpeningPDV; // DAO de Abertura de caixa PDV
+    private final ProductDao dProduct; // Dao de produto
+    private final CouponDao dCoupon; // Dao de cupom
+
+    /** Presenter */
+    private final PopUPMessageDialogPresenter pPopUPMessage; // Presenter do pop-up de alertas/ok
+    private final PopUPConfirmDialogPresenter pPopUPConfirm; // Presenter do pop-up de confirmacao (sim/nao)
+    private final PopUPUserPermissionDialogPresenter pPopUPUserPermission; // Presenter do pop-up de validar nivel do usuario
+    private final OpeningPresenter pOpeningPDV; // Abertura de caixa PDV
+
+    /** TableModel */
+    private final ProductFrontTableModel tmProductFront; // TableModel de itens vendidos
+    private final ProductBackTableModel tmProductBack; // TableModel de produtos back
+    private final ProductSearchTableModel tmProductSearch; // TableModel de buscar produtos
+    private final PaymentMethodTableModel tmPayment; // TableModel de formas de pagamento
+    private final PaymentReceivedTableModel tmPaymentReceived; // TableModel de pagamento recebido
+
+    /** ListModel */
+    private final AdminOptionsListModel lmAdminOptionsListModel; // ListModel de Opcoes de Admin
+
+    /** TableRowSorter */
+    private final TableRowSorter<ProductSearchTableModel> trsProductSearch; // TableRowSorter de buscar produtos
+
+    private int currentUserLevel;
+
     // Variaveis do PDV
     private final double maxQty = 100; // Quantidade maxima do mesmo produto por linha
     private final double minQty = 0.001; // Quantidade minima do mesmo produto por linha
-
-    // Interface da ViewPDV
-    private final IViewPDV viewPDV;
-
-    // Presenter do pop-up de alertas/ok
-    private final PopUPMessageDialogPresenter pPopUPMessage;
-
-    // Presenter do pop-up de confirmacao (sim/nao)
-    private final PopUPConfirmDialogPresenter pPopUPConfirm;
-
-    // Presenter do pop-up de validar nivel do usuario
-    private final PopUPUserPermissionDialogPresenter pPopUPUserPermission;
-
-    // Model do usuario
-    private final User mUser;
-
-    // Model do suporte
-    private final Support mSupport;
-
-    // Model de imagens de background do sistema
-    private final Backgrounds mBg;
-
-    // Dao do usuario
-    private final UserDao dUser;
-
-    // Dao de produto
-    private final ProductDao dProduct;
-
-    // Dao de cupom
-    private final CouponDao dCoupon;
-
-    // Model de produto
-    private Product mProduct;
-
-    // Model de cupom
-    private Coupon mCoupon;
-
-    // Model do PDV
-    private PDV mPDV;
-
-    // Model teclas de atalho
-    private final ShortcutKey mShortcutKey;
-
-    // TableModel de itens vendidos
-    private final ProductFrontTableModel tmProductFront;
-
-    // TableModel de produtos back
-    private final ProductBackTableModel tmProductBack;
-
-    // TableModel de buscar produtos
-    private final ProductSearchTableModel tmProductSearch;
-
-    // TableRowSorter de buscar produtos
-    private final TableRowSorter<ProductSearchTableModel> trsProductSearch;
-
-    // TableModel de formas de pagamento
-    private final PaymentMethodTableModel tmPayment;
-
-    // TableModel de pagamento recebido
-    private final PaymentReceivedTableModel tmPaymentReceived;
-
-    private int currentUserLevel;
-    private int pdvID = 1;
-    private int companyID = 1;
-
     private boolean save = false;
     private boolean cancel = true;
 
@@ -113,44 +92,67 @@ public class PDVPresenter {
     private int levelCancelProduct = 2;
     private int levelCancelCurrentCoupon = 2;
     private int levelItemDiscount = 2;
+    private int levelAdminOptions = 2;
 
     // Construtor
     public PDVPresenter() {
         this.viewPDV = new ViewPDV();
+        this.companyBR();
+        this.pdv();
+        this.mBg = new Backgrounds();
+        this.mUser = new User();
+        this.mSupport = new Support();
+        this.mOpeningPDV = new OpeningPDV();
+        this.mProduct = new Product();
+        this.mCoupon = new Coupon();
+        this.mShortcutKey = new ShortcutKey();
+        this.dUser = new UserDao();
+        this.dOpeningPDV = new OpeningPDVDao();
+        this.dProduct = new ProductDao();
+        this.dCoupon = new CouponDao();
         this.pPopUPMessage = new PopUPMessageDialogPresenter();
         this.pPopUPConfirm = new PopUPConfirmDialogPresenter();
         this.pPopUPUserPermission = new PopUPUserPermissionDialogPresenter();
-        this.mUser = new User();
-        this.mSupport = new Support();
-        this.mBg = new Backgrounds();
-        this.dUser = new UserDao();
-        this.dProduct = new ProductDao();
-        this.dCoupon = new CouponDao();
-        this.mProduct = new Product();
-        this.mCoupon = new Coupon();
-        this.mPDV = new PDV();
-        this.mShortcutKey = new ShortcutKey();
+        this.pOpeningPDV = new OpeningPresenter();
         this.tmProductFront = new ProductFrontTableModel();
         this.tmProductBack = new ProductBackTableModel();
         this.tmProductSearch = new ProductSearchTableModel();
-        this.trsProductSearch = new TableRowSorter<>(tmProductSearch);
         this.tmPayment = new PaymentMethodTableModel();
         this.tmPaymentReceived = new PaymentReceivedTableModel();
+        this.lmAdminOptionsListModel = new AdminOptionsListModel();
+        this.trsProductSearch = new TableRowSorter<>(tmProductSearch);
+        this.showTime();
         this.myTables();
+        this.myJLists();
         this.fillProductSearchTable();
         this.fillPaymentMethodTable();
+        this.fillListAdminOptions();
         this.myListiners();
         this.myFilters();
         this.myShortcutKey();
         this.viewPDV.setcurrentCouponID(couponID());
         this.viewPDV.setCurrentDate(Format.DFDATE_BR.format(System.currentTimeMillis()));
-        this.showTime();
-        this.viewPDV.setPDVID(Format.formatThreeDigits.format(pdvID));
-        this.viewPDV.setCompanyID(Format.formatThreeDigits.format(companyID));
+        this.viewPDV.setPDVID(Format.formatThreeDigits.format(mPDV.getId()));
+        this.viewPDV.setCompanyID(Format.formatThreeDigits.format(1));
         this.viewPDV.setVersion("0.1.10");
         this.viewPDV.setBackgroundLogin(Background.getBackgroundCenter(mBg.getPathBgPDVLogin()));
+        this.viewPDV.setBackgroundAdminOptions(Background.getBackgroundCenter(mBg.getPathBgPDVAdminOptions()));
         this.viewPDV.setQuantity(Format.formatQty.format(1));
         this.viewPDV.packAndShow();
+    }
+
+    // Localiza os dados da Empresa/Filial
+    private void companyBR() {
+        CompanyBRDao dCompanyBR = new CompanyBRDao();
+        mCompanyBR = new CompanyBR();
+        dCompanyBR.getCompany(mCompanyBR);
+    }
+
+    // Localiza os dados do PDV
+    private void pdv() {
+        PDVDao dPDV = new PDVDao();
+        mPDV = new PDV();
+        dPDV.getPDV(mPDV);
     }
 
     // Thread que atualiza a hora
@@ -218,6 +220,11 @@ public class PDVPresenter {
         viewPDV.getPaymentReceivedTable().setRowSelectionAllowed(false);
     }
 
+    // Minhas JList
+    private void myJLists() {
+        viewPDV.getListAdminOptions().setModel(lmAdminOptionsListModel);
+    }
+
     // Preenche a tabela de buscar produtos
     private void fillProductSearchTable() {
         int rows = tmProductSearch.getRowCount();
@@ -228,13 +235,18 @@ public class PDVPresenter {
     }
 
     // Preenche a tabela de formas de pagamento
-    private  void fillPaymentMethodTable() {
+    private void fillPaymentMethodTable() {
         PaymentMethodDao dPayment = new PaymentMethodDao();
         int rows = tmPayment.getRowCount();
         for (int i = rows - 1; i >= 0; i--) {
             tmPayment.removeRow(i);
         }
         dPayment.listPayments().forEach(tmPayment::addRow);
+    }
+
+    // Preenche a lista de opcoes do admin
+    private void fillListAdminOptions() {
+        AdminOptions.getValues().forEach(lmAdminOptionsListModel::addOptions);
     }
 
     // Gera lista de teclas de atalho
@@ -245,19 +257,21 @@ public class PDVPresenter {
 
     // Listiner de "Botons", "Campos" e outros.
     private void myListiners() {
-        viewPDV.setBtnLoginActionPerformed(new ViewPDVActionListener.BtnLoginUserActionListener(this));
-        viewPDV.setBtnExitActionPerformed(new ViewPDVActionListener.BtnExitActionListener(this));
-        viewPDV.setFieldIDKeyPressed(new ViewPDVKeyListener.FieldIDKeyListener(this));
-        viewPDV.setFieldPasswordKeyPressed(new ViewPDVKeyListener.FieldPassqordKeyListener(this));
-        viewPDV.setFieldBarcodeKeyPressed(new ViewPDVKeyListener.FieldBarcodeKeyListener(this));
-        viewPDV.setProductTableBackKeyPressed(new ViewPDVKeyListener.ProductTableBackKeyListener(this));
-        viewPDV.setFieldSearchProductKeyPressed(new ViewPDVKeyListener.FieldSearchProductKeyListener(this));
-        viewPDV.setBtnClearSearchActionPerformed(new ViewPDVActionListener.BtnClearSearchActionListener(this));
-        viewPDV.setFieldTotalValueReceivedKeyPressed(new ViewPDVKeyListener.FieldTotalValueReceivedKeyListener(this));
-        viewPDV.setFieldDiscountValueKeyPressed(new ViewPDVKeyListener.FieldDiscountValueKeyListener(this));
-        viewPDV.setFieldDiscountPercentageKeyPressed(new ViewPDVKeyListener.FieldDiscountPercentageKeyListener(this));
-        viewPDV.setBtnConfirmDiscountActionPerformed(new ViewPDVActionListener.BtnConfirmDiscountActionListener(this));
-        viewPDV.setFieldChangeValueKeyPressed(new ViewPDVKeyListener.FieldChangeValueKeyListener(this));
+        viewPDV.setBtnLoginActionPerformed(new BtnLoginUserActionListener(this));
+        viewPDV.setBtnExitActionPerformed(new BtnExitActionListener(this));
+        viewPDV.setFieldIDKeyPressed(new FieldIDKeyListener(this));
+        viewPDV.setFieldPasswordKeyPressed(new FieldPassqordKeyListener(this));
+        viewPDV.setKeyPressedAdminOptions(new AdminOptionKeyListener(this));
+        viewPDV.setMousePressedAdminOptions(new AdminOptionMouseListener(this));
+        viewPDV.setFieldBarcodeKeyPressed(new FieldBarcodeKeyListener(this));
+        viewPDV.setProductTableBackKeyPressed(new ProductTableBackKeyListener(this));
+        viewPDV.setFieldSearchProductKeyPressed(new FieldSearchProductKeyListener(this));
+        viewPDV.setBtnClearSearchActionPerformed(new BtnClearSearchActionListener(this));
+        viewPDV.setFieldTotalValueReceivedKeyPressed(new FieldTotalValueReceivedKeyListener(this));
+        viewPDV.setFieldDiscountValueKeyPressed(new FieldDiscountValueKeyListener(this));
+        viewPDV.setFieldDiscountPercentageKeyPressed(new FieldDiscountPercentageKeyListener(this));
+        viewPDV.setBtnConfirmDiscountActionPerformed(new BtnConfirmDiscountActionListener(this));
+        viewPDV.setFieldChangeValueKeyPressed(new FieldChangeValueKeyListener(this));
     }
 
     // Metodo que gerencia os campos do ViewPDV
@@ -323,6 +337,17 @@ public class PDVPresenter {
     }
 
     /**
+     * Exibe a tela de login
+     */
+    public void loginScreen() {
+        pPopUPConfirm.showConfirmDialog("ATENÇÃO!", "DESEJA VOLTAR PARA A TELA DE LOGIN?");
+        if (pPopUPConfirm.questionResult()) {
+            selectStartCardL(CARD_LOGIN);
+            focusFieldID();
+        }
+    }
+
+    /**
      * Metodo que realiza a validacao de login do usuario ou do suporte tecnico
      */
     public void userLogin() {
@@ -339,8 +364,6 @@ public class PDVPresenter {
             focusFieldPassword();
         } else if (Integer.parseInt(id) == (mSupport.getId()) & password.equals(mSupport.getPwd())) {
             System.out.println("LOGIN DO SUPORTE TECNICO!");
-            OpeningPresenter openingPresenter = new OpeningPresenter();
-            openingPresenter.showViewOpening();
             pPopUPMessage.showAlert("ALERTA", "Login do Suporte!");
         } else {
             mUser.setId(Integer.parseInt(id));
@@ -348,16 +371,98 @@ public class PDVPresenter {
 
             if (dUser.userLogin(mUser)) {
                 System.out.println("LOGIN REALIZADO!");
-                viewPDV.setUserID(String.valueOf(mUser.getId()));
-                viewPDV.setUsername(mUser.getName());
-                currentUserLevel = mUser.getLevel();
-                selectStartCardL(CARD_PDV);
-                focusFieldBarCode();
-                viewPDV.setProductDescription("CAIXA LIVRE!");
+                loggedIn();
             } else {
                 System.out.println("Dados incorretos ou usuário não cadastrado!");
                 pPopUPMessage.showAlert("ATENÇÃO!", "DADOS INCORRETOS OU USUÁRIO NÃO CADASTRADO!");
                 focusFieldID();
+            }
+        }
+    }
+
+    /**
+     * Realiza todas as validacoes depois de confirmar que o login foi realizado
+     */
+    private void loggedIn() {
+        currentUserLevel = mUser.getLevel();
+
+        if (currentUserLevel < levelAdminOptions) {
+            pPopUPMessage.showAlert("ATENÇÃO!", "USUÁRIO SEM NIVEL PARA ACESSAR AS FUNÇÕES DO PDV!");
+            focusFieldID();
+            return;
+        }
+
+        selectStartCardL(CARD_ADMIN);
+        viewPDV.setUserID(String.valueOf(mUser.getId()));
+        viewPDV.setUserName(mUser.getName());
+        viewPDV.getListAdminOptions().setSelectedIndex(0);
+        viewPDV.getListAdminOptions().requestFocus();
+        viewPDV.cleanLoginFields();
+    }
+
+    /**
+     * Executa uma acao de acordo com a opcao escolida no painel admin
+     */
+    public void adminOptions() {
+        int index = viewPDV.getListAdminOptions().getSelectedIndex();
+
+        if (index == SALE_SCREEN.getIndex()) {
+            // IR PARA A TELA DE VENDA
+            if (dOpeningPDV.checkOpeningPDV(mOpeningPDV)) {
+                saleScreen();
+            } else {
+                checkOpeningPDV(SALE_SCREEN);
+            }
+
+        } else if (index == AdminOptions.OPENING.getIndex()) {
+            // REALIZAR A ABERTURA DO CAIXA PDV
+            checkOpeningPDV(OPENING);
+
+        } else if (index == AdminOptions.DEPOSIT.getIndex()) {
+            // REALIZAR DEPOSITO/SUPRIMENTO NO CAIXA PDV
+            pPopUPMessage.showAlert("ATENÇÃO!", "LINHA 3");
+
+        } else if (index == AdminOptions.WITHDRAWAL.getIndex()) {
+            // REALIZAR RETIRADA/SANGRIA NO CAIXA PDV
+            pPopUPMessage.showAlert("ATENÇÃO!", "LINHA 4");
+        }
+    }
+
+    /**
+     * Exibe a tela de venda
+     */
+    private void saleScreen() {
+        selectStartCardL(CARD_PDV);
+        focusFieldBarCode();
+        viewPDV.setProductDescription("CAIXA LIVRE!");
+    }
+
+    /**
+     * Verifica se o caixa ja esta aberto, caso nao esteja
+     * exibe o dialog para informar os dados de abertura
+     */
+    private void checkOpeningPDV(AdminOptions adminOptions) {
+
+        if (adminOptions.getIndex() == SALE_SCREEN.getIndex()) {
+            pPopUPConfirm.showConfirmDialog("ATENÇÃO!", "O CAIXA NÃO ESTÁ ABERTO, DESEJA ABRIR AGORA?");
+            if (pPopUPConfirm.questionResult()) {
+                pOpeningPDV.showViewOpening(mCompanyBR, mPDV, mUser.getId());
+                if (dOpeningPDV.checkOpeningPDV(mOpeningPDV)) {
+                    selectStartCardL(CARD_LOGIN);
+                    focusFieldID();
+                }
+            }
+
+        } else if (adminOptions.getIndex() == OPENING.getIndex()) {
+            if (dOpeningPDV.checkOpeningPDV(mOpeningPDV)) {
+                pPopUPMessage.showAlert("ATENÇÃO!", "CAIXA JÁ ESTÁ ABERTO!");
+
+            } else {
+                pOpeningPDV.showViewOpening(mCompanyBR, mPDV, mUser.getId());
+                if (dOpeningPDV.checkOpeningPDV(mOpeningPDV)) {
+                    selectStartCardL(CARD_LOGIN);
+                    focusFieldID();
+                }
             }
         }
     }
@@ -486,6 +591,7 @@ public class PDVPresenter {
      * Exibe o cardLayout que informar no parametro
      * {@link CardLayoutPDV#CARD_PDV} - Tela do PDV
      * {@link CardLayoutPDV#CARD_LOGIN} - Tela de login do PDV
+     * {@link CardLayoutPDV#CARD_ADMIN} - Tela do admin
      * @param cardLayoutPDV {@link CardLayoutPDV}
      */
     public void selectStartCardL(CardLayoutPDV cardLayoutPDV) {
@@ -495,6 +601,10 @@ public class PDVPresenter {
 
         } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_LOGIN.getNameCardLayout())) {
             // TELA DE LOGIN
+            viewPDV.setStartCardL(cardLayoutPDV.getNameCardLayout());
+
+        } else if (cardLayoutPDV.getNameCardLayout().equals(CARD_ADMIN.getNameCardLayout())) {
+            // TELA DO ADMIN
             viewPDV.setStartCardL(cardLayoutPDV.getNameCardLayout());
 
         }
@@ -1053,16 +1163,13 @@ public class PDVPresenter {
 
     // Salva ou cancela a venda atual
     private void saveSale(boolean saveOrCancel) {
-        CompanyBR mCompanyBR = new CompanyBR();
         mProduct = new Product();
         mCoupon = new Coupon();
 
         // QUANTIDADE DE FORMAS DE PAGAMENTO UTILIZADAS
         int payments = viewPDV.getPaymentReceivedTable().getRowCount();
 
-        mCompanyBR.setId(companyID);
         mCoupon.setmCompany(mCompanyBR);
-        mPDV.setId(pdvID);
         mCoupon.setmPDV(mPDV);
         mCoupon.setFormOfPayment1((payments >= 1) ? tmPaymentReceived.getLs(0).getmPayment().getId() : 0);
         mCoupon.setPaymentAmount1((payments >= 1) ? tmPaymentReceived.getLs(0).getValue() : 0);
@@ -1087,7 +1194,6 @@ public class PDVPresenter {
 
     // Gravar os produtos do cupom
     private void saveProduct(boolean saveOrCancel) {
-        CompanyBR mCompanyBR = new CompanyBR();
         List<Coupon> lsCoupon = new ArrayList<>();
 
         // QUANTIDADE DE PRODUTOS VENDIDOS
@@ -1098,9 +1204,7 @@ public class PDVPresenter {
             Unit mUnit = new Unit();
             mCoupon = new Coupon();
 
-            mCompanyBR.setId(companyID);
             mCoupon.setmCompany(mCompanyBR);
-            mPDV.setId(pdvID);
             mCoupon.setmPDV(mPDV);
             mCoupon.setCoupon(Integer.parseInt(viewPDV.getCurrentCouponID()));
             mUnit.setId(tmProductBack.getLs(i).getmProduct().getmUnits().getId());

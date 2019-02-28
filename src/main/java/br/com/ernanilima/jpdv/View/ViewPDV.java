@@ -3,10 +3,12 @@ package br.com.ernanilima.jpdv.View;
 import com.towel.swing.img.JImagePanel;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.text.Document;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.MouseAdapter;
 
 /**
  * View do PDV
@@ -30,6 +32,12 @@ public class ViewPDV extends JFrame implements IViewPDV {
         campoSenhaUsuario = new JPasswordField();
         btnLoginSair = new JButton();
         btnLoginEntrar = new JButton();
+        painelAdmin = new JPanel();
+        painelOpcoes = new JPanel();
+        painelTituloOpcoesAdmin = new JPanel();
+        campoTituloOpcoesAdmin = new JLabel();
+        jScrollPaneOpcoes = new JScrollPane();
+        lsOpcoes = new JList<>();
         painelPDV = new JPanel();
         painelCabecalhoPDV = new JPanel();
         campoDescricaoProduto = new JTextField();
@@ -165,24 +173,24 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         jPanelLogin.setOpaque(false);
 
-        labelUsuarioLogin.setFont(new Font("Verdana", 0, 12)); // NOI18N
+        labelUsuarioLogin.setFont(new Font("Verdana", 0, 12));
         labelUsuarioLogin.setText("USUÁRIO");
 
-        campoCodUsuario.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        campoCodUsuario.setFont(new Font("Verdana", 0, 18));
 
-        labelSenhaLogin.setFont(new Font("Verdana", 0, 12)); // NOI18N
+        labelSenhaLogin.setFont(new Font("Verdana", 0, 12));
         labelSenhaLogin.setText("SENHA");
 
-        campoSenhaUsuario.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        campoSenhaUsuario.setFont(new Font("Verdana", 0, 18));
 
         btnLoginSair.setBackground(new Color(153, 0, 0));
-        btnLoginSair.setFont(new Font("Verdana", 1, 14)); // NOI18N
+        btnLoginSair.setFont(new Font("Verdana", 1, 14));
         btnLoginSair.setForeground(new Color(255, 255, 255));
         btnLoginSair.setText("SAIR");
         btnLoginSair.setFocusable(false);
 
         btnLoginEntrar.setBackground(new Color(0, 102, 0));
-        btnLoginEntrar.setFont(new Font("Verdana", 1, 14)); // NOI18N
+        btnLoginEntrar.setFont(new Font("Verdana", 1, 14));
         btnLoginEntrar.setForeground(new Color(255, 255, 255));
         btnLoginEntrar.setText("ENTRAR");
         btnLoginEntrar.setFocusable(false);
@@ -246,11 +254,76 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelCardPDV.add(painelLogin, "cardLogin");
 
+        painelOpcoes.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+
+        painelTituloOpcoesAdmin.setBackground(new Color(0, 0, 102));
+
+        campoTituloOpcoesAdmin.setFont(new Font("Verdana", 1, 18)); // NOI18N
+        campoTituloOpcoesAdmin.setForeground(new Color(255, 255, 255));
+        campoTituloOpcoesAdmin.setText("Funções Administrativas do PDV");
+
+        GroupLayout painelTituloOpcoesAdminLayout = new GroupLayout(painelTituloOpcoesAdmin);
+        painelTituloOpcoesAdmin.setLayout(painelTituloOpcoesAdminLayout);
+        painelTituloOpcoesAdminLayout.setHorizontalGroup(
+                painelTituloOpcoesAdminLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(painelTituloOpcoesAdminLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(campoTituloOpcoesAdmin, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+        );
+        painelTituloOpcoesAdminLayout.setVerticalGroup(
+                painelTituloOpcoesAdminLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(campoTituloOpcoesAdmin, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+        );
+
+        lsOpcoes.setFont(new Font("Verdana", 0, 18));
+        lsOpcoes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lsOpcoes.setOpaque(false);
+        jScrollPaneOpcoes.setViewportView(lsOpcoes);
+
+        GroupLayout painelOpcoesLayout = new GroupLayout(painelOpcoes);
+        painelOpcoes.setLayout(painelOpcoesLayout);
+        painelOpcoesLayout.setHorizontalGroup(
+                painelOpcoesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(painelOpcoesLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPaneOpcoes, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                                .addContainerGap())
+                        .addComponent(painelTituloOpcoesAdmin, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        painelOpcoesLayout.setVerticalGroup(
+                painelOpcoesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelOpcoesLayout.createSequentialGroup()
+                                .addComponent(painelTituloOpcoesAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPaneOpcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                                .addContainerGap())
+        );
+
+        GroupLayout painelAdminLayout = new GroupLayout(painelAdmin);
+        painelAdmin.setLayout(painelAdminLayout);
+        painelAdminLayout.setHorizontalGroup(
+                painelAdminLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(painelAdminLayout.createSequentialGroup()
+                                .addContainerGap(390, Short.MAX_VALUE)
+                                .addComponent(painelOpcoes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(390, Short.MAX_VALUE))
+        );
+        painelAdminLayout.setVerticalGroup(
+                painelAdminLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(painelAdminLayout.createSequentialGroup()
+                                .addContainerGap(69, Short.MAX_VALUE)
+                                .addComponent(painelOpcoes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(69, Short.MAX_VALUE))
+        );
+
+        painelCardPDV.add(painelAdmin, "cardAdmin");
+
         painelCabecalhoPDV.setBackground(new Color(255, 255, 255));
         painelCabecalhoPDV.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 
         campoDescricaoProduto.setEditable(false);
-        campoDescricaoProduto.setFont(new Font("Verdana", 0, 48)); // NOI18N
+        campoDescricaoProduto.setFont(new Font("Verdana", 0, 48));
         campoDescricaoProduto.setHorizontalAlignment(JTextField.CENTER);
         campoDescricaoProduto.setFocusable(false);
 
@@ -272,22 +345,22 @@ public class ViewPDV extends JFrame implements IViewPDV {
         jPanelCabecalhoItensPDV.setBackground(new Color(255, 255, 255));
         jPanelCabecalhoItensPDV.setBorder(BorderFactory.createLineBorder(new Color(204, 204, 204)));
 
-        jLabelData.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelData.setFont(new Font("Verdana", 0, 18));
         jLabelData.setText("DATA:");
 
-        campoData.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        campoData.setFont(new Font("Verdana", 0, 18));
         campoData.setText("27/10/2018");
 
-        jLabelHora.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelHora.setFont(new Font("Verdana", 0, 18));
         jLabelHora.setText("HORA:");
 
-        campoHora.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        campoHora.setFont(new Font("Verdana", 0, 18));
         campoHora.setText("23:11:54");
 
-        jLabelCupom.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelCupom.setFont(new Font("Verdana", 0, 18));
         jLabelCupom.setText("CUPOM:");
 
-        campoCupom.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        campoCupom.setFont(new Font("Verdana", 0, 18));
         campoCupom.setHorizontalAlignment(SwingConstants.RIGHT);
         campoCupom.setText("000000");
 
@@ -346,63 +419,63 @@ public class ViewPDV extends JFrame implements IViewPDV {
         painelCardValores.setBorder(BorderFactory.createLineBorder(new Color(204, 204, 204)));
         painelCardValores.setLayout(new CardLayout());
 
-        jLabelCodBarras.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelCodBarras.setFont(new Font("Verdana", 0, 18));
         jLabelCodBarras.setText("CÓDIGO DE BARRAS");
 
-        campoCodBarras.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoCodBarras.setFont(new Font("Verdana", 0, 36));
 
-        jLabelQtd.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelQtd.setFont(new Font("Verdana", 0, 18));
         jLabelQtd.setText("QUANTIDADE");
 
         campoQuantidade.setEditable(false);
         campoQuantidade.setBackground(Color.WHITE);
-        campoQuantidade.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoQuantidade.setFont(new Font("Verdana", 0, 36));
         campoQuantidade.setHorizontalAlignment(JTextField.RIGHT);
         campoQuantidade.setFocusable(false);
 
-        jLabelPrecoProduto.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelPrecoProduto.setFont(new Font("Verdana", 0, 18));
         jLabelPrecoProduto.setText("PREÇO DO PRODUTO");
 
         jLabelRS1.setBackground(new Color(255, 255, 255));
-        jLabelRS1.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        jLabelRS1.setFont(new Font("Verdana", 0, 36));
         jLabelRS1.setText("R$");
         jLabelRS1.setOpaque(true);
 
         campoPrecoProduto.setEditable(false);
         campoPrecoProduto.setBackground(Color.WHITE);
-        campoPrecoProduto.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoPrecoProduto.setFont(new Font("Verdana", 0, 36));
         campoPrecoProduto.setHorizontalAlignment(JTextField.RIGHT);
         campoPrecoProduto.setFocusable(false);
         campoPrecoProduto.setLayout(new BorderLayout());
         campoPrecoProduto.add(jLabelRS1, BorderLayout.LINE_START);
 
-        jLabelSubTotalProduto.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelSubTotalProduto.setFont(new Font("Verdana", 0, 18));
         jLabelSubTotalProduto.setText("SUBTOTAL DO PRODUTO");
 
         jLabelRS2.setBackground(new Color(255, 255, 255));
-        jLabelRS2.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        jLabelRS2.setFont(new Font("Verdana", 0, 36));
         jLabelRS2.setText("R$");
         jLabelRS2.setOpaque(true);
 
         campoSubTotalProduto.setEditable(false);
         campoSubTotalProduto.setBackground(Color.WHITE);
-        campoSubTotalProduto.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoSubTotalProduto.setFont(new Font("Verdana", 0, 36));
         campoSubTotalProduto.setHorizontalAlignment(JTextField.RIGHT);
         campoSubTotalProduto.setFocusable(false);
         campoSubTotalProduto.setLayout(new BorderLayout());
         campoSubTotalProduto.add(jLabelRS2, BorderLayout.LINE_START);
 
-        jLabelValTotalProdutos.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelValTotalProdutos.setFont(new Font("Verdana", 0, 18));
         jLabelValTotalProdutos.setText("VALOR TOTAL DOS PRODUTOS");
 
         jLabelRS3.setBackground(new Color(255, 255, 255));
-        jLabelRS3.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        jLabelRS3.setFont(new Font("Verdana", 0, 36));
         jLabelRS3.setText("R$");
         jLabelRS3.setOpaque(true);
 
         campoValTotalProdutos.setEditable(false);
         campoValTotalProdutos.setBackground(Color.WHITE);
-        campoValTotalProdutos.setFont(new Font("Verdana", 0, 48)); // NOI18N
+        campoValTotalProdutos.setFont(new Font("Verdana", 0, 48));
         campoValTotalProdutos.setHorizontalAlignment(JTextField.RIGHT);
         campoValTotalProdutos.setFocusable(false);
         campoValTotalProdutos.setLayout(new BorderLayout());
@@ -455,34 +528,34 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelCardValores.add(painelValProduto, "cardValProduto");
 
-        jLabelValTotalCupom.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelValTotalCupom.setFont(new Font("Verdana", 0, 18));
         jLabelValTotalCupom.setText("VALOR TOTAL DO CUPOM");
 
         jLabelRS4.setBackground(new Color(255, 255, 255));
-        jLabelRS4.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        jLabelRS4.setFont(new Font("Verdana", 0, 36));
         jLabelRS4.setText("R$");
         jLabelRS4.setOpaque(true);
 
         campoValTotalCupom.setEditable(false);
         campoValTotalCupom.setBackground(Color.WHITE);
-        campoValTotalCupom.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoValTotalCupom.setFont(new Font("Verdana", 0, 36));
         campoValTotalCupom.setHorizontalAlignment(JTextField.RIGHT);
         campoValTotalCupom.setFocusable(false);
         campoValTotalCupom.setLayout(new BorderLayout());
         campoValTotalCupom.add(jLabelRS4, BorderLayout.LINE_START);
 
-        jLabelValTotalDesconto.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelValTotalDesconto.setFont(new Font("Verdana", 0, 18));
         jLabelValTotalDesconto.setText("DESCONTO");
         jLabelValTotalDesconto.setVisible(false);
 
         jLabelRS5.setBackground(new Color(255, 255, 255));
-        jLabelRS5.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        jLabelRS5.setFont(new Font("Verdana", 0, 36));
         jLabelRS5.setText("R$");
         jLabelRS5.setOpaque(true);
 
         campoValTotalDesconto.setEditable(false);
         campoValTotalDesconto.setBackground(Color.WHITE);
-        campoValTotalDesconto.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoValTotalDesconto.setFont(new Font("Verdana", 0, 36));
         campoValTotalDesconto.setForeground(new Color(0, 102, 0));
         campoValTotalDesconto.setHorizontalAlignment(JTextField.RIGHT);
         campoValTotalDesconto.setFocusable(false);
@@ -490,36 +563,36 @@ public class ViewPDV extends JFrame implements IViewPDV {
         campoValTotalDesconto.add(jLabelRS5, BorderLayout.LINE_START);
         campoValTotalDesconto.setVisible(false);
 
-        jLabelValTotalAReceber.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelValTotalAReceber.setFont(new Font("Verdana", 0, 18));
         jLabelValTotalAReceber.setText("TOTAL A RECEBER");
 
         jLabelRS6.setBackground(new Color(255, 255, 255));
-        jLabelRS6.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        jLabelRS6.setFont(new Font("Verdana", 0, 36));
         jLabelRS6.setText("R$");
         jLabelRS6.setOpaque(true);
 
         campoValTotalAReceber.setEditable(false);
         campoValTotalAReceber.setBackground(Color.WHITE);
-        campoValTotalAReceber.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoValTotalAReceber.setFont(new Font("Verdana", 0, 36));
         campoValTotalAReceber.setHorizontalAlignment(JTextField.RIGHT);
         campoValTotalAReceber.setFocusable(false);
         campoValTotalAReceber.setLayout(new BorderLayout());
         campoValTotalAReceber.add(jLabelRS6, BorderLayout.LINE_START);
 
-        jLabelValTotalRecebido.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelValTotalRecebido.setFont(new Font("Verdana", 0, 18));
         jLabelValTotalRecebido.setText("TOTAL RECEBIDO");
 
         jLabelRS7.setBackground(Color.WHITE);
-        jLabelRS7.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        jLabelRS7.setFont(new Font("Verdana", 0, 36));
         jLabelRS7.setText("R$");
         jLabelRS7.setOpaque(true);
         campoValTotalRecebido.setBackground(Color.WHITE);
-        campoValTotalRecebido.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoValTotalRecebido.setFont(new Font("Verdana", 0, 36));
         campoValTotalRecebido.setHorizontalAlignment(JTextField.RIGHT);
         campoValTotalRecebido.setLayout(new BorderLayout());
         campoValTotalRecebido.add(jLabelRS7, BorderLayout.LINE_START);
 
-        tbRecebimentos.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        tbRecebimentos.setFont(new Font("Verdana", 0, 18));
         tbRecebimentos.setFocusable(false);
         tbRecebimentos.setOpaque(false);
         tbRecebimentos.setRowHeight(25);
@@ -596,7 +669,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelCardLogo.add(painelLogo, "cardLogo");
 
-        tbFPagamento.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        tbFPagamento.setFont(new Font("Verdana", 0, 18));
         tbFPagamento.setFocusable(false);
         tbFPagamento.setOpaque(false);
         tbFPagamento.setRowHeight(25);
@@ -615,31 +688,31 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelCardLogo.add(painelFormasPagamento, "cardFormasPagamento");
 
-        campoLabelLocalDesconto.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        campoLabelLocalDesconto.setFont(new Font("Verdana", 0, 18));
         campoLabelLocalDesconto.setHorizontalAlignment(SwingConstants.CENTER);
         campoLabelLocalDesconto.setText("DESCONTO");
         campoLabelLocalDesconto.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 0, 0)));
 
-        jLabelDescontoRS.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelDescontoRS.setFont(new Font("Verdana", 0, 18));
         jLabelDescontoRS.setText("DESCONTO R$");
 
         jLabelRS8.setBackground(new Color(255, 255, 255));
-        jLabelRS8.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        jLabelRS8.setFont(new Font("Verdana", 0, 36));
         jLabelRS8.setText("R$");
         jLabelRS8.setOpaque(true);
 
-        campoDescontoRS.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoDescontoRS.setFont(new Font("Verdana", 0, 36));
         campoDescontoRS.setHorizontalAlignment(JTextField.RIGHT);
         campoDescontoRS.setLayout(new BorderLayout());
         campoDescontoRS.add(jLabelRS8, BorderLayout.LINE_START);
 
-        jLabelDescontoPer.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelDescontoPer.setFont(new Font("Verdana", 0, 18));
         jLabelDescontoPer.setText("DESCONTO %");
 
-        campoDescontoPer.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        campoDescontoPer.setFont(new Font("Verdana", 0, 36));
         campoDescontoPer.setHorizontalAlignment(JTextField.RIGHT);
 
-        btnConfirmarDesconto.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnConfirmarDesconto.setFont(new Font("Verdana", 0, 18));
         btnConfirmarDesconto.setText("CONFIRMAR DESCONTO");
         btnConfirmarDesconto.setFocusable(false);
 
@@ -758,106 +831,106 @@ public class ViewPDV extends JFrame implements IViewPDV {
         painelBotonsNumericos.setPreferredSize(new Dimension(364, 238));
 
         btn7.setBackground(new Color(0, 0, 0));
-        btn7.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn7.setFont(new Font("Verdana", 0, 18));
         btn7.setForeground(new Color(255, 255, 255));
         btn7.setText("7");
         btn7.setFocusable(false);
 
         btn8.setBackground(new Color(0, 0, 0));
-        btn8.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn8.setFont(new Font("Verdana", 0, 18));
         btn8.setForeground(new Color(255, 255, 255));
         btn8.setText("8");
         btn8.setFocusable(false);
 
         btn9.setBackground(new Color(0, 0, 0));
-        btn9.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn9.setFont(new Font("Verdana", 0, 18));
         btn9.setForeground(new Color(255, 255, 255));
         btn9.setText("9");
         btn9.setFocusable(false);
 
         btn4.setBackground(new Color(0, 0, 0));
-        btn4.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn4.setFont(new Font("Verdana", 0, 18));
         btn4.setForeground(new Color(255, 255, 255));
         btn4.setText("4");
         btn4.setFocusable(false);
 
         btn5.setBackground(new Color(0, 0, 0));
-        btn5.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn5.setFont(new Font("Verdana", 0, 18));
         btn5.setForeground(new Color(255, 255, 255));
         btn5.setText("5");
         btn5.setFocusable(false);
 
         btn6.setBackground(new Color(0, 0, 0));
-        btn6.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn6.setFont(new Font("Verdana", 0, 18));
         btn6.setForeground(new Color(255, 255, 255));
         btn6.setText("6");
         btn6.setFocusable(false);
 
         btn1.setBackground(new Color(0, 0, 0));
-        btn1.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn1.setFont(new Font("Verdana", 0, 18));
         btn1.setForeground(new Color(255, 255, 255));
         btn1.setText("1");
         btn1.setFocusable(false);
 
         btn2.setBackground(new Color(0, 0, 0));
-        btn2.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn2.setFont(new Font("Verdana", 0, 18));
         btn2.setForeground(new Color(255, 255, 255));
         btn2.setText("2");
         btn2.setFocusable(false);
 
         btn3.setBackground(new Color(0, 0, 0));
-        btn3.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn3.setFont(new Font("Verdana", 0, 18));
         btn3.setForeground(new Color(255, 255, 255));
         btn3.setText("3");
         btn3.setFocusable(false);
 
         btn00.setBackground(new Color(0, 0, 0));
-        btn00.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn00.setFont(new Font("Verdana", 0, 18));
         btn00.setForeground(new Color(255, 255, 255));
         btn00.setText("00");
         btn00.setFocusable(false);
 
         btn0.setBackground(new Color(0, 0, 0));
-        btn0.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btn0.setFont(new Font("Verdana", 0, 18));
         btn0.setForeground(new Color(255, 255, 255));
         btn0.setText("0");
         btn0.setFocusable(false);
 
         btnVirgula.setBackground(new Color(0, 0, 0));
-        btnVirgula.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnVirgula.setFont(new Font("Verdana", 0, 18));
         btnVirgula.setForeground(new Color(255, 255, 255));
         btnVirgula.setText(",");
         btnVirgula.setFocusable(false);
 
-        btnBackspace.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnBackspace.setFont(new Font("Verdana", 0, 18));
         btnBackspace.setText("<-");
         btnBackspace.setFocusable(false);
 
-        btnSairNumerico.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnSairNumerico.setFont(new Font("Verdana", 0, 18));
         btnSairNumerico.setText("Sair");
         btnSairNumerico.setFocusable(false);
 
-        btnTotalizar.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnTotalizar.setFont(new Font("Verdana", 0, 18));
         btnTotalizar.setText("Total");
         btnTotalizar.setFocusable(false);
 
-        btnFPagCartaoCred.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnFPagCartaoCred.setFont(new Font("Verdana", 0, 18));
         btnFPagCartaoCred.setText("Cred");
         btnFPagCartaoCred.setFocusable(false);
 
-        btnFPagDinheiro.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnFPagDinheiro.setFont(new Font("Verdana", 0, 18));
         btnFPagDinheiro.setText("Dinh");
         btnFPagDinheiro.setFocusable(false);
 
-        btnFPagCartaoDeb.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnFPagCartaoDeb.setFont(new Font("Verdana", 0, 18));
         btnFPagCartaoDeb.setText("Debt");
         btnFPagCartaoDeb.setFocusable(false);
 
-        btnQuantidade.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnQuantidade.setFont(new Font("Verdana", 0, 18));
         btnQuantidade.setText("Qtd");
         btnQuantidade.setFocusable(false);
 
-        btnEnterNumerico.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        btnEnterNumerico.setFont(new Font("Verdana", 0, 18));
         btnEnterNumerico.setText("Entr");
         btnEnterNumerico.setFocusable(false);
 
@@ -990,46 +1063,46 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelCardVendas.add(painelVendas, "cardPDVVenda");
 
-        jLabelValTotalAReceberTroco.setFont(new Font("Verdana", 0, 14)); // NOI18N
+        jLabelValTotalAReceberTroco.setFont(new Font("Verdana", 0, 14));
         jLabelValTotalAReceberTroco.setText("TOTAL A RECEBER");
 
         jLabelRS9.setBackground(new Color(255, 255, 255));
-        jLabelRS9.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelRS9.setFont(new Font("Verdana", 0, 18));
         jLabelRS9.setText("R$");
         jLabelRS9.setOpaque(true);
         campoValTotalAReceberTroco.setEditable(false);
         campoValTotalAReceberTroco.setBackground(new Color(255, 255, 255));
-        campoValTotalAReceberTroco.setFont(new Font("Verdana", 0, 24)); // NOI18N
+        campoValTotalAReceberTroco.setFont(new Font("Verdana", 0, 24));
         campoValTotalAReceberTroco.setHorizontalAlignment(JTextField.RIGHT);
         campoValTotalAReceberTroco.setFocusable(false);
         campoValTotalAReceberTroco.setLayout(new BorderLayout());
         campoValTotalAReceberTroco.add(jLabelRS9,BorderLayout.LINE_START);
 
-        jLabelValTotalRecebidoTroco.setFont(new Font("Verdana", 0, 14)); // NOI18N
+        jLabelValTotalRecebidoTroco.setFont(new Font("Verdana", 0, 14));
         jLabelValTotalRecebidoTroco.setText("TOTAL RECEBIDO");
 
         jLabelRS10.setBackground(new Color(255, 255, 255));
-        jLabelRS10.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelRS10.setFont(new Font("Verdana", 0, 18));
         jLabelRS10.setText("R$");
         jLabelRS10.setOpaque(true);
         campoValTotalRecebidoTroco.setEditable(false);
         campoValTotalRecebidoTroco.setBackground(new Color(255, 255, 255));
-        campoValTotalRecebidoTroco.setFont(new Font("Verdana", 0, 24)); // NOI18N
+        campoValTotalRecebidoTroco.setFont(new Font("Verdana", 0, 24));
         campoValTotalRecebidoTroco.setHorizontalAlignment(JTextField.RIGHT);
         campoValTotalRecebidoTroco.setFocusable(false);
         campoValTotalRecebidoTroco.setLayout(new BorderLayout());
         campoValTotalRecebidoTroco.add(jLabelRS10,BorderLayout.LINE_START);
 
-        jLabelValTroco.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        jLabelValTroco.setFont(new Font("Verdana", 0, 18));
         jLabelValTroco.setText("TROCO");
 
         jLabelRS11.setBackground(new Color(255, 255, 255));
-        jLabelRS11.setFont(new Font("Verdana", 0, 36)); // NOI18N
+        jLabelRS11.setFont(new Font("Verdana", 0, 36));
         jLabelRS11.setText("R$");
         jLabelRS11.setOpaque(true);
         campoValTroco.setEditable(false);
         campoValTroco.setBackground(new Color(255, 255, 255));
-        campoValTroco.setFont(new Font("Verdana", 0, 48)); // NOI18N
+        campoValTroco.setFont(new Font("Verdana", 0, 48));
         campoValTroco.setHorizontalAlignment(JTextField.RIGHT);
         campoValTroco.setLayout(new BorderLayout());
         campoValTroco.add(jLabelRS11,BorderLayout.LINE_START);
@@ -1074,7 +1147,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelCardVendas.add(painelTroco, "cardPDVTroco");
 
-        tbItensVendidosPDV.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        tbItensVendidosPDV.setFont(new Font("Verdana", 0, 18));
         tbItensVendidosPDV.setOpaque(false);
         tbItensVendidosPDV.setRowHeight(25);
         jScrollPaneItensVendidosPDV.setViewportView(tbItensVendidosPDV);
@@ -1104,16 +1177,16 @@ public class ViewPDV extends JFrame implements IViewPDV {
         );
 
         btnLimpar.setBackground(new Color(0, 0, 0));
-        btnLimpar.setFont(new Font("Verdana", 0, 14)); // NOI18N
+        btnLimpar.setFont(new Font("Verdana", 0, 14));
         btnLimpar.setForeground(new Color(255, 255, 255));
         btnLimpar.setText("LIMPAR");
         btnLimpar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         btnLimpar.setFocusable(false);
-        campoBuscaProduto.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        campoBuscaProduto.setFont(new Font("Verdana", 0, 18));
         campoBuscaProduto.setLayout(new BorderLayout());
         campoBuscaProduto.add(btnLimpar,BorderLayout.LINE_END);
 
-        tbBuscarProdutos.setFont(new Font("Verdana", 0, 18)); // NOI18N
+        tbBuscarProdutos.setFont(new Font("Verdana", 0, 18));
         tbBuscarProdutos.setFocusable(false);
         tbBuscarProdutos.setOpaque(false);
         tbBuscarProdutos.setRowHeight(25);
@@ -1143,19 +1216,19 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         painelRodapePDV.setBackground(new Color(0, 0, 51));
 
-        jLabelPDV.setFont(new Font("Verdana", 0, 16)); // NOI18N
+        jLabelPDV.setFont(new Font("Verdana", 0, 16));
         jLabelPDV.setForeground(new Color(255, 255, 255));
         jLabelPDV.setText("PDV:");
 
-        campoCodPDV.setFont(new Font("Verdana", 0, 16)); // NOI18N
+        campoCodPDV.setFont(new Font("Verdana", 0, 16));
         campoCodPDV.setForeground(new Color(255, 255, 255));
         campoCodPDV.setText("000");
 
-        jLabelFilial.setFont(new Font("Verdana", 0, 16)); // NOI18N
+        jLabelFilial.setFont(new Font("Verdana", 0, 16));
         jLabelFilial.setForeground(new Color(255, 255, 255));
         jLabelFilial.setText("FILIAL:");
 
-        campoCodFilial.setFont(new Font("Verdana", 0, 16)); // NOI18N
+        campoCodFilial.setFont(new Font("Verdana", 0, 16));
         campoCodFilial.setForeground(new Color(255, 255, 255));
         campoCodFilial.setText("000");
 
@@ -1163,25 +1236,25 @@ public class ViewPDV extends JFrame implements IViewPDV {
 
         jSeparator2.setOrientation(SwingConstants.VERTICAL);
 
-        jLabelVersao.setFont(new Font("Verdana", 0, 16)); // NOI18N
+        jLabelVersao.setFont(new Font("Verdana", 0, 16));
         jLabelVersao.setForeground(new Color(255, 255, 255));
         jLabelVersao.setText("VERSÃO:");
 
-        campoVersao.setFont(new Font("Verdana", 0, 16)); // NOI18N
+        campoVersao.setFont(new Font("Verdana", 0, 16));
         campoVersao.setForeground(new Color(255, 255, 255));
         campoVersao.setText("0.0.00");
 
         jSeparator3.setOrientation(SwingConstants.VERTICAL);
 
-        jLabelOperador.setFont(new Font("Verdana", 0, 16)); // NOI18N
+        jLabelOperador.setFont(new Font("Verdana", 0, 16));
         jLabelOperador.setForeground(new Color(255, 255, 255));
         jLabelOperador.setText("OPERADOR:");
 
-        campoCodOperador.setFont(new Font("Verdana", 0, 16)); // NOI18N
+        campoCodOperador.setFont(new Font("Verdana", 0, 16));
         campoCodOperador.setForeground(new Color(255, 255, 255));
         campoCodOperador.setText("000");
 
-        campoNomeOperador.setFont(new Font("Verdana", 0, 16)); // NOI18N
+        campoNomeOperador.setFont(new Font("Verdana", 0, 16));
         campoNomeOperador.setForeground(new Color(255, 255, 255));
         campoNomeOperador.setText("NOME OPERADOR");
 
@@ -1326,6 +1399,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JTextField campoQuantidade;
     private JPasswordField campoSenhaUsuario;
     private JTextField campoSubTotalProduto;
+    private JLabel campoTituloOpcoesAdmin;
     private JTextField campoValTotalAReceber;
     private JTextField campoValTotalCupom;
     private JTextField campoValTotalDesconto;
@@ -1372,12 +1446,15 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JScrollPane jScrollPaneFPagamento;
     private JScrollPane jScrollPaneItensPDV;
     private JScrollPane jScrollPaneItensVendidosPDV;
+    private JScrollPane jScrollPaneOpcoes;
     private JScrollPane jScrollPaneRecebimentos;
     private JSeparator jSeparator1;
     private JSeparator jSeparator2;
     private JSeparator jSeparator3;
     private JLabel labelSenhaLogin;
     private JLabel labelUsuarioLogin;
+    private JList<String> lsOpcoes;
+    private JPanel painelAdmin;
     private JPanel painelBotonsNumericos;
     private JPanel painelBtnBuscarProdutos;
     private JPanel painelBtnTouch;
@@ -1393,8 +1470,10 @@ public class ViewPDV extends JFrame implements IViewPDV {
     private JPanel painelItensVendidos;
     private JPanel painelLogin;
     private JPanel painelLogo;
+    private JPanel painelOpcoes;
     private JPanel painelPDV;
     private JPanel painelRodapePDV;
+    private JPanel painelTituloOpcoesAdmin;
     private JPanel painelTroco;
     private JPanel painelValCupom;
     private JPanel painelValProduto;
@@ -1416,7 +1495,7 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
-    public void setUsername(String username) {
+    public void setUserName(String username) {
         campoNomeOperador.setText(username);
     }
 
@@ -1617,6 +1696,16 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void setKeyPressedAdminOptions(KeyAdapter adapter) {
+        lsOpcoes.addKeyListener(adapter);
+    }
+
+    @Override
+    public void setMousePressedAdminOptions(MouseAdapter adapter) {
+        lsOpcoes.addMouseListener(adapter);
+    }
+
+    @Override
     public void setFieldBarcodeKeyPressed(KeyAdapter adapter) {
         campoCodBarras.addKeyListener(adapter);
     }
@@ -1792,6 +1881,12 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public void cleanLoginFields() {
+        campoCodUsuario.setText("");
+        campoSenhaUsuario.setText("");
+    }
+
+    @Override
     public void cleanBarcodeField() {
         campoCodBarras.setText("");
     }
@@ -1866,8 +1961,18 @@ public class ViewPDV extends JFrame implements IViewPDV {
     }
 
     @Override
+    public JList getListAdminOptions() {
+        return lsOpcoes;
+    }
+
+    @Override
     public void setBackgroundLogin(JImagePanel imagePanel) {
         painelLogin.add(imagePanel);
+    }
+
+    @Override
+    public void setBackgroundAdminOptions(JImagePanel imagePanel) {
+        painelAdmin.add(imagePanel);
     }
 
     @Override

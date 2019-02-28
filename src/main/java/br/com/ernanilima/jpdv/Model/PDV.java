@@ -9,6 +9,7 @@ public class PDV {
 
     private int id;
     private String ip;
+    private String releasekey;
     private String version;
 
     // Construtor vazio
@@ -40,6 +41,20 @@ public class PDV {
      */
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    /**
+     * @return String - Chave de liberacao
+     */
+    public String getReleasekey() {
+        return releasekey;
+    }
+
+    /**
+     * @param releasekey String - Chave de liberacao
+     */
+    public void setReleasekey(String releasekey) {
+        this.releasekey = releasekey;
     }
 
     /**

@@ -114,8 +114,8 @@ public class ViewPDVKeyListener {
                 presenter.newQuantity();
 
             } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                // Exibe mensagem para sair do sistema
-                presenter.exitPDV();
+                // Exibe mensagem para voltar para a tela de login
+                presenter.loginScreen();
 
             } else if (e.getKeyCode() == KeyEvent.VK_UP) {
                 // MOVE PARA A LINHA SUPERIOR NA TABELA DE PRODUTOS VENDIDOS
@@ -317,6 +317,30 @@ public class ViewPDVKeyListener {
                 // VOLTA PRA TELA DE VENDA
                 presenter.newSale();
 
+            }
+        }
+    }
+
+    /**
+     * Escuta as teclas precionadas no painel de opcoes do admin.
+     */
+    public static class AdminOptionKeyListener extends KeyAdapter {
+        private final PDVPresenter presenter;
+
+        /**
+         * @param presenter {@link PDVPresenter} - Classe presenter da {@link br.com.ernanilima.jpdv.View.ViewPDV}.
+         */
+        public AdminOptionKeyListener(PDVPresenter presenter) {
+            this.presenter = presenter;
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER | e.getKeyCode() == KeyEvent.VK_SPACE) {
+                presenter.adminOptions();
+
+            } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                presenter.loginScreen();
             }
         }
     }

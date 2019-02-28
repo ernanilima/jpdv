@@ -10,10 +10,10 @@ public class CompanyBR {
     private int id;
     private String razaoSocial;
     private String nomeFantasia;
-    private int cnpj;
-    private int inscEstadual;
+    private long cnpj;
+    private long inscEstadual;
     private String endereco;
-    private int numero;
+    private String numero;
     private String bairro;
     private String complemento;
     private String cidade;
@@ -65,30 +65,30 @@ public class CompanyBR {
     }
 
     /**
-     * @return int - CNPJ da Empresa/Filial
+     * @return long - CNPJ da Empresa/Filial
      */
-    public int getCnpj() {
+    public long getCnpj() {
         return cnpj;
     }
 
     /**
-     * @param cnpj int - CNPJ da Empresa/Filial
+     * @param cnpj long - CNPJ da Empresa/Filial
      */
-    public void setCnpj(int cnpj) {
+    public void setCnpj(long cnpj) {
         this.cnpj = cnpj;
     }
 
     /**
-     * @return int - Inscricao Estadual da Empresa/Filial
+     * @return long - Inscricao Estadual da Empresa/Filial
      */
-    public int getInscEstadual() {
+    public long getInscEstadual() {
         return inscEstadual;
     }
 
     /**
-     * @param inscEstadual int - Inscricao Estadual da Empresa/Filial
+     * @param inscEstadual long - Inscricao Estadual da Empresa/Filial
      */
-    public void setInscEstadual(int inscEstadual) {
+    public void setInscEstadual(long inscEstadual) {
         this.inscEstadual = inscEstadual;
     }
 
@@ -107,16 +107,16 @@ public class CompanyBR {
     }
 
     /**
-     * @return int - Numero (endereco) da Empresa/Filial
+     * @return String - Numero (endereco) da Empresa/Filial
      */
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
     /**
-     * @param numero int - Numero (endereco) da Empresa/Filial
+     * @param numero String - Numero (endereco) da Empresa/Filial
      */
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

@@ -47,7 +47,7 @@ public class ViewOpeningKeyListener {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                presenter.validateOpening();
+                presenter.saveOpening();
             } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                 presenter.closePopUP();
             }
