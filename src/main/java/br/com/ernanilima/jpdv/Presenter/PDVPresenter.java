@@ -92,7 +92,7 @@ public class PDVPresenter {
     private int levelCancelProduct = 2;
     private int levelCancelCurrentCoupon = 2;
     private int levelItemDiscount = 2;
-    private int levelAdminOptions = 1;
+    private int levelAdminOptions = 2;
 
     // Construtor
     public PDVPresenter() {
@@ -386,15 +386,24 @@ public class PDVPresenter {
     private void loggedIn() {
         currentUserLevel = mUser.getLevel();
 
+        if (dOpeningPDV.checkOpeningPDV(mOpeningPDV)) {
+            if (mOpeningPDV.getmUser().getId() == mUser.getId() && currentUserLevel < levelAdminOptions) {
+                saleScreen(mUser);
+                return;
+            } else if (currentUserLevel < levelAdminOptions){
+                pPopUPMessage.showAlert("ATENÇÃO!", "VOCÊ NÃO TEM NÍVEL PARA USAR O CAIXA DE OUTRO OPERADOR");
+                focusFieldID();
+                return;
+            }
+        }
+
         if (currentUserLevel < levelAdminOptions) {
-            pPopUPMessage.showAlert("ATENÇÃO!", "USUÁRIO SEM NIVEL PARA ACESSAR AS FUNÇÕES DO PDV!");
+            pPopUPMessage.showAlert("ATENÇÃO!", "USUÁRIO SEM NÍVEL PARA ACESSAR AS FUNÇÕES DO PDV!");
             focusFieldID();
             return;
         }
 
         selectStartCardL(CARD_ADMIN);
-        viewPDV.setUserID(String.valueOf(mUser.getId()));
-        viewPDV.setUserName(mUser.getName());
         viewPDV.getListAdminOptions().setSelectedIndex(0);
         viewPDV.getListAdminOptions().requestFocus();
         viewPDV.cleanLoginFields();
@@ -409,7 +418,7 @@ public class PDVPresenter {
         if (index == SALE_SCREEN.getIndex()) {
             // IR PARA A TELA DE VENDA
             if (dOpeningPDV.checkOpeningPDV(mOpeningPDV)) {
-                saleScreen();
+                saleScreen(mUser);
             } else {
                 checkOpeningPDV(SALE_SCREEN);
             }
@@ -431,7 +440,11 @@ public class PDVPresenter {
     /**
      * Exibe a tela de venda
      */
-    private void saleScreen() {
+    private void saleScreen(User mUser) {
+        currentUserLevel = mUser.getLevel();
+        viewPDV.cleanLoginFields();
+        viewPDV.setUserID(String.valueOf(mUser.getId()));
+        viewPDV.setUserName(mUser.getName());
         selectStartCardL(CARD_PDV);
         focusFieldBarCode();
         viewPDV.setProductDescription("CAIXA LIVRE!");
@@ -448,8 +461,7 @@ public class PDVPresenter {
             if (pPopUPConfirm.questionResult()) {
                 pOpeningPDV.showViewOpening(mCompanyBR, mPDV, mUser.getId());
                 if (dOpeningPDV.checkOpeningPDV(mOpeningPDV)) {
-                    selectStartCardL(CARD_LOGIN);
-                    focusFieldID();
+                    saleScreen(pOpeningPDV.getOpeningUser());
                 }
             }
 
@@ -460,8 +472,7 @@ public class PDVPresenter {
             } else {
                 pOpeningPDV.showViewOpening(mCompanyBR, mPDV, mUser.getId());
                 if (dOpeningPDV.checkOpeningPDV(mOpeningPDV)) {
-                    selectStartCardL(CARD_LOGIN);
-                    focusFieldID();
+                    saleScreen(pOpeningPDV.getOpeningUser());
                 }
             }
         }

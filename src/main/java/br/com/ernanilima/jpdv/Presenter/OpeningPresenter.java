@@ -157,6 +157,13 @@ public class OpeningPresenter {
     }
 
     /**
+     * @return User - Model do usuario informano na abertura de caixa PDV
+     */
+    User getOpeningUser() {
+        return this.mUser;
+    }
+
+    /**
      * Movimenta o Dialog ao clicar e arrastar na barra superior
      * @param x int - Valor referente ao ponto do click no Dialog
      * @param y int - Valor referente ao ponto do click na Tela

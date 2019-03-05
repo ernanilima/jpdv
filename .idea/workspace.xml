@@ -11,9 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7c472712-a015-46df-908a-dcecff645212" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/jPDV_jar/jPDV.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/jPDV_jar/jPDV.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/OpeningPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/OpeningPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/PDVPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/ernanilima/jPDV/Presenter/PDVPresenter.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -35,18 +34,19 @@
     <session id="-272312746">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="57" />
+          <entry key="project.closed" value="59" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="2" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="7" />
-          <entry key="project.open.time.17" value="3" />
+          <entry key="project.open.time.17" value="4" />
           <entry key="project.open.time.18" value="7" />
           <entry key="project.open.time.19" value="4" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.20" value="6" />
+          <entry key="project.open.time.20" value="7" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.23" value="1" />
@@ -63,19 +63,19 @@
           <entry key="project.open.time.41" value="1" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="57" />
+          <entry key="project.opened" value="60" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="63" />
-          <entry key="java" value="75069" />
+          <entry key="java" value="75506" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="75069" />
+          <entry key="JAVA" value="75506" />
           <entry key="PLAIN_TEXT" value="63" />
           <entry key="XML" value="1" />
         </counts>
@@ -84,7 +84,7 @@
         <counts>
           <entry key="class" value="2" />
           <entry key="form" value="1" />
-          <entry key="java" value="1384" />
+          <entry key="java" value="1400" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
@@ -92,7 +92,7 @@
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="GUI_DESIGNER_FORM" value="1" />
-          <entry key="JAVA" value="1384" />
+          <entry key="JAVA" value="1400" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
@@ -104,10 +104,24 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="95" selection-start-line="95" selection-end-line="95" />
+            <state relative-caret-position="142">
+              <caret line="382" column="7" lean-forward="true" selection-start-line="382" selection-start-column="7" selection-end-line="382" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#7265#7266#0" expanded="true" />
+                <element signature="e#7321#7322#0" expanded="true" />
+                <element signature="e#9164#9165#0" expanded="true" />
+                <element signature="e#9243#9244#0" expanded="true" />
+                <element signature="e#9993#9994#0" expanded="true" />
+                <element signature="e#10078#10079#0" expanded="true" />
+                <element signature="e#38147#38148#0" expanded="true" />
+                <element signature="e#38218#38219#0" expanded="true" />
+                <element signature="e#40348#40349#0" expanded="true" />
+                <element signature="e#40395#40396#0" expanded="true" />
+                <element signature="e#40503#40504#0" expanded="true" />
+                <element signature="e#40544#40545#0" expanded="true" />
+                <element signature="e#40660#40661#0" expanded="true" />
+                <element signature="e#40706#40707#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -126,10 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>val</find>
-      <find>brCurrencyFormat</find>
-      <find>se</find>
-      <find>sele</find>
       <find>closePopUP</find>
       <find>dados in</find>
       <find>caixa j</find>
@@ -156,6 +166,10 @@
       <find>setUserName</find>
       <find>scree</find>
       <find>cree</find>
+      <find>currentUserLevel</find>
+      <find>cleanLoginFields</find>
+      <find>NIVEL</find>
+      <find>NÍVEL</find>
     </findStrings>
     <dirStrings>
       <dir>C:\jPDV\src\main\resources\Img</dir>
@@ -245,12 +259,31 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="jPDV" type="b2602c69:ProjectViewProjectNode" />
               <item name="jPDV" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jPDV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jPDV" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jPDV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jPDV" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jPDV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jPDV" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="jPDV_jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jPDV" type="b2602c69:ProjectViewProjectNode" />
@@ -277,6 +310,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="jpdv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jPDV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jPDV" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jpdv" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jPDV" type="b2602c69:ProjectViewProjectNode" />
@@ -322,13 +364,17 @@
             </path>
             <path>
               <item name="jPDV" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jPDV" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jPDV" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -400,7 +446,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.256447" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26719198" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -408,7 +454,7 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32968238" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32884097" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.39757413" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
@@ -438,27 +484,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PopUPConfirmDialogPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="48" column="42" lean-forward="true" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/ViewOpeningMouseMotionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/PopUPConfirmDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="129" column="16" selection-start-line="129" selection-start-column="16" selection-end-line="129" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/Listener/PopUPUserPermissionDialogKeyListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -615,24 +640,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ShortcutKeyDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-208">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/Product.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" selection-start-line="4" selection-end-line="7" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -643,55 +654,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/Coupon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="109" column="16" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Connection/CreateDatabaseSQLite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4380">
-          <caret line="184" column="48" selection-start-line="184" selection-start-column="45" selection-end-line="184" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ProductDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="25" column="15" lean-forward="true" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/CouponDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/OpeningPDVDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="2" lean-forward="true" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/PDVDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
           <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/CompanyBRDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="22" column="61" lean-forward="true" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="61" />
         </state>
       </provider>
     </entry>
@@ -867,13 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/PDV.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/CompanyBR.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -923,16 +882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/OpeningPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1388">
-          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/View/Enum/CardLayoutPDV.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1176">
@@ -964,12 +913,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/JTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        <state relative-caret-position="-561">
+          <caret line="2718" column="18" selection-start-line="2718" selection-start-column="18" selection-end-line="2718" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/CouponDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2114">
+          <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/CompanyBRDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-220">
+          <caret line="22" column="61" lean-forward="true" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ProductDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-992">
+          <caret line="25" column="15" lean-forward="true" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/ShortcutKeyDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-978">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Controller/PaymentMethodRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Connection/CreateDatabaseSQLite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4380">
+          <caret line="184" column="48" selection-start-line="184" selection-start-column="45" selection-end-line="184" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/PDV.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Model/Coupon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="354" column="45" selection-start-line="354" selection-start-column="29" selection-end-line="354" selection-end-column="45" />
+          <folding>
+            <element signature="e#8375#8376#0" expanded="true" />
+            <element signature="e#8403#8404#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/OpeningPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="161" column="23" selection-start-line="161" selection-start-column="9" selection-end-line="161" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5954#5955#0" expanded="true" />
+            <element signature="e#5987#5988#0" expanded="true" />
+            <element signature="e#6248#6249#0" expanded="true" />
+            <element signature="e#6296#6297#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Dao/OpeningPDVDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="24" column="57" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/ernanilima/jpdv/Presenter/PDVPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="382" column="7" lean-forward="true" selection-start-line="382" selection-start-column="7" selection-end-line="382" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7265#7266#0" expanded="true" />
+            <element signature="e#7321#7322#0" expanded="true" />
+            <element signature="e#9164#9165#0" expanded="true" />
+            <element signature="e#9243#9244#0" expanded="true" />
+            <element signature="e#9993#9994#0" expanded="true" />
+            <element signature="e#10078#10079#0" expanded="true" />
+            <element signature="e#38147#38148#0" expanded="true" />
+            <element signature="e#38218#38219#0" expanded="true" />
+            <element signature="e#40348#40349#0" expanded="true" />
+            <element signature="e#40395#40396#0" expanded="true" />
+            <element signature="e#40503#40504#0" expanded="true" />
+            <element signature="e#40544#40545#0" expanded="true" />
+            <element signature="e#40660#40661#0" expanded="true" />
+            <element signature="e#40706#40707#0" expanded="true" />
           </folding>
         </state>
       </provider>
