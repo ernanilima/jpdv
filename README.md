@@ -1,10 +1,10 @@
-# jPDV-Offline
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/ernanilima/jPDV-Offline/blob/master/LICENSE) 
+# jPDV
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/ernanilima/jpdv/blob/master/LICENSE) 
 
 # Sobre o projeto
 Aplicação desktop desenvolvida com o objetivo de treinar a linguagem Java.
 
-jPDV-Offline foi construído com Java (back-end) e Java Swing (front-end) que utiliza o padrão MVP, aplicação com intuito de simular um PDV de Supermercado.
+jPDV foi construído com Java (back-end) e Java Swing (front-end) que utiliza o padrão MVP, aplicação com intuito de simular um PDV de Supermercado.
 
 Esta aplicação usa níveis para validações de acesso, sendo **nível 1 = operador**, **2 = fiscal**, **3 = gerente**.
 O banco de dados é gerado automaticamente com algumas informações em SQLite.
@@ -111,7 +111,7 @@ Além disso, você pode usar este projeto como quiser, seja para estudar ou faze
 - NetBeans ([Site Oficial](https://netbeans.apache.org/download/nb120/nb120.html))
 
 # Como executar o projeto
-O projeto possui um arquivo [.jar](https://github.com/ernanilima/jPDV-Offline/blob/master/out/artifacts/jPDV_jar/jPDV.jar) que pode ser executado localmente
+O projeto possui um arquivo [.jar](https://github.com/ernanilima/jpdv/blob/master/out/artifacts/jPDV_jar/jPDV.jar) que pode ser executado localmente
 
 ## Clonar repositório
 Pré-requisitos: Java 8
