@@ -1,5 +1,5 @@
 # jPDV
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/ernanilima/jpdv/blob/master/LICENSE) 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/ernanilima/jpdv-desktop/blob/master/LICENSE) 
 
 # Sobre o projeto
 Aplicação desktop desenvolvida com o objetivo de treinar a linguagem Java.
@@ -111,13 +111,13 @@ Além disso, você pode usar este projeto como quiser, seja para estudar ou faze
 - NetBeans ([Site Oficial](https://netbeans.apache.org/download/nb120/nb120.html))
 
 # Como executar o projeto
-O projeto possui um arquivo [.jar](https://github.com/ernanilima/jpdv/blob/master/out/artifacts/jPDV_jar/jPDV.jar) que pode ser executado localmente
+O projeto possui um arquivo [.jar](https://github.com/ernanilima/jpdv-desktop/blob/master/out/artifacts/jPDV_jar/jPDV.jar) que pode ser executado localmente
 
 ## Clonar repositório
 Pré-requisitos: Java 8
 
 ```bash
-git clone https://github.com/ernanilima/jPDV-Offline.git
+git clone https://github.com/ernanilima/jpdv-desktop.git
 ```
 
 # Autor
