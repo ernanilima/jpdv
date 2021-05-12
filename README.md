@@ -4,7 +4,7 @@
 # Sobre o projeto
 Aplicação desktop desenvolvida com o objetivo de treinar a linguagem Java.
 
-jPDV-Offline foi construído com Java (back-end) e Java Swing (front-end), aplicação com intuito de simular um PDV de Supermercado.
+jPDV-Offline foi construído com Java (back-end) e Java Swing (front-end) que utiliza o padrão MVP, aplicação com intuito de simular um PDV de Supermercado.
 
 Esta aplicação usa níveis para validações de acesso, sendo **nível 1 = operador**, **2 = fiscal**, **3 = gerente**.
 O banco de dados é gerado automaticamente com algumas informações em SQLite.
