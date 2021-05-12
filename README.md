@@ -1,6 +1,17 @@
 # jPDV
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/ernanilima/jpdv-desktop/blob/master/LICENSE) 
 
+# Imagens do projeto
+Tela de login | Tela com opções de fiscal
+--------------|--------------------------
+![Tela de login](https://github.com/ernanilima/ernanilima/blob/main/imagens/jpdv-desktop/Tela_de_Login.png) | ![Tela com painel de fiscal](https://github.com/ernanilima/ernanilima/blob/main/imagens/jpdv-desktop/Menu_de_fiscal.png)
+
+Tela de venda com desconto e cancelamento | Tela de total com desconto e alguns recebimentos
+------------------------------------------|-------------------------------------------------
+![Tela de venda com desconto e cancelamento](https://github.com/ernanilima/ernanilima/blob/main/imagens/jpdv-desktop/Tela_de_venda-produto_registrado_com_nova_quantidade.png) | ![Tela de total com desconto e alguns recebimentos](https://github.com/ernanilima/ernanilima/blob/main/imagens/jpdv-desktop/Tela_de_totalizacao-recebimento_em_dinheiro.png)
+
+[Mais imagens](https://github.com/ernanilima/ernanilima/tree/main/imagens/jpdv-desktop)
+
 # Sobre o projeto
 Aplicação desktop desenvolvida com o objetivo de treinar a linguagem Java.
 
@@ -25,7 +36,7 @@ A aplicação disponibiliza de:
 
 PS: Um mini PDV foi apenas o contexto escolhido por mim já que trabalho a anos com sistemas do tipo, todo o código dentro deste projeto pode ser reutilizado para qualquer projeto
 
-### Informacoes geradas automaticamente
+### Informações geradas automaticamente
 #### Usuários:
 <table>
     <tr>
